@@ -19,8 +19,10 @@ are non-US on purpose). Connect via the SSH aliases in my ~/.ssh/config.
    mistake — it holds real money.***
 
 2) twapvm    — 34.34.13.7, europe-west4-a, user ubuntupolymarket3.
-   THE TWAP LOCK-IN box. Runs ONLY the s1_harness (twap-harness.service, DRY, places no orders).
-   Set up 2026-09-20 for the new strategy.
+   THE TWAP LOCK-IN box. Runs ONLY the S1 strategy as two services, both DRY, no .env on the
+   box: s1-harness.service (observer, writes rounds.csv) + s1-trader.service (gated trader).
+   Code in ~/s1_harness; reference copy + living record in "~/#1 TWAP Lock-In Convergence
+   late-round taker/". Set up 2026-09-20 for the new strategy.
 
 HOW TO TELL WHICH I MEAN:
 - fleet / weather / hip3 / liq / moonsniper / btc5bot / audit / reconcile / probe / 15m collector
