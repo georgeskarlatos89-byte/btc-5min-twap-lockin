@@ -1,0 +1,138 @@
+[06:11:47Z] S1 TWAP lock-in harness starting (DRY RUN — observation only)
+[06:11:47Z] RTDS connected, subscribing to 60s TWAP btc/usd
+[06:11:48Z] RTDS connection problem: JSONDecodeError('Expecting value: line 1 column 1 (char 0)') — reconnecting in 2s
+[06:11:50Z] RTDS connected, subscribing to 60s TWAP btc/usd
+[06:11:50Z] RTDS connection problem: JSONDecodeError('Expecting value: line 1 column 1 (char 0)') — reconnecting in 2s
+[06:11:53Z] RTDS connected, subscribing to 60s TWAP btc/usd
+[06:11:53Z] RTDS connection problem: JSONDecodeError('Expecting value: line 1 column 1 (char 0)') — reconnecting in 2s
+[06:11:56Z] RTDS connected, subscribing to 60s TWAP btc/usd
+[06:11:56Z] RTDS connection problem: JSONDecodeError('Expecting value: line 1 column 1 (char 0)') — reconnecting in 2s
+[06:11:59Z] RTDS connected, subscribing to 60s TWAP btc/usd
+[06:11:59Z] RTDS connection problem: JSONDecodeError('Expecting value: line 1 column 1 (char 0)') — reconnecting in 2s
+[06:12:01Z] RTDS connected, subscribing to 60s TWAP btc/usd
+[06:12:02Z] RTDS connection problem: JSONDecodeError('Expecting value: line 1 column 1 (char 0)') — reconnecting in 2s
+[06:12:04Z] RTDS connected, subscribing to 60s TWAP btc/usd
+[06:12:05Z] RTDS connection problem: JSONDecodeError('Expecting value: line 1 column 1 (char 0)') — reconnecting in 2s
+[06:12:07Z] RTDS connected, subscribing to 60s TWAP btc/usd
+[06:12:07Z] RTDS connection problem: JSONDecodeError('Expecting value: line 1 column 1 (char 0)') — reconnecting in 2s
+[06:12:27Z] S1 TWAP lock-in harness starting (DRY RUN — observation only)
+[06:12:27Z] RTDS connected, subscribing to 60s TWAP btc/usd
+[06:12:27Z] note: skipping non-JSON frame: ''
+[06:18:18Z] S1 TWAP lock-in harness starting (DRY RUN — observation only)
+[06:18:18Z] RTDS connected, subscribing to 60s TWAP btc/usd
+[06:18:18Z] note: skipping non-JSON frame: ''
+[06:21:11Z] S1 TWAP lock-in harness starting (DRY RUN — observation only)
+[06:21:12Z] RTDS connected, subscribing to 60s TWAP btc/usd
+[06:21:12Z] note: skipping non-JSON frame: ''
+[06:21:13Z] stream update #1: value=80963.18 obs=1789798872000
+[06:21:14Z] stream update #2: value=80963.20 obs=1789798873000
+[06:21:15Z] stream update #3: value=80963.20 obs=1789798874000
+[06:24:14Z] 5m t-120s: locked-TWAP gap -1.0bps | model p(Up)=0.000 | book Up 0.00/0.01
+[06:24:58Z] 5m t-75s: locked-TWAP gap -1.3bps | model p(Up)=0.000 | book Up 0.00/0.01
+[06:27:07Z] 5m 1789798800: resolution not final yet, skipping row
+[06:28:02Z] 5m t-120s: locked-TWAP gap -2.4bps | model p(Up)=0.000 | book Up 0.72/0.73
+[06:28:17Z] 5m t-105s: locked-TWAP gap -2.4bps | model p(Up)=0.000 | book Up 0.67/0.68
+[06:30:30Z] S1 TWAP lock-in harness starting (DRY RUN — observation only)
+[06:30:30Z] RTDS connected, subscribing to 60s TWAP btc/usd
+[06:30:30Z] note: skipping non-JSON frame: ''
+[06:30:31Z] stream update #1: value=80942.91 obs=1789799430000
+[06:30:32Z] stream update #2: value=80942.91 obs=1789799431000
+[06:30:33Z] stream update #3: value=80943.32 obs=1789799432000
+[06:33:31Z] 5m t-120s: locked-TWAP gap +2.6bps | p(full-avg)=1.000 p(end-value)=1.000 | book Up 0.99/1.00
+[06:33:47Z] 5m t-105s: locked-TWAP gap +2.8bps | p(full-avg)=1.000 p(end-value)=1.000 | book Up 0.99/1.00
+[06:34:02Z] 5m t-90s: locked-TWAP gap +3.1bps | p(full-avg)=1.000 p(end-value)=1.000 | book Up 0.99/1.00
+[06:34:17Z] 5m t-75s: locked-TWAP gap +3.4bps | p(full-avg)=1.000 p(end-value)=1.000 | book Up 0.99/1.00
+[06:34:32Z] 5m t-60s: locked-TWAP gap +3.6bps | p(full-avg)=1.000 p(end-value)=1.000 | book Up 0.99/1.00
+[06:34:47Z] 5m t-45s: locked-TWAP gap +3.9bps | p(full-avg)=1.000 p(end-value)=1.000 | book Up 0.99/1.00
+[06:39:47Z] 5m 1789799400: resolution not final yet, skipping row
+[06:41:25Z] S1 TWAP lock-in harness starting (DRY RUN — observation only)
+[06:41:25Z] RTDS connected, subscribing to 60s TWAP btc/usd
+[06:41:26Z] note: skipping non-JSON frame: ''
+[06:41:27Z] stream update #1: value=81059.31 obs=1789800086000
+[06:41:28Z] stream update #2: value=81059.32 obs=1789800087000
+[06:41:29Z] stream update #3: value=81059.33 obs=1789800088000
+[06:44:28Z] 5m t-120s: locked-TWAP gap -0.4bps | p(full-avg)=0.000 p(end-value)=0.000 | book Up 0.00/0.01
+[06:44:43Z] 5m t-105s: locked-TWAP gap -0.5bps | p(full-avg)=0.000 p(end-value)=0.000 | book Up 0.00/0.01
+[06:44:58Z] 5m t-90s: locked-TWAP gap -0.7bps | p(full-avg)=0.000 p(end-value)=0.000 | book Up 0.00/0.01
+[06:48:47Z] ROUND-RESULT 5m start=1789800000: settled=Down | coverage=71% | full-round-avg=Down(partial(71%)) tail60=Down(yes) end-value=Down(yes) | model p(Up)=0.000 book_ask=0.01
+[06:48:47Z] ROUND-RESULT 15m start=1789799400: settled=Up | coverage=24% | full-round-avg=Down(partial(24%)) tail60=Down(NO) end-value=Down(NO) | model p(Up)=0.000 book_ask=1.0
+[06:49:16Z] ⚡ SIGNAL 5m t-45s: would BUY Up @ 0.90 | model p(Up)=1.000 | post-fee edge 9.4%  (gap +1.6bps, DRY RUN)
+[06:49:16Z] 5m t-45s: locked-TWAP gap +1.6bps | p(full-avg)=1.000 p(end-value)=1.000 | book Up 0.89/0.90
+[06:49:18Z] ⚡ SIGNAL 5m t-44s: would BUY Up @ 0.91 | model p(Up)=1.000 | post-fee edge 8.4%  (gap +1.6bps, DRY RUN)
+[06:49:19Z] ⚡ SIGNAL 5m t-43s: would BUY Up @ 0.88 | model p(Up)=1.000 | post-fee edge 11.3%  (gap +1.6bps, DRY RUN)
+[06:49:21Z] ⚡ SIGNAL 5m t-41s: would BUY Up @ 0.96 | model p(Up)=1.000 | post-fee edge 3.7%  (gap +1.6bps, DRY RUN)
+[06:49:22Z] ⚡ SIGNAL 5m t-40s: would BUY Up @ 0.96 | model p(Up)=1.000 | post-fee edge 3.7%  (gap +1.6bps, DRY RUN)
+[06:49:23Z] ⚡ SIGNAL 5m t-38s: would BUY Up @ 0.96 | model p(Up)=1.000 | post-fee edge 3.7%  (gap +1.6bps, DRY RUN)
+[06:49:25Z] ⚡ SIGNAL 5m t-37s: would BUY Up @ 0.96 | model p(Up)=1.000 | post-fee edge 3.7%  (gap +1.6bps, DRY RUN)
+[06:49:31Z] 5m t-30s: locked-TWAP gap +1.6bps | p(full-avg)=1.000 p(end-value)=1.000 | book Up 0.99/1.00
+[06:49:47Z] 5m t-15s: locked-TWAP gap +1.6bps | p(full-avg)=1.000 p(end-value)=1.000 | book Up 1.00/1.00
+[06:51:46Z] S1 TWAP lock-in harness v2 starting (DRY RUN — observation only)
+[06:51:46Z] RTDS connected; subscribing twap30+twap60+chainlink-spot
+[06:51:46Z] note: skipping non-JSON frame ''
+[06:51:48Z] stream update #1: twap60=81041.52
+[06:51:49Z] stream update #2: twap60=81041.36
+[06:51:50Z] stream update #3: twap60=81041.20
+[06:55:00Z] 5m round 1789800900: open refs snapped  twap=81016.67 spot=81013.45
+[06:55:46Z] 5m 1789800600: no open-ref snapshot (late join) — row skipped
+[06:58:17Z] 5m t-105s: gap -0.8bps | p(full-avg)=0.000 p(end-value)=0.980 | book Up 0.66/0.67
+[06:58:31Z] 5m t-90s: gap -0.7bps | p(full-avg)=0.000 p(end-value)=0.995 | book Up 0.74/0.75
+[06:58:47Z] 5m t-75s: gap -0.6bps | p(full-avg)=0.000 p(end-value)=0.996 | book Up 0.78/0.79
+[06:59:16Z] ⚡ SIGNAL 5m t-45s: would BUY Down @ 0.19 | model p(Up)=0.000 | post-fee edge 79.9%  (gap -0.5bps, DRY RUN)
+[06:59:16Z] 5m t-45s: gap -0.5bps | p(full-avg)=0.000 p(end-value)=0.998 | book Up 0.81/0.82
+[06:59:17Z] ⚡ SIGNAL 5m t-44s: would BUY Down @ 0.20 | model p(Up)=0.000 | post-fee edge 78.9%  (gap -0.5bps, DRY RUN)
+[06:59:19Z] ⚡ SIGNAL 5m t-43s: would BUY Down @ 0.56 | model p(Up)=0.000 | post-fee edge 42.3%  (gap -0.5bps, DRY RUN)
+[06:59:20Z] ⚡ SIGNAL 5m t-42s: would BUY Down @ 0.57 | model p(Up)=0.000 | post-fee edge 41.3%  (gap -0.5bps, DRY RUN)
+[06:59:21Z] ⚡ SIGNAL 5m t-40s: would BUY Down @ 0.59 | model p(Up)=0.000 | post-fee edge 39.3%  (gap -0.5bps, DRY RUN)
+[06:59:22Z] ⚡ SIGNAL 5m t-39s: would BUY Down @ 0.64 | model p(Up)=0.000 | post-fee edge 34.4%  (gap -0.5bps, DRY RUN)
+[06:59:23Z] ⚡ SIGNAL 5m t-38s: would BUY Down @ 0.71 | model p(Up)=0.000 | post-fee edge 27.6%  (gap -0.5bps, DRY RUN)
+[06:59:25Z] ⚡ SIGNAL 5m t-37s: would BUY Down @ 0.68 | model p(Up)=0.000 | post-fee edge 30.5%  (gap -0.5bps, DRY RUN)
+[06:59:26Z] ⚡ SIGNAL 5m t-36s: would BUY Down @ 0.66 | model p(Up)=0.000 | post-fee edge 32.4%  (gap -0.5bps, DRY RUN)
+[06:59:27Z] ⚡ SIGNAL 5m t-34s: would BUY Down @ 0.75 | model p(Up)=0.000 | post-fee edge 23.7%  (gap -0.5bps, DRY RUN)
+[06:59:28Z] ⚡ SIGNAL 5m t-33s: would BUY Down @ 0.79 | model p(Up)=0.000 | post-fee edge 19.8%  (gap -0.5bps, DRY RUN)
+[06:59:29Z] ⚡ SIGNAL 5m t-32s: would BUY Down @ 0.88 | model p(Up)=0.000 | post-fee edge 11.3%  (gap -0.5bps, DRY RUN)
+[06:59:31Z] ⚡ SIGNAL 5m t-31s: would BUY Down @ 0.90 | model p(Up)=0.000 | post-fee edge 9.4%  (gap -0.5bps, DRY RUN)
+[06:59:32Z] ⚡ SIGNAL 5m t-30s: would BUY Down @ 0.91 | model p(Up)=0.000 | post-fee edge 8.4%  (gap -0.5bps, DRY RUN)
+[06:59:32Z] 5m t-30s: gap -0.5bps | p(full-avg)=0.000 p(end-value)=0.996 | book Up 0.09/0.10
+[06:59:33Z] ⚡ SIGNAL 5m t-29s: would BUY Down @ 0.94 | model p(Up)=0.000 | post-fee edge 5.6%  (gap -0.4bps, DRY RUN)
+[06:59:34Z] ⚡ SIGNAL 5m t-27s: would BUY Down @ 0.95 | model p(Up)=0.000 | post-fee edge 4.7%  (gap -0.4bps, DRY RUN)
+[06:59:35Z] ⚡ SIGNAL 5m t-26s: would BUY Down @ 0.97 | model p(Up)=0.000 | post-fee edge 2.8%  (gap -0.4bps, DRY RUN)
+[06:59:37Z] ⚡ SIGNAL 5m t-25s: would BUY Down @ 0.97 | model p(Up)=0.000 | post-fee edge 2.8%  (gap -0.4bps, DRY RUN)
+[06:59:46Z] 5m t-15s: gap -0.4bps | p(full-avg)=0.000 p(end-value)=0.089 | book Up 0.01/0.02
+[06:59:47Z] 5m t-15s: gap -0.4bps | p(full-avg)=0.000 p(end-value)=0.089 | book Up 0.01/0.02
+[07:00:00Z] 5m round 1789801200: open refs snapped  twap=81014.16 spot=81011.81
+[07:00:00Z] 15m round 1789801200: open refs snapped  twap=81014.16 spot=81011.81
+[07:04:16Z] ROUND-RESULT 5m 1789800900: settled=Down cov=99% | vs twap-open: full=Down/yes tail60=Up/NO end=Down/yes | vs spot-open: full=Down/yes tail60=Up/NO end=Up/NO
+[07:04:16Z] 15m 1789800300: no open-ref snapshot (late join) — row skipped
+[07:04:17Z] 5m t-45s: gap +2.8bps | p(full-avg)=1.000 p(end-value)=1.000 | book Up 1.00/1.00
+[07:04:46Z] 5m t-15s: gap +2.9bps | p(full-avg)=1.000 p(end-value)=1.000 | book Up 1.00/1.00
+[07:05:00Z] 5m round 1789801500: open refs snapped  twap=81047.10 spot=81046.63
+[07:06:52Z] RTDS problem: ConnectionClosedError(None, None, None) — reconnect in 2s
+[07:06:54Z] RTDS connected; subscribing twap30+twap60+chainlink-spot
+[07:06:54Z] note: skipping non-JSON frame ''
+[07:09:20Z] ROUND-RESULT 5m 1789801200: settled=Up cov=99% | vs twap-open: full=Up/yes tail60=Up/yes end=Up/yes | vs spot-open: full=Up/yes tail60=Up/yes end=Up/yes
+[07:09:31Z] 5m t-30s: gap +0.1bps | p(full-avg)=1.000 p(end-value)=1.000 | book Up 0.99/1.00
+[07:09:46Z] 5m t-15s: gap +0.2bps | p(full-avg)=1.000 p(end-value)=1.000 | book Up 0.99/1.00
+[07:10:00Z] 5m t-0s: gap +0.4bps | p(full-avg)=1.000 p(end-value)=1.000 | book Up 0.99/1.00
+[07:10:01Z] 5m round 1789801800: open refs snapped  twap=81075.99 spot=81077.89
+[07:13:56Z] S1 TWAP lock-in harness v2 starting (DRY RUN — observation only)
+[07:13:56Z] RTDS connected; subscribing twap30+twap60+chainlink-spot
+[07:13:56Z] note: skipping non-JSON frame ''
+[07:13:57Z] stream update #1: twap60=81092.76
+[07:13:58Z] stream update #2: twap60=81092.79
+[07:13:59Z] stream update #3: twap60=81092.81
+[07:15:00Z] 5m round 1789802100: open refs snapped  twap=81102.43 spot=81128.78
+[07:15:00Z] 15m round 1789802100: open refs snapped  twap=81102.43 spot=81128.78
+[10:30:34Z] S1 TWAP lock-in harness v2 starting (DRY RUN — observation only)
+[10:30:34Z] RTDS connected; subscribing twap30+twap60+chainlink-spot
+[10:30:34Z] note: skipping non-JSON frame ''
+[10:30:36Z] stream update #1: twap60=81263.46
+[10:30:37Z] stream update #2: twap60=81263.43
+[10:30:38Z] stream update #3: twap60=81263.43
+[14:29:41Z] S1 TWAP lock-in harness v2 starting (DRY RUN — observation only)
+[14:29:42Z] RTDS connected; subscribing twap30+twap60+chainlink-spot
+[14:29:42Z] note: skipping non-JSON frame ''
+[14:29:43Z] stream update #1: twap60=80504.35
+[14:29:44Z] stream update #2: twap60=80504.26
+[14:29:45Z] stream update #3: twap60=80504.17
+[14:30:00Z] 5m round 1789914600: open refs snapped  twap=80502.64 spot=80502.15
+[14:30:00Z] 15m round 1789914600: open refs snapped  twap=80502.64 spot=80502.15
