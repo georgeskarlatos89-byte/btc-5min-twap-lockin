@@ -1,0 +1,18 @@
+[Unit]
+Description=S1 TWAP lock-in monitor (read-only: Telegram alerts + data-quality checks)
+After=network-online.target s1-harness.service s1-trader.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntupolymarket3
+Group=ubuntupolymarket3
+WorkingDirectory=/home/ubuntupolymarket3/s1_harness
+ExecStart=/usr/bin/python3 -u /home/ubuntupolymarket3/s1_harness/s1_monitor.py
+Restart=always
+RestartSec=15
+StandardOutput=append:/home/ubuntupolymarket3/s1_harness/s1-monitor.service.log
+StandardError=append:/home/ubuntupolymarket3/s1_harness/s1-monitor.service.log
+
+[Install]
+WantedBy=multi-user.target
