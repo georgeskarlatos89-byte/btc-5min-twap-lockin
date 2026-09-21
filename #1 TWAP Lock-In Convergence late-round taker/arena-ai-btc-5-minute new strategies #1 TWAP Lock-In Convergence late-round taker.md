@@ -1124,3 +1124,13 @@ socket; the trader's `feed stale` gate blocked trading but nothing ever reconnec
 **Not fixed by design:** the S1 dry ledger keeps drifting down (19 signals, 63 %, −$28.90 at last
 count) — it is research data on a falsified, hard-blocked model and is reported only in the hourly
 digest.
+
+**Production verification (20:12Z addendum).** The watchdog fired for real 35 minutes after deploy:
+`[20:04:50Z] RTDS silent for 60s — reconnecting (stall watchdog)` → `[20:04:51Z] RTDS connected` —
+a 1-second recovery, one ⚠ to Telegram, and every row since the 19:30 restart at 99–100 % coverage
+(0 partial). The log also explains the 85-minute freeze: the server had cycled the socket at
+19:16:16Z, but that fresh connection delivered nothing either until the manual restart at 19:28 —
+so a plain reconnect is not enough; the watchdog's *repeated* 60 s retry is what covers it (as
+20:04 showed). The trader's watchdog has not fired yet. Stall events are now visible as one line
+each in `harness.log` and as a deduped ⚠ in Telegram; if they become frequent, the next step is a
+periodic proactive reconnect, not more alerts.
