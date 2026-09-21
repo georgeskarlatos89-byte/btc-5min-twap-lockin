@@ -30,6 +30,8 @@ ROUNDS = [(300, "5m", 45), (900, "15m", 90)]
 EDGE_MIN = 0.02
 GAP_MIN_BPS = 4.0   # backtest-calibrated: |gap|>4bps = 70/70 vs official; below = proxy noise
 SIGMA_SAFETY = 1.5
+FEED_STALL_S = 60   # no RTDS frame for this long -> drop the socket and reconnect (Part #23)
+MIN_COVERAGE_ROW = 0.05   # below this the row would be all nan/stale: skip it, log the reason
 
 def log(msg):
     ts = datetime.now(timezone.utc).strftime("%H:%M:%S")
@@ -172,6 +174,11 @@ async def settle_check(T, label, start, attempt=0):
         rs["frozen"] = dict(acc_avg=rs["acc"] / rs["elapsed"] if rs["elapsed"] else float("nan"),
                             t60=sum(tail) / len(tail) if tail else float("nan"),
                             ev=evl[-1] if evl else float("nan"), cov=rs["elapsed"] / T)
+    if rs["frozen"]["cov"] < MIN_COVERAGE_ROW:
+        # 2026-09-21 (Part #23): 19 rows of `nan` / stale prices were written during the feed
+        # freeze (coverage 0%). A row with no feed data is not data - skip it and say why.
+        log(f"{label} {start}: coverage {rs['frozen']['cov']:.0%} — no feed data for this round, row skipped (feed stall)")
+        return
     settled = gamma_resolution(label, start)
     if settled is None:
         if attempt + 1 < SETTLE_MAX_ATTEMPTS:
@@ -229,7 +236,16 @@ async def rtds():
                 hb = asyncio.create_task(heartbeat())
                 seen_nonjson = False
                 try:
-                    async for raw in ws:
+                    while True:
+                        # 2026-09-21 (living record Part #23): stall watchdog. The socket stayed open
+                        # but delivered NOTHING for 85 min (open ref frozen at 85859.47 from 17:55 to
+                        # 19:20 while the trader's own connection kept flowing) - `async for` blocks
+                        # forever on a zombie connection. No frame for FEED_STALL_S -> reconnect.
+                        try:
+                            raw = await asyncio.wait_for(ws.recv(), timeout=FEED_STALL_S)
+                        except asyncio.TimeoutError:
+                            log(f"RTDS silent for {FEED_STALL_S}s — reconnecting (stall watchdog)")
+                            break
                         try: msg = json.loads(raw)
                         except Exception:
                             if not seen_nonjson: log(f"note: skipping non-JSON frame {str(raw)[:40]!r}"); seen_nonjson = True

@@ -174,7 +174,14 @@ async def rtds():
                         await asyncio.sleep(5); await ws.send("PING")
                 h = asyncio.create_task(hb())
                 try:
-                    async for raw in ws:
+                    while True:
+                        # stall watchdog (Part #23): a zombie socket froze the observer for 85 min;
+                        # the trader's "feed stale" gate blocks trading but would never reconnect.
+                        try:
+                            raw = await asyncio.wait_for(ws.recv(), timeout=60)
+                        except asyncio.TimeoutError:
+                            log("RTDS silent for 60s — reconnecting (stall watchdog)")
+                            break
                         try: msg = json.loads(raw)
                         except Exception: continue
                         if msg.get("type") != "update": continue

@@ -275,8 +275,19 @@ def check_harness_log(st):
                 alert(st, "harness_rtds_storm", f"⚠ observer feed unstable: >{RECONNECTS_PER_H_MAX} RTDS reconnects in the last hour")
         elif "row skipped" in ln or "skipping row" in ln:
             n = hour_count(st, "lost_rounds", 1)
+            why = "late join" if "late join" in ln else "feed stall" if "feed stall" in ln else "resolution not final"
             if n > LOST_ROUNDS_PER_H_MAX:
-                alert(st, "lost_rounds", f"⚠ observer lost {n} rounds in the last hour ({'late join' if 'late join' in ln else 'resolution not final'}) - arbiter will take longer than planned")
+                alert(st, "lost_rounds", f"⚠ observer lost {n} rounds in the last hour ({why}) - fewer rounds recorded than expected")
+        elif "stall watchdog" in ln:
+            alert(st, "feed_stall_reconnect", f"⚠ observer feed went silent and was reconnected by the stall watchdog: {TS_RE.sub('', ln)[:120]}")
+        elif "open refs snapped" in ln:
+            # 2026-09-21 (Part #23): a frozen feed shows up as the SAME open ref at consecutive bells
+            # (85859.47 for 85 min). Three identical in a row = frozen -> one alert, deduped.
+            m = re.search(r"twap=([\d.]+)", ln)
+            if m:
+                v = st.setdefault("open_refs", []); v.append(m.group(1)); del v[:-3]
+                if len(v) == 3 and len(set(v)) == 1:
+                    alert(st, "feed_frozen", f"🚨 observer TWAP feed FROZEN: open ref {v[0]} at 3 consecutive bells - socket zombie (watchdog should reconnect within 60 s; if this repeats, restart s1-harness)")
         elif "Traceback" in ln or "Error" in ln and "RTDS" not in ln:
             alert(st, "harness_err:" + ln[-80:], f"⚠ observer error: {TS_RE.sub('', ln)[:300]}")
 
@@ -301,6 +312,10 @@ def check_rounds(st):
         if T is None or not start or not start.isdigit() or int(start) % T: probs.append(f"misaligned round_start {lab} {start}")
         if settled not in ("Up", "Down"): probs.append(f"settled={settled!r}")
         if not (fa in ("yes", "NO") or fa.startswith("partial")): probs.append(f"fa_twap={fa!r}")
+        if fa.startswith("partial"):
+            # a partial-coverage row legitimately carries nan averages (the observer now skips
+            # rows below 5 % coverage, Part #23); partial rate is checked separately below
+            continue
         if o is None or a is None or e is None: probs.append("non-numeric price field")
         else:
             if sp and abs(sp - o) / o * 1e4 > 100: probs.append(f"twap-open vs spot-open differ {abs(sp-o)/o*1e4:.0f} bps")
