@@ -5,17 +5,18 @@ S1 MONITOR - Telegram alerts + data-quality checks for the S1 TWAP Lock-In strat
 READ-ONLY: never touches trader/harness state, never places orders, never restarts anything.
 It runs as its own service so trader.py stays byte-identical (strategy untouched).
 
-Sends ONLY what matters, each once:
-  * every DRY SIGNAL / SCORE / LIVE ORDER / LIVE ORDER FAILED / DAILY STOP / FORCE_LIVE line
-  * gate milestones (arbiter 10/25/50, dry 5/10/20) and "READY: both gates met"
-  * DATA ERRORS: core hypothesis contradicted at >=4 bps, trader-vs-harness settlement
-    mismatch, implausible prices, duplicate/misaligned rounds, too many partial-coverage
-    rounds, rounds being lost to slow resolution, no new rounds, feed reconnect storms,
-    strategy constants changed on disk
-  * service down / restarted, .env appeared, LIVE_TRADING or FORCE_LIVE flipped, KILL written
-  * one daily summary at 07:00 UTC
-Anything else (open refs, stream updates, ROUND-RESULT lines) is deliberately NOT sent.
-Warnings are de-duplicated for 6 h; milestones are sent once ever.
+URGENT alerts only (since 2026-09-21, living record Part #22), each once:
+  * LIVE ORDER / LIVE ORDER FAILED / DAILY STOP / FORCE_LIVE (real money paths)
+  * DATA ERRORS: the END-VALUE settlement rule contradicted at >=4 bps (the true rule -
+    a contradiction means our recording or understanding broke), trader-vs-observer settlement
+    mismatch, implausible prices, duplicate/misaligned rounds, partial coverage, lost rounds,
+    no new rounds, feed storms, strategy constants changed on disk, BME/disk faults
+  * service down / restarted, .env appeared, LIVE_TRADING / FORCE_LIVE / KILL /
+    S1_LIVE_BLOCKED changed, gabagool22 RETURN, S9 gate-verdict changes
+DIGESTED into the hourly status instead of pinging: S1 dry signals + scores (S1 is falsified
+and hard-blocked - its signals are research data, not events), S9 EDGE-AGREE / OUTCOME /
+CO-SIGNAL, S9 resolution gaps. Plus one daily summary at 07:00 UTC.
+Warnings are de-duplicated for 6 h; verdicts are sent once ever; global 10-per-10-min breaker.
 
 Config: telegram.env (TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID / TELEGRAM_THREAD_ID) with .env
 overriding. Without a token it still runs every check and prints them to its own log.
@@ -207,8 +208,17 @@ def gate_status():
     return arb, s, wr
 
 def gates_line():
+    # "arbiter X/50" removed 2026-09-21 (Part #22): it counts full-avg agreement, a false green
+    # since the premise was falsified. Show the dry ledger and the hard block instead.
     arb, s, wr = gate_status()
-    return f"gates: arbiter {arb}/{ARB_MIN} | dry n={s.get('n',0)}/{SIG_MIN} wr={wr:.0%} (need ≥{SIG_WR:.0%}) | dry pnl ${s.get('pnl',0):+.2f}"
+    return (f"S1 dry ledger n={s.get('n',0)} wr={wr:.0%} pnl ${s.get('pnl',0):+.2f} | "
+            f"live {'BLOCKED' if os.path.exists(P('S1_LIVE_BLOCKED')) else 'NOT BLOCKED'}")
+
+def s1_digest(st):
+    """S1 dry signals/scores since the last hourly status (then reset)."""
+    d = st.get("s1_hour", {}); st["s1_hour"] = {}
+    n, w, l = d.get("sig", 0), d.get("win", 0), d.get("loss", 0)
+    return f"last hour: {n} dry signal(s), scored {w} win / {l} loss" if (n or w or l) else "last hour: no dry signals"
 
 def svc(name, prop):
     try: return subprocess.run(["systemctl", "show", "-p", prop, "--value", f"{name}.service"],
@@ -240,12 +250,19 @@ def check_trader_log(st):
             if hour_count(st, "trader_rtds", 1) > RECONNECTS_PER_H_MAX:
                 alert(st, "trader_rtds_storm", f"⚠ trader feed unstable: >{RECONNECTS_PER_H_MAX} RTDS reconnects in the last hour")
             continue
+        m = SCORE_RE.search(ln)
+        if m:   # still cross-checked against the observer; counted for the hourly digest
+            st["scores_checked"].append([m.group(1), m.group(2), m.group(5)])
+            h = st.setdefault("s1_hour", {}); k = "win" if m.group(6) == "WIN" else "loss"; h[k] = h.get(k, 0) + 1
+            continue
+        if "DRY SIGNAL" in ln:
+            h = st.setdefault("s1_hour", {}); h["sig"] = h.get("sig", 0) + 1
+            continue
+        if "trader starting" in ln:
+            continue   # restarts are covered by the service checks
         if any(k in ln for k in FORWARD):
-            icon = "🟢" if "LIVE ORDER" in ln and "FAILED" not in ln else "🚨" if ("FAILED" in ln or "DAILY STOP" in ln or "FORCE_LIVE" in ln) else "📈" if "SCORE" in ln else "🔔"
-            extra = "\n" + gates_line() if ("SCORE" in ln or "DRY SIGNAL" in ln or "trader starting" in ln) else ""
-            alert(st, f"fwd:{ln}", f"{icon} {body}{extra}", "event")
-            m = SCORE_RE.search(ln)
-            if m: st["scores_checked"].append([m.group(1), m.group(2), m.group(5)])
+            icon = "🟢" if "LIVE ORDER" in ln and "FAILED" not in ln else "🚨" if ("FAILED" in ln or "DAILY STOP" in ln or "FORCE_LIVE" in ln) else "🔔"
+            alert(st, f"fwd:{ln}", f"{icon} {body}\n{gates_line()}", "event")
         if "open ref" in ln: st["last_open_ref"] = now()
     # trader silent?
     if svc("s1-trader", "ActiveState") == "active" and now() - st.get("last_open_ref", now()) > TRADER_SILENT_ALERT_S:
@@ -292,11 +309,16 @@ def check_rounds(st):
         if probs:
             alert(st, f"row:{lab}:{start}", f"🚨 DATA ERROR in rounds.csv row {lab} {start}:\n" + "\n".join(probs))
             continue
-        g = gap_bps(r)
-        # THE money check: the report says >=4 bps is 100% - any contradiction is news
-        if g is not None and abs(g) >= GAP_MIN and fa == "NO":
-            alert(st, f"hypo:{lab}:{start}", f"🚨 CORE HYPOTHESIS CONTRADICTED: {lab} {start} gap {g:+.1f} bps, full-round-avg said "
-                  f"{'Up' if a >= o else 'Down'} but settled {settled}. (Backtest: 70/70 at >4 bps.)", "event")
+        # 2026-09-21 (Part #22): the full-round-average premise is FALSIFIED (verdict sent once), so
+        # its contradictions are expected, not news. What matters now is the TRUE rule: the venue
+        # settles on the END value of the 60 s TWAP vs the open (so far 100% at >= 4 bps). If that
+        # ever fails with a clear gap, our recording or our understanding of the venue broke.
+        ev = r.get("ev_twap", "")
+        eg = (e - o) / o * 1e4 if (o and e is not None) else None
+        if eg is not None and abs(eg) >= GAP_MIN and ev == "NO":
+            alert(st, f"evrule:{lab}:{start}", f"🚨 SETTLEMENT DATA CHECK FAILED: {lab} {start} end-value gap {eg:+.1f} bps said "
+                  f"{'Up' if e >= o else 'Down'} but the venue settled {settled}. The end-value rule has held on every clear "
+                  f"round so far - check the observer's feed/recording.", "event")
     st["rows_seen"] = len(rs)
     # THE settlement-rule test (2026-09-21): the arbiter count (fa_twap=yes) is mostly coincidental
     # agreement with the end-value rule. Only rounds where the two hypotheses DISAGREE can decide
@@ -343,8 +365,12 @@ def check_s9_log(st):
         if body.startswith("STATUS"):
             st["s9_last_status_t"] = now(); st["s9_status"] = body[7:][:400]
             m = S9_FEEDLAG_RE.search(body)
-            if m and float(m.group(1)) > S9_FEED_LAG_MAX:
-                alert(st, "s9_feedlag", f"⚠ S9 data-api feed lag {m.group(1)}s (> {S9_FEED_LAG_MAX:.0f}s) - copy-follow timing unreliable")
+            # sustained only: 2 consecutive STATUS lines (~10 min) above the limit. One 44 s spike
+            # in 40 readings (median 2 s) pinged once on 2026-09-21 - a blip, not a fault.
+            hi = bool(m) and float(m.group(1)) > S9_FEED_LAG_MAX
+            if hi and st.get("s9_lag_hi"):
+                alert(st, "s9_feedlag", f"⚠ S9 data-api feed lag {m.group(1)}s (> {S9_FEED_LAG_MAX:.0f}s for ~10 min) - copy-follow timing unreliable")
+            st["s9_lag_hi"] = hi
             continue
         m = S9_GATES_RE.search(body)
         if m:
@@ -360,17 +386,26 @@ def check_s9_log(st):
                 alert(st, "s9_err_storm", f"⚠ S9 watcher: >{S9_ERRS_PER_H_MAX} errors in the last hour, last: {body[:200]}")
             continue
         if "resolution timeout" in body or "agreement skip" in body:
-            alert(st, "s9_res_timeout", f"⚠ S9 watcher could not resolve a round (data gap): {body[:200]}"); continue
+            # single gaps go to the digest; only a burst is worth a ping
+            h = st.setdefault("s9_hour", {}); h["gaps"] = h.get("gaps", 0) + 1
+            if hour_count(st, "s9_gaps", 1) > 5:
+                alert(st, "s9_res_timeout", f"⚠ S9 watcher: >5 unresolvable rounds in the last hour (data gap), last: {body[:160]}")
+            continue
         if any(k in body for k in S9_FORWARD):
             # PER-ITEM lines are never forwarded (2026-09-21, twice): OUTCOME is one line per
             # resolved follow candidate (a scalper = many per round) and CO-SIGNAL one per fill.
-            # They are COUNTED here and reported in the daily summary; EDGE-AGREE (one per signal
-            # round, after settlement) carries the full per-wallet tally.
+            # They are COUNTED here and reported in the daily summary.
             if "OUTCOME [" in body:
                 st["s9_outcomes"].append(now()); continue
             if "CO-SIGNAL" in body:
                 continue
-            icon = "🚨" if "G22" in body else "🛑" if "KILL" in body else "🔗" if "EDGE-AGREE" in body else "🔔"
+            # EDGE-AGREE is research data about a falsified model's signals -> hourly digest
+            if "EDGE-AGREE" in body:
+                h = st.setdefault("s9_hour", {}); h["agree"] = h.get("agree", 0) + 1
+                if "signal WON" in body: h["won"] = h.get("won", 0) + 1
+                elif "signal LOST" in body: h["lost"] = h.get("lost", 0) + 1
+                continue
+            icon = "🚨" if "G22" in body else "🛑" if "KILL" in body else "🔔"
             # lifecycle lines (start / KILL exit) repeat on every restart -> de-duplicated 6 h,
             # never "always send" (2026-09-21: 1,447 of these went out during a restart loop)
             if "s9_watch start" in body or "KILL file present" in body:
@@ -478,22 +513,26 @@ def hourly_status(st):
     n_out = sum(1 for t in st.get("s9_outcomes", []) if now() - t < 3600)
     svcs = ", ".join(f"{n} {'✅' if svc(n,'ActiveState') == 'active' else '❌ ' + svc(n,'ActiveState')}" for n in SERVICES)
     rows_h = st.get("bme_rows_hour", 0); st["bme_rows_hour"] = 0
+    s9h = st.get("s9_hour", {}); st["s9_hour"] = {}
+    # compact S9 STATUS: per-wallet follows/win/EV + the edge-agreement tally, no "last=" noise
+    s9s = st.get("s9_status") or "no STATUS yet"
+    s9s = re.sub(r"\s*\|?\s*[\w-]+:last=-?\d+s(?=\s*\||\s*$)", "", s9s)          # wallets with nothing but last=
+    s9s = re.sub(r":last=-?\d+s", ":", s9s)
+    s9_d = (f"last hour: {n_out} follow outcomes, {s9h.get('agree',0)} signal cross-checks "
+            f"({s9h.get('won',0)} won / {s9h.get('lost',0)} lost), {s9h.get('gaps',0)} data gaps")
     msg = (f"🔷 hourly status {h}:00 UTC\n"
            f"{svcs}\n"
-           f"— {STRAT_DESC['S1']}\n   rounds recorded {len(rows_cache)} | {st.get('hypo_line', 'settlement tally pending')} | dry ledger n={s.get('n',0)} wr={wr:.0%} pnl ${s.get('pnl',0):+.2f} | LIVE_BLOCKED={'yes' if os.path.exists(P('S1_LIVE_BLOCKED')) else 'NO'}\n"
-           f"— {STRAT_DESC['S9']}\n   follow outcomes last hour {n_out} | {(st.get('s9_status') or 'no STATUS yet')[:160]}\n"
+           f"— {STRAT_DESC['S1']}\n   {s1_digest(st)} | rounds recorded {len(rows_cache)} | {st.get('hypo_line', 'settlement tally pending')} | {gates_line()}\n"
+           f"— {STRAT_DESC['S9']}\n   {s9_d} | {s9s[:300]}\n"
            f"— {STRAT_DESC['BME']}\n   last hour: +{d_gz:.0f} MB gz, {rows_h} book-state rows, reconnects {hour_count(st,'bme_reconnects')} | today's file {gz/2**20:.0f} MB | "
            f"{st.get('disk_line','disk ?')} | 7-day gate: day {max(1, len([f for f in os.listdir(BME_OUT) if f.startswith('events_') and f.endswith('.gz')]) if os.path.isdir(BME_OUT) else 0)} of 7")
     tg_send(msg); mlog("hourly status sent")
 
 def check_gates(st):
+    # Promotion milestones / READY removed 2026-09-21 (Part #22): S1 is falsified and hard-blocked,
+    # the arbiter count is a false green, and "dry 20/20" would announce a gate that can never
+    # open. The dry ledger stays visible in the hourly status. Only the data sanity check remains.
     arb, s, wr = gate_status()
-    for m in (10, 25, ARB_MIN):
-        if arb >= m: alert(st, f"arb{m}", f"🏁 arbiter reached {arb}/{ARB_MIN}" + (" - ARBITER GATE MET" if m == ARB_MIN else ""), "once")
-    for m in (5, 10, SIG_MIN):
-        if s.get("n", 0) >= m: alert(st, f"sig{m}", f"🏁 dry signals reached {s['n']}/{SIG_MIN} at wr={wr:.0%}" + (" - count met" + (", win-rate met" if wr >= SIG_WR else f", win-rate NOT met (need ≥{SIG_WR:.0%})") if m == SIG_MIN else ""), "once")
-    if arb >= ARB_MIN and s.get("n", 0) >= SIG_MIN and wr >= SIG_WR:
-        alert(st, "ready", f"🟢 READY - both promotion gates are MET.\n{gates_line()}\nTrader stays DRY until you set LIVE_TRADING=1 in .env yourself.", "once")
     if s.get("n", 0) and s.get("wins", 0) > s["n"]:
         alert(st, "stats_bad", f"🚨 DATA ERROR: trader_stats.json wins {s['wins']} > n {s['n']}")
 
@@ -546,9 +585,8 @@ def daily_summary(st):
     arb, s, wr = gate_status()
     tg_send(f"🔷 {STRAT} - daily summary {d.strftime('%Y-%m-%d')}\n"
             f"rounds last 24h: {len(day)} ({part} partial)\n"
-            f"arbiter: {arb}/{ARB_MIN} | full-avg rule holds {yes(full)}/{len(full)} overall, {yes(big)}/{len(big)} at ≥{GAP_MIN:.0f} bps\n"
             f"{st.get('hypo_line', '')}\n"
-            f"dry signals: n={s.get('n',0)}/{SIG_MIN} wr={wr:.0%} pnl ${s.get('pnl',0):+.2f}\n"
+            f"{gates_line()}\n"
             f"services: " + ", ".join(f"{n} {svc(n,'ActiveState')} (restarts {svc(n,'NRestarts')})" for n in SERVICES) + "\n"
             f"feed reconnects/h now: trader {hour_count(st,'trader_rtds')} observer {hour_count(st,'harness_rtds')}\n"
             f"S9: {len(st.get('s9_outcomes', []))} follow outcomes in 24h | {st.get('s9_status') or '(no STATUS line yet)'}\n"
@@ -575,9 +613,10 @@ def main():
     st["env_seen"] = os.path.exists(ENV); st["live_seen"] = env.get("LIVE_TRADING") == "1"
     st["force_seen"] = env.get("FORCE_LIVE") == "1"; st["kill_seen"] = os.path.exists(KILL)
     save_state(st)
-    tg_send(f"🔷 {STRAT} - monitor online on {os.uname().nodename}\n{gates_line()}\n"
-            f"services: " + ", ".join(f"{n} {svc(n,'ActiveState')}" for n in SERVICES) +
-            f"\nrounds.csv rows: {len(rows_cache)} | .env: {'present' if st['env_seen'] else 'absent (DRY)'}")
+    # "monitor online" at most once per 6 h (three went out in 20 min during deploys, 2026-09-21)
+    alert(st, "monitor_online", f"🔔 monitor online on {os.uname().nodename}\n{gates_line()}\n"
+          f"services: " + ", ".join(f"{n} {svc(n,'ActiveState')}" for n in SERVICES) +
+          f"\nrounds.csv rows: {len(rows_cache)} | .env: {'present' if st['env_seen'] else 'absent (DRY)'}", "warn")
     mlog("monitor started")
     errs = 0
     while True:

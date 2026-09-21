@@ -272,7 +272,11 @@ async def tick():
                 sig = rs.get("sig")
                 if not sig: continue
                 try:
-                    m = http_json(f"https://gamma-api.polymarket.com/events?slug=btc-updown-{label}-{start}")[0]["markets"][0]
+                    # closed=true FIRST: it turns final ~100 s before the plain /events response,
+                    # which lags (measured live, Part #22). Plain query as the fallback.
+                    ev = (http_json(f"https://gamma-api.polymarket.com/events?slug=btc-updown-{label}-{start}&closed=true")
+                          or http_json(f"https://gamma-api.polymarket.com/events?slug=btc-updown-{label}-{start}"))
+                    m = ev[0]["markets"][0]
                     pr = [float(x) for x in json.loads(m["outcomePrices"])]
                     if not (m.get("closed") or not m.get("acceptingOrders")):
                         rs["checked"] = False; continue

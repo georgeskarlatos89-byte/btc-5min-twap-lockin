@@ -1006,3 +1006,68 @@ observer, gated trader, preflight, monitor, S9 watcher and their four units (`s1
 BME recorder, scorer, integrity job, disk guard and their five units (`POLYMARKET-VPS-STACK/`). Not
 in the repo, by design: `.env`, `telegram.env`, the `S1_LIVE_BLOCKED` marker, logs, and all
 recorded data.
+
+---
+
+## Part #22 — 2026-09-21 · Notification review: urgent-only alerts, the "contradicted" alert inverted, and the real cause of the lost rounds
+
+**Context.** The user forwarded a day of Telegram messages and asked whether anything needs
+adjusting — specifically whether the *"CORE HYPOTHESIS CONTRADICTED"* alert should go, "since it's
+a strategy we've seen isn't working as intended". It should. Counted from the monitor log (last
+24 h, excluding the Part #13 storm): 17 DRY SIGNAL + 17 SCORE + 15 EDGE-AGREE + 34 CO-SIGNAL
+(pre-Part #16) + 5 "contradicted" + 3 "lost rounds" + 2 feed-lag + 2 resolution-gap + milestones.
+
+**Monitor changes (`s1_monitor.py`, tested offline with the real module before deploy).**
+| message | before | now | why |
+|---|---|---|---|
+| `CORE HYPOTHESIS CONTRADICTED` (full-avg wrong at ≥ 4 bps) | ping every time | **removed**; replaced by `SETTLEMENT DATA CHECK FAILED` when the **end-value** rule is wrong at ≥ 4 bps | the premise is falsified (verdict sent once): its contradictions are expected. The *true* rule has held on every clear round — if it breaks, the recording or our understanding broke |
+| S1 `DRY SIGNAL` / `SCORE` | ping each | **hourly digest** ("last hour: N dry signals, W win / L loss") | S1 is falsified and hard-blocked — research data, not events |
+| `gates: arbiter 95/50 …` line | on every S1 ping | **removed** → `S1 dry ledger n, wr, pnl \| live BLOCKED` | "arbiter X/50" counts full-avg agreement: a false green |
+| milestones (arb 10/25/50, dry 5/10/20, READY) | once each | **removed** | "dry 20/20" would announce a gate that can never open |
+| S9 `EDGE-AGREE` | ping each | **hourly digest** (cross-checks, won/lost) | research data about the falsified model's signals |
+| S9 `agreement skip` (data gap) | ping | digest; ping only if > 5 per hour | single gaps are normal gamma lag |
+| S9 feed lag > 30 s | ping on one reading | ping only if **2 consecutive** STATUS (~10 min) | 1 reading of 44 s among 40 (median 2 s) |
+| `monitor online` | every restart | 6 h dedup | three went out in 20 min during deploys |
+| `trader starting` | ping | dropped | covered by the service checks |
+| hourly S9 line | cut at 160 chars mid-word | compact: per-wallet follows/win/EV + edge-agree tally, `last=` noise stripped | readable |
+**Still urgent:** live order / failure / daily stop / FORCE_LIVE; any data error (incl. the new
+end-value check, trader-vs-observer mismatch, bad rows, lost rounds); service down/restart;
+`.env` / LIVE_TRADING / FORCE_LIVE / KILL / S1_LIVE_BLOCKED changes; gabagool22 return; S9 gate
+verdict changes; disk/BME faults. Offline test: 2 signals + 2 scores + restart → 0 pings, correct
+digest; LIVE ORDER → 1; full-avg-only contradiction → silent, end-value contradiction → 1;
+2 EDGE-AGREE + gap + 1 lag spike → 0; sustained lag + G22 → 2; hourly has no "arbiter"/"last=";
+dry n=20 → 0 milestone pings.
+
+**The "lost 4 rounds (resolution not final)" warning — a real bug, and my first diagnosis was
+wrong.** 20 rounds had been dropped since the Part #11 fix. First diagnosis: *gamma hides closed
+markets unless `closed=true`*. That is true for `/markets`, and I shipped a fallback that queried
+plain first, `closed=true` only if the plain answer was empty. **A live probe proved it wrong for
+`/events`** (the endpoint the observer uses): dropped rounds come back fine on the plain query. The
+measured cause, polling one live round every 20 s:
+| endpoint | turned final at |
+|---|---|
+| `/events?slug=…&closed=true` | **end + 225 s** |
+| `/events?slug=…` (plain) | **end + 326 s** (stale "closed=False, 0.995" until then) |
+| `/markets?slug=…` (plain) | never (hides the market once closed) |
+The observer polled plain `/events` 10 × 30 s from end+45 s, i.e. gave up at **end+315 s** — just
+before the plain response turned final — and it did so **inside the ticker**, blocking the whole
+loop for 5 minutes each time. So the fallback never fired (plain was never empty), and the round
+at 12:15 survived only on its 10th and last check.
+**Fix (`twap_lockin_harness.py`, plumbing only):** `gamma_resolution()` asks `closed=true` first,
+plain second (same finality rule as before); `settle_check` does **one** lookup per call and
+**re-schedules itself** every 30 s for up to 30 checks (~15 min) instead of sleeping in the ticker;
+the reconstructed values (full-avg, tail-60, end value, coverage) are **frozen at the first check**
+so a late answer cannot shift them. `trader.py` scoring: `closed=true` first too (its scoring
+already retried forever: 19/19 signals scored — the change only makes it faster); the 9 strategy
+constants unchanged (re-checked). Offline test with simulated lagging gamma: first checks return in
+0.001 s (was up to 300 s blocked); a round final on the 4th check is written; one that never
+resolves gives up after exactly 30 checks.
+
+**Verified live (restart 12:33:03Z).** Round `1789994100` written at **end+321 s** after
+retries — the old code (give-up at end+315 s) would have dropped it; the next round `1789994400`
+written at end+46 s (no blocking). Only skips: the two rounds in flight at the restart (expected).
+0 errors; trader hard gates still `['S1 live BLOCKED …', …]`; five services active; copies identical.
+
+**E-note.** *"gamma hides closed markets"* was stated as the cause and a fix shipped before it was
+measured on the endpoint actually in use; a 6-minute live probe overturned it. Rule: probe the exact
+endpoint over the exact time window before naming a cause — the same lesson as Part #12's anchor.

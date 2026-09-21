@@ -136,25 +136,49 @@ async def poll_book(label, start, rs):
     except Exception:
         rs["book"] = None
 
-async def settle_check(T, label, start):
+SETTLE_RETRY_S, SETTLE_MAX_ATTEMPTS = 30, 30      # up to ~15 min after the first check
+
+def gamma_resolution(label, start):
+    """Official outcome or None. 2026-09-21 (living record Part #22), measured live: the plain
+    /events response lags (still 'closed=False' at end+326 s) while ?closed=true had the final
+    answer at end+225 s. Ask closed=true FIRST, the plain query second. Final = closed / not
+    accepting orders, or prices pinned at >=0.9995 (unchanged rule)."""
+    for q in ("&closed=true", ""):
+        try:
+            ev = http_json(f"https://gamma-api.polymarket.com/events?slug=btc-updown-{label}-{start}{q}")
+            if not ev: continue
+            m = ev[0]["markets"][0]
+            pr = [float(x) for x in json.loads(m["outcomePrices"])]
+            if m.get("closed") or not m.get("acceptingOrders"):
+                return "Up" if pr[0] > 0.5 else "Down"
+            if pr[0] >= 0.9995 or pr[0] <= 0.0005:
+                return "Up" if pr[0] >= 0.9995 else "Down"
+        except Exception:
+            pass
+    return None
+
+async def settle_check(T, label, start, attempt=0):
     rs = state.rounds.get((T, label, start))
     if not rs or rs["o_twap"] is None:
         log(f"{label} {start}: no open-ref snapshot (late join) — row skipped")
         return
-    settled = None
-    for _ in range(10):
-        try:
-            m = http_json(f"https://gamma-api.polymarket.com/events?slug=btc-updown-{label}-{start}")[0]["markets"][0]
-            pr = [float(x) for x in json.loads(m["outcomePrices"])]
-            if m.get("closed") or not m.get("acceptingOrders"):
-                settled = "Up" if pr[0] > 0.5 else "Down"; break
-            if pr[0] >= 0.9995 or pr[0] <= 0.0005:
-                settled = "Up" if pr[0] >= 0.9995 else "Down"; break
-        except Exception:
-            pass
-        await asyncio.sleep(30)
+    # 2026-09-21 (Part #22): ONE lookup per call, then reschedule - the old loop slept 10 x 30 s
+    # INSIDE the ticker (blocking it up to 5 min) and gave up at end+315 s, before the plain
+    # response turned final (~end+326 s): 20 rounds were dropped. Now: up to ~15 min, non-blocking.
+    end = start + T
+    if "frozen" not in rs:   # freeze the reconstruction at the first check so retries can't move it
+        tail = [v for ts, v in state.samples if end - 60 <= ts <= end + 2]
+        evl = [v for ts, v in state.samples if ts <= end + 2]
+        rs["frozen"] = dict(acc_avg=rs["acc"] / rs["elapsed"] if rs["elapsed"] else float("nan"),
+                            t60=sum(tail) / len(tail) if tail else float("nan"),
+                            ev=evl[-1] if evl else float("nan"), cov=rs["elapsed"] / T)
+    settled = gamma_resolution(label, start)
     if settled is None:
-        log(f"{label} {start}: resolution not final yet, skipping row"); return
+        if attempt + 1 < SETTLE_MAX_ATTEMPTS:
+            state.pending_res.append((time.time() + SETTLE_RETRY_S, T, label, start, attempt + 1))
+        else:
+            log(f"{label} {start}: resolution not final after {SETTLE_MAX_ATTEMPTS} checks (~15 min), skipping row")
+        return
     # S2 (Open-Print Displacement) live evidence: does the t+10/15s displacement sign predict outcome?
     d10, d15 = rs.get("d10"), rs.get("d15")
     if d10 is not None or d15 is not None:
@@ -169,14 +193,9 @@ async def settle_check(T, label, start):
         json.dump(s2, open(S2_PATH, "w"))
         log(f"S2-EVAL {label} {start}: {' '.join(parts)} | settled={settled} | "
             f"tally10={s2.get('h10',0)}/{s2.get('n10',0)} tally15={s2.get('h15',0)}/{s2.get('n15',0)}")
-    end = start + T
     o_t, o_s = rs["o_twap"], rs["o_spot"]
-    acc_avg = rs["acc"] / rs["elapsed"] if rs["elapsed"] else float("nan")
-    tail = [v for ts, v in state.samples if end - 60 <= ts <= end + 2]
-    t60 = sum(tail)/len(tail) if tail else float("nan")
-    evl = [v for ts, v in state.samples if ts <= end + 2]
-    ev = evl[-1] if evl else float("nan")
-    cov = rs["elapsed"] / T
+    fz = rs["frozen"]
+    acc_avg, t60, ev, cov = fz["acc_avg"], fz["t60"], fz["ev"], fz["cov"]
     def s(x, o): return "Up" if x >= o else "Down"
     def yn(x, o): return "yes" if s(x, o) == settled else "NO"
     row = [label, start, f"{o_t:.2f}", f"{o_s:.2f}" if o_s else "", f"{acc_avg:.2f}",
@@ -245,7 +264,7 @@ async def ticker():
                 prev = last_roll[(T, label)]; last_roll[(T, label)] = start
                 prs = state.rounds.get((T, label, prev))
                 if prs and not prs["done"]:
-                    prs["done"] = True; state.pending_res.append((now + 45, T, label, prev))
+                    prs["done"] = True; state.pending_res.append((now + 45, T, label, prev, 0))
                 snapshot_open_refs(T, label, start, now)
             # S2 live evidence: spot displacement at t+10s / t+15s vs open ref
             if rs["o_twap"] is not None and state.spot is not None:
@@ -273,8 +292,8 @@ async def ticker():
                         f"p(full-avg)={m['p']:.3f} p(end-value)={m['p_end']:.3f} | {b}")
         due = [x for x in state.pending_res if x[0] <= now]
         state.pending_res = [x for x in state.pending_res if x[0] > now]
-        for _, T, label, start in due:
-            await settle_check(T, label, start)
+        for _, T, label, start, attempt in due:
+            await settle_check(T, label, start, attempt)
         await asyncio.sleep(1)
 
 async def main():
