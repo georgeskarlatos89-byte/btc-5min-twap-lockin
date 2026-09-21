@@ -972,3 +972,37 @@ contains **no** `S1_LIVE_BLOCKED` marker: anyone deploying from GitHub must crea
 
 **Not pushed (not requested):** the BME stack patches (`bme_capture.py`, `bme_score.py`,
 `deploy-twapvm/`) live only in `POLYMARKET-VPS-STACK/` locally and on the VM.
+
+---
+
+## Part #21 — 2026-09-21 · The BME stack patches pushed to GitHub
+
+**Context.** User: "push the BME stack patches to github too" (the open item of Part #20).
+
+**What went up (commit `78ac0cc`), taken from twapvm's running copy, mirroring the package
+layout** so the docs' relative paths still make sense:
+- `POLYMARKET-VPS-STACK/4-BME-BOOK-MOVEMENT-ENGINE/`: `bme_capture.py` (streaming gzip, append-safe
+  rotation, SIGTERM clean shutdown — Part #17), `bme_score.py` (member-boundary headers, truncated
+  tail tolerated), and the package's `README-BME.md`, `BME-RUNBOOK.md`,
+  `ORDER-BOOK-EDGE-CHECKLIST.md` (unchanged, for context).
+- `POLYMARKET-VPS-STACK/deploy-twapvm/`: `bme-capture.service`, `bme-diskguard.sh/.service/.timer`,
+  `bme_integrity.py` + `bme-integrity.service/.timer`.
+
+**Deliberately not pushed:** the recorded data (`s9_data/bme/`, incl. the 24 MB sandbox sample),
+logs, `__pycache__`, and the other three strategy folders of the package (unpatched; the S1 and S9
+code already in the repo is the patched version).
+
+**Checks.** The five installed systemd units on the VM are identical to the pushed copies.
+`py_compile` OK. Every value from the VM's `.env` and `telegram.env` searched in the staged
+files (case-insensitive): **no hit**; the address/token pattern scan found nothing at all. Clone
+healthy before staging (index = HEAD = 261, clean); staged 12 A, **0 D**; commit changed 12 files,
+**removed 0**, +1,373; repo 273 files.
+
+**Verified.** GitHub md5 = twapvm md5 for `bme_capture.py aad9e36d`, `bme_score.py 9080374c`,
+`bme_integrity.py ca0081bb`, `bme-diskguard.sh 85b7f012`, `bme-capture.service bb4dce61`.
+
+**State of the repo now:** everything that runs on twapvm is on GitHub, byte-identical: the S1
+observer, gated trader, preflight, monitor, S9 watcher and their four units (`s1_harness/`), and the
+BME recorder, scorer, integrity job, disk guard and their five units (`POLYMARKET-VPS-STACK/`). Not
+in the repo, by design: `.env`, `telegram.env`, the `S1_LIVE_BLOCKED` marker, logs, and all
+recorded data.
