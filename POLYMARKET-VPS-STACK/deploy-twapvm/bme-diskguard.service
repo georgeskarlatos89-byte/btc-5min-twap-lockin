@@ -1,0 +1,6 @@
+[Unit]
+Description=BME disk guard (stops bme-capture when free disk < 2 GB)
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /home/ubuntupolymarket3/POLYMARKET-VPS-STACK/deploy-twapvm/bme-diskguard.sh

@@ -1,0 +1,24 @@
+[Unit]
+Description=BME order-book movement recorder (market channel + RTDS fusion; measure-only, keyless)
+After=network-online.target
+Wants=network-online.target
+# The recorder exits 0 when its own KILL file exists (4-BME-.../KILL - separate from ~/s1_harness/KILL).
+# Restart=on-failure below is what prevents a restart loop (Condition*= is NOT re-checked on auto-restart).
+ConditionPathExists=!/home/ubuntupolymarket3/POLYMARKET-VPS-STACK/polymarket-stack/4-BME-BOOK-MOVEMENT-ENGINE/KILL
+
+[Service]
+Type=simple
+User=ubuntupolymarket3
+Group=ubuntupolymarket3
+WorkingDirectory=/home/ubuntupolymarket3/POLYMARKET-VPS-STACK/polymarket-stack/4-BME-BOOK-MOVEMENT-ENGINE
+ExecStart=/usr/bin/python3 -u /home/ubuntupolymarket3/POLYMARKET-VPS-STACK/polymarket-stack/4-BME-BOOK-MOVEMENT-ENGINE/bme_capture.py
+Restart=on-failure
+RestartSec=10
+# lower priority than the S1 observer/trader: capture must never starve the settlement instruments
+Nice=5
+# the script prints to stdout only; the runbook expects s9_data/bme/bme.log
+StandardOutput=append:/home/ubuntupolymarket3/POLYMARKET-VPS-STACK/polymarket-stack/4-BME-BOOK-MOVEMENT-ENGINE/s9_data/bme/bme.log
+StandardError=append:/home/ubuntupolymarket3/POLYMARKET-VPS-STACK/polymarket-stack/4-BME-BOOK-MOVEMENT-ENGINE/s9_data/bme/bme.log
+
+[Install]
+WantedBy=multi-user.target

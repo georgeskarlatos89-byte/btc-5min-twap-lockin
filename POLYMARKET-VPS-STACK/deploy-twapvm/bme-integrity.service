@@ -1,0 +1,12 @@
+[Unit]
+Description=BME daily data-integrity check (yesterday's recording vs Polymarket endpoints; read-only)
+
+[Service]
+Type=oneshot
+User=ubuntupolymarket3
+Group=ubuntupolymarket3
+Nice=10
+WorkingDirectory=/home/ubuntupolymarket3/POLYMARKET-VPS-STACK/deploy-twapvm
+ExecStart=/usr/bin/python3 /home/ubuntupolymarket3/POLYMARKET-VPS-STACK/deploy-twapvm/bme_integrity.py
+StandardOutput=append:/home/ubuntupolymarket3/POLYMARKET-VPS-STACK/bme-integrity.log
+StandardError=append:/home/ubuntupolymarket3/POLYMARKET-VPS-STACK/bme-integrity.log
