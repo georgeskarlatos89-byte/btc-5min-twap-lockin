@@ -1,0 +1,22 @@
+[Unit]
+Description=S1 incubation trader ($10, gated - DRY unless .env + all gates pass)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntupolymarket3
+Group=ubuntupolymarket3
+# Reconciled path: the code lives in ~/s1_harness on every box (was /opt/s1 in the
+# original bundle). trader.py reads rounds.csv (written by s1-harness.service), .env
+# and KILL from its own directory, so both services MUST point at the same folder.
+WorkingDirectory=/home/ubuntupolymarket3/s1_harness
+ExecStart=/bin/bash /home/ubuntupolymarket3/s1_harness/run_trader.sh
+Restart=always
+RestartSec=10
+# trader.py writes trader.log itself; capture stdout/stderr (tracebacks) too.
+StandardOutput=append:/home/ubuntupolymarket3/s1_harness/s1-trader.service.log
+StandardError=append:/home/ubuntupolymarket3/s1_harness/s1-trader.service.log
+
+[Install]
+WantedBy=multi-user.target

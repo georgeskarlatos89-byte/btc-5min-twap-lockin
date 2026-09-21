@@ -1,0 +1,28 @@
+[Unit]
+Description=S9 watcher (4 wallets, copy-candidates, edge-agreement cross-check; measure-only, never trades)
+After=network-online.target s1-harness.service s1-trader.service
+Wants=network-online.target
+# The watcher EXITS (code 0) when s1_harness/KILL exists. LESSON 2026-09-21: systemd does NOT
+# re-check Condition*= on automatic Restart= (only on explicit starts/boot) - this condition
+# alone let it loop 687 times. The real guard is Restart=on-failure below: a clean exit on
+# KILL stays stopped (the monitor reports it once); crashes still restart. The condition is
+# kept for explicit starts/boot while KILL exists.
+ConditionPathExists=!/home/ubuntupolymarket3/s1_harness/KILL
+
+[Service]
+Type=simple
+User=ubuntupolymarket3
+Group=ubuntupolymarket3
+# Reconciled path: same folder as the harness/trader so it tails OUR harness.log/trader.log
+# and writes ~/s1_harness/s9_data/ (the script anchors everything to its own directory).
+WorkingDirectory=/home/ubuntupolymarket3/s1_harness
+ExecStart=/usr/bin/python3 -u /home/ubuntupolymarket3/s1_harness/s9_watch.py --backfill 0 --poll 4
+Restart=on-failure
+RestartSec=10
+# It self-logs to s9_data/s9_watch.log; per the author, do NOT redirect stdout into that file
+# (duplicates every line). Keep stderr so tracebacks are never lost.
+StandardOutput=null
+StandardError=append:/home/ubuntupolymarket3/s1_harness/s9-watcher.service.log
+
+[Install]
+WantedBy=multi-user.target

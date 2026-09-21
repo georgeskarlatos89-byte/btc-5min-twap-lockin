@@ -3,7 +3,8 @@
 S1 INCUBATION TRADER — $10 real-money incubation, gated by code (P5).
 
 DEFAULT: DRY RUN. It goes live ONLY if ALL of these hold at the same time:
-  1. s1_harness/.env exists with LIVE_TRADING=1 and a POLY_PRIVATE_KEY
+  1. s1_harness/.env exists with LIVE_TRADING=1, a POLY_PRIVATE_KEY and a
+     POLY_FUNDER (the Polymarket proxy address that actually holds the pUSD)
      (created by the human, chmod 600, NEVER written by this program);
   2. ARBITER GATE: >= ARB_MIN full-coverage rounds in rounds.csv whose
      fa_twap column is 'yes' (true-feed semantics still validated);
@@ -91,35 +92,72 @@ class T:
 t = T()
 
 def gates():
+    """HARD gates — never bypassable: key, KILL, fresh feed."""
+    env = load_env()
+    reasons = []
+    if not env.get("POLY_PRIVATE_KEY"): reasons.append("no key in .env")
+    # Without the funder the client signs as the bare EOA (an EMPTY wallet) - hard block.
+    if not env.get("POLY_FUNDER"): reasons.append("no POLY_FUNDER (proxy) in .env")
+    # 2026-09-21 (living record Part #15): this model's settlement premise is FALSIFIED - the
+    # venue settles on the END value of the 60s TWAP feed vs its open (live arbiter: end-value
+    # 11/11 vs full-round-avg 0/11 on distinguishing rounds; venue changelog agrees). The
+    # marker file makes "never go live" a HARD gate that FORCE_LIVE cannot bypass. Reversible
+    # only by deliberately deleting the marker (the monitor alerts if that happens).
+    if os.path.exists(os.path.join(HERE, "S1_LIVE_BLOCKED")):
+        reasons.append("S1 live BLOCKED (settlement premise falsified - see S1_LIVE_BLOCKED)")
+    if os.path.exists(KILL): reasons.append("KILL file present")
+    if time.time() - t.last_update > 10: reasons.append("feed stale")
+    return reasons
+
+def stats_gates():
+    """STATISTICAL gates — bypassable only by explicit FORCE_LIVE=1."""
     reasons = []
     env = load_env()
     if env.get("LIVE_TRADING") != "1": reasons.append("LIVE_TRADING!=1")
-    if not env.get("POLY_PRIVATE_KEY"): reasons.append("no key in .env")
-    if os.path.exists(KILL): reasons.append("KILL file present")
     a = arbiter_count()
     if a < ARB_MIN: reasons.append(f"arbiter {a}/{ARB_MIN}")
     s = t.stats
     if s["n"] < SIG_MIN or (s["n"] and s["wins"] / s["n"] < SIG_WR):
         reasons.append(f"dry {s['n']} sigs wr={s['wins']/max(1,s['n']):.0%}")
-    if time.time() - t.last_update > 10: reasons.append("feed stale")
     return reasons
 
 def client_for(env):
+    """Proxy-wallet signing path, copied from the live btc5bot (account 2):
+    py_clob_client_v2 + signature_type=3 (POLY_1271) + funder=<proxy holding the pUSD>.
+    The original bundle built a bare-EOA v1 client, which signs for an EMPTY wallet
+    (the collateral sits at the proxy, not the signer). Execution plumbing only -
+    the strategy (gates, entry rules, sizing) is untouched."""
     if t.client: return t.client
-    from py_clob_client.client import ClobClient
-    t.client = ClobClient("https://clob.polymarket.com", key=env["POLY_PRIVATE_KEY"], chain_id=137)
-    t.client.create_or_derive_api_creds()
-    return t.client
+    from py_clob_client_v2 import ClobClient, BalanceAllowanceParams, AssetType
+    host = "https://clob.polymarket.com"
+    pk, funder = env["POLY_PRIVATE_KEY"], env["POLY_FUNDER"]
+    sig_type = int(env.get("POLY_SIGNATURE_TYPE", "3"))
+    # L1: derive (or create) the API creds bound to this signer's key
+    creds = ClobClient(host=host, key=pk, chain_id=137).create_or_derive_api_key()
+    # L2: the trading client that signs THROUGH the proxy
+    c = ClobClient(host=host, key=pk, chain_id=137, creds=creds,
+                   signature_type=sig_type, funder=funder)
+    # Sync the proxy's on-chain pUSD into the CLOB ledger (best-effort, as the live bot does)
+    try:
+        c.update_balance_allowance(params=BalanceAllowanceParams(asset_type=AssetType.COLLATERAL))
+    except Exception as ex:
+        log(f"balance-allowance sync skipped: {ex!r}")
+    t.client = c
+    return c
 
 def place(side, token_id, price, now):
     """$10 FOK buy at `price`. Returns fill info or error string."""
     env = load_env()
     c = client_for(env)
-    from py_clob_client.clob_types import OrderArgs, OrderType
-    from py_clob_client.order_builder.constants import BUY
+    from py_clob_client_v2 import OrderArgs, OrderType
+    from py_clob_client_v2.order_builder.constants import BUY   # the "BUY" string
+    # NOTE: OrderArgs.side is a str ("BUY"/"SELL"). py_clob_client_v2.Side is an
+    # IntEnum (BUY=0) meant for MarketOrderArgsV2 - passing it here would be wrong.
     size = max(5, int(TRADE_USD / price))
     args = OrderArgs(token_id=token_id, price=price, size=size, side=BUY)
-    resp = c.create_and_post_order(args, options={"order_type": OrderType.FOK})
+    # v2 API: order_type is a keyword (v1 took options={"order_type": ...}).
+    # options=None -> the client resolves tick_size / neg_risk from the CLOB itself.
+    resp = c.create_and_post_order(args, order_type=OrderType.FOK)
     return resp
 
 async def rtds():
@@ -173,9 +211,16 @@ def sigma1():
 
 async def tick():
     last_roll = {}
+    warned = False
     while True:
         now = time.time()
-        live_ok = not gates()
+        hard = gates()
+        stat = stats_gates()
+        forced = load_env().get("FORCE_LIVE") == "1"
+        live_ok = (not hard) and (forced or not stat)
+        if forced and not hard and not warned:
+            warned = True
+            log(f"⚠ FORCE_LIVE active: statistical gates bypassed by operator ({'; '.join(stat) or 'gates were green'})")
         for (Tsec, label, win) in ROUNDS:
             start = int(now // Tsec) * Tsec
             rs = t.rounds.get((label, start))
@@ -210,7 +255,7 @@ async def tick():
             rs["traded"] = True   # one shot per round
             rs["sig"] = dict(side=side, price=our_ask, start=start, label=label)
             if not live_ok:
-                log(f"DRY SIGNAL {label} t-{int(r)}s: {side} @ {our_ask:.2f} edge {edge:.1%} gap {gap:+.1f}bps (gates: {';'.join(gates()) or 'LIVE'})")
+                log(f"DRY SIGNAL {label} t-{int(r)}s: {side} @ {our_ask:.2f} edge {edge:.1%} gap {gap:+.1f}bps (blocked: {'; '.join(hard + (stat if not forced else [])) or 'none'})")
             else:
                 try:
                     resp = place(side, rs["tok"][0 if side == "Up" else 1], our_ask, now)
@@ -240,7 +285,12 @@ async def tick():
                 t.stats["pnl"] = round(t.stats["pnl"] + pnl * TRADE_USD, 2)
                 json.dump(t.stats, open(STATS, "w"))
                 log(f"SCORE {label} {start}: {sig['side']} @ {sig['price']:.2f} settled {settled} -> {'WIN' if win_ else 'LOSS'} | dry n={t.stats['n']} wr={t.stats['wins']/t.stats['n']:.0%}")
-                if t.stats["pnl"] <= -DAILY_STOP and not os.path.exists(KILL):
+                # 2026-09-21 fix (risk plumbing; constants untouched): the $20 stop is a REAL-MONEY
+                # kill switch. In DRY mode there is no loss to stop - and writing KILL on paper
+                # losses (cumulative, never reset) also killed the unrelated S9 watcher (687-restart
+                # loop, ~1,600 Telegram pings). It now arms only when LIVE_TRADING=1.
+                if (load_env().get("LIVE_TRADING") == "1" and t.stats["pnl"] <= -DAILY_STOP
+                        and not os.path.exists(KILL)):
                     open(KILL, "w").write(f"daily stop {datetime.now(timezone.utc).isoformat()}\n")
                     log("DAILY STOP hit -> KILL written, live disabled")
         await asyncio.sleep(1)

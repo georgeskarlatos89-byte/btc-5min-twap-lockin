@@ -87,6 +87,12 @@ def on_twap_update(obs_ts, value):
     for (T, label, win) in ROUNDS:
         start = int(now // T) * T
         rs = round_state(T, label, start)
+        # 2026-09-21 fix (plumbing, same semantics): snapshot the open HERE, on the feed
+        # event, so it cannot be missed while the ticker is blocked in settle_check()'s
+        # up-to-5-min resolution polling or a slow book HTTP call (that cost 1 round in 7:
+        # "no open-ref snapshot (late join) - row skipped"). snapshot_open_refs() in the
+        # ticker stays as a fallback and is a no-op once o_twap is set.
+        snapshot_open_refs(T, label, start, now)
         if rs["last_ts"] is None:
             rs["last_ts"] = max(prev_ts or obs_ts, start)
         t0 = max(rs["last_ts"], start); t1 = min(obs_ts, start + T)

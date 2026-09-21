@@ -1,0 +1,22 @@
+[Unit]
+Description=S1 TWAP lock-in harness (observer - DRY, writes rounds.csv, places no orders)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntupolymarket3
+Group=ubuntupolymarket3
+# Reconciled path: the code lives in ~/s1_harness on every box (was /opt/s1 in the
+# original bundle). The launcher self-locates and both scripts anchor rounds.csv/.env/
+# KILL/logs to their own directory, so cwd is irrelevant - only this path matters.
+WorkingDirectory=/home/ubuntupolymarket3/s1_harness
+ExecStart=/bin/bash /home/ubuntupolymarket3/s1_harness/run_harness.sh
+Restart=always
+RestartSec=10
+# run_harness.sh tees stdout into harness.log itself; capture stderr (tracebacks) too.
+StandardOutput=append:/home/ubuntupolymarket3/s1_harness/s1-harness.service.log
+StandardError=append:/home/ubuntupolymarket3/s1_harness/s1-harness.service.log
+
+[Install]
+WantedBy=multi-user.target
