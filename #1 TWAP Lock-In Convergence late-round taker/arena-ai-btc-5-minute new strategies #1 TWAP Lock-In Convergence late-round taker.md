@@ -891,3 +891,47 @@ README's prune command (`*.gz -mtime +7 -delete`, after scoring) is only needed 
 **Recorded in:** memory `reference_gcp_disk_resize` (+ index line); `set-up new vm in cloud
 console.md` Part 8 (the runbook for future VMs); this Part. Pushed to the VM reference folder and
 GitHub.
+
+---
+
+## Part #19 — 2026-09-21 · Found and repaired: my commit `51be53b` had deleted 249 files from the GitHub repo
+
+**How it surfaced.** Pushing Part #18, git on Windows refused the record's path (`Filename too
+long`), and the scratch clone listed nearly the whole repo as *untracked*; GitHub then returned 404
+for the runbook. Commit history (file count per commit):
+
+| commit | files in repo | change |
+|---|---|---|
+| `f54306e` initial | 248 | +248 |
+| `f92fd22` runbook | 249 | +1 |
+| `aea7403` VPS prompt | 250 | +1 |
+| **`51be53b` (mine, Part #9)** | **1** | **249 removed** |
+| `91d404c` (mine, Part #10) | 4 | +3 |
+
+**Cause.** The scratch clone made with `gh repo clone` on Windows had failed its checkout on long
+paths (it printed `failed to run git: exit status 128` — trap T10 — which I recorded as harmless
+after listing the folder). The working tree was partly populated but the **index was nearly empty**,
+so `git commit` recorded every file missing from the index as deleted. I verified the pushed file
+by reading it back, not the commit's diff stat, so the deletion went unnoticed.
+
+**Correction to Part #10.** Part #10's E-note said the repo's `s1_harness/` "never held the
+original bundle" and that a fresh clone was not runnable. **Wrong again, in the other direction:**
+the repo *did* hold it (and 245 other files: API docs, changelogs, strategy doc, runbook) — my
+`51be53b` had just deleted them 11 minutes earlier. The rule written there ("never state what a
+repo contains without listing it") stands; the new rule is below.
+
+**Repair (no force-push, no history rewrite).** Fresh clone with `core.longpaths=true` into a short
+path (`C:\g\tlfix`); health check first: HEAD tree = index = 4 files, status clean. Restored
+**exactly** the 249 paths deleted in `51be53b` from `aea7403` (`git diff --diff-filter=D … | xargs
+git checkout aea7403 --`); none had been re-added since. Added the Part #18 finding (runbook Part 8,
+this record). Staged: 250 A, **0 D**; secret scan clean. Commit **`bc22600`** pushed.
+
+**Verified on GitHub (API, not the local clone).** 254 files (the 250 originals + 3 from
+`91d404c` + this record); **0** of `aea7403`'s files missing; `bc22600` removed 0 files;
+`VPS-CONTEXT-PROMPT.md` kept at its newer version; runbook has Part 8; record has Part #18.
+The broken scratch clone (`scratchpad/tl_repo`) was renamed `tl_repo.BROKEN-do-not-commit`.
+
+**Rules (memory `feedback_git_windows_clone`):** on Windows always clone with
+`-c core.longpaths=true` into a short path; before any commit check that `git ls-files | wc -l`
+equals `git ls-tree -r HEAD --name-only | wc -l`; after every push read the commit's
+`removed`/`deletions` count, not just the file I meant to change.
