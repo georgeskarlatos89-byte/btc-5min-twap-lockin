@@ -935,3 +935,40 @@ The broken scratch clone (`scratchpad/tl_repo`) was renamed `tl_repo.BROKEN-do-n
 `-c core.longpaths=true` into a short path; before any commit check that `git ls-files | wc -l`
 equals `git ls-tree -r HEAD --name-only | wc -l`; after every push read the commit's
 `removed`/`deletions` count, not just the file I meant to change.
+
+---
+
+## Part #20 — 2026-09-21 · The patched `s1_harness` pushed to GitHub (the repo now matches what runs)
+
+**Context.** User: "push the patched s1_harness files to github too". Until now the repo held the
+*original* bundle code (bare-EOA signing, no live-block, the lost-round bug) while twapvm ran the
+patched versions.
+
+**Source = the running copy, not a local one.** Files were taken from `twapvm:~/s1_harness` by an
+explicit whitelist: `trader.py`, `twap_lockin_harness.py`, `preflight_check.py`, `s1_monitor.py`,
+`s9_watch.py`, `hypo_check.py`, `rounds_integrity.py`, `run_*.sh`, `README.md`, `CREDENTIALS.md`,
+`S1-PLAYBOOK.md`, `backtest_report.md`, `deploy/*.service` (4 units). **Excluded:** `.env`,
+`telegram.env`, `KILL*`, `S1_LIVE_BLOCKED` (runtime marker), all logs, `rounds.csv`/snapshot,
+`trader_stats.json`, `monitor_state.json`, `s9_data/`, reports, `__pycache__`.
+
+**Secret check against the real values.** Every value in the VM's `.env` and `telegram.env`
+(≥ 8 chars, never printed) was searched in the staged files, case-sensitive and -insensitive:
+**no hit**. Pattern scan: the only address-shaped strings are the public pUSD token contract and
+the four public third-party wallets the S9 watcher follows — none belong to the user.
+
+**Commit safety (Part #19 rules applied).** Clone healthy before staging (index = HEAD = 254,
+clean). Staged by path: 7 A + 3 M, **0 D**. Commit **`afe2e86`** pushed: 10 files, +1,251 −20,
+**removed 0**; repo 261 files. `preflight_check.py` and `deploy/s1-monitor.service` were already
+identical, so they show no change. The repo's original `harness.log`, `trader.log`,
+`rounds.csv`, `backtest_*` from the initial commit were left untouched.
+
+**Verified.** GitHub blob md5 = twapvm md5 for all seven code files (`trader.py 3526843c`,
+`twap_lockin_harness.py 0e70be6a`, `preflight_check.py f4fcf1e9`, `s1_monitor.py 5ab4d194`,
+`s9_watch.py ce09f757`, `hypo_check.py 76ab1d79`, `rounds_integrity.py 99e31b03`). The pushed
+`trader.py` carries the live-safety changes (proxy signing, POLY_FUNDER hard gate,
+S1_LIVE_BLOCKED hard gate, LIVE-only daily stop). A fresh clone is now runnable — but it
+contains **no** `S1_LIVE_BLOCKED` marker: anyone deploying from GitHub must create it (or keep
+`LIVE_TRADING=0`), because the marker is runtime state, not code.
+
+**Not pushed (not requested):** the BME stack patches (`bme_capture.py`, `bme_score.py`,
+`deploy-twapvm/`) live only in `POLYMARKET-VPS-STACK/` locally and on the VM.
