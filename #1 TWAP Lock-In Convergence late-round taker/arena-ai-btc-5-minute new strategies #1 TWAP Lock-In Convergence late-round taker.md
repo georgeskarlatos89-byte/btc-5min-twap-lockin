@@ -1071,3 +1071,56 @@ written at end+46 s (no blocking). Only skips: the two rounds in flight at the r
 **E-note.** *"gamma hides closed markets"* was stated as the cause and a fix shipped before it was
 measured on the endpoint actually in use; a 6-minute live probe overturned it. Rule: probe the exact
 endpoint over the exact time window before naming a cause — the same lesson as Part #12's anchor.
+
+---
+
+## Part #23 — 2026-09-21 · The observer's feed went silent for 85 minutes (zombie socket): watchdog, no data-less rows, frozen-feed alert — and a status table of every alert the user received
+
+**Trigger.** Four `🚨 DATA ERROR in rounds.csv row … non-numeric price field` alerts (18:14–19:19Z),
+plus the user forwarding the day's other warnings and asking for a fixed / not-fixed verdict on each.
+
+**Diagnosis (data first).** The flagged rows: `open_ref_twap 85859.47`, `full_round_avg nan`,
+`coverage 0%`, `end_value 85859.47` — 18 rows from 18:00Z on, every bell snapping the **identical**
+open ref. The observer's websocket never reported a problem (no `RTDS problem` since 10:11Z, 0
+restarts). Decisive check: the **trader's separate RTDS connection kept flowing** (open refs 86052 →
+86256 between 19:00 and 19:25Z) — so Polymarket's feed was fine; **our observer's socket had gone
+zombie**: open, answering keep-alives, delivering no frames, from 17:55Z until the manual restart
+at 19:28:39Z (first frame after restart: 86309.94). `async for raw in ws` blocks forever on such a
+socket; the trader's `feed stale` gate blocked trading but nothing ever reconnected.
+
+**Fixes (plumbing; the 9 strategy constants unchanged, re-checked).**
+- `twap_lockin_harness.py`: **stall watchdog** — `asyncio.wait_for(ws.recv(), timeout=60)`; no
+  frame for 60 s → log `RTDS silent for 60s — reconnecting (stall watchdog)` → reconnect. **No rows
+  without data** — coverage < 5 % → `row skipped (feed stall)` with the reason logged, instead of
+  `nan`/stale rows. Offline: fake socket that goes silent → 5 reconnects in 4.5 s at a 1 s test
+  timeout; rounds at 0 % / 4 % coverage → 0 rows, 99 % → 1 row.
+- `trader.py`: the same 60 s watchdog on its feed loop.
+- `s1_monitor.py`: **frozen-feed detector** (the same open ref at 3 consecutive bells → one 🚨,
+  deduped), watchdog reconnects reported once per 6 h, and partial-coverage rows are no longer
+  flagged as "non-numeric price field" (they are legitimately `nan`; the partial-rate check covers
+  them). Lost-round reasons now include `feed stall`.
+- Deployed 19:30:30Z; five services active; copies identical; GitHub `ea5481c` (3 files, 0 removed,
+  md5 = VM). The 18 `partial(0%)` rows **stay** in `rounds.csv`: every consumer (`hypo_line`,
+  `hypo_check.py`, `rounds_integrity.py`, the arbiter count) already excludes non-`yes/NO` rows, and
+  nothing is deleted on the VPS by rule.
+
+**The other warnings the user forwarded, checked against the logs.**
+| message | what the data says | status |
+|---|---|---|
+| `🚨 DATA ERROR … non-numeric price field` ×4 | the feed freeze above | **fixed** (watchdog + no data-less rows + a proper frozen-feed alert) |
+| `⚠ 7/20 of the last rounds have partial coverage` | same incident — this check caught it correctly at 18:31Z | **working as designed**; the freeze itself is fixed |
+| `⚠ S9 watcher: >10 errors in the last hour … rate-limited after 6 retries` | data-api HTTP 429s: **3 at 15:xx, 8 at 16:xx, none since 17:00Z**; feed lag back to 1–3 s; watcher never stopped | **upstream degradation, self-healed** — no change needed; the alert was right to fire once |
+| `⚠ S9 data-api feed lag 44s` | one 44 s reading among 40 (median 2 s) at 10:04Z | **fixed in Part #22** (now needs 2 consecutive readings) |
+| `⚠ observer lost 4 rounds (resolution not final)` | pre-Part #22 (last at 11:01Z); since the 12:33Z fix the only drops were the 2 rounds in flight at each restart | **fixed in Part #22** |
+| `🚨 CORE HYPOTHESIS CONTRADICTED: 5m 1789991100` | sent 11:53Z, before the 12:03Z monitor deploy | **fixed in Part #22** (alert removed; replaced by the end-value check) |
+| `🔗 S9 EDGE-AGREE …`, `🔔 DRY SIGNAL …`, `📈 SCORE …`, `gates: arbiter …` | S1 research lines | **fixed in Part #22** (hourly digest; arbiter line and milestones removed) |
+| `🛑 S9 gate [ce25-unnamed]: KILL CRITERION` | a real verdict change (once) | **correct, kept** |
+| `🔷 … monitor online` ×3 in 20 min | deploy restarts | **fixed in Part #22** (6 h dedup) |
+| `🚨 BME DATA ERROR: 1 malformed bookstate rows` | a locked book (bid = ask) for 1 s | **fixed in Part #17** (counted separately, warned only above 1 %) |
+| `⚠ S9 watcher could not resolve a round (data gap)` | single gamma lag | **fixed in Part #22** (digest; pings only above 5/h) |
+| `✅ BME data check … no issues` | the daily integrity line | **correct, kept** (03:30 UTC daily) |
+| hourly status | 11 sent in 24 h | **kept** (the one scheduled message) |
+
+**Not fixed by design:** the S1 dry ledger keeps drifting down (19 signals, 63 %, −$28.90 at last
+count) — it is research data on a falsified, hard-blocked model and is reported only in the hourly
+digest.
