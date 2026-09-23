@@ -1,0 +1,22 @@
+[Unit]
+Description=S3 fee-farm two-sided maker (incubation, gated - DRY unless .env + all gates pass)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntupolymarket3
+Group=ubuntupolymarket3
+# The code reads .env and KILL from its own directory. KILL makes it FLAT (it keeps running),
+# so Restart=always cannot loop on it. Direct exec (no pip on every restart).
+WorkingDirectory=/home/ubuntupolymarket3/s3_feefarm
+ExecStart=/usr/bin/python3 -u /home/ubuntupolymarket3/s3_feefarm/s3_maker.py
+Restart=always
+RestartSec=10
+Nice=2
+# s3_maker.py writes s3_maker.log itself; capture stdout/stderr (tracebacks) too.
+StandardOutput=append:/home/ubuntupolymarket3/s3_feefarm/s3-maker.service.log
+StandardError=append:/home/ubuntupolymarket3/s3_feefarm/s3-maker.service.log
+
+[Install]
+WantedBy=multi-user.target
