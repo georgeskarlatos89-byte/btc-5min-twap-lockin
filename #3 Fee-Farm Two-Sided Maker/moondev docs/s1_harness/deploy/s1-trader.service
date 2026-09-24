@@ -1,0 +1,12 @@
+[Unit]
+Description=S1 incubation trader ($10, gated)
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/s1
+ExecStart=/bin/bash /opt/s1/run_trader.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

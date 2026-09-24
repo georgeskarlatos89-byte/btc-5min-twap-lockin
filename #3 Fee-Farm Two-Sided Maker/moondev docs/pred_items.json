@@ -1,0 +1,332 @@
+[
+ {
+  "group": "Getting Started",
+  "title": "Overview",
+  "url": "https://docs.polymarket.com/index.md",
+  "filename": "Overview (Getting Started)"
+ },
+ {
+  "group": "Getting Started",
+  "title": "Polymarket 101",
+  "url": "https://docs.polymarket.com/polymarket-101.md",
+  "filename": "Polymarket 101"
+ },
+ {
+  "group": "SDKs & APIs",
+  "title": "SDKs & APIs",
+  "url": "https://docs.polymarket.com/getting-started/sdks-apis.md",
+  "filename": "SDKs & APIs"
+ },
+ {
+  "group": "SDKs & APIs",
+  "title": "TypeScript SDK",
+  "url": "https://docs.polymarket.com/getting-started/typescript.md",
+  "filename": "TypeScript SDK"
+ },
+ {
+  "group": "SDKs & APIs",
+  "title": "Python SDK",
+  "url": "https://docs.polymarket.com/getting-started/python.md",
+  "filename": "Python SDK"
+ },
+ {
+  "group": "SDKs & APIs",
+  "title": "API",
+  "url": "https://docs.polymarket.com/getting-started/api.md",
+  "filename": "API"
+ },
+ {
+  "group": "SDKs & APIs",
+  "title": "SDK Migration",
+  "url": "https://docs.polymarket.com/getting-started/migrate-from-previous-sdks.md",
+  "filename": "SDK Migration"
+ },
+ {
+  "group": "Core Concepts",
+  "title": "Markets & Events",
+  "url": "https://docs.polymarket.com/concepts/markets-events.md",
+  "filename": "Markets & Events"
+ },
+ {
+  "group": "Core Concepts",
+  "title": "Negative Risk Markets",
+  "url": "https://docs.polymarket.com/concepts/negative-risk.md",
+  "filename": "Negative Risk Markets"
+ },
+ {
+  "group": "Core Concepts",
+  "title": "Prices & Orderbook",
+  "url": "https://docs.polymarket.com/concepts/prices-orderbook.md",
+  "filename": "Prices & Orderbook"
+ },
+ {
+  "group": "Core Concepts",
+  "title": "Positions & Tokens",
+  "url": "https://docs.polymarket.com/concepts/positions-tokens.md",
+  "filename": "Positions & Tokens"
+ },
+ {
+  "group": "Core Concepts",
+  "title": "Polymarket USD",
+  "url": "https://docs.polymarket.com/concepts/pusd.md",
+  "filename": "Polymarket USD"
+ },
+ {
+  "group": "Core Concepts",
+  "title": "Order Lifecycle",
+  "url": "https://docs.polymarket.com/concepts/order-lifecycle.md",
+  "filename": "Order Lifecycle"
+ },
+ {
+  "group": "Core Concepts",
+  "title": "Resolution",
+  "url": "https://docs.polymarket.com/concepts/resolution.md",
+  "filename": "Resolution"
+ },
+ {
+  "group": "Market Data",
+  "title": "Overview",
+  "url": "https://docs.polymarket.com/market-data/overview.md",
+  "filename": "Overview (Market Data)"
+ },
+ {
+  "group": "Market Data",
+  "title": "Discover Markets",
+  "url": "https://docs.polymarket.com/market-data/discover-markets.md",
+  "filename": "Discover Markets"
+ },
+ {
+  "group": "Market Data",
+  "title": "Market Details",
+  "url": "https://docs.polymarket.com/market-data/market-details.md",
+  "filename": "Market Details"
+ },
+ {
+  "group": "Market Data",
+  "title": "Prices and Order Books",
+  "url": "https://docs.polymarket.com/market-data/prices-order-books.md",
+  "filename": "Prices and Order Books"
+ },
+ {
+  "group": "Market Data",
+  "title": "Analytics",
+  "url": "https://docs.polymarket.com/market-data/public-analytics.md",
+  "filename": "Analytics"
+ },
+ {
+  "group": "Market Data",
+  "title": "Real-Time Data",
+  "url": "https://docs.polymarket.com/market-data/realtime-data.md",
+  "filename": "Real-Time Data"
+ },
+ {
+  "group": "Market Data",
+  "title": "Chainlink TWAP Prices",
+  "url": "https://docs.polymarket.com/market-data/chainlink-twap.md",
+  "filename": "Chainlink TWAP Prices"
+ },
+ {
+  "group": "Trading",
+  "title": "Overview",
+  "url": "https://docs.polymarket.com/trading/overview.md",
+  "filename": "Overview (Trading)"
+ },
+ {
+  "group": "Trading",
+  "title": "Place Your First Order",
+  "url": "https://docs.polymarket.com/trading/quickstart.md",
+  "filename": "Place Your First Order"
+ },
+ {
+  "group": "Trading",
+  "title": "Wallets and Authentication",
+  "url": "https://docs.polymarket.com/trading/wallets-auth.md",
+  "filename": "Wallets and Authentication"
+ },
+ {
+  "group": "Trading",
+  "title": "Session Keys",
+  "url": "https://docs.polymarket.com/trading/session-keys.md",
+  "filename": "Session Keys"
+ },
+ {
+  "group": "Trading",
+  "title": "Place Orders",
+  "url": "https://docs.polymarket.com/trading/place-orders.md",
+  "filename": "Place Orders"
+ },
+ {
+  "group": "Trading",
+  "title": "Manage Orders",
+  "url": "https://docs.polymarket.com/trading/manage-orders.md",
+  "filename": "Manage Orders"
+ },
+ {
+  "group": "Trading",
+  "title": "Real-Time Order Updates",
+  "url": "https://docs.polymarket.com/trading/realtime-order-updates.md",
+  "filename": "Real-Time Order Updates"
+ },
+ {
+  "group": "Trading",
+  "title": "Wallet Activity",
+  "url": "https://docs.polymarket.com/trading/wallet-activity.md",
+  "filename": "Wallet Activity"
+ },
+ {
+  "group": "Trading",
+  "title": "Fees",
+  "url": "https://docs.polymarket.com/trading/fees.md",
+  "filename": "Fees"
+ },
+ {
+  "group": "Trading",
+  "title": "Market Making",
+  "url": "https://docs.polymarket.com/trading/market-making.md",
+  "filename": "Market Making"
+ },
+ {
+  "group": "Trading",
+  "title": "Matching Engine Restarts",
+  "url": "https://docs.polymarket.com/trading/matching-engine.md",
+  "filename": "Matching Engine Restarts"
+ },
+ {
+  "group": "Positions",
+  "title": "How Positions Work",
+  "url": "https://docs.polymarket.com/trading/positions/how-positions-work.md",
+  "filename": "How Positions Work"
+ },
+ {
+  "group": "Positions",
+  "title": "Manage Positions",
+  "url": "https://docs.polymarket.com/trading/positions/manage.md",
+  "filename": "Manage Positions"
+ },
+ {
+  "group": "Positions",
+  "title": "Combinatorial Positions",
+  "url": "https://docs.polymarket.com/trading/positions/combinatorial.md",
+  "filename": "Combinatorial Positions"
+ },
+ {
+  "group": "Combos",
+  "title": "How Combos Work",
+  "url": "https://docs.polymarket.com/trading/combos/overview.md",
+  "filename": "How Combos Work"
+ },
+ {
+  "group": "Combos",
+  "title": "Requesters",
+  "url": "https://docs.polymarket.com/trading/combos/requesters.md",
+  "filename": "Requesters"
+ },
+ {
+  "group": "Combos",
+  "title": "Market Makers",
+  "url": "https://docs.polymarket.com/trading/combos/market-makers.md",
+  "filename": "Market Makers"
+ },
+ {
+  "group": "Combos",
+  "title": "Combos for Builders",
+  "url": "https://docs.polymarket.com/trading/combos/builders.md",
+  "filename": "Combos for Builders"
+ },
+ {
+  "group": "Combos",
+  "title": "Collateral Return",
+  "url": "https://docs.polymarket.com/trading/combos/collateral-return.md",
+  "filename": "Collateral Return"
+ },
+ {
+  "group": "Bridge",
+  "title": "Deposit",
+  "url": "https://docs.polymarket.com/trading/bridge/deposit.md",
+  "filename": "Deposit"
+ },
+ {
+  "group": "Bridge",
+  "title": "Supported Assets",
+  "url": "https://docs.polymarket.com/trading/bridge/supported-assets.md",
+  "filename": "Supported Assets"
+ },
+ {
+  "group": "Bridge",
+  "title": "Quote",
+  "url": "https://docs.polymarket.com/trading/bridge/quote.md",
+  "filename": "Quote"
+ },
+ {
+  "group": "Bridge",
+  "title": "Withdraw",
+  "url": "https://docs.polymarket.com/trading/bridge/withdraw.md",
+  "filename": "Withdraw"
+ },
+ {
+  "group": "Bridge",
+  "title": "Transaction Status",
+  "url": "https://docs.polymarket.com/trading/bridge/status.md",
+  "filename": "Transaction Status"
+ },
+ {
+  "group": "Programs",
+  "title": "Taker Rebate Program",
+  "url": "https://docs.polymarket.com/programs/taker-rebates.md",
+  "filename": "Taker Rebate Program"
+ },
+ {
+  "group": "Programs",
+  "title": "Maker Rebates Program",
+  "url": "https://docs.polymarket.com/programs/maker-rebates.md",
+  "filename": "Maker Rebates Program"
+ },
+ {
+  "group": "Programs",
+  "title": "Liquidity Rewards",
+  "url": "https://docs.polymarket.com/programs/liquidity-rewards.md",
+  "filename": "Liquidity Rewards"
+ },
+ {
+  "group": "Programs",
+  "title": "Referral Program",
+  "url": "https://docs.polymarket.com/programs/referral-program.md",
+  "filename": "Referral Program"
+ },
+ {
+  "group": "Builder Program",
+  "title": "Overview",
+  "url": "https://docs.polymarket.com/programs/builders/overview.md",
+  "filename": "Overview (Builder Program)"
+ },
+ {
+  "group": "Builder Program",
+  "title": "Builder Fees",
+  "url": "https://docs.polymarket.com/programs/builders/fees.md",
+  "filename": "Builder Fees"
+ },
+ {
+  "group": "Builder Program",
+  "title": "Tiers",
+  "url": "https://docs.polymarket.com/programs/builders/tiers.md",
+  "filename": "Tiers"
+ },
+ {
+  "group": "Resources",
+  "title": "Contracts",
+  "url": "https://docs.polymarket.com/resources/contracts.md",
+  "filename": "Contracts"
+ },
+ {
+  "group": "Resources",
+  "title": "Data Resources",
+  "url": "https://docs.polymarket.com/resources/blockchain-data.md",
+  "filename": "Data Resources"
+ },
+ {
+  "group": "Resources",
+  "title": "Error Codes",
+  "url": "https://docs.polymarket.com/resources/error-codes.md",
+  "filename": "Error Codes"
+ }
+]

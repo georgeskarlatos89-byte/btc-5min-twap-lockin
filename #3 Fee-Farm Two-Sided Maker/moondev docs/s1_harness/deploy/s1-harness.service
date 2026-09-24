@@ -1,0 +1,12 @@
+[Unit]
+Description=S1 TWAP lock-in harness (observer)
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/s1
+ExecStart=/bin/bash /opt/s1/run_harness.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,672 @@
+[
+ {
+  "title": "Overview",
+  "href": "/api-reference/predictions/overview",
+  "filename": "Overview"
+ },
+ {
+  "title": "Rate Limits",
+  "href": "/api-reference/rate-limits",
+  "filename": "Rate Limits"
+ },
+ {
+  "title": "CLOB Trading Rate Limits",
+  "href": "/api-reference/trading-rate-limits",
+  "filename": "CLOB Trading Rate Limits"
+ },
+ {
+  "title": "Geographic Restrictions",
+  "href": "/api-reference/geoblock",
+  "filename": "Geographic Restrictions"
+ },
+ {
+  "title": "Get data freshness",
+  "href": "/api-reference/service/get-data-freshness",
+  "filename": "Get data freshness"
+ },
+ {
+  "title": "List events (keyset pagination)",
+  "href": "/api-reference/events/list-events-keyset-pagination",
+  "filename": "List events (keyset pagination)"
+ },
+ {
+  "title": "List events",
+  "href": "/api-reference/events/list-events",
+  "filename": "List events"
+ },
+ {
+  "title": "Get event by id",
+  "href": "/api-reference/events/get-event-by-id",
+  "filename": "Get event by id"
+ },
+ {
+  "title": "Get event by slug",
+  "href": "/api-reference/events/get-event-by-slug",
+  "filename": "Get event by slug"
+ },
+ {
+  "title": "Get event tags",
+  "href": "/api-reference/events/get-event-tags",
+  "filename": "Get event tags"
+ },
+ {
+  "title": "List markets (keyset pagination)",
+  "href": "/api-reference/markets/list-markets-keyset-pagination",
+  "filename": "List markets (keyset pagination)"
+ },
+ {
+  "title": "List markets",
+  "href": "/api-reference/markets/list-markets",
+  "filename": "List markets"
+ },
+ {
+  "title": "Get market by id",
+  "href": "/api-reference/markets/get-market-by-id",
+  "filename": "Get market by id"
+ },
+ {
+  "title": "Get market by slug",
+  "href": "/api-reference/markets/get-market-by-slug",
+  "filename": "Get market by slug"
+ },
+ {
+  "title": "Get market tags by id",
+  "href": "/api-reference/markets/get-market-tags-by-id",
+  "filename": "Get market tags by id"
+ },
+ {
+  "title": "Get market by token",
+  "href": "/api-reference/markets/get-market-by-token",
+  "filename": "Get market by token"
+ },
+ {
+  "title": "List a market's top holders",
+  "href": "/api-reference/markets/list-a-markets-top-holders",
+  "filename": "List a market's top holders"
+ },
+ {
+  "title": "Get open interest",
+  "href": "/api-reference/markets/get-open-interest",
+  "filename": "Get open interest (markets)"
+ },
+ {
+  "title": "Get live volume for an event",
+  "href": "/api-reference/markets/get-live-volume-for-an-event",
+  "filename": "Get live volume for an event (markets)"
+ },
+ {
+  "title": "Get resolution state",
+  "href": "/api-reference/markets/get-resolution-state",
+  "filename": "Get resolution state"
+ },
+ {
+  "title": "Get simplified markets",
+  "href": "/api-reference/markets/get-simplified-markets",
+  "filename": "Get simplified markets"
+ },
+ {
+  "title": "Get sampling markets",
+  "href": "/api-reference/markets/get-sampling-markets",
+  "filename": "Get sampling markets"
+ },
+ {
+  "title": "Get sampling simplified markets",
+  "href": "/api-reference/markets/get-sampling-simplified-markets",
+  "filename": "Get sampling simplified markets"
+ },
+ {
+  "title": "Get order book",
+  "href": "/api-reference/market-data/get-order-book",
+  "filename": "Get order book"
+ },
+ {
+  "title": "Get order books (request body)",
+  "href": "/api-reference/market-data/get-order-books-request-body",
+  "filename": "Get order books (request body)"
+ },
+ {
+  "title": "Get market price",
+  "href": "/api-reference/market-data/get-market-price",
+  "filename": "Get market price"
+ },
+ {
+  "title": "Get market prices (query parameters)",
+  "href": "/api-reference/market-data/get-market-prices-query-parameters",
+  "filename": "Get market prices (query parameters)"
+ },
+ {
+  "title": "Get market prices (request body)",
+  "href": "/api-reference/market-data/get-market-prices-request-body",
+  "filename": "Get market prices (request body)"
+ },
+ {
+  "title": "Get midpoint price",
+  "href": "/api-reference/data/get-midpoint-price",
+  "filename": "Get midpoint price"
+ },
+ {
+  "title": "Get midpoint prices (query parameters)",
+  "href": "/api-reference/market-data/get-midpoint-prices-query-parameters",
+  "filename": "Get midpoint prices (query parameters)"
+ },
+ {
+  "title": "Get midpoint prices (request body)",
+  "href": "/api-reference/market-data/get-midpoint-prices-request-body",
+  "filename": "Get midpoint prices (request body)"
+ },
+ {
+  "title": "Get spread",
+  "href": "/api-reference/market-data/get-spread",
+  "filename": "Get spread"
+ },
+ {
+  "title": "Get spreads",
+  "href": "/api-reference/market-data/get-spreads",
+  "filename": "Get spreads"
+ },
+ {
+  "title": "Get last trade price",
+  "href": "/api-reference/market-data/get-last-trade-price",
+  "filename": "Get last trade price"
+ },
+ {
+  "title": "Get last trade prices (query parameters)",
+  "href": "/api-reference/market-data/get-last-trade-prices-query-parameters",
+  "filename": "Get last trade prices (query parameters)"
+ },
+ {
+  "title": "Get last trade prices (request body)",
+  "href": "/api-reference/market-data/get-last-trade-prices-request-body",
+  "filename": "Get last trade prices (request body)"
+ },
+ {
+  "title": "Get prices history",
+  "href": "/api-reference/markets/get-prices-history",
+  "filename": "Get prices history"
+ },
+ {
+  "title": "Get a token's price history",
+  "href": "/api-reference/markets/get-a-tokens-price-history",
+  "filename": "Get a token's price history"
+ },
+ {
+  "title": "Get batch prices history",
+  "href": "/api-reference/markets/get-batch-prices-history",
+  "filename": "Get batch prices history"
+ },
+ {
+  "title": "Get fee rate",
+  "href": "/api-reference/market-data/get-fee-rate",
+  "filename": "Get fee rate"
+ },
+ {
+  "title": "Get fee rate by path parameter",
+  "href": "/api-reference/market-data/get-fee-rate-by-path-parameter",
+  "filename": "Get fee rate by path parameter"
+ },
+ {
+  "title": "Get tick size",
+  "href": "/api-reference/market-data/get-tick-size",
+  "filename": "Get tick size"
+ },
+ {
+  "title": "Get tick size by path parameter",
+  "href": "/api-reference/market-data/get-tick-size-by-path-parameter",
+  "filename": "Get tick size by path parameter"
+ },
+ {
+  "title": "Get CLOB market info",
+  "href": "/api-reference/markets/get-clob-market-info",
+  "filename": "Get CLOB market info"
+ },
+ {
+  "title": "Get server time",
+  "href": "/api-reference/data/get-server-time",
+  "filename": "Get server time"
+ },
+ {
+  "title": "Post a new order",
+  "href": "/api-reference/trade/post-a-new-order",
+  "filename": "Post a new order"
+ },
+ {
+  "title": "Cancel single order",
+  "href": "/api-reference/trade/cancel-single-order",
+  "filename": "Cancel single order"
+ },
+ {
+  "title": "Get single order by ID",
+  "href": "/api-reference/trade/get-single-order-by-id",
+  "filename": "Get single order by ID"
+ },
+ {
+  "title": "Post multiple orders",
+  "href": "/api-reference/trade/post-multiple-orders",
+  "filename": "Post multiple orders"
+ },
+ {
+  "title": "Get user orders",
+  "href": "/api-reference/trade/get-user-orders",
+  "filename": "Get user orders"
+ },
+ {
+  "title": "Cancel multiple orders",
+  "href": "/api-reference/trade/cancel-multiple-orders",
+  "filename": "Cancel multiple orders"
+ },
+ {
+  "title": "Cancel all orders",
+  "href": "/api-reference/trade/cancel-all-orders",
+  "filename": "Cancel all orders"
+ },
+ {
+  "title": "Cancel orders for a market",
+  "href": "/api-reference/trade/cancel-orders-for-a-market",
+  "filename": "Cancel orders for a market"
+ },
+ {
+  "title": "Get order scoring status",
+  "href": "/api-reference/trade/get-order-scoring-status",
+  "filename": "Get order scoring status"
+ },
+ {
+  "title": "Send heartbeat",
+  "href": "/api-reference/trade/send-heartbeat",
+  "filename": "Send heartbeat"
+ },
+ {
+  "title": "List trades",
+  "href": "/api-reference/feeds/list-trades",
+  "filename": "List trades"
+ },
+ {
+  "title": "Get trades",
+  "href": "/api-reference/trade/get-trades",
+  "filename": "Get trades"
+ },
+ {
+  "title": "Get builder trades",
+  "href": "/api-reference/trade/get-builder-trades",
+  "filename": "Get builder trades"
+ },
+ {
+  "title": "Get current rebated fees for a maker",
+  "href": "/api-reference/rebates/get-current-rebated-fees-for-a-maker",
+  "filename": "Get current rebated fees for a maker"
+ },
+ {
+  "title": "Get current active rewards configurations",
+  "href": "/api-reference/rewards/get-current-active-rewards-configurations",
+  "filename": "Get current active rewards configurations"
+ },
+ {
+  "title": "Get raw rewards for a specific market",
+  "href": "/api-reference/rewards/get-raw-rewards-for-a-specific-market",
+  "filename": "Get raw rewards for a specific market"
+ },
+ {
+  "title": "Get multiple markets with rewards",
+  "href": "/api-reference/rewards/get-multiple-markets-with-rewards",
+  "filename": "Get multiple markets with rewards"
+ },
+ {
+  "title": "Get earnings for user by date",
+  "href": "/api-reference/rewards/get-earnings-for-user-by-date",
+  "filename": "Get earnings for user by date"
+ },
+ {
+  "title": "Get total earnings for user by date",
+  "href": "/api-reference/rewards/get-total-earnings-for-user-by-date",
+  "filename": "Get total earnings for user by date"
+ },
+ {
+  "title": "Get reward percentages for user",
+  "href": "/api-reference/rewards/get-reward-percentages-for-user",
+  "filename": "Get reward percentages for user"
+ },
+ {
+  "title": "Get user earnings and markets configuration",
+  "href": "/api-reference/rewards/get-user-earnings-and-markets-configuration",
+  "filename": "Get user earnings and markets configuration"
+ },
+ {
+  "title": "Get public profile by wallet address",
+  "href": "/api-reference/profiles/get-public-profile-by-wallet-address",
+  "filename": "Get public profile by wallet address"
+ },
+ {
+  "title": "Get a user's profile stats",
+  "href": "/api-reference/wallet/get-a-users-profile-stats",
+  "filename": "Get a user's profile stats"
+ },
+ {
+  "title": "List positions for a user or market",
+  "href": "/api-reference/wallet/list-positions-for-a-user-or-market",
+  "filename": "List positions for a user or market"
+ },
+ {
+  "title": "Get portfolio value",
+  "href": "/api-reference/wallet/get-portfolio-value",
+  "filename": "Get portfolio value"
+ },
+ {
+  "title": "Get a user's PnL series",
+  "href": "/api-reference/wallet/get-a-users-pnl-series",
+  "filename": "Get a user's PnL series"
+ },
+ {
+  "title": "Get a user's trading volume",
+  "href": "/api-reference/wallet/get-a-users-trading-volume",
+  "filename": "Get a user's trading volume"
+ },
+ {
+  "title": "List account activity",
+  "href": "/api-reference/feeds/list-account-activity",
+  "filename": "List account activity"
+ },
+ {
+  "title": "Get wallet approvals",
+  "href": "/api-reference/wallet/get-wallet-approvals",
+  "filename": "Get wallet approvals"
+ },
+ {
+  "title": "Get the trader leaderboard",
+  "href": "/api-reference/boards/get-the-trader-leaderboard",
+  "filename": "Get the trader leaderboard"
+ },
+ {
+  "title": "List the biggest wins",
+  "href": "/api-reference/boards/list-the-biggest-wins",
+  "filename": "List the biggest wins"
+ },
+ {
+  "title": "Get the builders leaderboard",
+  "href": "/api-reference/boards/get-the-builders-leaderboard",
+  "filename": "Get the builders leaderboard"
+ },
+ {
+  "title": "Get builder volume over time",
+  "href": "/api-reference/boards/get-builder-volume-over-time",
+  "filename": "Get builder volume over time"
+ },
+ {
+  "title": "Search markets, events, and profiles",
+  "href": "/api-reference/search/search-markets-events-and-profiles",
+  "filename": "Search markets, events, and profiles"
+ },
+ {
+  "title": "List tags",
+  "href": "/api-reference/tags/list-tags",
+  "filename": "List tags"
+ },
+ {
+  "title": "Get tag by id",
+  "href": "/api-reference/tags/get-tag-by-id",
+  "filename": "Get tag by id"
+ },
+ {
+  "title": "Get tag by slug",
+  "href": "/api-reference/tags/get-tag-by-slug",
+  "filename": "Get tag by slug"
+ },
+ {
+  "title": "Get related tags (relationships) by tag id",
+  "href": "/api-reference/tags/get-related-tags-relationships-by-tag-id",
+  "filename": "Get related tags (relationships) by tag id"
+ },
+ {
+  "title": "Get related tags (relationships) by tag slug",
+  "href": "/api-reference/tags/get-related-tags-relationships-by-tag-slug",
+  "filename": "Get related tags (relationships) by tag slug"
+ },
+ {
+  "title": "Get tags related to a tag id",
+  "href": "/api-reference/tags/get-tags-related-to-a-tag-id",
+  "filename": "Get tags related to a tag id"
+ },
+ {
+  "title": "Get tags related to a tag slug",
+  "href": "/api-reference/tags/get-tags-related-to-a-tag-slug",
+  "filename": "Get tags related to a tag slug"
+ },
+ {
+  "title": "List series",
+  "href": "/api-reference/series/list-series",
+  "filename": "List series"
+ },
+ {
+  "title": "Get series by id",
+  "href": "/api-reference/series/get-series-by-id",
+  "filename": "Get series by id"
+ },
+ {
+  "title": "List comments",
+  "href": "/api-reference/comments/list-comments",
+  "filename": "List comments"
+ },
+ {
+  "title": "Get comments by comment id",
+  "href": "/api-reference/comments/get-comments-by-comment-id",
+  "filename": "Get comments by comment id"
+ },
+ {
+  "title": "Get comments by user address",
+  "href": "/api-reference/comments/get-comments-by-user-address",
+  "filename": "Get comments by user address"
+ },
+ {
+  "title": "Get sports metadata information",
+  "href": "/api-reference/sports/get-sports-metadata-information",
+  "filename": "Get sports metadata information"
+ },
+ {
+  "title": "Get valid sports market types",
+  "href": "/api-reference/sports/get-valid-sports-market-types",
+  "filename": "Get valid sports market types"
+ },
+ {
+  "title": "List teams",
+  "href": "/api-reference/sports/list-teams",
+  "filename": "List teams"
+ },
+ {
+  "title": "Submit a transaction",
+  "href": "/api-reference/relayer/submit-a-transaction",
+  "filename": "Submit a transaction"
+ },
+ {
+  "title": "Get a transaction by ID",
+  "href": "/api-reference/relayer/get-a-transaction-by-id",
+  "filename": "Get a transaction by ID"
+ },
+ {
+  "title": "Get recent transactions for a user",
+  "href": "/api-reference/relayer/get-recent-transactions-for-a-user",
+  "filename": "Get recent transactions for a user"
+ },
+ {
+  "title": "Get current nonce for a user",
+  "href": "/api-reference/relayer/get-current-nonce-for-a-user",
+  "filename": "Get current nonce for a user"
+ },
+ {
+  "title": "Get relayer address and nonce",
+  "href": "/api-reference/relayer/get-relayer-address-and-nonce",
+  "filename": "Get relayer address and nonce"
+ },
+ {
+  "title": "Check if a wallet is deployed",
+  "href": "/api-reference/relayer/check-if-a-wallet-is-deployed",
+  "filename": "Check if a wallet is deployed"
+ },
+ {
+  "title": "Get all relayer API keys",
+  "href": "/api-reference/relayer-api-keys/get-all-relayer-api-keys",
+  "filename": "Get all relayer API keys"
+ },
+ {
+  "title": "Get combo markets",
+  "href": "/api-reference/combo-markets/get-combo-markets",
+  "filename": "Get combo markets"
+ },
+ {
+  "title": "Submit a quote",
+  "href": "/api-reference/maker/submit-a-quote",
+  "filename": "Submit a quote"
+ },
+ {
+  "title": "Cancel a quote",
+  "href": "/api-reference/maker/cancel-a-quote",
+  "filename": "Cancel a quote"
+ },
+ {
+  "title": "Confirm or decline last look",
+  "href": "/api-reference/maker/confirm-or-decline-last-look",
+  "filename": "Confirm or decline last look"
+ },
+ {
+  "title": "List combo positions",
+  "href": "/api-reference/wallet/list-combo-positions",
+  "filename": "List combo positions"
+ },
+ {
+  "title": "List combo activity",
+  "href": "/api-reference/feeds/list-combo-activity",
+  "filename": "List combo activity"
+ },
+ {
+  "title": "Quoter Gateway",
+  "href": "/api-reference/wss/rfq",
+  "filename": "Quoter Gateway"
+ },
+ {
+  "title": "Market Channel",
+  "href": "/api-reference/wss/market",
+  "filename": "Market Channel"
+ },
+ {
+  "title": "User Channel",
+  "href": "/api-reference/wss/user",
+  "filename": "User Channel"
+ },
+ {
+  "title": "Sports Channel",
+  "href": "/api-reference/wss/sports",
+  "filename": "Sports Channel"
+ },
+ {
+  "title": "Get supported assets",
+  "href": "/api-reference/bridge/get-supported-assets",
+  "filename": "Get supported assets"
+ },
+ {
+  "title": "Create bridge addresses",
+  "href": "/api-reference/bridge/create-bridge-addresses",
+  "filename": "Create bridge addresses"
+ },
+ {
+  "title": "Get a quote",
+  "href": "/api-reference/bridge/get-a-quote",
+  "filename": "Get a quote"
+ },
+ {
+  "title": "Get transaction status",
+  "href": "/api-reference/bridge/get-transaction-status",
+  "filename": "Get transaction status"
+ },
+ {
+  "title": "Create withdrawal addresses",
+  "href": "/api-reference/bridge/create-withdrawal-addresses",
+  "filename": "Create withdrawal addresses"
+ },
+ {
+  "title": "Migrating to Data API v2",
+  "href": "/api-reference/data-api/migrating-from-v1",
+  "filename": "Migrating to Data API v2"
+ },
+ {
+  "title": "Get current positions for a user",
+  "href": "/api-reference/core/get-current-positions-for-a-user",
+  "filename": "Get current positions for a user"
+ },
+ {
+  "title": "Get closed positions for a user",
+  "href": "/api-reference/core/get-closed-positions-for-a-user",
+  "filename": "Get closed positions for a user"
+ },
+ {
+  "title": "Get positions for a market",
+  "href": "/api-reference/core/get-positions-for-a-market",
+  "filename": "Get positions for a market"
+ },
+ {
+  "title": "Get trades for a user or markets",
+  "href": "/api-reference/core/get-trades-for-a-user-or-markets",
+  "filename": "Get trades for a user or markets"
+ },
+ {
+  "title": "Get user activity",
+  "href": "/api-reference/core/get-user-activity",
+  "filename": "Get user activity"
+ },
+ {
+  "title": "Get total value of a user's positions",
+  "href": "/api-reference/core/get-total-value-of-a-users-positions",
+  "filename": "Get total value of a user's positions"
+ },
+ {
+  "title": "Get total markets a user has traded",
+  "href": "/api-reference/misc/get-total-markets-a-user-has-traded",
+  "filename": "Get total markets a user has traded"
+ },
+ {
+  "title": "Download an accounting snapshot (ZIP of CSVs)",
+  "href": "/api-reference/misc/download-an-accounting-snapshot-zip-of-csvs",
+  "filename": "Download an accounting snapshot (ZIP of CSVs)"
+ },
+ {
+  "title": "Get top holders for markets",
+  "href": "/api-reference/core/get-top-holders-for-markets",
+  "filename": "Get top holders for markets"
+ },
+ {
+  "title": "Get open interest",
+  "href": "/api-reference/misc/get-open-interest",
+  "filename": "Get open interest (misc)"
+ },
+ {
+  "title": "Get live volume for an event",
+  "href": "/api-reference/misc/get-live-volume-for-an-event",
+  "filename": "Get live volume for an event (misc)"
+ },
+ {
+  "title": "Get trader leaderboard rankings",
+  "href": "/api-reference/core/get-trader-leaderboard-rankings",
+  "filename": "Get trader leaderboard rankings"
+ },
+ {
+  "title": "Get aggregated builder leaderboard",
+  "href": "/api-reference/builders/get-aggregated-builder-leaderboard",
+  "filename": "Get aggregated builder leaderboard"
+ },
+ {
+  "title": "Get daily builder volume time-series",
+  "href": "/api-reference/builders/get-daily-builder-volume-time-series",
+  "filename": "Get daily builder volume time-series"
+ },
+ {
+  "title": "Get user combo positions",
+  "href": "/api-reference/core/get-user-combo-positions",
+  "filename": "Get user combo positions"
+ },
+ {
+  "title": "Get user combo activity",
+  "href": "/api-reference/core/get-user-combo-activity",
+  "filename": "Get user combo activity"
+ },
+ {
+  "title": "Data API v2",
+  "href": "/api-reference/data-api/overview",
+  "filename": "Data API v2"
+ }
+]
