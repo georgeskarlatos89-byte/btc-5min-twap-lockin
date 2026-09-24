@@ -144,3 +144,54 @@ On the VM after restart: only "monitor started" logged; key probe state = "moond
 - Memory: `project_s3_feefarm.md` (new), `reference_moondev_api.md` (feed shapes, key facts).
 - GitHub: `s3_feefarm/` (code, docs, report, rows CSV — no `.env`, no logs, no `_cache`),
   `s1_harness/s1_monitor.py`, this record.
+
+---
+
+## Part #2 — First quiet session was a zombie: main loop died at 00:07Z, fixed 06:32Z (2026-09-24)
+
+### Context
+S3 entered its first quiet session at 00:00 UTC. While preparing strategy #6 (which reuses
+this code) I checked what S3 had actually done in six quiet hours.
+
+### Data
+| what | value |
+|---|---|
+| quotes | 2 (both sides of ONE round, 00:05:54Z) |
+| rounds settled (`n` in stats) | 0 |
+| `KeyError('live_quotes')` in the log | 52 (33 in the Moon Dev loop, 19 in the RTDS loop) |
+| FILL REJECTED lines | 6, all 00:07:00Z, `mid 0.42 outside band` |
+| pulls counted in stats | LIQ 10, SPOT_MOVE 2 — but 0 `PULL BOTH` log lines and an empty pulls CSV |
+| service state | active the whole time |
+| monitor pings | "0 rounds-with-fills" band warnings at 00:00 and 06:00, error-storm and reconnect-storm warnings at 01:44–01:51; nothing said "the loop is dead" |
+
+### Cause
+`do_pull()` wrote its CSV line with `r["live_quotes"]`, a field no round state ever had, so
+every pull raised after the lock and the stats counter were set but before the quotes were
+marked PULLED and before `PULL BOTH` was logged. At 00:07Z the mid left the band, the band-exit
+pull ran inside `tick_loop`, which had no exception guard, and the loop task ended. Systemd
+only watches the process, so the service stayed "active" with no quotes and no settlements.
+The 6 FILL REJECTED lines are the tape loop still seeing the never-pulled quote as resting.
+Second suspect, the volatility gate, was measured and cleared: Chainlink ticks every 1.0 s,
+5-min sigma 5.3 bps vs the 10.5 bps threshold.
+
+### Fixes (shared with S6; constants untouched, verified byte-identical)
+1. Pull CSV counts resting placed quotes (no phantom field).
+2. `tick_loop` wrapped in try/except (`tick error …`), heartbeat `tick_ts` in `s3_stats.json`
+   every 60 s; the monitor alerts when it is older than 5 min while the service is active.
+3. One cascade fires one pull (the feed keeps a cascade for 10 min, so the same event had
+   re-pulled every poll after each 60 s lock; the 10 "LIQ" pulls were one cascade).
+4. `SKIP <series> <round>: <reasons>` logged once per round, so flat periods are explained;
+   the hourly status shows the top reasons.
+5. Daily stop is a gate only when `LIVE_TRADING=1` (simulated P&L must not flatten a DRY run).
+
+### Run mechanism
+Fixed `s3_maker.py` shipped (md5 d6f4690e), stats snapshot kept as
+`s3_stats.before-fix-20260924.json`, service restarted 06:32Z. Result: quoted the 15m round at
+06:33:10Z and the 5m round at 06:36:27Z; both pulled seconds later by `BAND_EXIT mid=0.45`
+(the mid sits right on the band edge in these rounds; expect short quote lives and frequent
+band pulls — that is the strategy's rule, not a bug). Monitor restarted 06:39Z on the generic
+maker checker (S3 + S6), quiet start.
+
+### Lesson (saved to memory)
+"Service active" is not "strategy alive". Every asyncio strategy loop needs a crash guard and
+a heartbeat the monitor checks, and every gate skip must be visible in the log.

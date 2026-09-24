@@ -1,0 +1,24 @@
+[Unit]
+Description=S6 coin-flip harvester at round open (incubation, DRY unless .env + all gates pass)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntupolymarket3
+Group=ubuntupolymarket3
+# Runs from the strategy-named folder (symlink ~/s6_coinflip points here). The code reads .env
+# and KILL from its own directory. KILL makes it FLAT (it keeps running), so Restart=always
+# cannot loop on it. Direct exec (no pip on every restart).
+WorkingDirectory=/home/ubuntupolymarket3/#6 coin-flip harvester at round open/s6_coinflip
+ExecStart=/usr/bin/python3 -u "/home/ubuntupolymarket3/#6 coin-flip harvester at round open/s6_coinflip/s6_harvester.py"
+Restart=always
+RestartSec=10
+Nice=2
+Environment=PYTHONUNBUFFERED=1
+# s6_harvester.py writes s6_harvester.log itself; capture stdout/stderr (tracebacks) too.
+StandardOutput=append:/home/ubuntupolymarket3/#6 coin-flip harvester at round open/s6_coinflip/s6-harvester.service.log
+StandardError=append:/home/ubuntupolymarket3/#6 coin-flip harvester at round open/s6_coinflip/s6-harvester.service.log
+
+[Install]
+WantedBy=multi-user.target

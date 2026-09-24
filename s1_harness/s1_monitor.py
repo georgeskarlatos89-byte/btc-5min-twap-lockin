@@ -34,14 +34,17 @@ STRAT = "S1 TWAP Lock-In"
 EXPECT = {"ARB_MIN": "50", "SIG_MIN": "20", "SIG_WR": "0.90", "GAP_MIN": "4.0",
           "EDGE_MIN": "0.02", "TRADE_USD": "10.0", "DAILY_STOP": "20.0", "MAX_PER_HOUR": "3"}
 ARB_MIN, SIG_MIN, SIG_WR, GAP_MIN = 50, 20, 0.90, 4.0
-SERVICES = ["s1-harness", "s1-trader", "s9-watcher", "bme-capture", "s3-maker"]
+SERVICES = ["s1-harness", "s1-trader", "s9-watcher", "bme-capture", "s3-maker", "s6-harvester"]
 
 # ---- S3 fee-farm maker (s3_feefarm/s3_maker.py, 2026-09-24) --------------------------------
 # Urgent: anything LIVE (quote/fill/exit placed with real money), DAILY STOP / KILL, a fill that
 # violated the band gate (FILL REJECTED = the Part-4 bug class), the Moon Dev key rejected
 # (401/403 -> the strategy goes FLAT), error storms. Digested hourly: quotes, dry fills, pairs,
-# pulls by trigger, day P&L, moondev feed health. Baseline (M5, backtest): 7.75 +/- 1.81
+# pulls by trigger, day P&L, moondev feed health. Baseline (M5, backtest): 7.52 +/- 2.12
 # rounds-with-fills per hour, min 2 / max 12 - alerts may not be tighter than that.
+# 2026-09-24: S3 + S6 share one code base, so ONE generic checker (check_maker) runs per MAKERS
+# entry. Added after the S3 zombie (tick loop died 00:07Z, service "active", 0 quotes for 6 h):
+# heartbeat (stats tick_ts) and "0 quotes in a quiet hour" with the SKIP reasons.
 S3_DIR = "/home/ubuntupolymarket3/s3_feefarm"
 S3_LOG, S3_STATS, S3_ENV, S3_KILL = (os.path.join(S3_DIR, n) for n in ("s3_maker.log", "s3_stats.json", ".env", "KILL"))
 S3_LIQ_URL = "https://api.moondev.com/api/all_liquidations/10m.json"
@@ -49,6 +52,13 @@ S3_FILLS_H_MIN, S3_FILLS_H_MAX = 2, 12          # observed min/max of the backte
 S3_ERRS_PER_H_MAX = 10
 S3_QUIET_UTC = [(0, 12), (16, 18)]              # mirrors s3_maker.py QUIET_UTC (+ weekends)
 S3_TS_RE = re.compile(r"^\[[^\]]+\]\s*")
+MAKER_HB_DEAD_S = 5 * 60                        # tick_ts older than this while active = dead main loop
+MAKERS = {
+    "S3": dict(svc="s3-maker", dir=S3_DIR, log="s3_maker.log", stats="s3_stats.json", shares=50,
+               fills_band=(S3_FILLS_H_MIN, S3_FILLS_H_MAX), baseline="mean 7.52 ± 2.12, backtest 24 h"),
+    "S6": dict(svc="s6-harvester", dir="/home/ubuntupolymarket3/s6_coinflip", log="s6_harvester.log",
+               stats="s6_stats.json", shares=20, fills_band=None, baseline=None),   # no backtest yet -> no band
+}
 
 # ---- BME order-book recorder (POLYMARKET-VPS-STACK, 2026-09-21) --------------------------
 # Keyless, measure-only, but DISK-HEAVY (~5.8 GB/day raw, ~2 GB/day after the midnight gzip).
@@ -69,6 +79,7 @@ STRAT_DESC = {
     "S9":  "S9 Whale Coattails: watches 4 pro wallets and measures whether copying them would pay (measure-only; so far it does not).",
     "BME": "BME Book-Movement Engine: records every order-book move on the BTC 5m/15m markets (~1,000/s) to score 5 pre-registered signals after 7 full days.",
     "S3":  "S3 Fee-Farm Two-Sided Maker: rests a buy at 0.45 on BOTH sides of each BTC 5m/15m round during quiet hours, keeps completed pairs (0.90 -> 1.00), cuts stray legs after 20 s, and pulls its quotes on liquidation cascades / spot jumps (Moon Dev feed). DRY: fills are simulated from the public tape.",
+    "S6":  "S6 Coin-Flip Harvester: in quiet hours rests a buy at 0.49 on BOTH sides of each BTC 5m/15m round for the first 45 s only, keeps any completed pair (0.98 -> 1.00) and deliberately HOLDS a lone leg to the end of the round to measure whether whoever filled it knew something (kill test: 300 held legs, either side more than 8 points from a 50% win rate). DRY: fills simulated from the public tape, no real orders.",
 }
 HOURLY_STATUS = True                  # one combined status message at the top of every hour
 LOOP_S, DEDUP_S, SUMMARY_UTC_HOUR = 30, 6 * 3600, 7
@@ -533,53 +544,71 @@ def s3_quiet_now():
     d = utc()
     return d.weekday() >= 5 or any(a <= d.hour < b for a, b in S3_QUIET_UTC)
 
-def s3_probe_key(st):
-    """Once per hour: is the Moon Dev key still accepted? (its lifetime is unknown - the README
+def mk_path(tag, what):
+    c = MAKERS[tag]; return os.path.join(c["dir"], c[what] if what in ("log", "stats") else what)
+
+def mk_probe_key(st, tag):
+    """Once per hour per maker: is the Moon Dev key still accepted? (lifetime unknown - the README
     says ~1 week). 401/403 -> the maker goes FLAT, so it must be an alert, not a surprise."""
-    if now() - st.get("s3_probe_t", 0) < 3600: return
-    st["s3_probe_t"] = now()
-    key = read_env(S3_ENV).get("MOONDEV_API_KEY", "")
+    p = tag.lower()
+    if now() - st.get(f"{p}_probe_t", 0) < 3600: return
+    st[f"{p}_probe_t"] = now()
+    key = read_env(mk_path(tag, ".env")).get("MOONDEV_API_KEY", "")
     if not key:
-        st["s3_key"] = "no key in .env"; alert(st, "s3_nokey", "⚠ S3: no MOONDEV_API_KEY in s3_feefarm/.env - liq/imbalance pulls dead, strategy flat"); return
+        st[f"{p}_key"] = "no key in .env"; alert(st, f"{p}_nokey", f"⚠ {tag}: no MOONDEV_API_KEY in its .env - liq/imbalance pulls dead, strategy flat"); return
     try:
         r = urllib.request.urlopen(urllib.request.Request(S3_LIQ_URL, headers={"User-Agent": "Mozilla/5.0", "X-API-Key": key}), timeout=15)
         d = json.loads(r.read().decode()); rows = d.get("liquidations") if isinstance(d, dict) else d
         n = len(rows) if isinstance(rows, list) else 0
-        st["s3_key"] = f"moondev key OK ({n} liq rows in 10 min)"
-        if n == 0: alert(st, "s3_liq_empty", "⚠ S3: Moon Dev liq feed returned 0 rows (200-but-empty = feed unhealthy; maker treats it as stale -> flat)")
+        st[f"{p}_key"] = f"moondev key OK ({n} liq rows in 10 min)"
+        if n == 0: alert(st, f"{p}_liq_empty", f"⚠ {tag}: Moon Dev liq feed returned 0 rows (200-but-empty = feed unhealthy; maker treats it as stale -> flat)")
     except urllib.error.HTTPError as e:
-        st["s3_key"] = f"moondev HTTP {e.code}"
-        if e.code in (401, 403): alert(st, "s3_key_dead", f"🚨 S3: Moon Dev API key REJECTED (HTTP {e.code}) - expired or revoked. The maker is FLAT until a new key is put in s3_feefarm/.env")
-        else: alert(st, "s3_key_http", f"⚠ S3: Moon Dev liq feed HTTP {e.code} on the hourly probe")
+        st[f"{p}_key"] = f"moondev HTTP {e.code}"
+        if e.code in (401, 403): alert(st, f"{p}_key_dead", f"🚨 {tag}: Moon Dev API key REJECTED (HTTP {e.code}) - expired or revoked. The maker is FLAT until a new key is put in its .env")
+        else: alert(st, f"{p}_key_http", f"⚠ {tag}: Moon Dev liq feed HTTP {e.code} on the hourly probe")
     except Exception as e:
-        st["s3_key"] = f"moondev probe error {e.__class__.__name__}"; alert(st, "s3_probe_err", f"⚠ S3: Moon Dev probe failed: {e!r}"[:200])
+        st[f"{p}_key"] = f"moondev probe error {e.__class__.__name__}"; alert(st, f"{p}_probe_err", f"⚠ {tag}: Moon Dev probe failed: {e!r}"[:200])
 
-def check_s3(st):
-    st.setdefault("s3_hour", {}); h = st["s3_hour"]
-    for ln in tail_new(S3_LOG, "s3_off", st):
+def mk_skip_key(body):
+    """'SKIP 5m 1790000000: feed stale; pulled: LIQ ...' -> 'feed stale' (first gate reason, trimmed)."""
+    r = body.split(":", 1)[1].strip() if ":" in body else body
+    r = r.split(";")[0].strip()
+    r = re.sub(r"\$?-?\d+(\.\d+)?", "#", r)                 # numbers -> # so reasons group
+    return r[:40]
+
+def check_maker(st, tag):
+    p = tag.lower(); cfg = MAKERS[tag]
+    st.setdefault(f"{p}_hour", {}); h = st[f"{p}_hour"]
+    LOGP, ENVP, KILLP, STATSP = mk_path(tag, "log"), mk_path(tag, ".env"), mk_path(tag, "KILL"), mk_path(tag, "stats")
+    for ln in tail_new(LOGP, f"{p}_off", st):
         body = S3_TS_RE.sub("", ln)
         # --- urgent, each once
         if "(LIVE)" in body or "LIVE)" in body and ("FILL" in body or "INV-EXIT" in body):
-            alert(st, f"s3live:{ln}", f"🟢 S3 REAL MONEY: {body[:300]}", "event"); continue
+            alert(st, f"{p}live:{ln}", f"🟢 {tag} REAL MONEY: {body[:300]}", "event"); continue
         if "DAILY STOP" in body:
-            alert(st, f"s3stop:{ln}", f"🚨 S3 {body[:200]}", "event"); continue
+            alert(st, f"{p}stop:{ln}", f"🚨 {tag} {body[:200]}", "event"); continue
         if "FILL REJECTED" in body:
-            alert(st, "s3_fill_rejected", f"🚨 S3 gate violation (Part-4 class): {body[:220]}"); h["rejected"] = h.get("rejected", 0) + 1; continue
+            alert(st, f"{p}_fill_rejected", f"🚨 {tag} gate violation (Part-4 class): {body[:220]}"); h["rejected"] = h.get("rejected", 0) + 1; continue
         if "key expired/missing" in body or ("moondev liq 40" in body):
-            alert(st, "s3_key_dead", f"🚨 S3: {body[:200]} (maker FLAT)"); continue
+            alert(st, f"{p}_key_dead", f"🚨 {tag}: {body[:200]} (maker FLAT)"); continue
         if "moondev liq 429" in body:
-            alert(st, "s3_liq_429", f"⚠ S3: Moon Dev rate-limited the liq feed: {body[:160]}"); continue
-        if "moondev" in body and ("error" in body or "HTTP" in body) or "tape error" in body or "Traceback" in body:
+            alert(st, f"{p}_liq_429", f"⚠ {tag}: Moon Dev rate-limited the liq feed: {body[:160]}"); continue
+        if "moondev" in body and ("error" in body or "HTTP" in body) or "tape error" in body or "tick error" in body or "Traceback" in body:
             h["errors"] = h.get("errors", 0) + 1
-            if hour_count(st, "s3_errs", 1) > S3_ERRS_PER_H_MAX:
-                alert(st, "s3_err_storm", f"⚠ S3: >{S3_ERRS_PER_H_MAX} feed/API errors in the last hour, last: {body[:180]}")
+            if "tick error" in body:                      # main-loop exception (guarded since 09-24) - always worth one ping
+                alert(st, f"{p}_tick_err", f"⚠ {tag} main-loop exception (loop survived): {body[:200]}")
+            if hour_count(st, f"{p}_errs", 1) > S3_ERRS_PER_H_MAX:
+                alert(st, f"{p}_err_storm", f"⚠ {tag}: >{S3_ERRS_PER_H_MAX} feed/API errors in the last hour, last: {body[:180]}")
             continue
         if "RTDS silent" in body or "RTDS problem" in body:
-            if hour_count(st, "s3_rtds", 1) > RECONNECTS_PER_H_MAX:
-                alert(st, "s3_rtds_storm", f"⚠ S3 spot feed unstable: >{RECONNECTS_PER_H_MAX} reconnects in the last hour")
+            if hour_count(st, f"{p}_rtds", 1) > RECONNECTS_PER_H_MAX:
+                alert(st, f"{p}_rtds_storm", f"⚠ {tag} spot feed unstable: >{RECONNECTS_PER_H_MAX} reconnects in the last hour")
             continue
         # --- digest counters
         if body.startswith("QUOTE"): h["quotes"] = h.get("quotes", 0) + 1
+        elif body.startswith("SKIP "):
+            h["skips"] = h.get("skips", 0) + 1; k = mk_skip_key(body)
+            h.setdefault("skip_by", {})[k] = h.get("skip_by", {}).get(k, 0) + 1
         elif body.startswith("FILL "):
             h["fills"] = h.get("fills", 0) + 1
             rk = " ".join(body.split()[1:3])                      # "5m <round>" - JSON-safe list, not a set
@@ -588,39 +617,60 @@ def check_s3(st):
             trig = body.split("—")[-1].strip().split()[0] if "—" in body else "?"
             h["pulls"] = h.get("pulls", 0) + 1; h.setdefault("pull_by", {})[trig] = h.get("pull_by", {}).get(trig, 0) + 1
         elif body.startswith("INV-EXIT"): h["cuts"] = h.get("cuts", 0) + 1
+        elif body.startswith("SINGLE LEG HOLD"): h["holds"] = h.get("holds", 0) + 1
         elif body.startswith("ROUND-RESULT"):
             h["rounds"] = h.get("rounds", 0) + 1
             if "paired=1" in body: h["pairs"] = h.get("pairs", 0) + 1
-        elif "liq feed shape" in body: st["s3_shape"] = body[:200]
-    s3_probe_key(st)
-    # M5 band: only while the maker is allowed to quote (quiet hours) and the service is up
-    if svc("s3-maker", "ActiveState") == "active" and s3_quiet_now() and now() - st.get("s3_band_t", now()) > 3600:
+            h["hold_win"] = h.get("hold_win", 0) + body.count("->WIN"); h["hold_loss"] = h.get("hold_loss", 0) + body.count("->LOSS")
+        elif "liq feed shape" in body: st[f"{p}_shape"] = body[:200]
+    mk_probe_key(st, tag)
+    active = svc(cfg["svc"], "ActiveState") == "active"
+    # --- heartbeat: the main loop writes stats["tick_ts"] every 60 s (since 2026-09-24)
+    if active:
+        try:
+            s = json.load(open(STATSP)); hb = s.get("tick_ts")
+            age = now() - hb if hb else now() - os.path.getmtime(STATSP)
+        except Exception: age = None
+        if age is not None and age > MAKER_HB_DEAD_S:
+            alert(st, f"{p}_dead_loop", f"🚨 {tag} main loop DEAD: no heartbeat for {int(age/60)} min while the service is 'active' (zombie: no quotes, no settlements). Fix: sudo systemctl restart {cfg['svc']}.service")
+    # --- hourly quiet-hour checks (M5 band for S3; zero-quote check for both)
+    if active and s3_quiet_now() and now() - st.get(f"{p}_band_t", now()) > 3600:
         n = len(h.get("fill_rounds", []))
-        if n < S3_FILLS_H_MIN or n > S3_FILLS_H_MAX:
-            alert(st, "s3_fill_band", f"⚠ S3 fill model check: {n} rounds-with-fills in the last hour, outside the backtest baseline band {S3_FILLS_H_MIN}-{S3_FILLS_H_MAX} (mean 7.75 ± 1.81)")
-    if "s3_band_t" not in st: st["s3_band_t"] = now()
-    # live flag on S3's own .env
-    live = read_env(S3_ENV).get("LIVE_TRADING") == "1"
-    if st.get("s3_live_seen") is not None and live != st["s3_live_seen"]:
-        alert(st, "s3_live_change", "🚨 S3 LIVE_TRADING=1 - the maker WILL rest real orders (50 sh/side) when its gates pass. Intended?" if live else "🔔 S3 LIVE_TRADING back to 0 - DRY", "event")
-    st["s3_live_seen"] = live
-    kill = os.path.exists(S3_KILL)
-    if st.get("s3_kill_seen") is not None and kill != st["s3_kill_seen"]:
-        alert(st, "s3_kill_change", "🛑 S3 KILL file present - maker FLAT" if kill else "🔔 S3 KILL file removed", "event")
-    st["s3_kill_seen"] = kill
+        if cfg["fills_band"] and (n < cfg["fills_band"][0] or n > cfg["fills_band"][1]):
+            alert(st, f"{p}_fill_band", f"⚠ {tag} fill model check: {n} rounds-with-fills in the last hour, outside the backtest baseline band {cfg['fills_band'][0]}-{cfg['fills_band'][1]} ({cfg['baseline']})")
+        if h.get("quotes", 0) == 0:
+            top = ", ".join(f"{k}×{v}" for k, v in sorted((h.get("skip_by") or {}).items(), key=lambda kv: -kv[1])[:3]) or "no SKIP lines either (loop dead?)"
+            alert(st, f"{p}_no_quotes", f"⚠ {tag} placed 0 quotes in the last quiet hour (it should quote every round). Gate reasons: {top}")
+    if f"{p}_band_t" not in st: st[f"{p}_band_t"] = now()
+    # live flag on the maker's own .env
+    live = read_env(ENVP).get("LIVE_TRADING") == "1"
+    if st.get(f"{p}_live_seen") is not None and live != st[f"{p}_live_seen"]:
+        alert(st, f"{p}_live_change", f"🚨 {tag} LIVE_TRADING=1 - it WILL rest real orders ({cfg['shares']} sh/side) when its gates pass. Intended?" if live else f"🔔 {tag} LIVE_TRADING back to 0 - DRY", "event")
+    st[f"{p}_live_seen"] = live
+    kill = os.path.exists(KILLP)
+    if st.get(f"{p}_kill_seen") is not None and kill != st[f"{p}_kill_seen"]:
+        alert(st, f"{p}_kill_change", f"🛑 {tag} KILL file present - FLAT" if kill else f"🔔 {tag} KILL file removed", "event")
+    st[f"{p}_kill_seen"] = kill
 
-def s3_digest(st, reset=True):
-    h = st.get("s3_hour", {});
-    try: s = json.load(open(S3_STATS))
+def mk_digest(st, tag, reset=True):
+    p = tag.lower(); cfg = MAKERS[tag]; h = st.get(f"{p}_hour", {})
+    try: s = json.load(open(mk_path(tag, "stats")))
     except Exception: s = {}
     pulls = ", ".join(f"{k}×{v}" for k, v in (h.get("pull_by") or {}).items()) or "none"
+    skips = ", ".join(f"{k}×{v}" for k, v in sorted((h.get("skip_by") or {}).items(), key=lambda kv: -kv[1])[:3]) or "none"
+    hb = s.get("tick_ts"); hb_s = f"heartbeat {int((now()-hb)/60)} min ago" if hb else "no heartbeat yet"
+    extra = f"{h.get('cuts',0)} cuts"
+    if tag == "S6":
+        lg, lw = s.get("side_legs") or {}, s.get("side_leg_wins") or {}
+        extra = (f"{h.get('holds',0)} legs held (settled {h.get('hold_win',0)} won / {h.get('hold_loss',0)} lost) | kill-test sample: "
+                 f"Up {lg.get('Up',0)} legs ({lw.get('Up',0)} won), Down {lg.get('Down',0)} legs ({lw.get('Down',0)} won) of 300 needed")
     line = (f"last hour: {h.get('quotes',0)} quotes, {h.get('fills',0)} dry fills in {len(h.get('fill_rounds', []))} rounds, "
-            f"{h.get('pairs',0)} pairs, {h.get('cuts',0)} cuts, pulls {pulls}, errors {h.get('errors',0)} | "
-            f"session {'quiet (quoting allowed)' if s3_quiet_now() else 'active (flat by rule)'} | "
-            f"all-time: fills {s.get('fills',0)} pairs {s.get('pairs',0)} pnl ${s.get('pnl',0):+.2f} day ${s.get('day_pnl',0):+.2f} "
-            f"adverse ${s.get('adverse',0):.2f} / gross ${s.get('gross',0):.2f} | {st.get('s3_key','key not probed yet')} | "
-            f"LIVE={'YES' if read_env(S3_ENV).get('LIVE_TRADING') == '1' else 'no (DRY)'} KILL={'yes' if os.path.exists(S3_KILL) else 'no'}")
-    if reset: st["s3_hour"] = {"fill_rounds": []}; st["s3_band_t"] = now()
+            f"{h.get('pairs',0)} pairs, {extra}, pulls {pulls}, skipped rounds {h.get('skips',0)} ({skips}), errors {h.get('errors',0)} | "
+            f"session {'quiet (quoting allowed)' if s3_quiet_now() else 'active (flat by rule)'} | {hb_s} | "
+            f"all-time: rounds {s.get('n',0)} fills {s.get('fills',0)} pairs {s.get('pairs',0)} pnl ${s.get('pnl',0):+.2f} day ${s.get('day_pnl',0):+.2f} "
+            f"adverse ${s.get('adverse',0):.2f} / gross ${s.get('gross',0):.2f} | {st.get(f'{p}_key','key not probed yet')} | "
+            f"LIVE={'YES' if read_env(mk_path(tag, '.env')).get('LIVE_TRADING') == '1' else 'no (DRY)'} KILL={'yes' if os.path.exists(mk_path(tag, 'KILL')) else 'no'}")
+    if reset: st[f"{p}_hour"] = {"fill_rounds": []}; st[f"{p}_band_t"] = now()
     return line
 
 def hourly_status(st):
@@ -650,7 +700,8 @@ def hourly_status(st):
            f"— {STRAT_DESC['S9']}\n   {s9_d} | {s9s[:300]}\n"
            f"— {STRAT_DESC['BME']}\n   last hour: +{d_gz:.0f} MB gz, {rows_h} book-state rows, reconnects {hour_count(st,'bme_reconnects')} | today's file {gz/2**20:.0f} MB | "
            f"{st.get('disk_line','disk ?')} | 7-day gate: day {max(1, len([f for f in os.listdir(BME_OUT) if f.startswith('events_') and f.endswith('.gz')]) if os.path.isdir(BME_OUT) else 0)} of 7\n"
-           f"— {STRAT_DESC['S3']}\n   {s3_digest(st)}")
+           f"— {STRAT_DESC['S3']}\n   {mk_digest(st, 'S3')}\n"
+           f"— {STRAT_DESC['S6']}\n   {mk_digest(st, 'S6')}")
     tg_send(msg); mlog("hourly status sent")
 
 def check_gates(st):
@@ -716,7 +767,8 @@ def daily_summary(st):
             f"feed reconnects/h now: trader {hour_count(st,'trader_rtds')} observer {hour_count(st,'harness_rtds')}\n"
             f"S9: {len(st.get('s9_outcomes', []))} follow outcomes in 24h | {st.get('s9_status') or '(no STATUS line yet)'}\n"
             f"BME: {svc('bme-capture','ActiveState')} | today's events file (gz) {max(0, st.get('bme_size', 0)) / 2**20:.0f} MB | {st.get('disk_line', '')}\n"
-            f"S3: {s3_digest(st, reset=False)}\n"
+            f"S3: {mk_digest(st, 'S3', reset=False)}\n"
+            f"S6: {mk_digest(st, 'S6', reset=False)}\n"
             f"LIVE_TRADING={read_env(ENV).get('LIVE_TRADING','0')} KILL={'yes' if os.path.exists(KILL) else 'no'} "
             f"S1_LIVE_BLOCKED={'yes' if os.path.exists(P('S1_LIVE_BLOCKED')) else 'NO'}")
 
@@ -735,9 +787,11 @@ def main():
     # S9 log: never replay history on first sight (the seeded sandbox log would spam old lines)
     if "s9_off" not in st and os.path.exists(S9_LOG):
         st["s9_off"] = os.path.getsize(S9_LOG); st["s9_last_status_t"] = now()
-    if "s3_off" not in st and os.path.exists(S3_LOG):
-        st["s3_off"] = os.path.getsize(S3_LOG)
-    st.setdefault("s3_hour", {"fill_rounds": []})
+    for tag in MAKERS:                       # never replay a maker's log history on first sight
+        p = tag.lower()
+        if f"{p}_off" not in st and os.path.exists(mk_path(tag, "log")):
+            st[f"{p}_off"] = os.path.getsize(mk_path(tag, "log"))
+        st.setdefault(f"{p}_hour", {"fill_rounds": []})
     env = read_env(ENV)
     st["env_seen"] = os.path.exists(ENV); st["live_seen"] = env.get("LIVE_TRADING") == "1"
     st["force_seen"] = env.get("FORCE_LIVE") == "1"; st["kill_seen"] = os.path.exists(KILL)
@@ -751,7 +805,7 @@ def main():
     while True:
         try:
             storm_tick(st)
-            check_trader_log(st); check_harness_log(st); check_rounds(st); check_s9_log(st); check_bme(st); check_s3(st)
+            check_trader_log(st); check_harness_log(st); check_rounds(st); check_s9_log(st); check_bme(st); check_maker(st, "S3"); check_maker(st, "S6")
             check_gates(st); check_services(st); check_env(st); daily_summary(st); hourly_status(st)
             save_state(st); errs = 0
         except Exception as e:

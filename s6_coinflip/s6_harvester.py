@@ -1,44 +1,30 @@
 #!/usr/bin/env python3
 """
-S3 FEE-FARM TWO-SIDED MAKER — incubation bot, gated by code (P5).
+S6 COIN-FLIP HARVESTER — incubation bot, gated by code (P5). DRY by default.
 
-Strategy source: BTC-5m-15m-POLYMARKET-10-STRATEGIES.MD -> S3, tuned by the B step
-(s3_backtest_report.md — "run 25 versions in an afternoon"). "Get paid by the 1.75%
-the gamblers pay." Quote a BUY at **0.45** on BOTH the Up and the Down token of
-every BTC 5m/15m round, 50 shares each (liquidity-rewards minimum), from t+30s
-until 60% of the round has elapsed. Makers pay 0%; a completed pair costs 0.90 and
-pays 1.00. NOTE: the doc's 0.49/0.49 + sit-at-breakeven version is KILLED by the
-backtest (rank 31/32, net -$781/24h); the surviving variant is bid 0.45 + cut
-naked legs at 20s (positive in both 12h halves). Method over parameters (P1/P4).
+Strategy source: BTC-5m-15m-POLYMARKET-10-STRATEGIES.MD -> S6. Entertainment takers cross the
+1c spread at the bell and pay the max taker fee for a fair coin. Quote a BUY at **0.49** on BOTH
+the Up and the Down token of every BTC 5m/15m round, 20 shares each (~$10/side), from the bell
+(t+0) through the first 45 s only. Makers pay 0%; a completed pair costs 0.98 and pays 1.00.
+A single filled leg is deliberately HELD TO RESOLUTION (EXIT_MODE "hold") — the experiment is
+to measure whether the first-leg fill is informed: after 300 leg fills, if either side's
+conditional resolution rate is more than 8 pp away from 50%, the hypothesis is KILLED.
 
-PULL BOTH QUOTES INSTANTLY when any of:
-  (a) Moon Dev `all_liq_10m` prints a one-sided cascade >= $1.5M in any 10s window
-      (the 1s-median-lag multi-exchange feed — the ONLY liq feed allowed intra-round;
-      `binance_liq_10m` is 163s stale and is BANNED here, see knowledge base 5b);
-  (b) spot moves >= 6 bps within 10s (RTDS chainlink spot stream);
-  (c) orderflow imbalance flips extreme (Moon Dev imbalance, 90s background cadence).
+Plumbing is shared with s3_feefarm/s3_maker.py (pull triggers, gates, feeds, tape fills):
+PULL BOTH QUOTES INSTANTLY when (a) Moon Dev all_liq_10m prints a one-sided cascade >= $1.5M in
+any 10 s window, (b) spot moves >= 6 bps within 10 s (RTDS chainlink), (c) Moon Dev orderflow
+imbalance flips extreme (90 s cadence); mid leaving the 0.45-0.55 band pulls too.
 
-INVENTORY RULE (never "hope" a position — P5): one side filled and the other not
-within 20s -> EXIT_MODE decides: "cut20" (the B-step winner) takes the bid at
-fill+20s immediately; "offer49" (doc-literal) rests a breakeven offer AT COST until
-quote end then takes the bid; "chase" rests at cost 15s more then cuts. Pair
-completed -> hold to resolution (0.45x2 = 0.90 cost -> +$0.10/sh).
+PART-4 RULE: the live-band gate and every other gate run BEFORE any fill is recorded; a fill
+outside the band FAILS LOUDLY. DRY runs the exact same gates as LIVE.
+SESSION GATE: quiet hours only (00-12 and 16-18 UTC, all-day weekends); vol override flattens.
+RISK: 20 sh/side; max $30 NET directional per 5-min window across both series; daily stop $20
+(LIVE only) -> KILL + flat; Moon Dev feed stale/empty/401 -> flat. DRY unless .env says
+LIVE_TRADING=1, keys present and every gate passes. DRY fills are simulated from the public
+tape (queue-optimistic) and prove plumbing, never edge.
 
-PART-4 RULE (encoded, not intended): the live-band gate (mid in [0.45, 0.55]) and
-every other gate execute BEFORE any fill is ever recorded. A fill logged outside
-the band is a bug and FAILS LOUDLY. DRY runs the exact same gates as LIVE.
-
-SESSION GATE (S8 not built yet — carried here, P5): quiet-regime hours only
-(Asia 00:00-12:00 UTC + dead US lunch 16:00-18:00 UTC; all-day weekends). A
-realized-vol override (trailing 5m sigma > 1.5x the 7bps baseline) flattens.
-
-RISK: 50sh/side (~$24.5 at 0.49); max $30 NET directional per 5-min window across
-both series; daily stop $20 -> KILL file + flatten; feed-health flat-switch: if the
-Moon Dev liq feed goes stale/empty/401 the strategy goes flat (you cannot pull on
-what you cannot see). DRY unless .env says LIVE_TRADING=1 and every gate passes.
-
-Outputs: s3_maker.log, s3_fills.csv, s3_pulls.csv, s3_stats.json.
-Usage:  python3 s3_feefarm/s3_maker.py [--minutes 30] [--preflight]
+Outputs: s6_harvester.log, s6_fills.csv, s6_pulls.csv, s6_stats.json.
+Usage:  python3 s6_harvester.py [--minutes 30] [--preflight]
 """
 import argparse, asyncio, csv, json, math, os, re, sys, time, urllib.request
 from datetime import datetime, timezone
@@ -47,19 +33,21 @@ from collections import deque
 HERE = os.path.dirname(os.path.abspath(__file__))
 ENV_PATH = os.path.join(HERE, ".env")
 KILL = os.path.join(HERE, "KILL")
-LOG = os.path.join(HERE, "s3_maker.log")
-FILLS_CSV = os.path.join(HERE, "s3_fills.csv")
-PULLS_CSV = os.path.join(HERE, "s3_pulls.csv")
-STATS = os.path.join(HERE, "s3_stats.json")
+LOG = os.path.join(HERE, "s6_harvester.log")
+FILLS_CSV = os.path.join(HERE, "s6_fills.csv")
+PULLS_CSV = os.path.join(HERE, "s6_pulls.csv")
+STATS = os.path.join(HERE, "s6_stats.json")
 
-# ---- strategy constants (S3 mechanics + B-step survivor; mirrors s3_backtest.py) ----
-QUOTE_PRICE    = 0.45    # B-step survivor (doc said 0.49: that version ranks 31/32)
-QUOTE_SHARES   = 50      # >=50sh = liquidity-rewards min. Doc also says "$10/side" — set 20 for that.
-QUOTE_START_S  = 30
-QUOTE_END_FRAC = 0.60
+# ---- strategy constants (S6 mechanics + B-step survivor; mirrors s3_backtest.py) ----
+QUOTE_PRICE    = 0.49    # B-step survivor (doc said 0.49: that version ranks 31/32)
+QUOTE_SHARES   = 20      # about $10/side at 0.49 for incubation      # >=50sh = liquidity-rewards min. Doc also says "$10/side" — set 20 for that.
+QUOTE_START_S  = 0
+QUOTE_END_FRAC = 0.15    # 45s on a 5m round; capped below by QUOTE_END_S
 BAND = (0.45, 0.55)       # the 45-55 band — the live gate, BEFORE any fill (Part-4)
-INV_GRACE_S = 20
-EXIT_MODE     = "cut20"   # "cut20" (winner) | "offer49" (doc-literal) | "chase"
+INV_GRACE_S = 45
+EXIT_MODE     = "hold"   # "cut20" (winner) | "offer49" (doc-literal) | "chase"
+QUOTE_END_S   = 45
+PAIR_MAX_COST = 0.97
 BREAKEVEN     = QUOTE_PRICE  # offer-at-COST (never a fixed 0.49 — free-money bug guard)
 # ---- pull triggers ----
 LIQ_URL       = "https://api.moondev.com/api/all_liquidations/10m.json"  # all_liq_10m: MEDIAN 1s lag
@@ -305,7 +293,7 @@ async def rtds():
 
 def parse_liq_rows(payload):
     """Defensive row parser — log the first raw row so the shape is verifiable live."""
-    # 2026-09-24 (S3 record Part #1): the live feed nests rows under "liquidations" (verified with
+    # 2026-09-24 (S6 record Part #1): the live feed nests rows under "liquidations" (verified with
     # the key: {'window', 'exchanges', ..., 'liquidations': list[180]}). Without this key the
     # parser returned [] -> "200-but-empty" -> the strategy would have stayed flat forever.
     rows = payload if isinstance(payload, list) else (payload.get("liquidations") or payload.get("data") or payload.get("rows") or [])
@@ -421,14 +409,14 @@ async def moondev_loops():
         await asyncio.sleep(LIQ_POLL_S)
 
 def do_pull(reason):
-    """Pull BOTH quotes instantly + lock requotes (S3 pull rule)."""
+    """Pull BOTH quotes instantly + lock requotes (S6 pull rule)."""
     now = time.time()
     if now < t.pulled_until and reason.split()[0] in t.pull_reason:
         return                                     # same trigger still firing
     t.pulled_until = now + REQUOTE_LOCK_S
     t.pull_reason = reason
     t.stats["pulls"][reason.split()[0]] = t.stats["pulls"].get(reason.split()[0], 0) + 1
-    # 2026-09-24 (S3 record): r["live_quotes"] never existed -> KeyError on EVERY pull. Raised inside
+    # 2026-09-24 (S6 record): r["live_quotes"] never existed -> KeyError on EVERY pull. Raised inside
     # tick_loop it killed the main loop silently (service stayed "active", zero quotes for 6 h) and
     # in LIVE the resting quotes would never have been cancelled. Count resting placed quotes instead.
     csv_append(PULLS_CSV, ["ts", "reason", "active_rounds"],
@@ -500,7 +488,7 @@ def record_fill(rs, side, ts, px, sz, now, live=False):
     q = rs["quotes"].get(side)
     if not q or q["phase"] != "RESTING" or not q.get("placed"):
         return
-    if ts < rs["start"] + QUOTE_START_S or ts > rs["start"] + QUOTE_END_FRAC * rs["T"]:
+    if ts < rs["start"] + QUOTE_START_S or ts > rs["start"] + min(QUOTE_END_S, QUOTE_END_FRAC * rs["T"]):
         return                                    # outside quote window: not our fill
     if ts < q.get("place_ts", 0):
         return                                    # fill before the quote existed = phantom
@@ -525,7 +513,7 @@ def record_fill(rs, side, ts, px, sz, now, live=False):
     log(f"FILL {rs['label']} {side} {take:.0f}sh @ {px:.2f} ({'LIVE' if live or q.get('live') else 'DRY'}) — inventory rule armed")
     # pair completed late -> cancel a pending breakeven offer and hold BOTH to resolution
     up, dn = rs["quotes"]["Up"], rs["quotes"]["Down"]
-    if up["phase"] == "FILLED" and dn["phase"] == "FILLED":
+    if up["phase"] == "FILLED" and dn["phase"] == "FILLED" and 2 * QUOTE_PRICE < PAIR_MAX_COST:
         for s2, q2 in (("Up", up), ("Down", dn)):
             if q2.get("offered") and not q2.get("exited"):
                 q2["offered"] = False
@@ -601,7 +589,7 @@ def place_quotes(rs, now, live):
         if not rs.get("skip_logged"):
             rs["skip_logged"] = True; log(f"SKIP {rs['label']} {rs['start']}: {rs['skip_reason']}")
         return
-    if now > rs["start"] + QUOTE_END_FRAC * rs["T"]:
+    if now > rs["start"] + min(QUOTE_END_S, QUOTE_END_FRAC * rs["T"]):
         return
     for side in ("Up", "Down"):
         q = rs["quotes"][side]
@@ -650,15 +638,12 @@ async def tape_loop():
                 for side, q in (("Up", up), ("Down", dn)):
                     if (q["phase"] == "FILLED" and q["fill_ts"] and not both_f and
                             now - q["fill_ts"] >= INV_GRACE_S):
-                        if EXIT_MODE == "cut20":
-                            inventory_exit(rs, side, now)       # cut now at the bid
-                        elif EXIT_MODE == "chase":
-                            if now - q["fill_ts"] >= INV_GRACE_S + 15:
-                                inventory_exit(rs, side, now)
-                            else:
-                                breakeven_offer(rs, side, now)  # brief rest at cost
-                        else:  # offer49: sit at cost offer; tick_loop dumps at quote end
-                            breakeven_offer(rs, side, now)
+                        # S6 deliberately carries a single leg to resolution. This is the
+                        # experiment: measure whether 0.49 is genuinely a fair coin after
+                        # fill asymmetry, rather than hiding it with an early exit.
+                        if not q.get("hold_logged"):
+                            q["hold_logged"] = True
+                            log(f"SINGLE LEG HOLD {rs['label']} {side} — carrying to resolution")
         except Exception as ex:
             log(f"tape error {ex!r}")
         await asyncio.sleep(1.5)
@@ -679,12 +664,22 @@ def settle_round(rs, now):
         note = f"pair {pay:.0f}sh +${pnl:.2f}"
     else:
         for side, q in (("Up", up), ("Down", dn)):
-            if q["phase"] == "STUCK":
+            if q["phase"] in ("STUCK", "FILLED") and not q.get("exited"):
                 win = (side == settled)
                 pnl += q["filled"] * (1.0 - QUOTE_PRICE if win else -QUOTE_PRICE)
-                if win: t.stats["wins"] = t.stats.get("wins", 0) + 1
-                else:   t.stats["adverse"] = t.stats.get("adverse", 0.0) + q["filled"] * QUOTE_PRICE
-                note += f" STUCK-{side}->{'WIN' if win else 'LOSS'} "
+                t.stats.setdefault("side_fills", {"Up": 0, "Down": 0})     # shares (kept)
+                t.stats.setdefault("side_wins", {"Up": 0, "Down": 0})
+                t.stats.setdefault("side_legs", {"Up": 0, "Down": 0})      # legs = "fills" of the kill test
+                t.stats.setdefault("side_leg_wins", {"Up": 0, "Down": 0})
+                t.stats["side_fills"][side] += q["filled"]
+                t.stats["side_legs"][side] += 1
+                if win:
+                    t.stats["wins"] = t.stats.get("wins", 0) + 1
+                    t.stats["side_wins"][side] += q["filled"]
+                    t.stats["side_leg_wins"][side] += 1
+                else:
+                    t.stats["adverse"] = t.stats.get("adverse", 0.0) + q["filled"] * QUOTE_PRICE
+                note += f" HOLD-{side}->{'WIN' if win else 'LOSS'} "
     t.stats["day_pnl"] = t.stats.get("day_pnl", 0.0) + pnl
     t.stats["pnl"] = t.stats.get("pnl", 0.0) + pnl
     t.stats["n"] = t.stats.get("n", 0) + 1
@@ -734,17 +729,17 @@ async def tick_loop():
                             rs["book"][side] = (bu, au)
                         except Exception:
                             pass
-                    # band-exit pull: quotes live ONLY inside the 45-55 band (S3: "quote the
+                    # band-exit pull: quotes live ONLY inside the 45-55 band (S6: "quote the
                     # 45-55 band") — mid leaving the band pulls both, same as a cascade.
                     if any(q["phase"] == "RESTING" and q["placed"] for q in rs["quotes"].values()):
                         mid = mid_for(rs, "Up") or mid_for(rs, "Down") or 0.50
                         if not band_ok(mid):
                             do_pull(f"BAND_EXIT mid={mid:.2f} {rs['label']}")
                 # quote at t+30s (mechanics: "from t+30s until 60% of round elapsed")
-                if QUOTE_START_S <= e <= QUOTE_END_FRAC * Tsec and not any(q["placed"] for q in rs["quotes"].values()):
+                if QUOTE_START_S <= e <= min(QUOTE_END_S, QUOTE_END_FRAC * Tsec) and not any(q["placed"] for q in rs["quotes"].values()):
                     place_quotes(rs, now, live_ok)
                 # quote end: cancel resting quotes (LIVE GTC must never linger) + taker-exit naked legs
-                if e >= QUOTE_END_FRAC * Tsec:
+                if e >= min(QUOTE_END_S, QUOTE_END_FRAC * Tsec):
                     paired = (rs["quotes"]["Up"]["phase"] == "FILLED" and rs["quotes"]["Down"]["phase"] == "FILLED")
                     for side in ("Up", "Down"):
                         q = rs["quotes"][side]
@@ -753,8 +748,8 @@ async def tick_loop():
                             if q.get("oid"):
                                 cancel_order(q["oid"])
                                 log(f"CLOSE {rs['label']} {side} quote cancelled at window end")
-                        if q["phase"] == "FILLED" and not q.get("exited") and not paired:
-                            inventory_exit(rs, side, now)
+                        # S6 holds naked legs to resolution; never silently convert the
+                        # incubation into an exit strategy.
                 # settle
                 if e > Tsec + 45 and not rs["settled"]:
                     rs["settled"] = settle_round(rs, now)
@@ -767,7 +762,7 @@ async def tick_loop():
 
 def preflight():
     print("=" * 72)
-    print("S3 PREFLIGHT (read-only, no orders)  " + time.strftime("%Y-%m-%d %H:%M:%SZ", time.gmtime()))
+    print("S6 PREFLIGHT (read-only, no orders)  " + time.strftime("%Y-%m-%d %H:%M:%SZ", time.gmtime()))
     env = load_env()
     now = time.time()
     for Tsec, label in ROUNDS:
@@ -786,7 +781,7 @@ def preflight():
     print("=" * 72)
 
 async def main_async(minutes=None):
-    log(f"S3 fee-farm maker starting ({'BOUNDED ' + str(minutes) + 'min' if minutes else 'forever'}) "
+    log(f"S6 coin-flip harvester starting ({'BOUNDED ' + str(minutes) + 'min' if minutes else 'forever'}) "
         f"— quotes {QUOTE_PRICE} x {QUOTE_SHARES}sh both sides, window +{QUOTE_START_S}s..{QUOTE_END_FRAC:.0%}, "
         f"band {BAND}, exit_mode {EXIT_MODE}, pulls: LIQ $1.5M/10s + SPOT {SPOT_MOVE_BPS}bps/{SPOT_WINDOW_S:.0f}s + IMB {IMB_EXTREME}")
     tasks = [asyncio.create_task(rtds()), asyncio.create_task(moondev_loops()),
