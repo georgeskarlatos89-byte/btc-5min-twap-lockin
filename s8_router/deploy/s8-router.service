@@ -1,0 +1,22 @@
+[Unit]
+Description=S8 Session Regime Router (Asia fades, US momentum, macro blackout) - state-file daemon, no orders
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# Adapted 2026-09-26 for twapvm (template had User=user, /home/user/btc-5min-twap-lockin). Runs from the
+# strategy-named folder; ~/s8_router is a symlink to it (S3/S6 import the router from ../s8_router).
+User=ubuntupolymarket3
+Group=ubuntupolymarket3
+WorkingDirectory=/home/ubuntupolymarket3/#8 session regime router (asia fades, us momentum, macro blackout)/s8_router
+ExecStart=/usr/bin/python3 -u "/home/ubuntupolymarket3/#8 session regime router (asia fades, us momentum, macro blackout)/s8_router/s8_router.py" --daemon --poll 5.0
+Restart=always
+RestartSec=5
+Nice=5
+# s8_router.py appends to s8_router.log itself; capture stdout/stderr (tracebacks) separately.
+StandardOutput=append:/home/ubuntupolymarket3/#8 session regime router (asia fades, us momentum, macro blackout)/s8_router/s8-router.service.log
+StandardError=append:/home/ubuntupolymarket3/#8 session regime router (asia fades, us momentum, macro blackout)/s8_router/s8-router.service.log
+
+[Install]
+WantedBy=multi-user.target

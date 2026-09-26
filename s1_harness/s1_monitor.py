@@ -36,7 +36,7 @@ EXPECT = {"ARB_MIN": "50", "SIG_MIN": "20", "SIG_WR": "0.90", "GAP_MIN": "4.0",
 ARB_MIN, SIG_MIN, SIG_WR, GAP_MIN = 50, 20, 0.90, 4.0
 # 2026-09-26 10:30Z: standalone s6-harvester RETIRED (stopped+disabled, files kept) - S46 runs the same S6
 # maker inside its process; two copies produced duplicate S6 data (user decision).
-SERVICES = ["s1-harness", "s1-trader", "s9-watcher", "bme-capture", "s3-maker", "s2-collect", "s46-harvester", "s5-collector"]
+SERVICES = ["s1-harness", "s1-trader", "s9-watcher", "bme-capture", "s3-maker", "s2-collect", "s46-harvester", "s5-collector", "s8-router"]
 
 # ---- S3 fee-farm maker (s3_feefarm/s3_maker.py, 2026-09-24) --------------------------------
 # Urgent: anything LIVE (quote/fill/exit placed with real money), DAILY STOP / KILL, a fill that
@@ -60,6 +60,14 @@ MAKER_HB_DEAD_S = 5 * 60
 # Checks: service; newest session's ticks.jsonl must keep growing (a connected socket with no ticks
 # is the failure mode the handoff guide warns about); samples/decisions per hour by skip reason;
 # health.jsonl errors; sessions started per hour (restart storms); disk via the existing check.
+# ---- S8 session regime router (s8_router/s8_router.py, 2026-09-26) -------------------------------
+# A clock/calendar/vol gate that S3 (and the retired S6 file) import in-process; the daemon only writes
+# s8_state.json every 5 s for observability. Checks: service; state freshness (a dead daemon = blind
+# operator, S3 keeps gating in-process); regime transitions (digest); blackout / vol-override entries
+# (info once per event); KILL; and that S3's quoting stops when S8 says BLOCK.
+S8_DIR = "/home/ubuntupolymarket3/s8_router"
+S8_STATE, S8_LOG, S8_KILL = (os.path.join(S8_DIR, n) for n in ("s8_state.json", "s8_router.log", "KILL"))
+S8_STATE_STALE_S = 60
 S2_DIR = "/home/ubuntupolymarket3/s2_openprint"
 S2_SESSIONS = os.path.join(S2_DIR, "data", "sessions")
 S2_TICK_STALE_S = 3 * 60                    # ticks arrive ~1/s per feed; 3 min silence = feed problem
@@ -109,6 +117,7 @@ STRAT_DESC = {
     "S2":  "S2 Open-Print Displacement (research recorder, NO orders): 10 s after each BTC 5m/15m round opens it records the Chainlink spot vs the open, the TWAP feed, and the order book on the displaced side, then applies the strategy gates (5/8 bps move, ask <= 0.60, 2 s freshness) and logs a hypothetical candidate or the skip reason. Outcomes are joined later for replay.",
     "S46": "S46 Paired = S6 coin-flip maker + S4 Liquidation Cascade Continuation (15m only): the same $1.5M/10 s liquidation cascade that pulls the S6 quotes is S4's entry signal - if spot confirms the direction by 2 bps and the 15m continuation side still asks <= model odds minus fee minus 2c, S4 buys it (taker) and holds to resolution. DRY: no real orders; S4 triggers are rare on a quiet tape by design.",
     "S5":  "S5 Wick Fade / Tape-Lag Reversion (research recorder, NO orders): records every Kraken BTC trade and every Polymarket order-book change for the current 5m round, so a replay can find sharp spikes that snap back within seconds (wicks) and measure whether the Up/Down quotes lagged. No fair-value model exists yet, so all entries are blocked by design.",
+    "S8":  "S8 Session Regime Router (gate, NO orders): decides which strategies may trade right now from the clock (Asia 00-12 UTC and weekends = makers on; US 13:30-21:00 = takers on, makers off), a hardcoded US macro calendar (blackout +/-1 round around releases: everything off) and trailing 1 h volatility (>10.5 bps flips to US mode). S3 asks it before every quote.",
     "S6":  "S6 Coin-Flip Harvester: in quiet hours rests a buy at 0.49 on BOTH sides of each BTC 5m/15m round for the first 45 s only, keeps any completed pair (0.98 -> 1.00) and deliberately HOLDS a lone leg to the end of the round to measure whether whoever filled it knew something (kill test: 300 held legs, either side more than 8 points from a 50% win rate). DRY: fills simulated from the public tape, no real orders.",
 }
 HOURLY_STATUS = True                  # one combined status message at the top of every hour
@@ -727,6 +736,64 @@ def mk_digest(st, tag, reset=True):
     if reset: st[f"{p}_hour"] = {"fill_rounds": []}; st[f"{p}_band_t"] = now()
     return line
 
+def check_s8(st):
+    st.setdefault("s8_hour", {}); h = st["s8_hour"]
+    active = svc("s8-router", "ActiveState") == "active"
+    try:
+        age = now() - os.path.getmtime(S8_STATE); s8 = json.load(open(S8_STATE))
+    except Exception:
+        age, s8 = None, {}
+    if active and (age is None or age > S8_STATE_STALE_S):
+        alert(st, "s8_state_stale", f"⚠ S8: s8_state.json {'missing' if age is None else f'{int(age)} s old'} while the router service is active (daemon loop stuck?). S3 still gates in-process; only the dashboard is blind.")
+    reg = s8.get("effective_regime")
+    if reg and reg != st.get("s8_regime"):
+        if st.get("s8_regime") is not None:
+            h.setdefault("transitions", []).append(f"{st['s8_regime']}->{reg} {utc().strftime('%H:%M')}Z")
+            if reg == "MACRO_BLACKOUT":
+                ev = (s8.get("macro_blackout_event") or {}).get("name", "?")
+                alert(st, f"s8_blackout:{ev}:{utc().strftime('%Y-%m-%d')}", f"🔔 S8 macro blackout ON: {ev} - all strategies told to stand flat for ±1 round", "event")
+            if reg == "US_VOL_OVERRIDE":
+                alert(st, "s8_vol_override", f"🔔 S8 vol override: trailing 1 h sigma {s8.get('realized_sigma_5m_bps')} bps > {s8.get('vol_override_threshold_bps')} - US mode, makers pulled")
+        st["s8_regime"] = reg
+    if s8.get("sigma_source") == "baseline_placeholder" and active and now() - st.get("s8_placeholder_t", 0) > 6 * 3600:
+        st["s8_placeholder_t"] = now(); alert(st, "s8_sigma_placeholder", "⚠ S8: volatility feed has no Kraken samples - the router is using the 7.0 bps placeholder, so the vol override cannot fire")
+    for ln in tail_new(S8_LOG, "s8_off", st):
+        if "REGIME TRANSITION" in ln: h["log_transitions"] = h.get("log_transitions", 0) + 1
+        elif "Error" in ln or "Traceback" in ln:
+            h["errors"] = h.get("errors", 0) + 1
+            if hour_count(st, "s8_errs", 1) > 10: alert(st, "s8_err_storm", f"⚠ S8: >10 router errors in the last hour, last: {ln[-160:]}")
+    kill = os.path.exists(S8_KILL)
+    if st.get("s8_kill_seen") is not None and kill != st["s8_kill_seen"]:
+        alert(st, "s8_kill_change", "🛑 S8 KILL file present - router signals ALL STOP" if kill else "🔔 S8 KILL file removed", "event")
+    st["s8_kill_seen"] = kill
+    # does S3 obey? S8 says S3 blocked for >10 min while fresh, yet S3's quote counter keeps rising
+    try:
+        s3_ok = (s8.get("strategy_policies") or {}).get("S3", {}).get("allowed")
+        q = st.get("s3_hour", {}).get("quotes", 0)
+        if s3_ok is False and age is not None and age < S8_STATE_STALE_S:
+            st.setdefault("s8_s3_block_since", now()); st.setdefault("s8_s3_quotes_at_block", q)
+            if now() - st["s8_s3_block_since"] > 600 and q > st["s8_s3_quotes_at_block"]:
+                alert(st, "s8_s3_disobeys", f"🚨 S8 says S3 BLOCKED ({reg}) but S3 is still placing quotes - the S3 hook is not active (import failed?)")
+        else:
+            st.pop("s8_s3_block_since", None); st.pop("s8_s3_quotes_at_block", None)
+    except Exception: pass
+
+def s8_digest(st, reset=True):
+    h = st.get("s8_hour", {})
+    try: s8 = json.load(open(S8_STATE)); age = int(now() - os.path.getmtime(S8_STATE))
+    except Exception: s8, age = {}, None
+    nxt = s8.get("next_macro_event") or {}; secs = s8.get("seconds_to_macro_event")
+    if s8.get("macro_blackout_active"): nxt_s = "BLACKOUT NOW: " + ((s8.get("macro_blackout_event") or {}).get("name", "?"))
+    elif nxt and secs: nxt_s = f"{nxt.get('name','?')} in {secs/3600:.1f} h"
+    else: nxt_s = "none"
+    allow = ", ".join(s8.get("allowed_strategies") or []) or "-"; block = ", ".join(s8.get("disabled_strategies") or []) or "-"
+    line = (f"regime {s8.get('effective_regime','?')} ({str(s8.get('regime_reason',''))[:60]}) | state {age if age is not None else '?'} s old | "
+            f"sigma {s8.get('realized_sigma_5m_bps','?')} bps [{s8.get('sigma_source','?')}] override {'ON' if s8.get('vol_override_active') else 'off'} | "
+            f"allowed: {allow} | blocked: {block} | next macro: {nxt_s} | transitions this hour: {', '.join(h.get('transitions', [])) or 'none'} | "
+            f"errors {h.get('errors',0)} | KILL={'yes' if os.path.exists(S8_KILL) else 'no'}")
+    if reset: st["s8_hour"] = {}
+    return line
+
 def s2_newest_session():
     try:
         ds = [os.path.join(S2_SESSIONS, d) for d in os.listdir(S2_SESSIONS)]
@@ -933,6 +1000,7 @@ def hourly_status(st):
            f"{st.get('disk_line','disk ?')} | 7-day gate: day {max(1, len([f for f in os.listdir(BME_OUT) if f.startswith('events_') and f.endswith('.gz')]) if os.path.isdir(BME_OUT) else 0)} of 7\n"
            f"— {STRAT_DESC['S3']}\n   {mk_digest(st, 'S3')}\n"
            f"— {STRAT_DESC['S2']}\n   {s2_digest(st)}\n"
+           f"— {STRAT_DESC['S8']}\n   {s8_digest(st)}\n"
            f"— {STRAT_DESC['S46']}\n   {mk_digest(st, 'S46')}\n"
            f"- {STRAT_DESC['S5']}\n   {s5_digest(st)}")
     tg_send(msg); mlog("hourly status sent")
@@ -1007,6 +1075,7 @@ def daily_summary(st):
             f"BME: {svc('bme-capture','ActiveState')} | today's events file (gz) {max(0, st.get('bme_size', 0)) / 2**20:.0f} MB | {st.get('disk_line', '')}\n"
             f"S3: {mk_digest(st, 'S3', reset=False)}\n"
             f"S2: {s2_digest(st, reset=False)}\n"
+            f"S8: {s8_digest(st, reset=False)}\n"
             f"S46: {mk_digest(st, 'S46', reset=False)}\n"
             f"S5: {s5_digest(st, reset=False)}\n"
             f"LIVE_TRADING={read_env(ENV).get('LIVE_TRADING','0')} KILL={'yes' if os.path.exists(KILL) else 'no'} "
@@ -1045,7 +1114,7 @@ def main():
     while True:
         try:
             storm_tick(st)
-            check_trader_log(st); check_harness_log(st); check_rounds(st); check_s9_log(st); check_bme(st); check_maker(st, "S3"); check_maker(st, "S46"); check_s2(st); check_s5(st)
+            check_trader_log(st); check_harness_log(st); check_rounds(st); check_s9_log(st); check_bme(st); check_maker(st, "S3"); check_maker(st, "S46"); check_s2(st); check_s8(st); check_s5(st)
             check_gates(st); check_services(st); check_env(st); daily_summary(st); hourly_status(st)
             save_state(st); errs = 0
         except Exception as e:

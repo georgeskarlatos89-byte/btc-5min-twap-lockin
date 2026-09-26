@@ -229,3 +229,16 @@ the 30 s retry lock; current rounds are untouched. Stats snapshots kept as
 ### What this means for the numbers so far
 Two days of S3 "results" contain zero settled rounds, so nothing about pairs or P&L can be
 read from them. The quote/pull/fill plumbing evidence stands. Counting starts now.
+
+---
+
+## Part #4 — S8 session router hooked into the S3 gate (2026-09-26 10:41Z)
+
+`s3_maker.py` now imports the S8 router (`~/s8_router`) and asks it before every quote; the old
+`quiet_session()` + vol override remain only as a fallback when the router is absent. Previous
+file kept as `s3_maker.py.pre-s8-20260926`. Constants unchanged; the 09-26 settlement and
+one-sided-book fixes preserved. Effect on hours (weekdays): allowed 00:00–13:30 and 21:00–24:00
+UTC, blocked 13:30–21:00 UTC and ±1 round around hardcoded US macro releases; weekends
+unchanged (all day). Before: 00–12 and 16–18. So the S3 data series is split at this timestamp
+for any per-session attribution. Full details and the honest backtest reading in the S8 record
+Part #2 (note: on the S3 backtest data the Asia session S8 keeps ON was the worst-losing one).

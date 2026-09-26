@@ -66,8 +66,23 @@ SIGMA_BASE_BPS = 7.0
 # ---- risk (Part-3 global rules) ----
 NET_CAP_5M    = 30.0      # max $30 net directional across BOTH markets per 5m window
 DAILY_STOP    = 20.0
-# ---- session gate (S8 pending) ----
-QUIET_UTC = [(0, 12), (16, 18)]   # Asia block + dead US lunch
+# ---- session gate (governed by the S8 Session Regime Router when ~/s8_router is present) ----
+# 2026-09-26 (S8 record Part #2): the S8 router lives in the sibling folder ../s8_router (symlink on the
+# VM). When importable, S8 decides the session + vol override; otherwise the original QUIET_UTC gate.
+try:
+    # the strategy folders on the VM are "#N ..." named dirs, so also try the ~/s8_router symlink
+    S8_DIR = next((d for d in (os.path.join(os.path.dirname(HERE), "s8_router"),
+                               os.path.expanduser("~/s8_router")) if os.path.isfile(os.path.join(d, "s8_router.py"))), None)
+    if S8_DIR is None:
+        raise ImportError("s8_router not found")
+    if S8_DIR not in sys.path:
+        sys.path.append(S8_DIR)
+    import s8_router
+    HAVE_S8 = True
+except Exception:
+    HAVE_S8 = False
+
+QUIET_UTC = [(0, 12), (16, 18)]   # Asia block + dead US lunch (fallback when S8 is absent)
 WEEKEND_ALL_DAY = True
 # ---- market plumbing (copied from s1_harness/trader.py — execution plumbing only) ----
 RTDS = "wss://ws-live-data.polymarket.com"
@@ -148,13 +163,18 @@ def gates(now):
         reasons.append("feed stale")
     if now < t.pulled_until:
         reasons.append(f"pulled: {t.pull_reason}")
-    ok, why = quiet_session(now)
-    if not ok:
-        reasons.append(f"session: {why}")
+    if HAVE_S8:
+        s8_allowed, s8_reason, _ = s8_router.evaluate_strategy_gate("S6", now, current_sigma=sigma5m_bps())
+        if not s8_allowed:
+            reasons.append(f"S8 gate: {s8_reason}")
+    else:
+        ok, why = quiet_session(now)
+        if not ok:
+            reasons.append(f"session: {why}")
+        if sigma5m_bps() > VOL_MULT * SIGMA_BASE_BPS:
+            reasons.append(f"vol override: sigma {sigma5m_bps():.1f}bps > {VOL_MULT}x base")
     if time.time() - t.liq_ok_t > FEED_STALE_S:
         reasons.append("moondev liq feed stale/flat-switch")
-    if sigma5m_bps() > VOL_MULT * SIGMA_BASE_BPS:
-        reasons.append(f"vol override: sigma {sigma5m_bps():.1f}bps > {VOL_MULT}x base")
     if t.stats.get("day_pnl", 0.0) <= -DAILY_STOP and load_env().get("LIVE_TRADING") == "1":
         reasons.append(f"daily stop {t.stats['day_pnl']:.2f}")   # real-money switch; DRY P&L is simulated
     return reasons
@@ -777,8 +797,13 @@ def preflight():
         start = int(now // Tsec) * Tsec
         toks = round_tokens(label, start)
         print(f"{label}: tokens {'OK' if toks else 'MISSING'} for {start}")
-    ok, why = quiet_session(now)
-    print(f"session gate: {'QUIET (quotes allowed)' if ok else 'ACTIVE (flat)'} — {why}")
+    if HAVE_S8:
+        st8 = s8_router.evaluate_regime(now, current_sigma_bps=sigma5m_bps())
+        pol = st8["strategy_policies"].get("S6", {})
+        print(f"session gate: {'QUIET (quotes allowed)' if pol.get('allowed') else 'BLOCKED (flat)'} — [S8] {st8['effective_regime']}: {pol.get('reason', '')}")
+    else:
+        ok, why = quiet_session(now)
+        print(f"session gate: {'QUIET (quotes allowed)' if ok else 'ACTIVE (flat)'} — {why}")
     print(f"band gate: quotes only while mid in {BAND} (Part-4: fills outside band FAIL LOUDLY)")
     print(f"moondev key present: {'yes' if env.get('MOONDEV_API_KEY') else 'NO (liq/imb pulls dead -> FLAT via stale-switch)'}")
     print(f"live keys present:   {'yes' if env.get('POLY_PRIVATE_KEY') and env.get('POLY_FUNDER') else 'no (DRY only)'}")
