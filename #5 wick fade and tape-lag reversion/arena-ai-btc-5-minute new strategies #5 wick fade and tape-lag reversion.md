@@ -124,6 +124,14 @@ their entries were kept and the VM copy was verified identical to my baseline be
 Offline tests: normal hour → 0 pings; stale Kraken → 1; disk projection → 1; discovery
 failure → 1.
 
+Two refinements after the first deploy: (1) the collector writes `<day>.jsonl.gz`, so the
+monitor got an incremental gzip reader (keeps a decompressor across its 30 s loop, handles the
+new gzip member each restarted session appends and the writer's 5 s sync-flush tail; first
+sight of a file skips history) — tested on a real two-member file with a partial last line;
+(2) S2 (60-min sessions) and S5 (24-h sessions) are restarted by systemd by design, so their
+restarts now alert only above 3/h and 2/h respectively instead of on every rollover (the
+10:01Z "s2-collect restarted" ping was that false alarm).
+
 ### Files touched in this Part
 - Local: `s5_wickfade/collect.py`, `deploy/*` (adapted unit + 2 timers + scripts),
   `SHA256SUMS`; S3 `s3_maker.py`, S6 `s6_harvester.py` (settlement + one-sided book);
