@@ -1,0 +1,30 @@
+[Unit]
+Description=S2 read-only open-print research collector (60-min sessions, no keys, no orders)
+Wants=network-online.target
+After=network-online.target
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+Type=simple
+# Adapted 2026-09-26 for twapvm: runs as the fleet user from the strategy-named home folder
+# (the template assumed /opt/s2_openprint + a dedicated s2research user). Hardening kept, with
+# ProtectHome relaxed to read-only so the home-folder install is reachable; only data/ is writable.
+User=ubuntupolymarket3
+Group=ubuntupolymarket3
+WorkingDirectory=/home/ubuntupolymarket3/#2 open-print displacement/s2_openprint
+ExecStart=/bin/bash "/home/ubuntupolymarket3/#2 open-print displacement/s2_openprint/deploy/collect-session.sh"
+Restart=always
+RestartSec=10
+RestartPreventExitStatus=2
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths="/home/ubuntupolymarket3/#2 open-print displacement/s2_openprint/data"
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

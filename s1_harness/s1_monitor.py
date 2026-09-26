@@ -34,7 +34,7 @@ STRAT = "S1 TWAP Lock-In"
 EXPECT = {"ARB_MIN": "50", "SIG_MIN": "20", "SIG_WR": "0.90", "GAP_MIN": "4.0",
           "EDGE_MIN": "0.02", "TRADE_USD": "10.0", "DAILY_STOP": "20.0", "MAX_PER_HOUR": "3"}
 ARB_MIN, SIG_MIN, SIG_WR, GAP_MIN = 50, 20, 0.90, 4.0
-SERVICES = ["s1-harness", "s1-trader", "s9-watcher", "bme-capture", "s3-maker", "s6-harvester"]
+SERVICES = ["s1-harness", "s1-trader", "s9-watcher", "bme-capture", "s3-maker", "s6-harvester", "s2-collect"]
 
 # ---- S3 fee-farm maker (s3_feefarm/s3_maker.py, 2026-09-24) --------------------------------
 # Urgent: anything LIVE (quote/fill/exit placed with real money), DAILY STOP / KILL, a fill that
@@ -52,7 +52,17 @@ S3_FILLS_H_MIN, S3_FILLS_H_MAX = 2, 12          # observed min/max of the backte
 S3_ERRS_PER_H_MAX = 10
 S3_QUIET_UTC = [(0, 12), (16, 18)]              # mirrors s3_maker.py QUIET_UTC (+ weekends)
 S3_TS_RE = re.compile(r"^\[[^\]]+\]\s*")
-MAKER_HB_DEAD_S = 5 * 60                        # tick_ts older than this while active = dead main loop
+MAKER_HB_DEAD_S = 5 * 60
+# ---- S2 open-print displacement recorder (s2_openprint/capture.py, 2026-09-26) -------------------
+# Read-only: no keys, no orders. 60-min sessions under data/sessions/<UTC>-<pid>, restarted by systemd.
+# Checks: service; newest session's ticks.jsonl must keep growing (a connected socket with no ticks
+# is the failure mode the handoff guide warns about); samples/decisions per hour by skip reason;
+# health.jsonl errors; sessions started per hour (restart storms); disk via the existing check.
+S2_DIR = "/home/ubuntupolymarket3/s2_openprint"
+S2_SESSIONS = os.path.join(S2_DIR, "data", "sessions")
+S2_TICK_STALE_S = 3 * 60                    # ticks arrive ~1/s per feed; 3 min silence = feed problem
+S2_ERRS_PER_H_MAX = 20                      # each 60-min session restart logs a stop record; timeouts add up
+S2_SESSIONS_PER_H_MAX = 3                   # one per hour expected (+1 for a restart)                        # tick_ts older than this while active = dead main loop
 MAKERS = {
     "S3": dict(svc="s3-maker", dir=S3_DIR, log="s3_maker.log", stats="s3_stats.json", shares=50,
                fills_band=(S3_FILLS_H_MIN, S3_FILLS_H_MAX), baseline="mean 7.52 ± 2.12, backtest 24 h"),
@@ -79,6 +89,7 @@ STRAT_DESC = {
     "S9":  "S9 Whale Coattails: watches 4 pro wallets and measures whether copying them would pay (measure-only; so far it does not).",
     "BME": "BME Book-Movement Engine: records every order-book move on the BTC 5m/15m markets (~1,000/s) to score 5 pre-registered signals after 7 full days.",
     "S3":  "S3 Fee-Farm Two-Sided Maker: rests a buy at 0.45 on BOTH sides of each BTC 5m/15m round during quiet hours, keeps completed pairs (0.90 -> 1.00), cuts stray legs after 20 s, and pulls its quotes on liquidation cascades / spot jumps (Moon Dev feed). DRY: fills are simulated from the public tape.",
+    "S2":  "S2 Open-Print Displacement (research recorder, NO orders): 10 s after each BTC 5m/15m round opens it records the Chainlink spot vs the open, the TWAP feed, and the order book on the displaced side, then applies the strategy gates (5/8 bps move, ask <= 0.60, 2 s freshness) and logs a hypothetical candidate or the skip reason. Outcomes are joined later for replay.",
     "S6":  "S6 Coin-Flip Harvester: in quiet hours rests a buy at 0.49 on BOTH sides of each BTC 5m/15m round for the first 45 s only, keeps any completed pair (0.98 -> 1.00) and deliberately HOLDS a lone leg to the end of the round to measure whether whoever filled it knew something (kill test: 300 held legs, either side more than 8 points from a 50% win rate). DRY: fills simulated from the public tape, no real orders.",
 }
 HOURLY_STATUS = True                  # one combined status message at the top of every hour
@@ -673,6 +684,83 @@ def mk_digest(st, tag, reset=True):
     if reset: st[f"{p}_hour"] = {"fill_rounds": []}; st[f"{p}_band_t"] = now()
     return line
 
+def s2_newest_session():
+    try:
+        ds = [os.path.join(S2_SESSIONS, d) for d in os.listdir(S2_SESSIONS)]
+        ds = [d for d in ds if os.path.isdir(d)]
+        return max(ds, key=os.path.getmtime) if ds else None
+    except Exception: return None
+
+def s2_read_new(st, sess, name):
+    """New complete lines of <sess>/<name>.jsonl since last look; offsets are per session dir."""
+    key = f"s2_off:{os.path.basename(sess)}:{name}"
+    p = os.path.join(sess, name + ".jsonl")
+    if not os.path.exists(p): return []
+    return tail_new(p, key, st)
+
+def check_s2(st):
+    st.setdefault("s2_hour", {}); h = st["s2_hour"]
+    active = svc("s2-collect", "ActiveState") == "active"
+    sess = s2_newest_session()
+    if sess and st.get("s2_sess") != sess:
+        if st.get("s2_sess") is not None:
+            hour_count(st, "s2_sessions", 1); h["sessions"] = h.get("sessions", 0) + 1
+            if hour_count(st, "s2_sessions") > S2_SESSIONS_PER_H_MAX:
+                alert(st, "s2_session_storm", f"⚠ S2: {hour_count(st,'s2_sessions')} collection sessions started in the last hour (one per hour expected) - the collector is restarting; check journalctl -u s2-collect")
+        st["s2_sess"] = sess
+        # forget offsets of older sessions (keep state small)
+        for k in [k for k in st if k.startswith("s2_off:") and os.path.basename(sess) not in k]: st.pop(k, None)
+    if not sess:
+        if active: alert(st, "s2_no_session", "⚠ S2 service active but no session directory exists yet under data/sessions")
+        return
+    # ticks: count per feed this hour, freshness
+    for ln in s2_read_new(st, sess, "ticks"):
+        try: r = json.loads(ln)
+        except Exception: continue
+        t = r.get("topic", "?"); h.setdefault("ticks", {})[t] = h.get("ticks", {}).get(t, 0) + 1
+        st["s2_last_tick"] = max(st.get("s2_last_tick", 0), float(r.get("received", 0)))
+        lag = float(r.get("received", 0)) - float(r.get("observed", 0)); h["lag_sum"] = h.get("lag_sum", 0.0) + lag; h["lag_n"] = h.get("lag_n", 0) + 1
+    if active and st.get("s2_last_tick") and now() - st["s2_last_tick"] > S2_TICK_STALE_S:
+        alert(st, "s2_ticks_stale", f"🚨 S2: no RTDS ticks for {int((now()-st['s2_last_tick'])/60)} min while the collector is active (socket alive, no data = the handoff guide's failure mode). Session {os.path.basename(sess)}")
+    for ln in s2_read_new(st, sess, "samples"): h["samples"] = h.get("samples", 0) + 1
+    for ln in s2_read_new(st, sess, "decisions"):
+        try: d = json.loads(ln)
+        except Exception: continue
+        if d.get("action") == "candidate":
+            h["candidates"] = h.get("candidates", 0) + 1
+            alert(st, f"s2cand:{d.get('slug')}", f"🔎 S2 hypothetical candidate (research only, NO order): {d.get('slug')} {d.get('side')} displacement {float(d.get('displacement_bps',0)):+.1f} bps, model fair {float(d.get('model_fair',0)):.3f}, assumed cost {float(d.get('assumed_cost_per_share',0)):.4f}", "event")
+        else:
+            k = d.get("reason", "?"); h.setdefault("skip_by", {})[k] = h.get("skip_by", {}).get(k, 0) + 1
+    for ln in s2_read_new(st, sess, "health"):
+        try: r = json.loads(ln)
+        except Exception: continue
+        if r.get("event") == "capture_stopped": h["stops"] = h.get("stops", 0) + 1; continue
+        if r.get("skip"): k = "health:" + r["skip"]; h.setdefault("skip_by", {})[k] = h.get("skip_by", {}).get(k, 0) + 1; continue
+        if r.get("error") is not None:
+            h["errors"] = h.get("errors", 0) + 1; st["s2_last_err"] = str(r.get("error"))[:120]
+            if hour_count(st, "s2_errs", 1) > S2_ERRS_PER_H_MAX:
+                alert(st, "s2_err_storm", f"⚠ S2: >{S2_ERRS_PER_H_MAX} health errors in the last hour, last: {st['s2_last_err']}")
+    kill = os.path.exists(os.path.join(S2_DIR, "KILL"))
+    if st.get("s2_kill_seen") is not None and kill != st["s2_kill_seen"]:
+        alert(st, "s2_kill_change", "🛑 S2 KILL file present - collection stops (no orders exist)" if kill else "🔔 S2 KILL file removed", "event")
+    st["s2_kill_seen"] = kill
+
+def s2_digest(st, reset=True):
+    h = st.get("s2_hour", {}); sess = st.get("s2_sess")
+    ticks = h.get("ticks", {}); lag = (h.get("lag_sum", 0.0) / h["lag_n"]) if h.get("lag_n") else None
+    skips = ", ".join(f"{k}×{v}" for k, v in sorted((h.get("skip_by") or {}).items(), key=lambda kv: -kv[1])[:4]) or "none"
+    age = f"{int(now()-st['s2_last_tick'])}s ago" if st.get("s2_last_tick") else "never"
+    try:
+        n_sess = len([d for d in os.listdir(S2_SESSIONS) if os.path.isdir(os.path.join(S2_SESSIONS, d))])
+        size = sum(os.path.getsize(os.path.join(dp, f)) for dp, _, fs in os.walk(os.path.join(S2_DIR, "data")) for f in fs) / 2**20
+    except Exception: n_sess, size = 0, 0.0
+    line = (f"last hour: ticks spot {ticks.get('crypto_prices_chainlink',0)} / twap60 {ticks.get('crypto_prices_twap_sixty',0)} "
+            f"(last tick {age}{f', feed lag {lag:.2f}s' if lag is not None else ''}), {h.get('samples',0)} samples, "
+            f"{h.get('candidates',0)} hypothetical candidates, skips {skips}, errors {h.get('errors',0)}, session restarts {h.get('sessions',0)} | "
+            f"sessions on disk {n_sess}, data {size:.0f} MB | session {os.path.basename(sess) if sess else 'none'} | KILL={'yes' if os.path.exists(os.path.join(S2_DIR,'KILL')) else 'no'}")
+    if reset: st["s2_hour"] = {}
+    return line
+
 def hourly_status(st):
     """ONE combined status message at the top of every hour - bounded, bypasses the breaker."""
     if not HOURLY_STATUS: return
@@ -701,7 +789,8 @@ def hourly_status(st):
            f"— {STRAT_DESC['BME']}\n   last hour: +{d_gz:.0f} MB gz, {rows_h} book-state rows, reconnects {hour_count(st,'bme_reconnects')} | today's file {gz/2**20:.0f} MB | "
            f"{st.get('disk_line','disk ?')} | 7-day gate: day {max(1, len([f for f in os.listdir(BME_OUT) if f.startswith('events_') and f.endswith('.gz')]) if os.path.isdir(BME_OUT) else 0)} of 7\n"
            f"— {STRAT_DESC['S3']}\n   {mk_digest(st, 'S3')}\n"
-           f"— {STRAT_DESC['S6']}\n   {mk_digest(st, 'S6')}")
+           f"— {STRAT_DESC['S6']}\n   {mk_digest(st, 'S6')}\n"
+           f"— {STRAT_DESC['S2']}\n   {s2_digest(st)}")
     tg_send(msg); mlog("hourly status sent")
 
 def check_gates(st):
@@ -769,6 +858,7 @@ def daily_summary(st):
             f"BME: {svc('bme-capture','ActiveState')} | today's events file (gz) {max(0, st.get('bme_size', 0)) / 2**20:.0f} MB | {st.get('disk_line', '')}\n"
             f"S3: {mk_digest(st, 'S3', reset=False)}\n"
             f"S6: {mk_digest(st, 'S6', reset=False)}\n"
+            f"S2: {s2_digest(st, reset=False)}\n"
             f"LIVE_TRADING={read_env(ENV).get('LIVE_TRADING','0')} KILL={'yes' if os.path.exists(KILL) else 'no'} "
             f"S1_LIVE_BLOCKED={'yes' if os.path.exists(P('S1_LIVE_BLOCKED')) else 'NO'}")
 
@@ -805,7 +895,7 @@ def main():
     while True:
         try:
             storm_tick(st)
-            check_trader_log(st); check_harness_log(st); check_rounds(st); check_s9_log(st); check_bme(st); check_maker(st, "S3"); check_maker(st, "S6")
+            check_trader_log(st); check_harness_log(st); check_rounds(st); check_s9_log(st); check_bme(st); check_maker(st, "S3"); check_maker(st, "S6"); check_s2(st)
             check_gates(st); check_services(st); check_env(st); daily_summary(st); hourly_status(st)
             save_state(st); errs = 0
         except Exception as e:
