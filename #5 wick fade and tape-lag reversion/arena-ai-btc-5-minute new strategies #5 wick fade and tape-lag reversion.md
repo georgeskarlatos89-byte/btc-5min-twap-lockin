@@ -142,3 +142,22 @@ restarts now alert only above 3/h and 2/h respectively instead of on every rollo
 - Memory: `project_s5_wickfade.md`, index line; S3/S6 memory notes.
 - GitHub: `s5_wickfade/` (no data, no venv, no reports except the shipped smoke ones),
   `s3_feefarm/s3_maker.py`, `s6_coinflip/s6_harvester.py`, monitor, records.
+
+---
+
+## Part #2 — Disk enlarged to 200 GB: the 14-day window is now storable (2026-09-26)
+
+The user resized the GCP disk 50 → 200 GB in the console (Storage > Disks > disk > Edit,
+the procedure from the S1 record). Applied live on the VM, no service restarted:
+
+| step | result |
+|---|---|
+| `lsblk` before | disk 200 G, root partition 49 G, 29 GB free |
+| `growpart /dev/sda 1` | partition 49 G → 199 G |
+| `resize2fs /dev/sda1` | filesystem 193 GB, **174 GB free** (10 % used) |
+| services | all ten still active |
+
+At the measured 2.6 GB/day (S5) + ~2.2 GB/day (BME) the disk now holds about a month of
+both recorders. The S5 disk guard (2 GiB) and BME's guard stay in place as backstops. Review
+date for the S5 collection: **2026-10-10** (14 days), with the first replay on closed day
+files from 2026-09-27 onward.
