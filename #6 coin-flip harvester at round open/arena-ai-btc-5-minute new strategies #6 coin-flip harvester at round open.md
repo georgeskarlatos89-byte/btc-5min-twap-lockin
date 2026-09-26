@@ -158,3 +158,25 @@ no-quotes; LIVE flip → 1.
   `feedback_alert_storm_rules.md` ("active" ≠ alive: every strategy loop needs a heartbeat).
 - GitHub: `s6_coinflip/` (no `.env`, logs, stats), `s3_feefarm/s3_maker.py`,
   `s1_harness/s1_monitor.py`, both records.
+
+---
+
+## Part #2 — The kill-test counters could never move: settlement was unreachable (2026-09-26)
+
+### Data
+S6 since 09-24: 658 quotes, 0 simulated fills, `n = 0` rounds settled, `side_legs` never
+created. Every quote so far was pulled within seconds by `BAND_EXIT` (the mid sits on the
+0.45 edge at the bell) or skipped because the mid was already outside 0.45–0.55 at t+0.
+
+### Cause and fix (shared code with S3, see S3 record Part #3)
+`settle_round` was only evaluated on the current round with a condition that can never hold
+for the current round, so no round ever settled and the 300-leg asymmetry test had no way to
+count. Fixed: finished rounds are settled from the round table, retried every 30 s. Also
+fixed: `mid_for` on a one-sided book raised TypeError every 2 s. Constants byte-identical.
+Restarted 09:54Z; stats snapshot `s6_stats.before-settle-fix-20260926.json`.
+
+### Honest reading
+Even with settlement working, S6 cannot accumulate legs while the band rule pulls every quote
+within seconds. The hourly status now shows skipped rounds and their reasons; the decision on
+the band is still the user's. The other session's S46 (a fork of this code) was checked and
+does not carry the unreachable-settlement pattern.

@@ -195,3 +195,37 @@ maker checker (S3 + S6), quiet start.
 ### Lesson (saved to memory)
 "Service active" is not "strategy alive". Every asyncio strategy loop needs a crash guard and
 a heartbeat the monitor checks, and every gate skip must be visible in the log.
+
+---
+
+## Part #3 — No round ever settled (n = 0 after two days): settlement was unreachable; one-sided-book TypeError (2026-09-26)
+
+### Data
+| what | S3 |
+|---|---|
+| quotes since 09-24 | 604 |
+| simulated fills | 1 |
+| rounds settled (`n`) | **0** |
+| `tick error TypeError … NoneType` lines | 159 (96 `float + None`, 63 `None + float`) |
+
+### Causes
+1. In `tick_loop`, `e = now - start` is the CURRENT round's elapsed time, so the settlement
+   condition `e > Tsec + 45` could never be true. `settle_round` was dead code: no
+   ROUND-RESULT lines, no pair P&L, no round count. (Part #2's fixes made the loop survive,
+   but this had been true since the package arrived.)
+2. `mid_for` computed `(bid + ask) / 2` on a book stored as `(None, ask)` or `(bid, None)`
+   when one side was empty → TypeError every 2 s while that state lasted; the crash guard
+   from Part #2 kept the loop alive but the monitor stormed `tick error` warnings.
+
+### Fixes (shared with S6; constants byte-identical)
+- Finished rounds are settled from the round table: every tick, any round with tokens whose
+  end is more than 45 s ago is passed to `settle_round`, retried every 30 s until Gamma reports
+  the outcome, until the 25-min GC.
+- `mid_for` returns None when either side is missing (no quote, no band check, no crash).
+Offline test: a finished round with tokens triggers exactly one `settle_round` call and sets
+the 30 s retry lock; current rounds are untouched. Stats snapshots kept as
+`s3_stats.before-settle-fix-20260926.json`. Restarted 09:54Z.
+
+### What this means for the numbers so far
+Two days of S3 "results" contain zero settled rounds, so nothing about pairs or P&L can be
+read from them. The quote/pull/fill plumbing evidence stands. Counting starts now.

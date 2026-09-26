@@ -1,0 +1,7 @@
+[Unit]
+Description=S5 archive: gzip closed daily JSONL files (never deletes)
+
+[Service]
+Type=oneshot
+User=ubuntupolymarket3
+ExecStart=/bin/bash "/home/ubuntupolymarket3/#5 wick fade and tape-lag reversion/s5_wickfade/deploy/s5-archive.sh"

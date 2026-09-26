@@ -450,6 +450,9 @@ def mid_for(rs, side):
     bk = rs.get("book", {}).get(side)
     if not bk: return None
     b, a = bk
+    # 2026-09-26: a one-sided book (no bids or no asks) stored (None, x) -> TypeError every 2 s tick
+    # (survived by the crash guard, but it stormed alerts). No mid without both sides.
+    if b is None or a is None: return None
     return (b + a) / 2
 
 def round_tokens(label, start):
@@ -755,8 +758,13 @@ async def tick_loop():
                                 log(f"CLOSE {rs['label']} {side} quote cancelled at window end")
                         if q["phase"] == "FILLED" and not q.get("exited") and not paired:
                             inventory_exit(rs, side, now)
-                # settle
-                if e > Tsec + 45 and not rs["settled"]:
+                # (settlement moved below, 2026-09-26: `e` here is the CURRENT round's elapsed time,
+                #  always < Tsec, so `e > Tsec + 45` could never be true - no round ever settled, n=0)
+            # settle FINISHED rounds: retry every 30 s until gamma reports the outcome
+            for key, rs in list(t.rounds.items()):
+                if rs["settled"] or not rs.get("tokens"): continue
+                if now - rs["start"] > rs["T"] + 45 and now >= rs.get("settle_next", 0):
+                    rs["settle_next"] = now + 30
                     rs["settled"] = settle_round(rs, now)
             # GC old rounds
             for key in [k for k, r in t.rounds.items() if now - k[1] > 1500]:

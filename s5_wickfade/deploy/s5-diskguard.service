@@ -1,0 +1,6 @@
+[Unit]
+Description=S5 disk guard: stop the collector below 2 GiB free (never deletes data)
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash "/home/ubuntupolymarket3/#5 wick fade and tape-lag reversion/s5_wickfade/deploy/s5-diskguard.sh"

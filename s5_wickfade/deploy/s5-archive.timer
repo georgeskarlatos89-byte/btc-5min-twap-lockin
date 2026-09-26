@@ -1,0 +1,9 @@
+[Unit]
+Description=S5 archive timer (daily 00:40 UTC, after the day file rolls over)
+
+[Timer]
+OnCalendar=*-*-* 00:40:00 UTC
+Persistent=true
+
+[Install]
+WantedBy=timers.target

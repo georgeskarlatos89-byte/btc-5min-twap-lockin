@@ -1,0 +1,24 @@
+[Unit]
+Description=S5 wick-fade research recorder (public Kraken trades + Polymarket books; no keys, no orders)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# Adapted 2026-09-26 for twapvm: the template was a per-user unit under %h/btc-5min-twap-lockin;
+# here it is a system unit running as the fleet user from the strategy-named folder, own venv.
+# 24-hour sessions (--minutes 1440), restarted by systemd; daily JSONL files under data/.
+User=ubuntupolymarket3
+Group=ubuntupolymarket3
+WorkingDirectory=/home/ubuntupolymarket3/#5 wick fade and tape-lag reversion/s5_wickfade
+ExecStart="/home/ubuntupolymarket3/#5 wick fade and tape-lag reversion/s5_wickfade/.venv/bin/python" -u collect.py --minutes 1440 --output data --gzip
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+UMask=0077
+StandardOutput=append:/home/ubuntupolymarket3/#5 wick fade and tape-lag reversion/s5_wickfade/s5-collector.service.log
+StandardError=append:/home/ubuntupolymarket3/#5 wick fade and tape-lag reversion/s5_wickfade/s5-collector.service.log
+
+[Install]
+WantedBy=multi-user.target

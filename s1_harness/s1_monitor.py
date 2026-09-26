@@ -21,7 +21,7 @@ Warnings are de-duplicated for 6 h; verdicts are sent once ever; global 10-per-1
 Config: telegram.env (TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID / TELEGRAM_THREAD_ID) with .env
 overriding. Without a token it still runs every check and prints them to its own log.
 """
-import csv, json, math, os, re, subprocess, time, urllib.parse, urllib.request
+import csv, json, math, os, re, subprocess, time, urllib.parse, urllib.request, zlib
 from datetime import datetime, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -34,7 +34,7 @@ STRAT = "S1 TWAP Lock-In"
 EXPECT = {"ARB_MIN": "50", "SIG_MIN": "20", "SIG_WR": "0.90", "GAP_MIN": "4.0",
           "EDGE_MIN": "0.02", "TRADE_USD": "10.0", "DAILY_STOP": "20.0", "MAX_PER_HOUR": "3"}
 ARB_MIN, SIG_MIN, SIG_WR, GAP_MIN = 50, 20, 0.90, 4.0
-SERVICES = ["s1-harness", "s1-trader", "s9-watcher", "bme-capture", "s3-maker", "s6-harvester", "s2-collect"]
+SERVICES = ["s1-harness", "s1-trader", "s9-watcher", "bme-capture", "s3-maker", "s6-harvester", "s2-collect", "s46-harvester", "s5-collector"]
 
 # ---- S3 fee-farm maker (s3_feefarm/s3_maker.py, 2026-09-24) --------------------------------
 # Urgent: anything LIVE (quote/fill/exit placed with real money), DAILY STOP / KILL, a fill that
@@ -62,12 +62,29 @@ S2_DIR = "/home/ubuntupolymarket3/s2_openprint"
 S2_SESSIONS = os.path.join(S2_DIR, "data", "sessions")
 S2_TICK_STALE_S = 3 * 60                    # ticks arrive ~1/s per feed; 3 min silence = feed problem
 S2_ERRS_PER_H_MAX = 20                      # each 60-min session restart logs a stop record; timeouts add up
-S2_SESSIONS_PER_H_MAX = 3                   # one per hour expected (+1 for a restart)                        # tick_ts older than this while active = dead main loop
+S2_SESSIONS_PER_H_MAX = 3                   # one per hour expected (+1 for a restart)
+# ---- S5 wick-fade recorder (s5_wickfade/collect.py, 2026-09-26) ----------------------------------
+# Read-only: Kraken BTC/USD trades + Polymarket CLOB market socket (books) for the current 5m round,
+# daily JSONL under data/<UTC date>.jsonl, 24-h sessions. No quota in the code -> the monitor
+# projects growth against free disk. Lines are counted by substring (books are high-volume).
+S5_DIR = "/home/ubuntupolymarket3/s5_wickfade"
+S5_DATA = os.path.join(S5_DIR, "data")
+S5_FEED_STALE_S = 3 * 60                    # Kraken trades / Polymarket books silent this long = feed problem
+S5_ERRS_PER_H_MAX = 20
+S5_PROJECT_DAYS = 14                        # the guide asks for 7-14 days of collection
+S5_RECV_RE = re.compile(r'"recv_ts": ([0-9.]+)')
+# services that run bounded sessions and are restarted by systemd BY DESIGN (S2: 60 min, S5: 24 h);
+# a restart there is not an incident unless it exceeds this many per hour
+SESSION_SERVICES = {"s2-collect": 3, "s5-collector": 2}                        # tick_ts older than this while active = dead main loop
 MAKERS = {
     "S3": dict(svc="s3-maker", dir=S3_DIR, log="s3_maker.log", stats="s3_stats.json", shares=50,
                fills_band=(S3_FILLS_H_MIN, S3_FILLS_H_MAX), baseline="mean 7.52 ± 2.12, backtest 24 h"),
     "S6": dict(svc="s6-harvester", dir="/home/ubuntupolymarket3/s6_coinflip", log="s6_harvester.log",
                stats="s6_stats.json", shares=20, fills_band=None, baseline=None),   # no backtest yet -> no band
+    # S46 = the S6 maker + the S4 cascade taker in one process (2026-09-26). Log lines carry "S6 "/"S4 "
+    # prefixes and the stats file nests {"s6": {...}, "s4": {...}}; nested=True switches both.
+    "S46": dict(svc="s46-harvester", dir="/home/ubuntupolymarket3/s46_coinflip_cascade", log="s46_harvester.log",
+                stats="s46_stats.json", shares=20, fills_band=None, baseline=None, nested=True),
 }
 
 # ---- BME order-book recorder (POLYMARKET-VPS-STACK, 2026-09-21) --------------------------
@@ -90,6 +107,8 @@ STRAT_DESC = {
     "BME": "BME Book-Movement Engine: records every order-book move on the BTC 5m/15m markets (~1,000/s) to score 5 pre-registered signals after 7 full days.",
     "S3":  "S3 Fee-Farm Two-Sided Maker: rests a buy at 0.45 on BOTH sides of each BTC 5m/15m round during quiet hours, keeps completed pairs (0.90 -> 1.00), cuts stray legs after 20 s, and pulls its quotes on liquidation cascades / spot jumps (Moon Dev feed). DRY: fills are simulated from the public tape.",
     "S2":  "S2 Open-Print Displacement (research recorder, NO orders): 10 s after each BTC 5m/15m round opens it records the Chainlink spot vs the open, the TWAP feed, and the order book on the displaced side, then applies the strategy gates (5/8 bps move, ask <= 0.60, 2 s freshness) and logs a hypothetical candidate or the skip reason. Outcomes are joined later for replay.",
+    "S46": "S46 Paired = S6 coin-flip maker + S4 Liquidation Cascade Continuation (15m only): the same $1.5M/10 s liquidation cascade that pulls the S6 quotes is S4's entry signal - if spot confirms the direction by 2 bps and the 15m continuation side still asks <= model odds minus fee minus 2c, S4 buys it (taker) and holds to resolution. DRY: no real orders; S4 triggers are rare on a quiet tape by design.",
+    "S5":  "S5 Wick Fade / Tape-Lag Reversion (research recorder, NO orders): records every Kraken BTC trade and every Polymarket order-book change for the current 5m round, so a replay can find sharp spikes that snap back within seconds (wicks) and measure whether the Up/Down quotes lagged. No fair-value model exists yet, so all entries are blocked by design.",
     "S6":  "S6 Coin-Flip Harvester: in quiet hours rests a buy at 0.49 on BOTH sides of each BTC 5m/15m round for the first 45 s only, keeps any completed pair (0.98 -> 1.00) and deliberately HOLDS a lone leg to the end of the round to measure whether whoever filled it knew something (kill test: 300 held legs, either side more than 8 points from a 50% win rate). DRY: fills simulated from the public tape, no real orders.",
 }
 HOURLY_STATUS = True                  # one combined status message at the top of every hour
@@ -593,6 +612,22 @@ def check_maker(st, tag):
     LOGP, ENVP, KILLP, STATSP = mk_path(tag, "log"), mk_path(tag, ".env"), mk_path(tag, "KILL"), mk_path(tag, "stats")
     for ln in tail_new(LOGP, f"{p}_off", st):
         body = S3_TS_RE.sub("", ln)
+        if cfg.get("nested"):
+            # S46: "S6 QUOTE ..." -> "QUOTE ...", "SKIP S6 5m ..." -> "SKIP 5m ...", "PULL BOTH S6 — x" -> "PULL BOTH — x"
+            if body.startswith("S6 "): body = body[3:]
+            body = body.replace("SKIP S6 ", "SKIP ", 1).replace("PULL BOTH S6 ", "PULL BOTH ", 1)
+            if body.startswith("CASCADE DETECTED"):
+                h["cascades"] = h.get("cascades", 0) + 1; continue
+            if body.startswith("S4 TRIGGER"):
+                h["s4_trig"] = h.get("s4_trig", 0) + 1
+                alert(st, f"s4trig:{ln}", f"🔎 S46/S4 cascade trigger (DRY unless marked LIVE): {body[:260]}", "event"); continue
+            if body.startswith("S4 FILL"):
+                h["s4_fills"] = h.get("s4_fills", 0) + 1
+                if "(LIVE)" in body: alert(st, f"s4live:{ln}", f"🟢 S46/S4 REAL MONEY: {body[:300]}", "event")
+                continue
+            if body.startswith("S4 SKIP"):
+                k = "S4:" + (body.split("—")[-1].strip()[:30] if "—" in body else body.split(":")[-1].strip()[:30])
+                h.setdefault("skip_by", {})[k] = h.get("skip_by", {}).get(k, 0) + 1; continue
         # --- urgent, each once
         if "(LIVE)" in body or "LIVE)" in body and ("FILL" in body or "INV-EXIT" in body):
             alert(st, f"{p}live:{ln}", f"🟢 {tag} REAL MONEY: {body[:300]}", "event"); continue
@@ -667,11 +702,15 @@ def mk_digest(st, tag, reset=True):
     p = tag.lower(); cfg = MAKERS[tag]; h = st.get(f"{p}_hour", {})
     try: s = json.load(open(mk_path(tag, "stats")))
     except Exception: s = {}
+    s4 = {}
+    if cfg.get("nested"):                      # S46: flatten s6 into the usual keys, keep s4 aside
+        raw = s; s4 = raw.get("s4", {}) or {}
+        s = dict(raw.get("s6", {}) or {}); s.update({k: v for k, v in raw.items() if k not in ("s6", "s4")})
     pulls = ", ".join(f"{k}×{v}" for k, v in (h.get("pull_by") or {}).items()) or "none"
     skips = ", ".join(f"{k}×{v}" for k, v in sorted((h.get("skip_by") or {}).items(), key=lambda kv: -kv[1])[:3]) or "none"
     hb = s.get("tick_ts"); hb_s = f"heartbeat {int((now()-hb)/60)} min ago" if hb else "no heartbeat yet"
     extra = f"{h.get('cuts',0)} cuts"
-    if tag == "S6":
+    if tag in ("S6", "S46"):
         lg, lw = s.get("side_legs") or {}, s.get("side_leg_wins") or {}
         extra = (f"{h.get('holds',0)} legs held (settled {h.get('hold_win',0)} won / {h.get('hold_loss',0)} lost) | kill-test sample: "
                  f"Up {lg.get('Up',0)} legs ({lw.get('Up',0)} won), Down {lg.get('Down',0)} legs ({lw.get('Down',0)} won) of 300 needed")
@@ -681,6 +720,10 @@ def mk_digest(st, tag, reset=True):
             f"all-time: rounds {s.get('n',0)} fills {s.get('fills',0)} pairs {s.get('pairs',0)} pnl ${s.get('pnl',0):+.2f} day ${s.get('day_pnl',0):+.2f} "
             f"adverse ${s.get('adverse',0):.2f} / gross ${s.get('gross',0):.2f} | {st.get(f'{p}_key','key not probed yet')} | "
             f"LIVE={'YES' if read_env(mk_path(tag, '.env')).get('LIVE_TRADING') == '1' else 'no (DRY)'} KILL={'yes' if os.path.exists(mk_path(tag, 'KILL')) else 'no'}")
+    if cfg.get("nested"):
+        line += (f" || S4: last hour {h.get('cascades',0)} cascades seen, {h.get('s4_trig',0)} triggers, {h.get('s4_fills',0)} dry fills | "
+                 f"all-time triggers {s4.get('triggers',0)} fills {s4.get('fills',0)} settled {s4.get('n',0)} wins {s4.get('wins',0)} "
+                 f"pnl ${s4.get('pnl',0):+.2f} by size {s4.get('by_size',{})} | cascades logged {s.get('cascades',0)}")
     if reset: st[f"{p}_hour"] = {"fill_rounds": []}; st[f"{p}_band_t"] = now()
     return line
 
@@ -761,6 +804,106 @@ def s2_digest(st, reset=True):
     if reset: st["s2_hour"] = {}
     return line
 
+def s5_today_file():
+    """The collector runs with --gzip on twapvm (data/<day>.jsonl.gz); fall back to plain if present."""
+    base = os.path.join(S5_DATA, utc().strftime("%Y-%m-%d") + ".jsonl")
+    return base + ".gz" if os.path.exists(base + ".gz") or not os.path.exists(base) else base
+
+_S5_GZ = {}                                   # in-memory incremental decompressor per file (not in state)
+def s5_read_new(path):
+    """New complete lines from a GROWING gzip file: keeps a decompressor across calls, handles the
+    appended members a restarted session adds (gzip 'at' mode) and the writer's 5 s sync-flush
+    (bytes after the last flush stay in the tail until the next call). First sight of a file
+    decompresses it once and discards the history (no replay of old lines), streaming in 4 MB chunks."""
+    r = _S5_GZ.get(path)
+    try: size = os.path.getsize(path)
+    except Exception: return []
+    if r is None or size < r["off"]:
+        r = _S5_GZ[path] = dict(off=0, d=zlib.decompressobj(16 + zlib.MAX_WBITS), tail=b"", primed=False)
+        for k in [k for k in _S5_GZ if k != path]: _S5_GZ.pop(k, None)
+    if size == r["off"]: return []
+    lines = []
+    with open(path, "rb") as fh:
+        fh.seek(r["off"])
+        while fh.tell() < size:
+            data = fh.read(min(4 << 20, size - fh.tell()))
+            out = b""
+            while data:
+                try: out += r["d"].decompress(data)
+                except zlib.error: r["d"] = zlib.decompressobj(16 + zlib.MAX_WBITS); r["tail"] = b""; data = b""; continue
+                if r["d"].eof: data = r["d"].unused_data; r["d"] = zlib.decompressobj(16 + zlib.MAX_WBITS)
+                else: data = b""
+            buf = r["tail"] + out; cut = buf.rfind(b"\n")
+            if cut < 0: r["tail"] = buf; continue
+            r["tail"] = buf[cut + 1:]
+            if r["primed"]: lines.extend(buf[:cut].decode("utf-8", "replace").splitlines())
+    r["off"] = size
+    if not r["primed"]: r["primed"] = True; return []
+    return lines
+
+def check_s5(st):
+    st.setdefault("s5_hour", {}); h = st["s5_hour"]
+    active = svc("s5-collector", "ActiveState") == "active"
+    f = s5_today_file()
+    if st.get("s5_file") != f:                       # day rolled over: fresh offset for the new file
+        st["s5_file"] = f; st.pop("s5_off", None)
+    for ln in (s5_read_new(f) if f.endswith(".gz") else tail_new(f, "s5_off", st)):
+        m = S5_RECV_RE.search(ln); rt = float(m.group(1)) if m else 0.0
+        if '"source": "polymarket"' in ln:
+            h["poly"] = h.get("poly", 0) + 1; st["s5_last_poly"] = max(st.get("s5_last_poly", 0), rt)
+        elif '"source": "kraken"' in ln:
+            if '"channel": "trade"' in ln and '"type": "update"' in ln:
+                h["trades"] = h.get("trades", 0) + 1; st["s5_last_trade"] = max(st.get("s5_last_trade", 0), rt)
+            else: h["kraken_other"] = h.get("kraken_other", 0) + 1
+        elif '"source": "market"' in ln:
+            h["rounds"] = h.get("rounds", 0) + 1
+        elif '"source": "status"' in ln:
+            try: p = json.loads(ln)["payload"]
+            except Exception: continue
+            if p.get("error") is not None:
+                h["errors"] = h.get("errors", 0) + 1; st["s5_last_err"] = f"{p.get('feed','?')}: {str(p['error'])[:100]}"
+                if hour_count(st, "s5_errs", 1) > S5_ERRS_PER_H_MAX:
+                    alert(st, "s5_err_storm", f"⚠ S5: >{S5_ERRS_PER_H_MAX} feed errors in the last hour, last: {st['s5_last_err']}")
+                if "No active exact" in str(p["error"]) and hour_count(st, "s5_nomarket", 1) >= 3:
+                    alert(st, "s5_no_market", f"⚠ S5: round discovery failed {hour_count(st,'s5_nomarket')}x this hour (Gamma has no active exact BTC 5m market) - books not being recorded")
+            elif p.get("status") in ("start", "stop"): h["sessions"] = h.get("sessions", 0) + 1
+    if active:
+        for key, name in (("s5_last_trade", "Kraken trades"), ("s5_last_poly", "Polymarket book messages")):
+            if st.get(key) and now() - st[key] > S5_FEED_STALE_S:
+                alert(st, key + "_stale", f"🚨 S5: no {name} for {int((now()-st[key])/60)} min while the collector is active (a retrying/offline process is not a healthy collector - guide section 6)")
+    # growth projection: bytes/hour on today's file vs free disk
+    try: size = os.path.getsize(f)
+    except Exception: size = 0
+    if "s5_size_t" in st and now() - st["s5_size_t"] >= 3600:
+        per_h = max(0, size - st.get("s5_size", 0)) if size >= st.get("s5_size", 0) else size
+        st["s5_mb_h"] = per_h / 2**20; st["s5_size"], st["s5_size_t"] = size, now()
+        pct, free_gb, total_gb = disk_free()
+        need_gb = st["s5_mb_h"] * 24 * S5_PROJECT_DAYS / 1024
+        if free_gb and need_gb > 0.5 * free_gb:
+            alert(st, "s5_disk_projection", f"⚠ S5 data growth {st['s5_mb_h']:.0f} MB/h -> {need_gb:.1f} GB for {S5_PROJECT_DAYS} days vs {free_gb:.1f} GB free. Compress/archive or shorten the collection window before it eats the disk")
+    elif "s5_size_t" not in st: st["s5_size"], st["s5_size_t"] = size, now()
+    kill = os.path.exists(os.path.join(S5_DIR, "KILL"))
+    if st.get("s5_kill_seen") is not None and kill != st["s5_kill_seen"]:
+        alert(st, "s5_kill_change", "🛑 S5 KILL file present - replay entries blocked (collection continues)" if kill else "🔔 S5 KILL file removed", "event")
+    st["s5_kill_seen"] = kill
+
+def s5_digest(st, reset=True):
+    h = st.get("s5_hour", {})
+    age = lambda k: f"{int(now()-st[k])}s ago" if st.get(k) else "never"
+    try:
+        today = os.path.getsize(s5_today_file()) / 2**20
+        total = sum(os.path.getsize(os.path.join(dp, x)) for dp, _, fs in os.walk(S5_DATA) for x in fs) / 2**20
+        gz = len([x for x in os.listdir(S5_DATA) if x.endswith(".gz") and not s5_today_file().endswith(x)])
+    except Exception: today, total, gz = 0.0, 0.0, 0
+    mbh = st.get("s5_mb_h")
+    line = (f"last hour: {h.get('trades',0)} Kraken trade msgs (last {age('s5_last_trade')}), {h.get('poly',0)} book msgs (last {age('s5_last_poly')}), "
+            f"{h.get('rounds',0)} rounds discovered, {h.get('errors',0)} feed errors{(' (last: ' + st['s5_last_err'] + ')') if h.get('errors') and st.get('s5_last_err') else ''}, "
+            f"{h.get('sessions',0)} session start/stops | today's file {today:.0f} MB, data {total:.0f} MB ({gz} earlier day files)"
+            f"{f', {mbh:.0f} MB/h -> {mbh*24/1024:.1f} GB/day' if mbh is not None else ''} | {st.get('disk_line','disk ?')} | "
+            f"KILL={'yes' if os.path.exists(os.path.join(S5_DIR,'KILL')) else 'no'} | entries blocked by design (no fair model)")
+    if reset: st["s5_hour"] = {}
+    return line
+
 def hourly_status(st):
     """ONE combined status message at the top of every hour - bounded, bypasses the breaker."""
     if not HOURLY_STATUS: return
@@ -790,7 +933,9 @@ def hourly_status(st):
            f"{st.get('disk_line','disk ?')} | 7-day gate: day {max(1, len([f for f in os.listdir(BME_OUT) if f.startswith('events_') and f.endswith('.gz')]) if os.path.isdir(BME_OUT) else 0)} of 7\n"
            f"— {STRAT_DESC['S3']}\n   {mk_digest(st, 'S3')}\n"
            f"— {STRAT_DESC['S6']}\n   {mk_digest(st, 'S6')}\n"
-           f"— {STRAT_DESC['S2']}\n   {s2_digest(st)}")
+           f"— {STRAT_DESC['S2']}\n   {s2_digest(st)}\n"
+           f"— {STRAT_DESC['S46']}\n   {mk_digest(st, 'S46')}\n"
+           f"- {STRAT_DESC['S5']}\n   {s5_digest(st)}")
     tg_send(msg); mlog("hourly status sent")
 
 def check_gates(st):
@@ -810,10 +955,15 @@ def check_services(st):
         except Exception: nres = 0
         prev = st["restarts"].get(name)
         if prev is not None and nres > prev:
-            # keyed per SERVICE (6 h dedup), not per restart number - a restart loop must produce
-            # ONE alert, not one per restart (2026-09-21: 185 of these went out)
-            alert(st, f"restart:{name}", f"⚠ {name}.service restarted by systemd ({nres - prev} since last check, "
-                  f"#{nres} total) - check {name}.service.log", "warn")
+            if name in SESSION_SERVICES:                   # expected session rollover; alert only on a loop
+                if hour_count(st, f"sess_restart:{name}", nres - prev) > SESSION_SERVICES[name]:
+                    alert(st, f"restart:{name}", f"⚠ {name}.service restarted {hour_count(st, f'sess_restart:{name}')}x in the last hour "
+                          f"(bounded sessions expect at most {SESSION_SERVICES[name]}) - check its log", "warn")
+            else:
+                # keyed per SERVICE (6 h dedup), not per restart number - a restart loop must produce
+                # ONE alert, not one per restart (2026-09-21: 185 of these went out)
+                alert(st, f"restart:{name}", f"⚠ {name}.service restarted by systemd ({nres - prev} since last check, "
+                      f"#{nres} total) - check {name}.service.log", "warn")
         st["restarts"][name] = nres
 
 def check_env(st):
@@ -859,6 +1009,8 @@ def daily_summary(st):
             f"S3: {mk_digest(st, 'S3', reset=False)}\n"
             f"S6: {mk_digest(st, 'S6', reset=False)}\n"
             f"S2: {s2_digest(st, reset=False)}\n"
+            f"S46: {mk_digest(st, 'S46', reset=False)}\n"
+            f"S5: {s5_digest(st, reset=False)}\n"
             f"LIVE_TRADING={read_env(ENV).get('LIVE_TRADING','0')} KILL={'yes' if os.path.exists(KILL) else 'no'} "
             f"S1_LIVE_BLOCKED={'yes' if os.path.exists(P('S1_LIVE_BLOCKED')) else 'NO'}")
 
@@ -895,7 +1047,7 @@ def main():
     while True:
         try:
             storm_tick(st)
-            check_trader_log(st); check_harness_log(st); check_rounds(st); check_s9_log(st); check_bme(st); check_maker(st, "S3"); check_maker(st, "S6"); check_s2(st)
+            check_trader_log(st); check_harness_log(st); check_rounds(st); check_s9_log(st); check_bme(st); check_maker(st, "S3"); check_maker(st, "S6"); check_maker(st, "S46"); check_s2(st); check_s5(st)
             check_gates(st); check_services(st); check_env(st); daily_summary(st); hourly_status(st)
             save_state(st); errs = 0
         except Exception as e:
