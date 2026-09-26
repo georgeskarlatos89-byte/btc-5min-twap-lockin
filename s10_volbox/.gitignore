@@ -1,0 +1,11 @@
+.env
+*.log
+*.csv
+s10_stats.json
+KILL
+__pycache__/
+*.pyc
+calib.log
+smoke.log
+release_830.log
+s10-box.service.log

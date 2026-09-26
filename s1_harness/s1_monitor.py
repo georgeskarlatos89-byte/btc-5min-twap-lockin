@@ -36,7 +36,7 @@ EXPECT = {"ARB_MIN": "50", "SIG_MIN": "20", "SIG_WR": "0.90", "GAP_MIN": "4.0",
 ARB_MIN, SIG_MIN, SIG_WR, GAP_MIN = 50, 20, 0.90, 4.0
 # 2026-09-26 10:30Z: standalone s6-harvester RETIRED (stopped+disabled, files kept) - S46 runs the same S6
 # maker inside its process; two copies produced duplicate S6 data (user decision).
-SERVICES = ["s1-harness", "s1-trader", "s9-watcher", "bme-capture", "s3-maker", "s2-collect", "s46-harvester", "s5-collector", "s8-router"]
+SERVICES = ["s1-harness", "s1-trader", "s9-watcher", "bme-capture", "s3-maker", "s2-collect", "s46-harvester", "s5-collector", "s8-router", "s10-box"]
 
 # ---- S3 fee-farm maker (s3_feefarm/s3_maker.py, 2026-09-24) --------------------------------
 # Urgent: anything LIVE (quote/fill/exit placed with real money), DAILY STOP / KILL, a fill that
@@ -86,6 +86,13 @@ S5_RECV_RE = re.compile(r'"recv_ts": ([0-9.]+)')
 # services that run bounded sessions and are restarted by systemd BY DESIGN (S2: 60 min, S5: 24 h);
 # a restart there is not an incident unless it exceeds this many per hour
 SESSION_SERVICES = {"s2-collect": 3, "s5-collector": 2}                        # tick_ts older than this while active = dead main loop
+# ---- S10 vol-event binary box (s10_volbox/s10_box.py, 2026-09-26) ------------------------------------
+# DRY maker straddle @0.45 + pair-arb taker sniffer, ONLY while "box mode" is armed (US macro release
+# 15m round, or trailing sigma > 1.8x baseline). Flat 95% of the day is correct -> NO fills/hour band.
+S10_DIR = "/home/ubuntupolymarket3/s10_volbox"
+S10_LOG, S10_STATS, S10_ENV, S10_KILL = (os.path.join(S10_DIR, n) for n in ("s10_box.log", "s10_stats.json", ".env", "KILL"))
+S10_ERRS_PER_H_MAX = 10
+S10_CAL_CHECK_UTC_HOUR = 19                  # after the 14:00 ET bucket (18:00 UTC in EDT): did the calendar arm today?
 MAKERS = {
     "S3": dict(svc="s3-maker", dir=S3_DIR, log="s3_maker.log", stats="s3_stats.json", shares=50,
                fills_band=(S3_FILLS_H_MIN, S3_FILLS_H_MAX), baseline="mean 7.52 ± 2.12, backtest 24 h"),
@@ -110,6 +117,7 @@ BME_HASHES_STALE_S = 15 * 60          # hashes_*.csv is rewritten every 5 min by
 
 # ---- plain-English one-liners for every message that names a strategy (user request) ----------
 STRAT_DESC = {
+    "S10": "S10 Vol-Event Binary Box ('own the whipsaw, don't guess it'): stays flat until a US macro release (8:30 / 10:00 / 14:00 ET, weekdays) or a volatility spike arms 'box mode'; then rests a buy at 0.45 on BOTH sides of the BTC 15m (and 5m) round and buys both sides outright whenever the combined ask is under $0.97 after fees. A lone filled leg is chased within 60 s or unwound - it never carries a naked position. DRY: no real orders, fills simulated from the public tape.",
     "S1":  "S1 TWAP Lock-In: observer + DRY trader. Records every BTC 5m/15m round and tests which settlement rule Polymarket really uses (verdict: end-value, not the average). Trader is hard-blocked from live.",
     "S9":  "S9 Whale Coattails: watches 4 pro wallets and measures whether copying them would pay (measure-only; so far it does not).",
     "BME": "BME Book-Movement Engine: records every order-book move on the BTC 5m/15m markets (~1,000/s) to score 5 pre-registered signals after 7 full days.",
@@ -971,6 +979,107 @@ def s5_digest(st, reset=True):
     if reset: st["s5_hour"] = {}
     return line
 
+def check_s10(st):
+    st.setdefault("s10_hour", {}); h = st["s10_hour"]
+    for ln in tail_new(S10_LOG, "s10_off", st):
+        body = S3_TS_RE.sub("", ln)
+        if "(LIVE)" in body:
+            alert(st, f"s10live:{ln}", f"🟢 S10 REAL MONEY: {body[:300]}", "event"); continue
+        if "DAILY STOP" in body:
+            alert(st, f"s10stop:{ln}", f"🚨 S10 {body[:200]}", "event"); continue
+        if "REJECTED (gate)" in body or "REJECTED (net cap" in body:
+            alert(st, "s10_fill_rejected", f"🚨 S10 gate violation (Part-4 class): {body[:220]}"); h["rejected"] = h.get("rejected", 0) + 1; continue
+        if "key expired/missing" in body or "moondev liq 40" in body:
+            alert(st, "s10_key_dead", f"🚨 S10: {body[:200]} (box FLAT)"); continue
+        if "moondev liq 429" in body:
+            alert(st, "s10_liq_429", f"⚠ S10: Moon Dev rate-limited the liq feed: {body[:160]}"); continue
+        if "moondev" in body and ("error" in body or "HTTP" in body) or "tape error" in body or "tick error" in body or "Traceback" in body:
+            h["errors"] = h.get("errors", 0) + 1
+            if "tick error" in body: alert(st, "s10_tick_err", f"⚠ S10 main-loop exception (loop survived): {body[:200]}")
+            if hour_count(st, "s10_errs", 1) > S10_ERRS_PER_H_MAX:
+                alert(st, "s10_err_storm", f"⚠ S10: >{S10_ERRS_PER_H_MAX} feed/API errors in the last hour, last: {body[:180]}")
+            continue
+        if "RTDS silent" in body or "RTDS problem" in body:
+            if hour_count(st, "s10_rtds", 1) > RECONNECTS_PER_H_MAX:
+                alert(st, "s10_rtds_storm", f"⚠ S10 spot feed unstable: >{RECONNECTS_PER_H_MAX} reconnects in the last hour")
+            continue
+        if "EST-fallback" in body or "EST fallback" in body:
+            alert(st, "s10_tz", "⚠ S10 is using the EST fallback clock (tzdata missing) - the calendar gate fires 1 h late in EDT"); continue
+        # --- informational, once per event (the guide's three)
+        if body.startswith("🔵 BOX ARMED"):
+            h["arms"] = h.get("arms", 0) + 1
+            src_ = "calendar" if "(calendar)" in body else "vol"
+            h.setdefault("arm_by", {})[src_] = h.get("arm_by", {}).get(src_, 0) + 1
+            if src_ == "calendar": st["s10_cal_armed_day"] = utc().strftime("%Y-%m-%d")
+            alert(st, f"s10arm:{body[:60]}", f"🔵 S10 {body[:220]}", "event"); continue
+        if body.startswith("🎯 PAIR-ARB FIRE"):
+            h["pair_arb"] = h.get("pair_arb", 0) + 1
+            alert(st, f"s10arb:{ln}", f"🎯 S10 (DRY unless marked LIVE) {body[:240]}", "event"); continue
+        if body.startswith("🚪 UNWIND"):
+            h["unwinds"] = h.get("unwinds", 0) + 1
+            alert(st, f"s10unw:{ln}", f"🚪 S10 lone leg unwound (feeds kill rule #2): {body[:240]}", "event"); continue
+        # --- digest counters
+        if body.startswith("⬜ BOX DISARMED"): h["disarms"] = h.get("disarms", 0) + 1
+        elif body.startswith("MAKER (DRY)") or body.startswith("MAKER (LIVE)"): h["quotes"] = h.get("quotes", 0) + 1
+        elif body.startswith("MAKER FILL"): h["fills"] = h.get("fills", 0) + 1
+        elif body.startswith("🏃 CHASE FILL"): h["chases"] = h.get("chases", 0) + 1
+        elif body.startswith("✅ PAIR COMPLETE"): h["pairs"] = h.get("pairs", 0) + 1
+        elif body.startswith("PAIR-ARB THIN"): h["thin"] = h.get("thin", 0) + 1
+        elif body.startswith("PULL MAKERS"):
+            trig = body.split("—")[-1].strip().split()[0] if "—" in body else "?"
+            h["pulls"] = h.get("pulls", 0) + 1; h.setdefault("pull_by", {})[trig] = h.get("pull_by", {}).get(trig, 0) + 1
+        elif body.startswith("SKIP "):
+            h["skips"] = h.get("skips", 0) + 1; k = mk_skip_key(body)
+            h.setdefault("skip_by", {})[k] = h.get("skip_by", {}).get(k, 0) + 1
+        elif body.startswith("ROUND-RESULT"): h["rounds"] = h.get("rounds", 0) + 1
+        elif "liq feed shape" in body: st["s10_shape"] = body[:200]
+    active = svc("s10-box", "ActiveState") == "active"
+    # heartbeat (dead-loop class)
+    if active:
+        try:
+            s = json.load(open(S10_STATS)); hb = s.get("tick_ts")
+            age = now() - hb if hb else now() - os.path.getmtime(S10_STATS)
+        except Exception: age = None
+        if age is not None and age > MAKER_HB_DEAD_S:
+            alert(st, "s10_dead_loop", f"🚨 S10 main loop DEAD: no heartbeat for {int(age/60)} min while the service is 'active'. Fix: sudo systemctl restart s10-box.service")
+    # calendar gate sanity: on a weekday, after the last ET bucket, the calendar must have armed at least once today
+    d = utc()
+    if active and d.weekday() < 5 and d.hour >= S10_CAL_CHECK_UTC_HOUR and st.get("s10_cal_checked") != d.strftime("%Y-%m-%d"):
+        st["s10_cal_checked"] = d.strftime("%Y-%m-%d")
+        if st.get("s10_cal_armed_day") != d.strftime("%Y-%m-%d"):
+            alert(st, "s10_cal_silent", f"⚠ S10 calendar gate did not arm at all today ({d.strftime('%A')}) - it should arm every weekday at 8:30 / 10:00 / 14:00 ET. Check the ET clock / service log")
+    # key probe shares the maker helper (hourly GET with the S10 .env key)
+    if "S10" not in MAKERS:
+        MAKERS["S10"] = dict(svc="s10-box", dir=S10_DIR, log="s10_box.log", stats="s10_stats.json", shares=20, fills_band=None, baseline=None)
+    mk_probe_key(st, "S10")
+    live = read_env(S10_ENV).get("LIVE_TRADING") == "1"
+    if st.get("s10_live_seen") is not None and live != st["s10_live_seen"]:
+        alert(st, "s10_live_change", "🚨 S10 LIVE_TRADING=1 - it WILL rest real orders (20 sh/side) and fire real FOK pairs when armed. Intended?" if live else "🔔 S10 LIVE_TRADING back to 0 - DRY", "event")
+    st["s10_live_seen"] = live
+    kill = os.path.exists(S10_KILL)
+    if st.get("s10_kill_seen") is not None and kill != st["s10_kill_seen"]:
+        alert(st, "s10_kill_change", "🛑 S10 KILL file present - box FLAT" if kill else "🔔 S10 KILL file removed", "event")
+    st["s10_kill_seen"] = kill
+
+def s10_digest(st, reset=True):
+    h = st.get("s10_hour", {})
+    try: s = json.load(open(S10_STATS))
+    except Exception: s = {}
+    kt = s.get("kill_test", {}); n_evt = kt.get("events_armed", 0); n_two = kt.get("events_two_leg", 0)
+    arms = ", ".join(f"{k}×{v}" for k, v in (h.get("arm_by") or {}).items()) or "none"
+    pulls = ", ".join(f"{k}×{v}" for k, v in (h.get("pull_by") or {}).items()) or "none"
+    skips = ", ".join(f"{k}×{v}" for k, v in sorted((h.get("skip_by") or {}).items(), key=lambda kv: -kv[1])[:3]) or "none"
+    hb = s.get("tick_ts"); hb_s = f"heartbeat {int((now()-hb)/60)} min ago" if hb else "no heartbeat yet"
+    line = (f"last hour: box armed {h.get('arms',0)} ({arms}), disarmed {h.get('disarms',0)}, {h.get('quotes',0)} maker quotes, "
+            f"{h.get('fills',0)} dry fills, {h.get('pairs',0)} pairs, {h.get('pair_arb',0)} pair-arb fires ({h.get('thin',0)} too thin), "
+            f"{h.get('chases',0)} chases, {h.get('unwinds',0)} unwinds, pulls {pulls}, skipped rounds {h.get('skips',0)} ({skips}), errors {h.get('errors',0)} | {hb_s} | "
+            f"kill-test: {n_evt} armed events of 20, two-leg {n_two} ({(n_two/n_evt*100) if n_evt else 0:.0f}%, kill <30%), "
+            f"pair gains ${kt.get('events_pair_gain',0):.2f} vs unwind losses ${kt.get('events_unwind_loss',0):.2f} | "
+            f"sigma baseline {s.get('sigma_baseline_bps',0):.1f} bps (peak {s.get('sigma_peak_bps',0):.1f}) | all-time pnl ${s.get('pnl',0):+.2f} | "
+            f"{st.get('s10_key','key not probed yet')} | LIVE={'YES' if read_env(S10_ENV).get('LIVE_TRADING') == '1' else 'no (DRY)'} KILL={'yes' if os.path.exists(S10_KILL) else 'no'}")
+    if reset: st["s10_hour"] = {}
+    return line
+
 def hourly_status(st):
     """ONE combined status message at the top of every hour - bounded, bypasses the breaker."""
     if not HOURLY_STATUS: return
@@ -1002,7 +1111,8 @@ def hourly_status(st):
            f"— {STRAT_DESC['S2']}\n   {s2_digest(st)}\n"
            f"— {STRAT_DESC['S8']}\n   {s8_digest(st)}\n"
            f"— {STRAT_DESC['S46']}\n   {mk_digest(st, 'S46')}\n"
-           f"- {STRAT_DESC['S5']}\n   {s5_digest(st)}")
+           f"- {STRAT_DESC['S5']}\n   {s5_digest(st)}\n"
+           f"— {STRAT_DESC['S10']}\n   {s10_digest(st)}")
     tg_send(msg); mlog("hourly status sent")
 
 def check_gates(st):
@@ -1078,6 +1188,7 @@ def daily_summary(st):
             f"S8: {s8_digest(st, reset=False)}\n"
             f"S46: {mk_digest(st, 'S46', reset=False)}\n"
             f"S5: {s5_digest(st, reset=False)}\n"
+            f"S10: {s10_digest(st, reset=False)}\n"
             f"LIVE_TRADING={read_env(ENV).get('LIVE_TRADING','0')} KILL={'yes' if os.path.exists(KILL) else 'no'} "
             f"S1_LIVE_BLOCKED={'yes' if os.path.exists(P('S1_LIVE_BLOCKED')) else 'NO'}")
 
@@ -1101,6 +1212,9 @@ def main():
         if f"{p}_off" not in st and os.path.exists(mk_path(tag, "log")):
             st[f"{p}_off"] = os.path.getsize(mk_path(tag, "log"))
         st.setdefault(f"{p}_hour", {"fill_rounds": []})
+    if "s10_off" not in st and os.path.exists(S10_LOG):     # never replay S10 history on first sight
+        st["s10_off"] = os.path.getsize(S10_LOG)
+    st.setdefault("s10_hour", {})
     env = read_env(ENV)
     st["env_seen"] = os.path.exists(ENV); st["live_seen"] = env.get("LIVE_TRADING") == "1"
     st["force_seen"] = env.get("FORCE_LIVE") == "1"; st["kill_seen"] = os.path.exists(KILL)
@@ -1114,7 +1228,7 @@ def main():
     while True:
         try:
             storm_tick(st)
-            check_trader_log(st); check_harness_log(st); check_rounds(st); check_s9_log(st); check_bme(st); check_maker(st, "S3"); check_maker(st, "S46"); check_s2(st); check_s8(st); check_s5(st)
+            check_trader_log(st); check_harness_log(st); check_rounds(st); check_s9_log(st); check_bme(st); check_maker(st, "S3"); check_maker(st, "S46"); check_s2(st); check_s8(st); check_s5(st); check_s10(st)
             check_gates(st); check_services(st); check_env(st); daily_summary(st); hourly_status(st)
             save_state(st); errs = 0
         except Exception as e:

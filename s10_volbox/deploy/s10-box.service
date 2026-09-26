@@ -1,0 +1,24 @@
+[Unit]
+Description=S10 vol-event binary box (calendar + vol gates; DRY unless .env + all gates pass)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntupolymarket3
+Group=ubuntupolymarket3
+# Runs from the strategy-named folder (symlink ~/s10_volbox points here). The code reads .env
+# and KILL from its own directory. KILL makes it FLAT (it keeps running), so Restart=always
+# cannot loop on it. Direct exec (no pip on every restart).
+WorkingDirectory=/home/ubuntupolymarket3/#10 vol-event binary box/s10_volbox
+ExecStart=/usr/bin/python3 -u "/home/ubuntupolymarket3/#10 vol-event binary box/s10_volbox/s10_box.py"
+Restart=always
+RestartSec=10
+Nice=2
+Environment=PYTHONUNBUFFERED=1
+# s10_box.py writes s10_box.log itself; capture stdout/stderr (tracebacks) too.
+StandardOutput=append:/home/ubuntupolymarket3/#10 vol-event binary box/s10_volbox/s10-box.service.log
+StandardError=append:/home/ubuntupolymarket3/#10 vol-event binary box/s10_volbox/s10-box.service.log
+
+[Install]
+WantedBy=multi-user.target
