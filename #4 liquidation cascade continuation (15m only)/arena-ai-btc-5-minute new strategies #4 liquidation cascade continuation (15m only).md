@@ -69,11 +69,11 @@ two cascades → 24 raw hits → exactly 2 events.
    09:59:03Z on the settlement fix. Ninth strategy service on the box (with S5 from the other
    session, ten units).
 
-### About the S6 duplicate
-`s6-harvester.service` (the standalone S6 from 09-24) is still running. The guide says not to
-run both S6 copies at once or to share the $30 net cap. Both are DRY, so there is no real
-exposure, only duplicate S6 data. I did not stop the old one (its kill-test sample started
-09-26 09:54Z after the other session's fix). Retiring one of the two is the user's call.
+### About the S6 duplicate — resolved
+`s6-harvester.service` (the standalone S6 from 09-24) ran beside S46's built-in S6 for the
+first hour. On the user's decision (~10:30Z) the standalone one was stopped and disabled (files
+kept, see the #6 record Part #3); S46 is now the only S6 maker, and its hourly line carries
+the 300-leg kill-test sample.
 
 ### Telegram wiring (shared `s1_monitor.py`)
 S46 added to the generic maker checker with prefix normalisation (`S6 QUOTE` → `QUOTE`,

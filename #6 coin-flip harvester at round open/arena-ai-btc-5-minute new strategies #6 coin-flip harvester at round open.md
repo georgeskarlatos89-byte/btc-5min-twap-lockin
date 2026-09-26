@@ -180,3 +180,22 @@ Even with settlement working, S6 cannot accumulate legs while the band rule pull
 within seconds. The hourly status now shows skipped rounds and their reasons; the decision on
 the band is still the user's. The other session's S46 (a fork of this code) was checked and
 does not carry the unreachable-settlement pattern.
+
+---
+
+## Part #3 — Standalone S6 retired; the S6 experiment continues inside S46 (2026-09-26 ~10:30Z)
+
+### Context
+The S46 package (strategy #4) runs the identical S6 maker inside its own process. Two copies
+were producing duplicate S6 data, and the S46 guide says not to run both. The user asked to
+stop running both.
+
+### Run mechanism
+`sudo systemctl disable --now s6-harvester.service`. Nothing deleted: the folder
+`~/#6 coin-flip harvester at round open/s6_coinflip/` with its logs, CSVs and stats stays on
+the VM. The monitor no longer lists `s6-harvester` as a service or an S6 line; the S6 counts
+and the 300-leg kill-test sample now come from the S46 hourly line (`~/s46_coinflip_cascade/
+s46_stats.json`, keys `s6.side_legs` / `s6.side_leg_wins`). The standalone sample had only
+started counting legs at 09:54Z the same morning (Part #2 fix), so nothing meaningful was cut
+short; to resume the standalone copy: `sudo systemctl enable --now s6-harvester.service` and
+re-add it to the monitor.

@@ -34,7 +34,9 @@ STRAT = "S1 TWAP Lock-In"
 EXPECT = {"ARB_MIN": "50", "SIG_MIN": "20", "SIG_WR": "0.90", "GAP_MIN": "4.0",
           "EDGE_MIN": "0.02", "TRADE_USD": "10.0", "DAILY_STOP": "20.0", "MAX_PER_HOUR": "3"}
 ARB_MIN, SIG_MIN, SIG_WR, GAP_MIN = 50, 20, 0.90, 4.0
-SERVICES = ["s1-harness", "s1-trader", "s9-watcher", "bme-capture", "s3-maker", "s6-harvester", "s2-collect", "s46-harvester", "s5-collector"]
+# 2026-09-26 10:30Z: standalone s6-harvester RETIRED (stopped+disabled, files kept) - S46 runs the same S6
+# maker inside its process; two copies produced duplicate S6 data (user decision).
+SERVICES = ["s1-harness", "s1-trader", "s9-watcher", "bme-capture", "s3-maker", "s2-collect", "s46-harvester", "s5-collector"]
 
 # ---- S3 fee-farm maker (s3_feefarm/s3_maker.py, 2026-09-24) --------------------------------
 # Urgent: anything LIVE (quote/fill/exit placed with real money), DAILY STOP / KILL, a fill that
@@ -79,8 +81,6 @@ SESSION_SERVICES = {"s2-collect": 3, "s5-collector": 2}                        #
 MAKERS = {
     "S3": dict(svc="s3-maker", dir=S3_DIR, log="s3_maker.log", stats="s3_stats.json", shares=50,
                fills_band=(S3_FILLS_H_MIN, S3_FILLS_H_MAX), baseline="mean 7.52 ± 2.12, backtest 24 h"),
-    "S6": dict(svc="s6-harvester", dir="/home/ubuntupolymarket3/s6_coinflip", log="s6_harvester.log",
-               stats="s6_stats.json", shares=20, fills_band=None, baseline=None),   # no backtest yet -> no band
     # S46 = the S6 maker + the S4 cascade taker in one process (2026-09-26). Log lines carry "S6 "/"S4 "
     # prefixes and the stats file nests {"s6": {...}, "s4": {...}}; nested=True switches both.
     "S46": dict(svc="s46-harvester", dir="/home/ubuntupolymarket3/s46_coinflip_cascade", log="s46_harvester.log",
@@ -932,7 +932,6 @@ def hourly_status(st):
            f"— {STRAT_DESC['BME']}\n   last hour: +{d_gz:.0f} MB gz, {rows_h} book-state rows, reconnects {hour_count(st,'bme_reconnects')} | today's file {gz/2**20:.0f} MB | "
            f"{st.get('disk_line','disk ?')} | 7-day gate: day {max(1, len([f for f in os.listdir(BME_OUT) if f.startswith('events_') and f.endswith('.gz')]) if os.path.isdir(BME_OUT) else 0)} of 7\n"
            f"— {STRAT_DESC['S3']}\n   {mk_digest(st, 'S3')}\n"
-           f"— {STRAT_DESC['S6']}\n   {mk_digest(st, 'S6')}\n"
            f"— {STRAT_DESC['S2']}\n   {s2_digest(st)}\n"
            f"— {STRAT_DESC['S46']}\n   {mk_digest(st, 'S46')}\n"
            f"- {STRAT_DESC['S5']}\n   {s5_digest(st)}")
@@ -1007,7 +1006,6 @@ def daily_summary(st):
             f"S9: {len(st.get('s9_outcomes', []))} follow outcomes in 24h | {st.get('s9_status') or '(no STATUS line yet)'}\n"
             f"BME: {svc('bme-capture','ActiveState')} | today's events file (gz) {max(0, st.get('bme_size', 0)) / 2**20:.0f} MB | {st.get('disk_line', '')}\n"
             f"S3: {mk_digest(st, 'S3', reset=False)}\n"
-            f"S6: {mk_digest(st, 'S6', reset=False)}\n"
             f"S2: {s2_digest(st, reset=False)}\n"
             f"S46: {mk_digest(st, 'S46', reset=False)}\n"
             f"S5: {s5_digest(st, reset=False)}\n"
@@ -1047,7 +1045,7 @@ def main():
     while True:
         try:
             storm_tick(st)
-            check_trader_log(st); check_harness_log(st); check_rounds(st); check_s9_log(st); check_bme(st); check_maker(st, "S3"); check_maker(st, "S6"); check_maker(st, "S46"); check_s2(st); check_s5(st)
+            check_trader_log(st); check_harness_log(st); check_rounds(st); check_s9_log(st); check_bme(st); check_maker(st, "S3"); check_maker(st, "S46"); check_s2(st); check_s5(st)
             check_gates(st); check_services(st); check_env(st); daily_summary(st); hourly_status(st)
             save_state(st); errs = 0
         except Exception as e:
