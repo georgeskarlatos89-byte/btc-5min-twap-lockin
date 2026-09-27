@@ -203,3 +203,28 @@ minutes. The cap did its job: no other service was affected. The original file i
 A streaming version (`measurement_stack/bme_scoring/bme_score_stream.py`) computes the same
 signals in one pass at about 40 MB and adds what the gate actually asks for signal S3: the
 post-fee expected value per share. Result: see Part #3.
+
+### Part #2 addendum - first automatic report, relabel result, scoring status (14:00-14:30 UTC)
+| item | result |
+|---|---|
+| 14:00 UTC hourly status | sent automatically as 2 messages (6,077 characters in total), PDF `STATUS-2026-09-27-1400.pdf` delivered (HTTP 200, 78 KB) |
+| full 5m chain relabel | 76,663 of 76,670 rounds verified on Polygon, 0 labels differed from gamma, 0 RPC errors; the 7 others never resolved on-chain |
+| 15m chain relabel | started automatically, running at lowest priority |
+| recorders during my heavy jobs | all writing, S1 observer coverage 99-100 %, 0 strategy restarts, BME reconnects 4 per hour (same as before) |
+
+BME scoring took four attempts. (1) original scorer: out of memory at the 1.3 GB cap.
+(2) streaming Python with Python's gzip reader: about 40,000 rows per second, six hours.
+(3) window sweep bug of mine (E9): every open key re-scanned once per second of data.
+(4) current: `run_score_7d.sh` = one `gzip | grep + mawk` pass per file, Python only for the
+statistics, lowest priority, 1.2 GB memory cap, result announced on Telegram when done.
+The server itself is the limit: two slow cores, and another session was running a headless
+browser at 400 % CPU at the same time (load average up to 20, CPU pressure above 90 %).
+
+Two things the first hour of the new reporting exposed:
+- **S8 says S3 is blocked, S3 keeps quoting.** S8 switched to the volatility override at
+  13:43 UTC and lists S3 as blocked. S3 still placed quotes at 13:50 and 14:00. Both are DRY, so
+  no money is involved, but the S3 hook into S8 is not doing its job. Not changed by me
+  (strategy code, another session's work).
+- **Restarting the monitor causes one false S5 alert.** The monitor reads S5's compressed
+  stream incrementally; after a restart it must re-read the day's file, and for about five
+  minutes it believes S5 is silent. S5 itself never stopped (2,485 Kraken messages that hour).

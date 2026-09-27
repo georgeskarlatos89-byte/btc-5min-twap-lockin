@@ -63,6 +63,7 @@ def gamma_outcome(series, start):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--min-rounds", type=int, default=100); ap.add_argument("--days", type=int, default=0, help="0 = every day on disk")
+    ap.add_argument("--ticks", default=""); ap.add_argument("--s1parts", default="")
     a = ap.parse_args(); t00 = time.time()
     ev_files = sorted(glob.glob(os.path.join(BME, "events_*.csv*")))
     if a.days: ev_files = ev_files[-a.days:]
@@ -86,43 +87,73 @@ def main():
 
     # ---------------- one pass over events: S1 bursts + S2 ticks
     n_pc = bursts = burst_max = rows = 0
-    cur_ts, cur = None, Counter()
     hist = Counter()                                  # burst size bucket -> count
     ticks = []
-    def flush(c):
+    # About 1 % of rows arrive out of time order (measured), so a burst is counted per
+    # (millisecond, hash) inside a sliding window: a key is closed once the stream is 3 s past it.
+    win = {}                                          # second -> {(ts_bytes, hash_bytes): count}
+    WINDOW_S, newest = 3, 0
+    def close(v):
         nonlocal bursts, burst_max
-        for v in c.values():
-            if v >= 5:
-                bursts += 1; burst_max = max(burst_max, v)
-                hist["5-9" if v < 10 else "10-19" if v < 20 else "20-49" if v < 50 else "50+"] += 1
-    for p in ev_files:
+        if v >= 5:
+            bursts += 1; burst_max = max(burst_max, v)
+            hist["5-9" if v < 10 else "10-19" if v < 20 else "20-49" if v < 50 else "50+"] += 1
+    import subprocess
+    if a.ticks and a.s1parts:
+        # heavy pass already done by run_score_7d.sh (gzip | grep + mawk): load its results
+        for ln in open(a.s1parts):
+            w = ln.split()
+            if len(w) >= 9:
+                rows += int(w[1]); n_pc += int(w[2]); bursts += int(w[3]); burst_max = max(burst_max, int(w[4]))
+                for kk, vv in zip(("5-9", "10-19", "20-49", "50+"), w[5:9]): hist[kk] += int(vv)
+        for ln in open(a.ticks, errors="replace"):
+            r = ln.rstrip("\n").split(",")
+            try:
+                x = r[10] if len(r) > 10 else ""
+                ticks.append((int(r[0]), float(r[5]), int(x.split("=")[-1]) if "=" in x else 0))
+            except Exception:
+                pass
+        log(f"loaded {rows:,} event rows from the fast pass, {len(ticks):,} spot ticks")
+        ev_files_loop = []
+    else:
+        ev_files_loop = ev_files
+    for p in ev_files_loop:
         t0 = time.time(); n0 = rows
-        try:
-            with opener(p) as f:
-                for ln in f:
-                    rows += 1
-                    i = ln.find(","); j = ln.find(",", i + 1)
-                    if i < 0 or j < 0: continue
-                    et = ln[i + 1:j]
-                    if et == "price_change":
-                        n_pc += 1
-                        ts = ln[:i]
-                        if ts != cur_ts:
-                            flush(cur); cur = Counter(); cur_ts = ts
-                        r = ln.rstrip("\n").split(",")
-                        cur[r[9] if len(r) > 9 else ""] += 1
-                    elif et == "spot_tick":
-                        r = ln.rstrip("\n").split(",")
-                        try:
-                            x = r[10] if len(r) > 10 else ""
-                            n = int(x.split("=")[-1]) if "=" in x else 0
-                            ticks.append((int(r[0]), float(r[5]), n))
-                        except Exception:
-                            pass
-        except (EOFError, OSError) as e:
-            log(f"  {os.path.basename(p)}: truncated tail ignored ({e.__class__.__name__})")
-        log(f"  {os.path.basename(p)}: {rows - n0:,} rows in {time.time() - t0:.0f}s")
-    flush(cur)
+        # external decompressor: Python's gzip text reader managed about 40,000 rows per second here
+        proc = subprocess.Popen(["zcat", "-f", p], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, bufsize=1 << 20)
+        for ln in proc.stdout:
+            rows += 1
+            i = ln.find(b",")
+            if i < 0: continue
+            c = ln[i + 1:i + 2]
+            if c == b"p":                                                   # price_change
+                r = ln.split(b",", 10)
+                if len(r) < 10 or r[1] != b"price_change": continue
+                n_pc += 1
+                try: sec = int(r[0][:-3])
+                except ValueError: continue
+                b = win.get(sec)
+                if b is None:
+                    b = win[sec] = {}
+                    if sec > newest:                                        # a new second opened: close the old ones
+                        newest = sec
+                        for s_old in [s_ for s_ in win if s_ < sec - WINDOW_S]:
+                            for v in win.pop(s_old).values(): close(v)
+                k = (r[0], r[9]); b[k] = b.get(k, 0) + 1
+            elif c == b"s":                                                 # spot_tick
+                r = ln.rstrip(b"\n").split(b",")
+                if r[1] != b"spot_tick": continue
+                try:
+                    x = r[10].decode() if len(r) > 10 else ""
+                    ticks.append((int(r[0]), float(r[5]), int(x.split("=")[-1]) if "=" in x else 0))
+                except Exception:
+                    pass
+        proc.stdout.close(); rc = proc.wait()
+        if rc not in (0, None): log(f"  {os.path.basename(p)}: decompressor ended with code {rc} (a file still being written has an open tail; rows read so far are kept)")
+        log(f"  {os.path.basename(p)}: {rows - n0:,} rows in {time.time() - t0:.0f}s ({(rows - n0) / max(time.time() - t0, 1) / 1000:.0f}k rows/s)")
+    for b in win.values():
+        for v in b.values(): close(v)
+    win.clear()
     S1 = dict(price_changes_read=n_pc, distinct_causes=distinct, causes_ge5_events=ge5, causes_ge20_events=ge20,
               batch_bursts_ge5_same_ms=bursts, batch_burst_max_levels=burst_max, batch_burst_size_histogram=dict(hist),
               bursts_per_day=round(bursts / max(len(ev_files), 1)),
