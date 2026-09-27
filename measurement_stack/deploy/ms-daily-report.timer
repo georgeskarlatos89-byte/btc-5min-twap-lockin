@@ -1,0 +1,10 @@
+[Unit]
+Description=Measurement stack: integrated daily report (timer)
+
+[Timer]
+OnCalendar=*-*-* 07:20:00 UTC
+Persistent=true
+RandomizedDelaySec=20
+
+[Install]
+WantedBy=timers.target

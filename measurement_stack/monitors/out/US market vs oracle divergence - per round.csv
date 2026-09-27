@@ -1,0 +1,3 @@
+round_slug,horizon,seconds_compared,rms_divergence,worst_divergence,worst_at_secs_to_end,worst_market_px,worst_model_p,proxy_sigma_usd_per_sqrt_s,venue_up,proxy_up,match
+cpc-btc-updown-15m-2026-09-27-1215z,15m,897,0.0523,0.1446,302,0.255,0.1104,1.476,0,0,OK
+cpc-btc-updown-15m-2026-09-27-1230z,15m,748,0.0488,-0.153,429,0.675,0.828,1.529,,,

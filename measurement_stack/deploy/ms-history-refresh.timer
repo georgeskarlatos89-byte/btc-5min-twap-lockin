@@ -1,0 +1,10 @@
+[Unit]
+Description=Measurement stack: history corpus refresh + chain verification (timer)
+
+[Timer]
+OnCalendar=*-*-* 00:10:00 UTC
+Persistent=true
+RandomizedDelaySec=20
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,119 @@
+{
+ "tag": "backtest from 2026-09-27 to 2026-09-20",
+ "generated": 1790512922,
+ "window": [
+  1789906500,
+  1790511300
+ ],
+ "coverage": {
+  "rounds": 2688,
+  "chain": 2688,
+  "gamma": 2688,
+  "pr": 2518,
+  "obs": 2511,
+  "pending": 0,
+  "noid": 0
+ },
+ "summary": [
+  {
+   "strategy": "S1 trader (as deployed, DRY)",
+   "label_source": "(a) chain-verified",
+   "signals": 133,
+   "trades_taken": 78,
+   "wins": 59,
+   "win_rate_pct": 75.64,
+   "gross_usd": -45.5,
+   "fees_usd": 11.07,
+   "net_usd_fee_adjusted": -56.57,
+   "net_per_trade_usd": -0.7252,
+   "avg_entry_price": 0.8168,
+   "breakeven_win_rate_pct": 82.58,
+   "all_signals_no_caps": 133,
+   "all_signals_wins": 111,
+   "all_signals_win_rate_pct": 83.46,
+   "all_signals_net_usd": 15.14,
+   "days_stopped_by_20usd_rule": 4,
+   "skipped_by_daily_stop": 51,
+   "skipped_by_hourly_cap": 4,
+   "signals_without_label": 0
+  },
+  {
+   "strategy": "S1 trader (as deployed, DRY)",
+   "label_source": "(b1) public past-results outcome",
+   "signals": 133,
+   "trades_taken": 46,
+   "wins": 25,
+   "win_rate_pct": 54.35,
+   "gross_usd": -159.19,
+   "fees_usd": 6.32,
+   "net_usd_fee_adjusted": -165.51,
+   "net_per_trade_usd": -3.598,
+   "avg_entry_price": 0.8168,
+   "breakeven_win_rate_pct": 82.58,
+   "all_signals_no_caps": 127,
+   "all_signals_wins": 76,
+   "all_signals_win_rate_pct": 59.84,
+   "all_signals_net_usd": -369.78,
+   "days_stopped_by_20usd_rule": 6,
+   "skipped_by_daily_stop": 79,
+   "skipped_by_hourly_cap": 2,
+   "signals_without_label": 6
+  },
+  {
+   "strategy": "S1 trader (as deployed, DRY)",
+   "label_source": "(b2) public gamma outcome",
+   "signals": 133,
+   "trades_taken": 78,
+   "wins": 59,
+   "win_rate_pct": 75.64,
+   "gross_usd": -45.5,
+   "fees_usd": 11.07,
+   "net_usd_fee_adjusted": -56.57,
+   "net_per_trade_usd": -0.7252,
+   "avg_entry_price": 0.8168,
+   "breakeven_win_rate_pct": 82.58,
+   "all_signals_no_caps": 133,
+   "all_signals_wins": 111,
+   "all_signals_win_rate_pct": 83.46,
+   "all_signals_net_usd": 15.14,
+   "days_stopped_by_20usd_rule": 4,
+   "skipped_by_daily_stop": 51,
+   "skipped_by_hourly_cap": 4,
+   "signals_without_label": 0
+  },
+  {
+   "strategy": "S1 trader (as deployed, DRY)",
+   "label_source": "(c) label the bot itself used",
+   "signals": 133,
+   "trades_taken": 78,
+   "wins": 59,
+   "win_rate_pct": 75.64,
+   "gross_usd": -45.5,
+   "fees_usd": 11.07,
+   "net_usd_fee_adjusted": -56.57,
+   "net_per_trade_usd": -0.7252,
+   "avg_entry_price": 0.8168,
+   "breakeven_win_rate_pct": 82.58,
+   "all_signals_no_caps": 133,
+   "all_signals_wins": 111,
+   "all_signals_win_rate_pct": 83.46,
+   "all_signals_net_usd": 15.14,
+   "days_stopped_by_20usd_rule": 4,
+   "skipped_by_daily_stop": 51,
+   "skipped_by_hourly_cap": 4,
+   "signals_without_label": 0
+  }
+ ],
+ "tick_match": {
+  "open": {
+   "spot@+0s": 372
+  },
+  "close": {
+   "spot@+0s": 371,
+   "no tick within $0.005": 1
+  },
+  "rounds": 389
+ },
+ "public_disagreements": 254,
+ "signals_mislabeled": 33
+}

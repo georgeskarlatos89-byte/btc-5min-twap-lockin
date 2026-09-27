@@ -1,0 +1,13 @@
+[Unit]
+Description=Measurement stack: compress completed daily files
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=ubuntupolymarket3
+Group=ubuntupolymarket3
+WorkingDirectory=/home/ubuntupolymarket3/arena-ai-copy btc-5-minute workspace/measurement_stack
+ExecStart=/bin/bash "/home/ubuntupolymarket3/arena-ai-copy btc-5-minute workspace/measurement_stack/deploy/rotate.sh"
+Nice=10
+StandardOutput=append:/home/ubuntupolymarket3/arena-ai-copy btc-5-minute workspace/measurement_stack/state/ms-rotate.log
+StandardError=append:/home/ubuntupolymarket3/arena-ai-copy btc-5-minute workspace/measurement_stack/state/ms-rotate.log

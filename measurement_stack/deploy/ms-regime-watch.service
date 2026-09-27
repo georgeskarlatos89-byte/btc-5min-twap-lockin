@@ -1,0 +1,22 @@
+[Unit]
+Description=Measurement stack: Polymarket rule-change sentinel (fees, tick, delay, docs, US rules)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntupolymarket3
+Group=ubuntupolymarket3
+# measurement stack (read-only research): no keys, no orders. KILL file in the working folder idles it.
+WorkingDirectory=/home/ubuntupolymarket3/arena-ai-copy btc-5-minute workspace/measurement_stack/regime_watch
+ExecStart=/usr/bin/python3 -u "/home/ubuntupolymarket3/arena-ai-copy btc-5-minute workspace/measurement_stack/regime_watch/regime_watch.py"
+Restart=always
+RestartSec=15
+Nice=5
+Environment=PYTHONUNBUFFERED=1
+Environment=RW_INTERVAL=600
+StandardOutput=append:/home/ubuntupolymarket3/arena-ai-copy btc-5-minute workspace/measurement_stack/regime_watch/ms-regime-watch.service.log
+StandardError=append:/home/ubuntupolymarket3/arena-ai-copy btc-5-minute workspace/measurement_stack/regime_watch/ms-regime-watch.service.log
+
+[Install]
+WantedBy=multi-user.target

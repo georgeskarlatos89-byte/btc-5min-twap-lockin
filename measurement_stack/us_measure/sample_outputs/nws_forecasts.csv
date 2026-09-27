@@ -1,0 +1,6 @@
+detected_unix,detected_utc,city,station,nws_update_time,detection_delay_s,market_day,forecast_high_f,previous_high_f,high_changed,tomorrow_high_f,period_name,short_forecast
+1790511165,2026-09-27T12:12:45Z,nyc,KNYC,2026-09-27T11:18:20+00:00,3266.0,2026-09-27,66,,0,64,Today,Rain Showers
+1790511167,2026-09-27T12:12:47Z,mia,KMIA,2026-09-27T10:17:13+00:00,6934.3,2026-09-27,85,,0,87,Today,Sunny
+1790511168,2026-09-27T12:12:48Z,sfo,KSFO,2026-09-27T09:47:03+00:00,8745.5,2026-09-27,66,,0,72,Sunday,Partly Sunny
+1790511169,2026-09-27T12:12:49Z,lax,KLAX,2026-09-27T08:02:41+00:00,15008.7,2026-09-27,80,,0,78,Sunday,Patchy Fog then Partly Sunny
+1790511171,2026-09-27T12:12:51Z,mdw,KMDW,2026-09-27T10:31:12+00:00,6099.0,2026-09-27,69,,0,71,Today,Mostly Sunny

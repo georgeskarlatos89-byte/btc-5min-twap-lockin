@@ -1,0 +1,13 @@
+[Unit]
+Description=Measurement stack: integrated daily report
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=ubuntupolymarket3
+Group=ubuntupolymarket3
+WorkingDirectory=/home/ubuntupolymarket3/arena-ai-copy btc-5-minute workspace/measurement_stack
+ExecStart=/usr/bin/python3 "/home/ubuntupolymarket3/arena-ai-copy btc-5-minute workspace/measurement_stack/report/daily_report.py"
+Nice=10
+StandardOutput=append:/home/ubuntupolymarket3/arena-ai-copy btc-5-minute workspace/measurement_stack/state/ms-daily-report.log
+StandardError=append:/home/ubuntupolymarket3/arena-ai-copy btc-5-minute workspace/measurement_stack/state/ms-daily-report.log

@@ -1,0 +1,6 @@
+strategy,ledger,positions_held_to_resolution,label_dependent
+S1 harness rule (observer rows),"{""rows_with_a_signal"": 162}",,"not scored: the stored ask is the Up token ask at round end, not an entry price"
+S3 fee-farm maker (DRY),"{""n"": 427, ""quotes"": 1132, ""fills"": 3, ""pairs"": 0, ""pnl"": -1.8412856400000002}",0,"no trades held to resolution, so no label can change its result"
+S46 cascade + coin-flip (DRY),"{""s6_quotes"": 540, ""s6_fills"": 0, ""s6_pairs"": 0, ""s4_triggers"": 0, ""s4_fills"": 0}",0,"no trades held to resolution, so no label can change its result"
+S10 vol-event box (DRY),"{""n"": 412, ""maker_quotes"": 66, ""maker_fills"": 0, ""taker_pairs"": 0, ""pairs_completed"": 0, ""pnl"": 0.0}",0,"no trades held to resolution, so no label can change its result"
+S2 open-print displacement (recorder),"{""decisions"": 417, ""candidates"": 0}",0,no candidates produced

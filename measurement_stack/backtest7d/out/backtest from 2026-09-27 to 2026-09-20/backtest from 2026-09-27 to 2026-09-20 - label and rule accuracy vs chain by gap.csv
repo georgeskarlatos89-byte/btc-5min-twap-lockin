@@ -1,0 +1,127 @@
+market,label_source,gap_measured_on,gap_bucket,rounds,wrong_vs_chain,wrong_pct,accuracy_pct
+5m,public: past-results outcome,pr_gap_bps,<1bp,247,93,37.65,62.35
+5m,public: past-results outcome,pr_gap_bps,1-2bp,216,59,27.31,72.69
+5m,public: past-results outcome,pr_gap_bps,2-4bp,324,46,14.2,85.8
+5m,public: past-results outcome,pr_gap_bps,4-8bp,467,16,3.43,96.57
+5m,public: past-results outcome,pr_gap_bps,>8bp,597,2,0.34,99.66
+5m,public: past-results outcome,pr_gap_bps,ALL,1851,216,11.67,88.33
+5m,public: gamma outcomePrices (fetched now),pr_gap_bps,<1bp,247,0,0.0,100.0
+5m,public: gamma outcomePrices (fetched now),pr_gap_bps,1-2bp,216,0,0.0,100.0
+5m,public: gamma outcomePrices (fetched now),pr_gap_bps,2-4bp,324,0,0.0,100.0
+5m,public: gamma outcomePrices (fetched now),pr_gap_bps,4-8bp,467,0,0.0,100.0
+5m,public: gamma outcomePrices (fetched now),pr_gap_bps,>8bp,597,0,0.0,100.0
+5m,public: gamma outcomePrices (fetched now),pr_gap_bps,ALL,2016,0,0.0,100.0
+5m,production: gamma label seen at settle time,obs_end_gap_bps,<1bp,235,0,0.0,100.0
+5m,production: gamma label seen at settle time,obs_end_gap_bps,1-2bp,204,0,0.0,100.0
+5m,production: gamma label seen at settle time,obs_end_gap_bps,2-4bp,339,0,0.0,100.0
+5m,production: gamma label seen at settle time,obs_end_gap_bps,4-8bp,478,0,0.0,100.0
+5m,production: gamma label seen at settle time,obs_end_gap_bps,>8bp,608,0,0.0,100.0
+5m,production: gamma label seen at settle time,obs_end_gap_bps,ALL,1864,0,0.0,100.0
+5m,rule: TWAP60 end value >= open TWAP (our ticks),obs_end_gap_bps,<1bp,235,13,5.53,94.47
+5m,rule: TWAP60 end value >= open TWAP (our ticks),obs_end_gap_bps,1-2bp,204,0,0.0,100.0
+5m,rule: TWAP60 end value >= open TWAP (our ticks),obs_end_gap_bps,2-4bp,339,0,0.0,100.0
+5m,rule: TWAP60 end value >= open TWAP (our ticks),obs_end_gap_bps,4-8bp,478,0,0.0,100.0
+5m,rule: TWAP60 end value >= open TWAP (our ticks),obs_end_gap_bps,>8bp,608,0,0.0,100.0
+5m,rule: TWAP60 end value >= open TWAP (our ticks),obs_end_gap_bps,ALL,1864,13,0.7,99.3
+5m,rule: full-round TWAP average >= open TWAP (our ticks),obs_fullavg_gap_bps,<1bp,403,159,39.45,60.55
+5m,rule: full-round TWAP average >= open TWAP (our ticks),obs_fullavg_gap_bps,1-2bp,349,58,16.62,83.38
+5m,rule: full-round TWAP average >= open TWAP (our ticks),obs_fullavg_gap_bps,2-4bp,424,50,11.79,88.21
+5m,rule: full-round TWAP average >= open TWAP (our ticks),obs_fullavg_gap_bps,4-8bp,418,15,3.59,96.41
+5m,rule: full-round TWAP average >= open TWAP (our ticks),obs_fullavg_gap_bps,>8bp,270,3,1.11,98.89
+5m,rule: full-round TWAP average >= open TWAP (our ticks),obs_fullavg_gap_bps,ALL,1864,285,15.29,84.71
+5m,rule: last-60s average >= open TWAP (our ticks),obs_end_gap_bps,<1bp,235,56,23.83,76.17
+5m,rule: last-60s average >= open TWAP (our ticks),obs_end_gap_bps,1-2bp,204,25,12.25,87.75
+5m,rule: last-60s average >= open TWAP (our ticks),obs_end_gap_bps,2-4bp,339,16,4.72,95.28
+5m,rule: last-60s average >= open TWAP (our ticks),obs_end_gap_bps,4-8bp,478,4,0.84,99.16
+5m,rule: last-60s average >= open TWAP (our ticks),obs_end_gap_bps,>8bp,608,0,0.0,100.0
+5m,rule: last-60s average >= open TWAP (our ticks),obs_end_gap_bps,ALL,1864,101,5.42,94.58
+5m,rule: TWAP60 end value >= open SPOT (our ticks),obs_end_gap_bps,<1bp,235,66,28.09,71.91
+5m,rule: TWAP60 end value >= open SPOT (our ticks),obs_end_gap_bps,1-2bp,204,35,17.16,82.84
+5m,rule: TWAP60 end value >= open SPOT (our ticks),obs_end_gap_bps,2-4bp,339,30,8.85,91.15
+5m,rule: TWAP60 end value >= open SPOT (our ticks),obs_end_gap_bps,4-8bp,478,9,1.88,98.12
+5m,rule: TWAP60 end value >= open SPOT (our ticks),obs_end_gap_bps,>8bp,608,3,0.49,99.51
+5m,rule: TWAP60 end value >= open SPOT (our ticks),obs_end_gap_bps,ALL,1864,143,7.67,92.33
+15m,public: past-results outcome,pr_gap_bps,<1bp,46,15,32.61,67.39
+15m,public: past-results outcome,pr_gap_bps,1-2bp,39,8,20.51,79.49
+15m,public: past-results outcome,pr_gap_bps,2-4bp,81,7,8.64,91.36
+15m,public: past-results outcome,pr_gap_bps,4-8bp,135,6,4.44,95.56
+15m,public: past-results outcome,pr_gap_bps,>8bp,366,2,0.55,99.45
+15m,public: past-results outcome,pr_gap_bps,ALL,667,38,5.7,94.3
+15m,public: gamma outcomePrices (fetched now),pr_gap_bps,<1bp,46,0,0.0,100.0
+15m,public: gamma outcomePrices (fetched now),pr_gap_bps,1-2bp,39,0,0.0,100.0
+15m,public: gamma outcomePrices (fetched now),pr_gap_bps,2-4bp,81,0,0.0,100.0
+15m,public: gamma outcomePrices (fetched now),pr_gap_bps,4-8bp,135,0,0.0,100.0
+15m,public: gamma outcomePrices (fetched now),pr_gap_bps,>8bp,366,0,0.0,100.0
+15m,public: gamma outcomePrices (fetched now),pr_gap_bps,ALL,672,0,0.0,100.0
+15m,production: gamma label seen at settle time,obs_end_gap_bps,<1bp,45,0,0.0,100.0
+15m,production: gamma label seen at settle time,obs_end_gap_bps,1-2bp,36,0,0.0,100.0
+15m,production: gamma label seen at settle time,obs_end_gap_bps,2-4bp,86,0,0.0,100.0
+15m,production: gamma label seen at settle time,obs_end_gap_bps,4-8bp,117,0,0.0,100.0
+15m,production: gamma label seen at settle time,obs_end_gap_bps,>8bp,340,0,0.0,100.0
+15m,production: gamma label seen at settle time,obs_end_gap_bps,ALL,624,0,0.0,100.0
+15m,rule: TWAP60 end value >= open TWAP (our ticks),obs_end_gap_bps,<1bp,45,4,8.89,91.11
+15m,rule: TWAP60 end value >= open TWAP (our ticks),obs_end_gap_bps,1-2bp,36,0,0.0,100.0
+15m,rule: TWAP60 end value >= open TWAP (our ticks),obs_end_gap_bps,2-4bp,86,0,0.0,100.0
+15m,rule: TWAP60 end value >= open TWAP (our ticks),obs_end_gap_bps,4-8bp,117,0,0.0,100.0
+15m,rule: TWAP60 end value >= open TWAP (our ticks),obs_end_gap_bps,>8bp,340,0,0.0,100.0
+15m,rule: TWAP60 end value >= open TWAP (our ticks),obs_end_gap_bps,ALL,624,4,0.64,99.36
+15m,rule: full-round TWAP average >= open TWAP (our ticks),obs_fullavg_gap_bps,<1bp,77,33,42.86,57.14
+15m,rule: full-round TWAP average >= open TWAP (our ticks),obs_fullavg_gap_bps,1-2bp,65,20,30.77,69.23
+15m,rule: full-round TWAP average >= open TWAP (our ticks),obs_fullavg_gap_bps,2-4bp,98,16,16.33,83.67
+15m,rule: full-round TWAP average >= open TWAP (our ticks),obs_fullavg_gap_bps,4-8bp,157,19,12.1,87.9
+15m,rule: full-round TWAP average >= open TWAP (our ticks),obs_fullavg_gap_bps,>8bp,227,4,1.76,98.24
+15m,rule: full-round TWAP average >= open TWAP (our ticks),obs_fullavg_gap_bps,ALL,624,92,14.74,85.26
+15m,rule: last-60s average >= open TWAP (our ticks),obs_end_gap_bps,<1bp,45,11,24.44,75.56
+15m,rule: last-60s average >= open TWAP (our ticks),obs_end_gap_bps,1-2bp,36,6,16.67,83.33
+15m,rule: last-60s average >= open TWAP (our ticks),obs_end_gap_bps,2-4bp,86,6,6.98,93.02
+15m,rule: last-60s average >= open TWAP (our ticks),obs_end_gap_bps,4-8bp,117,0,0.0,100.0
+15m,rule: last-60s average >= open TWAP (our ticks),obs_end_gap_bps,>8bp,340,0,0.0,100.0
+15m,rule: last-60s average >= open TWAP (our ticks),obs_end_gap_bps,ALL,624,23,3.69,96.31
+15m,rule: TWAP60 end value >= open SPOT (our ticks),obs_end_gap_bps,<1bp,45,14,31.11,68.89
+15m,rule: TWAP60 end value >= open SPOT (our ticks),obs_end_gap_bps,1-2bp,36,7,19.44,80.56
+15m,rule: TWAP60 end value >= open SPOT (our ticks),obs_end_gap_bps,2-4bp,86,5,5.81,94.19
+15m,rule: TWAP60 end value >= open SPOT (our ticks),obs_end_gap_bps,4-8bp,117,5,4.27,95.73
+15m,rule: TWAP60 end value >= open SPOT (our ticks),obs_end_gap_bps,>8bp,340,0,0.0,100.0
+15m,rule: TWAP60 end value >= open SPOT (our ticks),obs_end_gap_bps,ALL,624,31,4.97,95.03
+both,public: past-results outcome,pr_gap_bps,<1bp,293,108,36.86,63.14
+both,public: past-results outcome,pr_gap_bps,1-2bp,255,67,26.27,73.73
+both,public: past-results outcome,pr_gap_bps,2-4bp,405,53,13.09,86.91
+both,public: past-results outcome,pr_gap_bps,4-8bp,602,22,3.65,96.35
+both,public: past-results outcome,pr_gap_bps,>8bp,963,4,0.42,99.58
+both,public: past-results outcome,pr_gap_bps,ALL,2518,254,10.09,89.91
+both,public: gamma outcomePrices (fetched now),pr_gap_bps,<1bp,293,0,0.0,100.0
+both,public: gamma outcomePrices (fetched now),pr_gap_bps,1-2bp,255,0,0.0,100.0
+both,public: gamma outcomePrices (fetched now),pr_gap_bps,2-4bp,405,0,0.0,100.0
+both,public: gamma outcomePrices (fetched now),pr_gap_bps,4-8bp,602,0,0.0,100.0
+both,public: gamma outcomePrices (fetched now),pr_gap_bps,>8bp,963,0,0.0,100.0
+both,public: gamma outcomePrices (fetched now),pr_gap_bps,ALL,2688,0,0.0,100.0
+both,production: gamma label seen at settle time,obs_end_gap_bps,<1bp,280,0,0.0,100.0
+both,production: gamma label seen at settle time,obs_end_gap_bps,1-2bp,240,0,0.0,100.0
+both,production: gamma label seen at settle time,obs_end_gap_bps,2-4bp,425,0,0.0,100.0
+both,production: gamma label seen at settle time,obs_end_gap_bps,4-8bp,595,0,0.0,100.0
+both,production: gamma label seen at settle time,obs_end_gap_bps,>8bp,948,0,0.0,100.0
+both,production: gamma label seen at settle time,obs_end_gap_bps,ALL,2488,0,0.0,100.0
+both,rule: TWAP60 end value >= open TWAP (our ticks),obs_end_gap_bps,<1bp,280,17,6.07,93.93
+both,rule: TWAP60 end value >= open TWAP (our ticks),obs_end_gap_bps,1-2bp,240,0,0.0,100.0
+both,rule: TWAP60 end value >= open TWAP (our ticks),obs_end_gap_bps,2-4bp,425,0,0.0,100.0
+both,rule: TWAP60 end value >= open TWAP (our ticks),obs_end_gap_bps,4-8bp,595,0,0.0,100.0
+both,rule: TWAP60 end value >= open TWAP (our ticks),obs_end_gap_bps,>8bp,948,0,0.0,100.0
+both,rule: TWAP60 end value >= open TWAP (our ticks),obs_end_gap_bps,ALL,2488,17,0.68,99.32
+both,rule: full-round TWAP average >= open TWAP (our ticks),obs_fullavg_gap_bps,<1bp,480,192,40.0,60.0
+both,rule: full-round TWAP average >= open TWAP (our ticks),obs_fullavg_gap_bps,1-2bp,414,78,18.84,81.16
+both,rule: full-round TWAP average >= open TWAP (our ticks),obs_fullavg_gap_bps,2-4bp,522,66,12.64,87.36
+both,rule: full-round TWAP average >= open TWAP (our ticks),obs_fullavg_gap_bps,4-8bp,575,34,5.91,94.09
+both,rule: full-round TWAP average >= open TWAP (our ticks),obs_fullavg_gap_bps,>8bp,497,7,1.41,98.59
+both,rule: full-round TWAP average >= open TWAP (our ticks),obs_fullavg_gap_bps,ALL,2488,377,15.15,84.85
+both,rule: last-60s average >= open TWAP (our ticks),obs_end_gap_bps,<1bp,280,67,23.93,76.07
+both,rule: last-60s average >= open TWAP (our ticks),obs_end_gap_bps,1-2bp,240,31,12.92,87.08
+both,rule: last-60s average >= open TWAP (our ticks),obs_end_gap_bps,2-4bp,425,22,5.18,94.82
+both,rule: last-60s average >= open TWAP (our ticks),obs_end_gap_bps,4-8bp,595,4,0.67,99.33
+both,rule: last-60s average >= open TWAP (our ticks),obs_end_gap_bps,>8bp,948,0,0.0,100.0
+both,rule: last-60s average >= open TWAP (our ticks),obs_end_gap_bps,ALL,2488,124,4.98,95.02
+both,rule: TWAP60 end value >= open SPOT (our ticks),obs_end_gap_bps,<1bp,280,80,28.57,71.43
+both,rule: TWAP60 end value >= open SPOT (our ticks),obs_end_gap_bps,1-2bp,240,42,17.5,82.5
+both,rule: TWAP60 end value >= open SPOT (our ticks),obs_end_gap_bps,2-4bp,425,35,8.24,91.76
+both,rule: TWAP60 end value >= open SPOT (our ticks),obs_end_gap_bps,4-8bp,595,14,2.35,97.65
+both,rule: TWAP60 end value >= open SPOT (our ticks),obs_end_gap_bps,>8bp,948,3,0.32,99.68
+both,rule: TWAP60 end value >= open SPOT (our ticks),obs_end_gap_bps,ALL,2488,174,6.99,93.01

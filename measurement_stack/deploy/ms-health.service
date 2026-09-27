@@ -1,0 +1,13 @@
+[Unit]
+Description=Measurement stack: health check (urgent alerts only)
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=ubuntupolymarket3
+Group=ubuntupolymarket3
+WorkingDirectory=/home/ubuntupolymarket3/arena-ai-copy btc-5-minute workspace/measurement_stack
+ExecStart=/usr/bin/python3 "/home/ubuntupolymarket3/arena-ai-copy btc-5-minute workspace/measurement_stack/report/stack_health.py"
+Nice=10
+StandardOutput=append:/home/ubuntupolymarket3/arena-ai-copy btc-5-minute workspace/measurement_stack/state/ms-health.log
+StandardError=append:/home/ubuntupolymarket3/arena-ai-copy btc-5-minute workspace/measurement_stack/state/ms-health.log

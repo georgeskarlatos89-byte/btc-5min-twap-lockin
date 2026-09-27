@@ -1,0 +1,16 @@
+strategy,label_source,session,trades,wins,win_rate_pct,net_usd_fee_adjusted
+"S1 trader (as deployed, DRY)",(a) chain-verified,ASIA 00:00-12:00,40,30,75.0,-32.43
+"S1 trader (as deployed, DRY)",(a) chain-verified,OFF-HOURS,11,8,72.73,-5.28
+"S1 trader (as deployed, DRY)",(a) chain-verified,US 13:30-21:00,18,16,88.89,17.99
+"S1 trader (as deployed, DRY)",(a) chain-verified,WEEKEND,9,5,55.56,-36.86
+"S1 trader (as deployed, DRY)",(b1) public past-results outcome,ASIA 00:00-12:00,35,21,60.0,-96.26
+"S1 trader (as deployed, DRY)",(b1) public past-results outcome,OFF-HOURS,2,0,0.0,-20.49
+"S1 trader (as deployed, DRY)",(b1) public past-results outcome,WEEKEND,9,4,44.44,-48.76
+"S1 trader (as deployed, DRY)",(b2) public gamma outcome,ASIA 00:00-12:00,40,30,75.0,-32.43
+"S1 trader (as deployed, DRY)",(b2) public gamma outcome,OFF-HOURS,11,8,72.73,-5.28
+"S1 trader (as deployed, DRY)",(b2) public gamma outcome,US 13:30-21:00,18,16,88.89,17.99
+"S1 trader (as deployed, DRY)",(b2) public gamma outcome,WEEKEND,9,5,55.56,-36.86
+"S1 trader (as deployed, DRY)",(c) label the bot itself used,ASIA 00:00-12:00,40,30,75.0,-32.43
+"S1 trader (as deployed, DRY)",(c) label the bot itself used,OFF-HOURS,11,8,72.73,-5.28
+"S1 trader (as deployed, DRY)",(c) label the bot itself used,US 13:30-21:00,18,16,88.89,17.99
+"S1 trader (as deployed, DRY)",(c) label the bot itself used,WEEKEND,9,5,55.56,-36.86

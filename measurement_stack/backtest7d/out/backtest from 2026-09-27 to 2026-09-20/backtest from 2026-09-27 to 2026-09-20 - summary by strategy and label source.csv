@@ -1,0 +1,5 @@
+strategy,label_source,signals,trades_taken,wins,win_rate_pct,gross_usd,fees_usd,net_usd_fee_adjusted,net_per_trade_usd,avg_entry_price,breakeven_win_rate_pct,all_signals_no_caps,all_signals_wins,all_signals_win_rate_pct,all_signals_net_usd,days_stopped_by_20usd_rule,skipped_by_daily_stop,skipped_by_hourly_cap,signals_without_label
+"S1 trader (as deployed, DRY)",(a) chain-verified,133,78,59,75.64,-45.5,11.07,-56.57,-0.7252,0.8168,82.58,133,111,83.46,15.14,4,51,4,0
+"S1 trader (as deployed, DRY)",(b1) public past-results outcome,133,46,25,54.35,-159.19,6.32,-165.51,-3.598,0.8168,82.58,127,76,59.84,-369.78,6,79,2,6
+"S1 trader (as deployed, DRY)",(b2) public gamma outcome,133,78,59,75.64,-45.5,11.07,-56.57,-0.7252,0.8168,82.58,133,111,83.46,15.14,4,51,4,0
+"S1 trader (as deployed, DRY)",(c) label the bot itself used,133,78,59,75.64,-45.5,11.07,-56.57,-0.7252,0.8168,82.58,133,111,83.46,15.14,4,51,4,0
