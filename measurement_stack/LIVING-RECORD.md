@@ -228,3 +228,43 @@ Two things the first hour of the new reporting exposed:
 - **Restarting the monitor causes one false S5 alert.** The monitor reads S5's compressed
   stream incrementally; after a restart it must re-read the day's file, and for about five
   minutes it believes S5 is silent. S5 itself never stopped (2,485 Kraken messages that hour).
+
+---
+
+## Part #3 - Why S3 kept quoting while S8 said "blocked" (read-only investigation, 2026-09-27)
+
+### Context
+The user asked to find out why, without changing anything, and whether another strategy is involved.
+
+### Finding
+No other strategy is involved and the hook did not fail. S3 and the S8 daemon use the same
+rule (block makers above 10.5 bps) but two different volatility numbers.
+
+| | S8 daemon (what the status shows) | S3 (what actually gates its quotes) |
+|---|---|---|
+| how S3 is connected | writes `s8_state.json` every 5 s | imports `s8_router` as a library and calls `evaluate_strategy_gate("S3", now, current_sigma=sigma5m_bps())`; it never reads the state file |
+| price source | Kraken 1-minute closes | Chainlink spot, 1 tick per second |
+| window | trailing 1 hour | last 600 ticks (10 minutes) |
+| method | standard deviation of 5-minute returns | standard deviation of 1-second changes, scaled by the square root of 300 |
+
+Replayed minute by minute for 13:20-14:40 UTC from recorded data (81 minutes):
+
+| | S3's number | S8 daemon's number |
+|---|---|---|
+| highest value | 7.74 bps | 11.86 bps |
+| minutes above 10.5 bps | 0 | 49 (13:38 to 14:26) |
+
+So for 49 minutes the daemon said "S3 blocked" while S3, asking the same library with its own
+number, was told "allowed" every time. S3's method is structurally lower: it assumes each
+second is independent, so a steady drift over minutes barely registers. In this period it
+never came within 2.7 bps of the threshold.
+
+### Who consults S8 at all
+Only S3. S1 trader, S2, S46, S5 and S10 neither import the router nor read its state file, so
+the "allowed / blocked" lists in the status describe S8's opinion, not what those programs do.
+
+### Not changed
+Nothing. Both programs are DRY, no money involved. The decision is the user's: either S3
+reads the daemon's state file (one number for everybody), or the daemon's number is declared
+informational. The monitor's alert text ("the S3 hook is not active (import failed?)") guesses
+the wrong cause; the import works.
