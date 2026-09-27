@@ -426,8 +426,14 @@ class Trader:
                 except Exception as e:
                     err = f"{e.__class__.__name__}: {str(e)[:100]}"
             self.log(f"books: {side} book unreadable for round {start} ({err})")
+            self.book_fails = getattr(self, "book_fails", 0) + 1
+            if self.book_fails in (8, 60):                      # 4 checkpoints in a row, then again after ~half an hour
+                self.tg.send("btc_books_down", f"⚠ the order book cannot be read ({err}). Bets continue at the price the page "
+                                               f"shows and are marked page_label(book_unreadable). Failed reads in a row: {self.book_fails}")
             return side, None
         res = dict(await asyncio.gather(one("Up"), one("Down")))
+        if any(res.values()):
+            self.book_fails = 0
         out = {}
         for side, v in res.items():
             if v:

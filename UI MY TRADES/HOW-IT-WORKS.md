@@ -295,3 +295,36 @@ The downtime was recorded as 18 MISSED rounds (16:15 to 17:40 UTC). Bankrolls an
 survived. Caps raised to use the headroom: BTC trader CPU 250 %, memory 2.5 GB; weather trader
 CPU 150 %, memory 1.5 GB. Both still run at low priority. Result at 18:30 UTC: 38 rounds
 recorded, 18 settled (12 won, 6 lost), P&L −$11.28, bankroll $188.71, still in the LEARN phase.
+
+### Part #3 — order book refused the trader's requests, fixed in 4 minutes (2026-09-27 19:26 UTC)
+
+**What happened.** During a routine check the log showed `HTTP Error 403: Forbidden` on every
+order book read, starting 19:26:32 UTC. One round (19:25) ended without a bet.
+
+**What it was not.** The VPS address was not blocked: `curl` from the same machine got normal
+answers, and no other strategy on the machine logged a refusal.
+
+**What it was (E20).** My data requests carried the browser's identity string ("Chrome on
+Windows") although they come from a Python program. The order book endpoint started refusing
+exactly that combination. Test from the VPS, same second, same address:
+
+| identity sent with the request | order book answer |
+|---|---|
+| browser identity, from Python | 403, a block page |
+| `curl/8.5.0`, from Python | 200 |
+| honest identity `polymarket-ui-paper-trader/1.0 (read-only research; python-urllib)` | 200 on the order book, market data and page data |
+
+**Fix (v1.0.7).** Data requests now identify themselves honestly. The browser identity is used
+only by the real browser. Request volume is unchanged and small: two book reads per checkpoint,
+about 22 per round. Added a Telegram alert when book reads fail 8 times in a row, because this
+failure was silent until someone looked at the log.
+
+**State at 19:27 UTC, before the fix:** 49 rounds recorded, 0 rounds without a row, 29 settled
+(18 won, 11 lost), P&L −$23.38, bankroll $176.61. Since the move to 4 cores, 198 of 198
+checkpoints were read from the page, the page ran a median 1.1 s behind the clock.
+
+**Early pattern, NOT a conclusion (18 bets):** buying the side the market already favours won
+11 of 13 (+$3.68); buying the other side won 1 of 5 (−$10.44). When the page's leader and the
+market's favourite disagreed (14 checkpoints), the page's leader won only 6 times. The page's
+own "past result" disagreed with the official result on 4 of 31 rounds, all of them rounds
+decided by less than 2.5 basis points.

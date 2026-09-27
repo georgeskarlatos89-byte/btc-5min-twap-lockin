@@ -12,7 +12,7 @@ import asyncio, csv, json, os, sys, time, urllib.error, urllib.parse, urllib.req
 from datetime import datetime, timezone
 from urllib.parse import urlparse
 
-VERSION = "1.0.6"
+VERSION = "1.0.7"
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 # VPS:   <Trading polymarket UI on vps weather and btc-5-min>/code  -> CSVs in <that folder>/UI MY TRADES/{btc,weather}
@@ -27,6 +27,10 @@ for _d in (BTC_DIR, WX_DIR, STATE_DIR, LOG_DIR):
 
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
       "Chrome/126.0.0.0 Safari/537.36")
+# Data requests say what they are. 2026-09-27 19:26Z: the order book endpoint began answering 403 to
+# requests that carried the browser's identity string but came from Python (curl and an honest
+# identity both got 200). The browser identity above is used by the real browser only.
+API_UA = "polymarket-ui-paper-trader/1.0 (read-only research; python-urllib)"
 GAMMA = "https://gamma-api.polymarket.com"
 CLOB = "https://clob.polymarket.com"
 SITE = "https://polymarket.com"
@@ -115,7 +119,7 @@ def read_csv(path):
 def http_json(url, timeout=8, retries=3, backoff=0.8, headers=None):
     """GET JSON with retries. Raises the last error after `retries` attempts."""
     last = None
-    h = {"User-Agent": UA, "Accept": "application/json"}
+    h = {"User-Agent": API_UA, "Accept": "application/json"}
     h.update(headers or {})
     for i in range(retries):
         try:
