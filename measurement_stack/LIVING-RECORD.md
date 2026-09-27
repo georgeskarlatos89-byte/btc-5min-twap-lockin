@@ -134,10 +134,72 @@ header; lag clock started at detection, not at the NWS update time.
 - Nothing here is a trading signal. No real orders until the user re-approves after seeing
   backtest and validation results.
 
-### Files touched in this Part
+### Files touched in Part #1
 - VM: `~/arena-ai-copy btc-5-minute workspace/measurement_stack/*` (new), 3 services + 4 timers
   in `/etc/systemd/system/ms-*`. No existing service, file or strategy was modified. The shared
   `s1_monitor.py` was not touched.
 - Local: `measurement_stack/` (code, deploy units, outputs), this record.
 - Memory: `project_measurement_stack.md`, `reference_polymarket_label_sources.md`.
 - GitHub: `measurement_stack/` (code, units, reports, backtest CSVs; no caches, no raw data).
+
+---
+
+## Part #2 - Moon Dev key audit, fleet health audit, four monitor fixes, hourly PDF report (2026-09-27)
+
+### Context
+The user asked three things in a row: is the Moon Dev key still working (a second key file
+had been handed over), are all strategies running and collecting, and then: apply the four
+fixes I had listed and add a well formatted PDF of the status report after each hourly status,
+without altering any strategy.
+
+### Moon Dev key audit (read-only, fingerprints only)
+| finding | data |
+|---|---|
+| key file 26-09 vs key file 24-09 | identical key (same sha256 prefix), so nothing to refresh |
+| twapvm | 5 `.env` files carry it (S3, S46, S10, S10 calibration, retired S6), all chmod 600 |
+| polyvps | harvester `.env` carries it; an old 24-hour `moonstream_` key sits unused in `~/.env` |
+| live probe | 6 of 6 endpoints 200 with valid JSON on both servers; 40 of 40 consecutive polls valid on twapvm |
+| errors today | key rejected 0, rate-limited 0, truncated responses 2 to 3 per strategy (retried 2 s later) |
+
+My error E7: the 40-poll burst on polyvps picked the expired key and drew forty 429 answers.
+Checked immediately after: the valid key still returned 200 from that server and the
+harvester never stopped writing.
+
+### Fleet audit (read-only)
+All 14 services active, no failed units, 169 GB free. Every strategy was writing data within
+its expected interval. Three misleading things in the Telegram messages, and four strategies
+that run but collect almost nothing (S3 3 fills in 435 rounds, S46 0 fills in 552 quotes,
+S2 0 candidates, S10 0 fills): those are strategy rules working as written, left untouched.
+My error E8: my audit first reported S5 as stale because my file pattern missed its `.gz`
+stream; the file was growing at about 8 KB per second.
+
+### The four fixes (monitor only, no strategy file changed)
+| # | problem | fix | verified by |
+|---|---|---|---|
+| 1 | "s2-collect is activating" alert 3 times in 13 h: S2 restarts 10 s after each 60-minute session and the monitor looked inside that gap | a service must be down on two consecutive checks (30 s apart) | simulated states [activating, active, activating, activating, active] gave alerts [no, no, no, YES, no] |
+| 2 | hourly status cut at 4,000 characters: S46 ended mid-sentence, S5 and S10 never appeared | status is built as sections and sent in as many messages as needed | simulation: 2 messages of 3,210 and 2,709 characters, all 9 strategies, last line complete |
+| 3 | S46 "all-time rounds 0" while its log held 438 settled rounds (its counter only moves on a fill) | for the paired maker the monitor counts settled rounds in the log | now reads "438 settled (0 with a fill)" |
+| 4 | BME reached 7 of 7 days but the score was 6 days old | see below | running |
+
+Deploy mechanism: pulled the LIVE monitor from the VPS (it is shared with another session,
+md5 5febedce), patched that copy, checked the live md5 again right before installing, kept
+`s1_monitor.py.pre-pdf-20260927` as backup, restarted only `s1-monitor`. Restart counters of
+every strategy service were identical before and after.
+
+### Hourly PDF report (new)
+`measurement_stack/report/status_pdf.py`, own virtual environment with reportlab. After the
+hourly messages the monitor writes `state/status_latest.json` and starts the PDF job detached,
+so a PDF problem can never block the monitor. Contents: four summary tiles (services running,
+disk free, errors, alerts), a services table (state, running for, restarts, memory), one card
+per strategy with its plain description and labelled rows, the measurement stack, then errors
+and alerts. Routine feed reconnects are listed separately from real errors. PDFs are kept in
+`reports/status/` for 14 days. Test: a PDF of today's latest status was generated and
+delivered to the Telegram thread (HTTP 200, 56 KB, 4 pages).
+
+### BME 7-day scoring
+The original scorer keeps one counter entry per millisecond and hash in memory. On the full
+week (about 600 million events) it was stopped by the 1.3 GB memory cap I had set after four
+minutes. The cap did its job: no other service was affected. The original file is unchanged.
+A streaming version (`measurement_stack/bme_scoring/bme_score_stream.py`) computes the same
+signals in one pass at about 40 MB and adds what the gate actually asks for signal S3: the
+post-fee expected value per share. Result: see Part #3.

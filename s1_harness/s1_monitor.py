@@ -715,6 +715,18 @@ def check_maker(st, tag):
         alert(st, f"{p}_kill_change", f"🛑 {tag} KILL file present - FLAT" if kill else f"🔔 {tag} KILL file removed", "event")
     st[f"{p}_kill_seen"] = kill
 
+def mk_rounds_settled(tag, s):
+    """S46's stats counter `n` only moves on rounds that had a fill, so the status read 'rounds 0'
+    while its log held hundreds of ROUND-RESULT lines. For nested makers count the settled rounds
+    in the log (read-only, once per status)."""
+    if not MAKERS[tag].get("nested"): return s.get("n", 0)
+    try:
+        with open(mk_path(tag, "log"), "rb") as f:
+            n = sum(chunk.count(b"ROUND-RESULT") for chunk in iter(lambda: f.read(1 << 20), b""))
+        return f"{n} settled ({s.get('n', 0)} with a fill)"
+    except Exception:
+        return s.get("n", 0)
+
 def mk_digest(st, tag, reset=True):
     p = tag.lower(); cfg = MAKERS[tag]; h = st.get(f"{p}_hour", {})
     try: s = json.load(open(mk_path(tag, "stats")))
@@ -734,7 +746,7 @@ def mk_digest(st, tag, reset=True):
     line = (f"last hour: {h.get('quotes',0)} quotes, {h.get('fills',0)} dry fills in {len(h.get('fill_rounds', []))} rounds, "
             f"{h.get('pairs',0)} pairs, {extra}, pulls {pulls}, skipped rounds {h.get('skips',0)} ({skips}), errors {h.get('errors',0)} | "
             f"session {'quiet (quoting allowed)' if s3_quiet_now() else 'active (flat by rule)'} | {hb_s} | "
-            f"all-time: rounds {s.get('n',0)} fills {s.get('fills',0)} pairs {s.get('pairs',0)} pnl ${s.get('pnl',0):+.2f} day ${s.get('day_pnl',0):+.2f} "
+            f"all-time: rounds {mk_rounds_settled(tag, s)} fills {s.get('fills',0)} pairs {s.get('pairs',0)} pnl ${s.get('pnl',0):+.2f} day ${s.get('day_pnl',0):+.2f} "
             f"adverse ${s.get('adverse',0):.2f} / gross ${s.get('gross',0):.2f} | {st.get(f'{p}_key','key not probed yet')} | "
             f"LIVE={'YES' if read_env(mk_path(tag, '.env')).get('LIVE_TRADING') == '1' else 'no (DRY)'} KILL={'yes' if os.path.exists(mk_path(tag, 'KILL')) else 'no'}")
     if cfg.get("nested"):
@@ -1080,40 +1092,86 @@ def s10_digest(st, reset=True):
     if reset: st["s10_hour"] = {}
     return line
 
-def hourly_status(st):
-    """ONE combined status message at the top of every hour - bounded, bypasses the breaker."""
-    if not HOURLY_STATUS: return
+STATUS_JSON = "/home/ubuntupolymarket3/mstack/state/status_latest.json"
+PDF_CMD = ["/home/ubuntupolymarket3/mstack/pdf_venv/bin/python", "/home/ubuntupolymarket3/mstack/report/status_pdf.py"]
+TG_CHUNK = 3800                        # Telegram cuts a message at 4,096 characters
+
+def build_status(st, reset=True):
+    """Everything the hourly status shows, as data. reset=False is a read-only snapshot."""
     h = utc().strftime("%Y-%m-%d %H")
-    if utc().minute != 0 or st.get("last_hourly") == h: return
-    st["last_hourly"] = h
-    arb, s, wr = gate_status()
     pct, free_gb, total_gb = disk_free()
     try: gz = os.path.getsize(bme_today_file())
     except Exception: gz = 0
-    d_gz = (gz - st.get("bme_gz_hour", gz)) / 2 ** 20; st["bme_gz_hour"] = gz
+    d_gz = (gz - st.get("bme_gz_hour", gz)) / 2 ** 20
     n_out = sum(1 for t in st.get("s9_outcomes", []) if now() - t < 3600)
-    svcs = ", ".join(f"{n} {'✅' if svc(n,'ActiveState') == 'active' else '❌ ' + svc(n,'ActiveState')}" for n in SERVICES)
-    rows_h = st.get("bme_rows_hour", 0); st["bme_rows_hour"] = 0
-    s9h = st.get("s9_hour", {}); st["s9_hour"] = {}
+    rows_h = st.get("bme_rows_hour", 0); s9h = st.get("s9_hour", {})
+    if reset: st["bme_gz_hour"] = gz; st["bme_rows_hour"] = 0; st["s9_hour"] = {}
     # compact S9 STATUS: per-wallet follows/win/EV + the edge-agreement tally, no "last=" noise
     s9s = st.get("s9_status") or "no STATUS yet"
     s9s = re.sub(r"\s*\|?\s*[\w-]+:last=-?\d+s(?=\s*\||\s*$)", "", s9s)          # wallets with nothing but last=
     s9s = re.sub(r":last=-?\d+s", ":", s9s)
     s9_d = (f"last hour: {n_out} follow outcomes, {s9h.get('agree',0)} signal cross-checks "
             f"({s9h.get('won',0)} won / {s9h.get('lost',0)} lost), {s9h.get('gaps',0)} data gaps")
-    msg = (f"🔷 hourly status {h}:00 UTC\n"
-           f"{svcs}\n"
-           f"— {STRAT_DESC['S1']}\n   {s1_digest(st)} | rounds recorded {len(rows_cache)} | {st.get('hypo_line', 'settlement tally pending')} | {gates_line()}\n"
-           f"— {STRAT_DESC['S9']}\n   {s9_d} | {s9s[:300]}\n"
-           f"— {STRAT_DESC['BME']}\n   last hour: +{d_gz:.0f} MB gz, {rows_h} book-state rows, reconnects {hour_count(st,'bme_reconnects')} | today's file {gz/2**20:.0f} MB | "
-           f"{st.get('disk_line','disk ?')} | 7-day gate: day {max(1, len([f for f in os.listdir(BME_OUT) if f.startswith('events_') and f.endswith('.gz')]) if os.path.isdir(BME_OUT) else 0)} of 7\n"
-           f"— {STRAT_DESC['S3']}\n   {mk_digest(st, 'S3')}\n"
-           f"— {STRAT_DESC['S2']}\n   {s2_digest(st)}\n"
-           f"— {STRAT_DESC['S8']}\n   {s8_digest(st)}\n"
-           f"— {STRAT_DESC['S46']}\n   {mk_digest(st, 'S46')}\n"
-           f"- {STRAT_DESC['S5']}\n   {s5_digest(st)}\n"
-           f"— {STRAT_DESC['S10']}\n   {s10_digest(st)}")
-    tg_send(msg); mlog("hourly status sent")
+    s1h = dict(st.get("s1_hour", {}))
+    s1_d = s1_digest(st)
+    if not reset: st["s1_hour"] = s1h
+    days = max(1, len([f for f in os.listdir(BME_OUT) if f.startswith('events_') and f.endswith('.gz')]) if os.path.isdir(BME_OUT) else 0)
+    digests = [
+        ("S1", f"{s1_d} | rounds recorded {len(rows_cache)} | {st.get('hypo_line', 'settlement tally pending')} | {gates_line()}"),
+        ("S9", f"{s9_d} | {s9s[:300]}"),
+        ("BME", f"last hour: +{d_gz:.0f} MB gz, {rows_h} book-state rows, reconnects {hour_count(st,'bme_reconnects')} | today's file {gz/2**20:.0f} MB | "
+                f"{st.get('disk_line','disk ?')} | 7-day gate: day {min(days, 7)} of 7" + (f" (complete, {days} days recorded)" if days >= 7 else "")),
+        ("S3", mk_digest(st, 'S3', reset)), ("S2", s2_digest(st, reset)), ("S8", s8_digest(st, reset)),
+        ("S46", mk_digest(st, 'S46', reset)), ("S5", s5_digest(st, reset)), ("S10", s10_digest(st, reset)),
+    ]
+    sections = []
+    for key, dg in digests:
+        full = STRAT_DESC[key]; title, _, desc = full.partition(": ")
+        sections.append(dict(key=key, title=title, desc=desc, full=full, digest=dg))
+    return dict(hour=h, generated=int(now()), services={n: svc(n, 'ActiveState') for n in SERVICES}, sections=sections,
+                disk=dict(pct_free=pct, free_gb=free_gb, total_gb=total_gb))
+
+def status_messages(status):
+    """split on strategy boundaries so that no message is cut by Telegram"""
+    svcs = ", ".join(f"{n} {'✅' if v == 'active' else '❌ ' + v}" for n, v in status["services"].items())
+    blocks = [f"— {x['full']}\n   {x['digest']}" for x in status["sections"]]
+    parts, cur = [], svcs
+    for b in blocks:
+        if len(cur) + len(b) + 1 > TG_CHUNK and cur: parts.append(cur); cur = b[:TG_CHUNK]
+        else: cur = (cur + "\n" + b) if cur else b
+    if cur: parts.append(cur)
+    n = len(parts)
+    return [f"🔷 hourly status {status['hour']}:00 UTC" + (f" ({i}/{n})" if n > 1 else "") + "\n" + p for i, p in enumerate(parts, 1)]
+
+def write_status_json(status):
+    try:
+        os.makedirs(os.path.dirname(STATUS_JSON), exist_ok=True)
+        tmp = STATUS_JSON + ".tmp"
+        with open(tmp, "w") as f: json.dump(status, f)
+        os.replace(tmp, STATUS_JSON); return True
+    except Exception as e:
+        mlog(f"status json not written: {e!r}"); return False
+
+def hourly_status(st):
+    """Status at the top of every hour - bounded, bypasses the breaker. Sent in as many messages
+    as needed (2026-09-27: one message was cut at 4,000 chars and S10 + S5 were never shown),
+    then rendered to a PDF by the measurement stack (detached; a PDF problem cannot block the monitor)."""
+    if not HOURLY_STATUS: return
+    h = utc().strftime("%Y-%m-%d %H")
+    if utc().minute != 0 or st.get("last_hourly") == h: return
+    st["last_hourly"] = h
+    status = build_status(st, reset=True)
+    msgs = status_messages(status)
+    for m in msgs:
+        tg_send(m); time.sleep(1.2)
+    mlog(f"hourly status sent ({len(msgs)} message(s), {sum(len(m) for m in msgs)} chars)")
+    if write_status_json(status) and os.path.exists(PDF_CMD[0]) and os.path.exists(PDF_CMD[1]):
+        try:
+            subprocess.Popen(PDF_CMD, stdout=subprocess.DEVNULL, stderr=open("/home/ubuntupolymarket3/mstack/state/status_pdf.err", "a"),
+                             start_new_session=True)
+            mlog("status pdf requested")
+        except Exception as e:
+            mlog(f"status pdf not started: {e!r}")
 
 def check_gates(st):
     # Promotion milestones / READY removed 2026-09-21 (Part #22): S1 is falsified and hard-blocked,
@@ -1126,8 +1184,16 @@ def check_gates(st):
 def check_services(st):
     for name in SERVICES:
         state_, nres = svc(name, "ActiveState"), svc(name, "NRestarts")
+        # 2026-09-27: alert only when a service is down on TWO consecutive checks (30 s apart).
+        # s2-collect restarts 10 s after every 60-min session; a single look inside that gap sent
+        # "is activating (sub=auto-restart)" three times in 13 h. A real outage lasts longer.
+        dn = st.setdefault("down_n", {})
         if state_ != "active":
-            alert(st, f"down:{name}", f"🚨 {name}.service is {state_ or 'unknown'} (sub={svc(name,'SubState')})")
+            dn[name] = dn.get(name, 0) + 1
+            if dn[name] >= 2:
+                alert(st, f"down:{name}", f"🚨 {name}.service is {state_ or 'unknown'} (sub={svc(name,'SubState')}) on {dn[name]} checks in a row")
+        else:
+            dn[name] = 0
         try: nres = int(nres)
         except Exception: nres = 0
         prev = st["restarts"].get(name)
@@ -1236,5 +1302,19 @@ def main():
             if errs in (3, 20): alert(st, f"monitor_err:{errs}", f"⚠ monitor internal error x{errs}: {e!r}"[:300])
         time.sleep(LOOP_S)
 
+def snapshot(path):
+    """read-only: print/write the current status without sending anything or saving state"""
+    global rows_cache
+    st = load_state()
+    try: rows_cache = rounds()
+    except Exception: rows_cache = []
+    status = build_status(st, reset=False)
+    with open(path, "w") as f: json.dump(status, f)
+    for m in status_messages(status): print(m); print("-" * 60, len(m), "chars")
+
 if __name__ == "__main__":
-    main()
+    import sys as _sys
+    if len(_sys.argv) >= 3 and _sys.argv[1] == "--status-json":
+        snapshot(_sys.argv[2])
+    else:
+        main()
