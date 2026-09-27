@@ -1,0 +1,80 @@
+slot_s_remaining,gap_bucket_bps,page_vs_market,observations,leader_wins,leader_win_rate,avg_leader_ask,avg_underdog_ask,edge_buy_leader,edge_buy_underdog,verdict
+240,0-0.5,page leader = market favourite,3,3,1.0,0.6433,0.3667,0.3406,-0.3829,too few observations
+240,0-0.5,page leader is NOT the market favourite,5,3,0.6,0.396,0.614,0.1873,-0.2306,too few observations
+240,0.5-1,page leader = market favourite,5,5,1.0,0.688,0.322,0.297,-0.3373,too few observations
+240,1-2,page leader = market favourite,6,5,0.8333,0.6917,0.3183,0.1267,-0.1669,too few observations
+240,1-2,page leader is NOT the market favourite,2,2,1.0,0.42,0.595,0.5629,-0.6119,too few observations
+240,2-4,page leader = market favourite,1,1,1.0,0.86,0.15,0.1316,-0.1589,too few observations
+210,0-0.5,page leader = market favourite,2,2,1.0,0.81,0.2,0.1792,-0.2112,too few observations
+210,0-0.5,page leader is NOT the market favourite,4,2,0.5,0.2975,0.7125,0.1879,-0.2268,too few observations
+210,0.5-1,page leader = market favourite,2,2,1.0,0.705,0.305,0.2804,-0.3198,too few observations
+210,0.5-1,page leader is NOT the market favourite,3,2,0.6667,0.4067,0.6,0.2431,-0.2835,too few observations
+210,1-2,page leader = market favourite,5,4,0.8,0.674,0.336,0.1106,-0.1516,too few observations
+210,1-2,page leader is NOT the market favourite,2,1,0.5,0.39,0.62,0.0933,-0.1365,too few observations
+210,2-4,page leader = market favourite,4,4,1.0,0.815,0.195,0.1744,-0.206,too few observations
+210,4-8,page leader = market favourite,1,1,1.0,0.86,0.15,0.1316,-0.1589,too few observations
+180,0-0.5,page leader = market favourite,4,4,1.0,0.775,0.235,0.2128,-0.2476,too few observations
+180,0-0.5,page leader is NOT the market favourite,3,1,0.3333,0.3,0.71,0.0186,-0.0577,too few observations
+180,0.5-1,page leader = market favourite,2,2,1.0,0.81,0.2,0.1792,-0.2112,too few observations
+180,0.5-1,page leader is NOT the market favourite,2,1,0.5,0.415,0.595,0.068,-0.1119,too few observations
+180,1-2,page leader = market favourite,3,3,1.0,0.6967,0.3133,0.2885,-0.3284,too few observations
+180,1-2,page leader is NOT the market favourite,1,0,0.0,0.09,0.92,-0.0957,0.0748,too few observations
+180,2-4,page leader = market favourite,6,5,0.8333,0.77,0.24,0.0509,-0.0861,too few observations
+180,2-4,page leader is NOT the market favourite,1,0,0.0,0.4,0.61,-0.4168,0.3733,too few observations
+180,4-8,page leader = market favourite,3,3,1.0,0.9233,0.0867,0.0717,-0.0922,too few observations
+150,0-0.5,page leader = market favourite,4,3,0.75,0.73,0.28,0.0062,-0.0441,too few observations
+150,0-0.5,page leader is NOT the market favourite,1,0,0.0,0.42,0.59,-0.4371,0.3931,too few observations
+150,0.5-1,page leader = market favourite,2,2,1.0,0.735,0.275,0.2514,-0.289,too few observations
+150,0.5-1,page leader is NOT the market favourite,1,0,0.0,0.21,0.8,-0.2216,0.1888,too few observations
+150,1-2,page leader = market favourite,7,7,1.0,0.7614,0.2486,0.2259,-0.2616,too few observations
+150,1-2,page leader is NOT the market favourite,1,0,0.0,0.28,0.73,-0.2941,0.2562,too few observations
+150,2-4,page leader = market favourite,4,4,1.0,0.7875,0.2225,0.2008,-0.2346,too few observations
+150,4-8,page leader = market favourite,4,4,1.0,0.935,0.075,0.0607,-0.0799,too few observations
+150,8+,page leader = market favourite,1,0,0.0,0.81,0.2,-0.8208,0.7888,too few observations
+120,0-0.5,page leader = market favourite,4,4,1.0,0.83,0.18,0.1601,-0.1903,too few observations
+120,0.5-1,page leader = market favourite,2,1,0.5,0.62,0.39,-0.1365,0.0933,too few observations
+120,0.5-1,page leader is NOT the market favourite,1,0,0.0,0.3,0.71,-0.3147,0.2756,too few observations
+120,1-2,page leader = market favourite,6,6,1.0,0.8233,0.1867,0.1665,-0.1973,too few observations
+120,2-4,page leader = market favourite,7,7,1.0,0.8614,0.1471,0.1302,-0.1559,too few observations
+120,4-8,page leader = market favourite,4,4,1.0,0.845,0.165,0.1458,-0.1746,too few observations
+120,8+,page leader = market favourite,1,0,0.0,0.71,0.3,-0.7244,0.6853,too few observations
+90,0-0.5,page leader = market favourite,2,1,0.5,0.78,0.23,-0.292,0.2576,too few observations
+90,0-0.5,page leader is NOT the market favourite,2,1,0.5,0.44,0.575,0.0428,-0.0921,too few observations
+90,0.5-1,page leader = market favourite,1,1,1.0,0.83,0.18,0.1601,-0.1903,too few observations
+90,1-2,page leader = market favourite,7,7,1.0,0.8543,0.1557,0.137,-0.1649,too few observations
+90,2-4,page leader = market favourite,9,9,1.0,0.9475,0.0567,0.049,-0.0604,too few observations
+90,4-8,page leader = market favourite,6,5,0.8333,0.85,0.09,-0.0256,0.0709,too few observations
+75,0-0.5,page leader = market favourite,3,3,1.0,0.9033,0.1067,0.0906,-0.1133,too few observations
+75,0-0.5,page leader is NOT the market favourite,1,1,1.0,0.5,0.51,0.4825,-0.5275,too few observations
+75,0.5-1,page leader = market favourite,1,1,1.0,0.96,0.05,0.0373,-0.0533,too few observations
+75,1-2,page leader = market favourite,5,5,1.0,0.87,0.144,0.1221,-0.1526,too few observations
+75,2-4,page leader = market favourite,11,10,0.9091,0.8929,0.0782,0.0095,0.0077,too few observations
+75,4-8,page leader = market favourite,5,5,1.0,0.96,0.026,0.0373,-0.0278,too few observations
+75,8+,page leader = market favourite,1,1,1.0,,0.01,,-0.0107,too few observations
+60,0-0.5,page leader is NOT the market favourite,1,1,1.0,0.18,0.83,0.8097,-0.8399,too few observations
+60,0.5-1,page leader = market favourite,4,4,1.0,0.96,0.0875,0.0373,-0.0931,too few observations
+60,1-2,page leader = market favourite,5,5,1.0,0.802,0.208,0.1869,-0.2195,too few observations
+60,2-4,page leader = market favourite,9,8,0.8889,0.89,0.0722,-0.008,0.0342,too few observations
+60,4-8,page leader = market favourite,7,7,1.0,0.98,0.0129,0.0186,-0.0137,too few observations
+60,8+,page leader = market favourite,1,1,1.0,,0.01,,-0.0107,too few observations
+45,0-0.5,page leader = market favourite,1,0,0.0,0.71,0.3,-0.7244,0.6853,too few observations
+45,0.5-1,page leader = market favourite,2,2,1.0,0.925,0.085,0.0701,-0.0904,too few observations
+45,1-2,page leader = market favourite,7,7,1.0,0.9475,0.04,0.049,-0.0427,too few observations
+45,1-2,page leader is NOT the market favourite,1,0,0.0,0.19,0.9,-0.2008,0.0937,too few observations
+45,2-4,page leader = market favourite,8,8,1.0,0.99,0.0125,0.0093,-0.0134,too few observations
+45,4-8,page leader = market favourite,6,6,1.0,,0.0085,,-0.0091,too few observations
+45,8+,page leader = market favourite,2,2,1.0,,0.01,,-0.0107,too few observations
+30,0-0.5,page leader = market favourite,1,1,1.0,0.98,0.03,0.0186,-0.032,too few observations
+30,0-0.5,page leader is NOT the market favourite,1,0,0.0,0.09,0.92,-0.0957,0.0748,too few observations
+30,0.5-1,page leader = market favourite,2,2,1.0,0.99,0.015,0.0093,-0.016,too few observations
+30,1-2,page leader = market favourite,6,6,1.0,0.98,0.0133,0.0186,-0.0143,too few observations
+30,2-4,page leader = market favourite,10,10,1.0,,0.01,,-0.0107,too few observations
+30,4-8,page leader = market favourite,5,5,1.0,,0.0064,,-0.0068,too few observations
+30,8+,page leader = market favourite,2,2,1.0,,0.01,,-0.0107,too few observations
+15,0-0.5,page leader = market favourite,2,2,1.0,0.99,0.015,0.0093,-0.016,too few observations
+15,0.5-1,page leader = market favourite,2,2,1.0,,0.01,,-0.0107,too few observations
+15,1-2,page leader = market favourite,4,4,1.0,,0.01,,-0.0107,too few observations
+15,2-4,page leader = market favourite,9,9,1.0,,0.01,,-0.0107,too few observations
+15,4-8,page leader = market favourite,8,8,1.0,,0.0066,,-0.0071,too few observations
+15,8+,page leader = market favourite,1,1,1.0,,0.01,,-0.0107,too few observations
+15,8+,page leader is NOT the market favourite,1,0,0.0,0.01,,-0.0107,,too few observations

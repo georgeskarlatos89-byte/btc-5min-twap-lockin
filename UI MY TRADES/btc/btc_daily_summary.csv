@@ -1,0 +1,2 @@
+utc_day,rounds_in_day_so_far,rounds_recorded,bets_settled,bets_open,missed,no_liquidity,wins,losses,win_rate,staked_usd,pnl_usd,bankroll_end,ui_rows,api_fallback_rows,ui_vs_official_disagreements
+2026-09-27,229,46,25,1,18,2,16,9,0.64,117.45,-17.05,182.95,20,7,4

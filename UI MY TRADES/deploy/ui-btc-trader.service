@@ -1,0 +1,28 @@
+[Unit]
+Description=UI paper trader - BTC 5m (reads the live Polymarket page; hypothetical bets only, no keys)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntupolymarket3
+Group=ubuntupolymarket3
+WorkingDirectory=/home/ubuntupolymarket3/Trading polymarket UI on vps weather and btc-5-min/code
+ExecStart="/home/ubuntupolymarket3/Trading polymarket UI on vps weather and btc-5-min/.venv/bin/python" -u ui_btc_trader.py
+Restart=always
+RestartSec=5
+# The browser is heavy and this box has 4 cores (2 before 2026-09-27) shared with the whole fleet: it may never
+# take more than this, and it yields to every other service (Nice).
+Nice=5
+CPUQuota=250%
+MemoryHigh=2200M
+MemoryMax=2500M
+# kill the browser children together with the trader
+KillMode=control-group
+TimeoutStopSec=25
+Environment=PYTHONUNBUFFERED=1
+StandardOutput=append:/home/ubuntupolymarket3/Trading polymarket UI on vps weather and btc-5-min/logs/ui-btc-trader.service.log
+StandardError=append:/home/ubuntupolymarket3/Trading polymarket UI on vps weather and btc-5-min/logs/ui-btc-trader.service.log
+
+[Install]
+WantedBy=multi-user.target
