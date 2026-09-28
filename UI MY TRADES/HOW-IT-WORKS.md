@@ -409,6 +409,35 @@ in light and dark mode.
 | E22 | PC port 8787 was already used by another program on this PC (`node server.js`, running since 26 September). My test only worked because it took the IPv6 side of the port | the launcher uses PC port 8899; the other program was not touched |
 | E23 | stopping my test tunnel left its SSH process alive | stopped that one process by its id |
 
+### Part #6 — the dashboard is always on: just open the bookmark (2026-09-28)
+
+The user asked to bookmark the page and have it load without running anything first.
+
+**Now:** the connection to the VPS starts by itself, hidden, every time Windows is logged in to,
+and reconnects by itself. Open `http://localhost:8899` (bookmark it with Ctrl+D) and it loads.
+
+| piece on this PC | where | what it does |
+|---|---|---|
+| `tunnel.ps1` | `C:\Users\Administrator\.ui-dashboard\` | keeps the SSH connection open; waits 5 s, then up to 60 s, between tries while the network is down; one instance only |
+| `run-hidden.vbs` | same folder | starts it with no window |
+| `UI Dashboard Tunnel` shortcut | Windows Startup folder | runs it at logon |
+| `Paper trading dashboard` shortcut | Desktop | opens the page |
+| `Stop dashboard connection.bat` / `Start dashboard connection.bat` | same folder | switch it off / on by hand |
+| `tunnel.log` | same folder | one line per reconnect |
+
+Copies of the scripts are in `deploy/pc-always-on/`.
+
+**Tested:** page loads through the hidden connection (live view 0.1 s old); no window is
+visible; the connection was stopped on purpose and came back by itself in 10 s; starting it a
+second time did not create a duplicate. The other program on PC port 8787 was not touched.
+
+**Limits.** It runs while this Windows user is logged in. After a restart of the PC it starts
+again at logon. If the PC sleeps or the internet drops, the page shows "Cannot reach the VPS"
+until the connection is back, usually within 10 to 60 seconds.
+
+**E24:** Windows refused to create a scheduled task ("Access is denied": this session is not
+elevated). The Startup folder does the same job at logon and needs no special rights.
+
 **What the charts show at a glance.** The bankroll sat between $155 and $200 for ten hours,
 then jumped to about $255 within minutes. One bet made +$79 and two made about +$27 each.
 Those three long shots are the whole profit. Without them the account would be down.
