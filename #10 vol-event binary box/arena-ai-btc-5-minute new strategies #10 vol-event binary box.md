@@ -223,3 +223,88 @@ Folder `S10 data collected 2026-09-26 to 2026-09-28/` (local #10 folder and GitH
 2-hour calibration log, kill-test output, log analysis, both engine versions, snapshot time.
 No fills or pairs CSV exists because no fill or pair ever happened.
 
+---
+
+## Part #3 — Tape check: sellers DID trade at or below 0.45 while quotes rested; the "0 fills" was a measurement bug (2026-09-28, 06:44Z)
+
+### Context
+The user asked to check the open question from Part #2: did any seller actually trade at or
+below 45 cents while a quote was resting? Answered from the public trade tape
+(`data-api.polymarket.com/trades`, taker side) for all 134 quote pairs S10 placed between
+2026-09-26 12:37Z and 2026-09-28 05:39Z. Script, per-window CSV and summary are in the data
+folder.
+
+### Method
+Each quote window was rebuilt from the engine log (placed → first pull / disarm / window end).
+For each window, every public trade in that market inside the window was classified:
+- **Route A** (the engine's own fill rule): a taker SELL of a token at 0.45 or less.
+- **Route B** (complementary match, never checked by the engine): a taker BUY of the OTHER
+  token at 0.55 or more. On Polymarket a buy of Up at 0.55 can be matched against a resting
+  buy of Down at 0.45, so it can fill our bid too.
+
+### Result
+| item | value |
+|---|---|
+| quote windows checked | 134 (35 on 15m, 99 on 5m), 0 errors |
+| placed BEFORE the round opened | 128 of 134 |
+| window length | median 30 s (p25 19 s, p75 45 s) |
+| trades inside all windows | 9,569 |
+| windows with no trade at all | 3 |
+| **Route A: windows with a taker SELL ≤ 0.45** | **19** (36 prints, 560.7 shares) |
+| Route B: windows with a taker BUY of the other token ≥ 0.55 | 102 (2,035 prints, 58,830 shares) |
+| windows with any fillable print | 102 |
+| windows where BOTH of our sides were fillable | 27 (20 %) |
+| one side only | 75 (our Down bid 50, our Up bid 25) |
+
+By series:
+
+| series | windows | none | one side only | both sides |
+|---|---|---|---|---|
+| 15m (the kill-test events) | 35 | 20 | 12 | 3 (9 %) |
+| 5m | 99 | 12 | 63 | 24 (24 %) |
+
+### Why the engine logged 0 fills
+A bug I introduced in Part #1. Fix #2 there creates the next round's state 30 seconds before
+it opens so quotes can rest early. But the tape cursor of a round started at the round's
+START time, which for a pre-created round is in the future. Every trade printed before the
+open was therefore skipped as "old". Since 128 of 134 quote pairs rested before the open and
+were pulled within about half a minute, the fill detector was blind for almost the whole
+experiment. A second, smaller flaw: the phantom guard compared an integer tape second with a
+fractional placement time, dropping prints in the same second as the quote.
+
+**Fixed 06:46Z:** cursor starts at `min(round start, now) - 1`; phantom guard compares whole
+seconds. Constants identical, all earlier tests pass, new test: a pre-open print after the
+quote is recorded as a fill, a print older than the quote is still refused. Backups on the
+VM: `s10_box.py.pre-tapecursor-20260928`, `s10_stats.before-tapecursor-fix-20260928.json`.
+Route B was NOT added to the fill rule: that is a modelling decision (see below).
+
+### What this changes, and what it does not
+1. **The Part #2 number is invalid as evidence.** "45 events, 0 two-leg" measured a blind
+   detector, not the market. The 45 armed events up to 06:46Z must not be used for the kill
+   test. Counting restarts from the fix.
+2. **The honest upper bound is still under the kill line.** Even if every fillable print had
+   filled us (it would not: queue position, size), both legs were reachable in 3 of 35
+   fifteen-minute windows (9 %) and 27 of 134 overall (20 %). The rule needs 30 %.
+3. **The familiar pattern again.** 75 windows were fillable on one side only, and that side
+   is the one the market is moving against (someone buying Up at 0.55+ fills our DOWN bid
+   while Up is rising). That is the adverse selection that killed the paper-maker, EXP-D
+   and gabagool lines: a resting bid gets the losing side.
+4. **Still zero macro releases in the sample.** All of this is weekend and early-Monday
+   volatility arming. The strategy's actual claim is untested.
+5. **Pre-open resting is a side effect worth a decision.** The 30 s pre-arm was written for
+   calendar rounds; in vol mode it also places quotes 30 s before every round, which is where
+   almost all quotes lived. Whether vol-armed rounds should pre-place at all is a strategy
+   question.
+
+### Decisions for the user
+- Kill now (the optimistic bound is below 30 % and the fill pattern is adverse), or run
+  through this week's releases with the detector now working.
+- Whether DRY fills should also count Route B. Without it the simulation under-counts fills;
+  with it the simulation gets more optimistic. Suggested: log Route B as its own counter,
+  never as fills.
+
+### Also fixed today: data folder could not be opened on Windows
+Every file in `S10 data collected 2026-09-26 to 2026-09-28/` has a full path of 279-301
+characters; Explorer, Notepad and Excel stop at 260. A short-path copy now lives at
+`C:\Users\Administrator\polymarket-bot\S10 data 2026-09-28\` (longest path 86 characters)
+with a READ ME FIRST file. Nothing was deleted or moved.

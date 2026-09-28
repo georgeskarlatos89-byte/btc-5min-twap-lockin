@@ -621,8 +621,10 @@ def record_maker_fill(rs, side, ts, px, sz, now, live=False):
     q = rs["quotes"].get(side)
     if not q or q["phase"] != "MAKER_RESTING" or not q.get("placed"):
         return
-    if ts < q.get("place_ts", 0):
+    if ts < int(q.get("place_ts", 0)):
         return                                    # print before the quote existed = phantom (Part-4 class)
+        # (2026-09-28: compare whole seconds - tape stamps are integers, place_ts is a float, so a
+        #  print in the same second as the quote was wrongly dropped)
     if not ok:
         log(f"❌ MAKER FILL REJECTED (gate) {rs['label']} {side} @{px:.2f} mid={mid:.2f} — {'; '.join(reasons)}")
         return
@@ -1018,7 +1020,12 @@ async def tick_loop():
                                     live=False, exited=False, chased=False,
                                     paired_ts=None, chase_oid=None)
                             for s in ("Up", "Down")},
-                    tape_t=start, settled=False, skip_reason="",
+                    # 2026-09-28 (record Part #3): was tape_t=start. For a round created 30 s BEFORE its
+                    # open, `start` is in the future, so every print before the open was skipped as "old".
+                    # 128 of 134 quote pairs rested pre-open -> the fill detector was blind (0 fills logged,
+                    # while the public tape shows fillable prints). The phantom guard still drops prints
+                    # that are older than the quote itself.
+                    tape_t=min(start, int(now)) - 1, settled=False, skip_reason="",
                     pair_arb_done=False, was_armed_event=False))
                 e = now - start
                 if rs["tokens"] is None and e >= -CALENDAR_ARM_LEAD_S:

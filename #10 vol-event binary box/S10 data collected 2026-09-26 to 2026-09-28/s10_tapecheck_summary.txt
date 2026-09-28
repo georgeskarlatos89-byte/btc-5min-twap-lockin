@@ -1,0 +1,51 @@
+S10 tape check - did any trade print that could have filled a resting 0.45 bid while a quote was up?
+generated 2026-09-28 06:44:39Z | source: data-api /trades (taker side), gamma for market ids
+quote windows (one per Up+Down quote pair): 134 | tape fetched for 134 | errors 0
+first window 2026-09-26 12:37:08+00:00 | last window 2026-09-28 05:39:30+00:00
+by series: {'15m': 35, '5m': 99} | placed BEFORE the round opened (pre-arm zone): 128
+window length seconds: median 30 p25 19 p75 45 max 150
+windows with ZERO trades of any kind in them: 3 of 134
+total trades inside all windows: 9569
+
+ROUTE A (engine's rule: taker SELL <= 0.45): windows with at least one such print: 19 | prints 36 | shares 560.7
+ROUTE B (taker BUY of the other token >= 0.55): windows with at least one: 102 | prints 2035 | shares 58829.7
+either route: 102 windows | BOTH of our sides fillable in the same window: 27
+with a +-2 s tolerance on the window edges: route A windows 25 | route B windows 114
+lowest taker SELL price seen inside a window: min 0.27 median 0.48 | windows that had any SELL: 60
+highest taker BUY price seen inside a window: max 0.7399999734 median 0.58 | windows that had any BUY: 131
+
+PRE-OPEN quotes n 128 | zero-trade windows 3 | trades in windows 9195 | route A windows 17 | route B windows 96 | both sides 27 | median length 31 s
+IN-ROUND quotes n 6 | zero-trade windows 0 | trades in windows 374 | route A windows 2 | route B windows 6 | both sides 0 | median length 14 s
+how windows ended: {'PULL MAKERS — BAND_EXIT mid=# #m': 122, '⬜ BOX DISARMED — hold_s expired wi': 5, 'PULL MAKERS — LIQ cascade SELL/lon': 3, 'window end': 2, 'PULL MAKERS — SPOT_MOVE #bps/#s': 2}
+
+windows with a fillable print (first 30):
+  15m 1790425800 09-26 12:37:08 len 22s in-round A:1x 4.0sh Down B:3x 1779.9sh bought Up | our fillable side(s): Down | ended by window end
+  5m 1790426400 09-26 12:39:30 len 30s pre-open A:2x 6.9sh Down B:7x 128.6sh bought Up | our fillable side(s): Down | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  15m 1790426700 09-26 12:44:32 len 63s pre-open A:0x 0sh  B:1x 65.4sh bought Up | our fillable side(s): Down | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  5m 1790426700 09-26 12:44:32 len 63s pre-open A:0x 0sh  B:5x 82.3sh bought Up | our fillable side(s): Down | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  5m 1790427000 09-26 12:49:32 len 50s pre-open A:1x 0.0sh Down B:32x 683.9sh bought Up | our fillable side(s): Down | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  5m 1790427300 09-26 12:54:30 len 150s pre-open A:5x 55.9sh Down B:151x 4172.1sh bought Down/Up | our fillable side(s): Down/Up | ended by window end
+  15m 1790428500 09-26 13:14:31 len 93s pre-open A:0x 0sh  B:21x 492.6sh bought Down/Up | our fillable side(s): Down/Up | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  5m 1790428500 09-26 13:14:31 len 93s pre-open A:3x 12.7sh Down/Up B:203x 8486.8sh bought Down/Up | our fillable side(s): Down/Up | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  5m 1790428800 09-26 13:19:30 len 30s pre-open A:0x 0sh  B:27x 1854.3sh bought Up | our fillable side(s): Down | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  15m 1790429400 09-26 13:30:41 len 45s in-round A:0x 0sh  B:2x 76.7sh bought Up | our fillable side(s): Down | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  5m 1790429400 09-26 13:31:12 len 14s in-round A:4x 41.2sh Up B:57x 2504.2sh bought Down | our fillable side(s): Up | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  5m 1790429700 09-26 13:34:30 len 16s pre-open A:0x 0sh  B:3x 48.1sh bought Up | our fillable side(s): Down | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  5m 1790430000 09-26 13:39:30 len 14s pre-open A:0x 0sh  B:6x 1272.2sh bought Up | our fillable side(s): Down | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  15m 1790430300 09-26 13:44:31 len 29s pre-open A:0x 0sh  B:4x 202.1sh bought Up | our fillable side(s): Down | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  5m 1790430300 09-26 13:44:31 len 29s pre-open A:0x 0sh  B:9x 371.8sh bought Up | our fillable side(s): Down | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  5m 1790430900 09-26 13:54:30 len 7s pre-open A:0x 0sh  B:2x 143.8sh bought Up | our fillable side(s): Down | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  15m 1790431200 09-26 13:59:31 len 37s pre-open A:0x 0sh  B:6x 130.0sh bought Up | our fillable side(s): Down | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  5m 1790431200 09-26 13:59:31 len 37s pre-open A:0x 0sh  B:10x 562.6sh bought Down/Up | our fillable side(s): Down/Up | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  5m 1790431500 09-26 14:04:30 len 5s pre-open A:0x 0sh  B:1x 0.6sh bought Up | our fillable side(s): Down | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  5m 1790432100 09-26 14:14:30 len 32s pre-open A:3x 217.0sh Down B:20x 1977.5sh bought Up | our fillable side(s): Down | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  5m 1790432400 09-26 14:19:32 len 72s pre-open A:0x 0sh  B:13x 2148.9sh bought Down/Up | our fillable side(s): Down/Up | ended by ⬜ BOX DISARMED — hold_s expired wi
+  5m 1790436900 09-26 15:34:30 len 31s pre-open A:0x 0sh  B:23x 800.7sh bought Down | our fillable side(s): Up | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  15m 1790455500 09-26 20:44:32 len 27s pre-open A:0x 0sh  B:1x 19.9sh bought Up | our fillable side(s): Down | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  5m 1790455500 09-26 20:44:32 len 27s pre-open A:0x 0sh  B:16x 1087.6sh bought Up | our fillable side(s): Down | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  5m 1790460600 09-26 22:09:32 len 28s pre-open A:0x 0sh  B:10x 126.8sh bought Down/Up | our fillable side(s): Down/Up | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  5m 1790463600 09-26 22:59:31 len 35s pre-open A:0x 0sh  B:16x 396.4sh bought Up | our fillable side(s): Down | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  5m 1790464200 09-26 23:09:32 len 112s pre-open A:0x 0sh  B:18x 366.4sh bought Up | our fillable side(s): Down | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  5m 1790464500 09-26 23:14:31 len 31s pre-open A:0x 0sh  B:9x 269.6sh bought Up | our fillable side(s): Down | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  5m 1790516400 09-27 13:39:33 len 54s pre-open A:0x 0sh  B:6x 584.4sh bought Down | our fillable side(s): Up | ended by PULL MAKERS — BAND_EXIT mid=# #m
+  15m 1790516700 09-27 13:44:31 len 32s pre-open A:0x 0sh  B:1x 10.8sh bought Down | our fillable side(s): Up | ended by PULL MAKERS — BAND_EXIT mid=# #m
