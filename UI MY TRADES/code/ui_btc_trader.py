@@ -48,7 +48,7 @@ BASE_FRAC, MIN_FRAC, MAX_FRAC = 0.025, 0.01, 0.06
 MIN_SHARES = 5.0                                  # venue minimum order size
 UI_STALE_DRIFT_S = 6.0                            # |UI countdown - real clock| above this = UI is late
 UI_STALE_PRICE_USD = 8.0                          # no countdown readable: UI price vs feed above this = late
-BROWSER_MAX_AGE_S = 6 * 3600
+BROWSER_MAX_AGE_S = 2 * 3600                      # was 6 h: the page grew to 2.2 GB and the memory cap throttled it (2026-09-28)
 RTDS = "wss://ws-live-data.polymarket.com"
 
 STATE_PATH = os.path.join(STATE_DIR, "btc_state.json")

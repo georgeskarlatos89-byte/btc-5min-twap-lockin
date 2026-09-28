@@ -328,3 +328,43 @@ checkpoints were read from the page, the page ran a median 1.1 s behind the cloc
 market's favourite disagreed (14 checkpoints), the page's leader won only 6 times. The page's
 own "past result" disagreed with the official result on 4 of 31 rounds, all of them rounds
 decided by less than 2.5 basis points.
+
+### Part #4 — memory throttling fixed, learning phase finished, first weather results (2026-09-28)
+
+**Memory (E21, v1.0.8).** After 10 hours the BTC trader's browser had grown to 2.2 GB, its soft
+memory limit, and the system was throttling it (16 million throttle events). That produced the
+few late page reads of the night (page behind the clock: median 0.5 s, but 3.1 s at the 95th
+percentile; 49 of 1,276 checkpoints fell back to the feed). Fix: limit raised to 4 GB soft and
+5 GB hard (11 GB were free), and the browser is restarted every 2 hours instead of 6. Memory
+after the restart: 640 MB.
+
+**Restart safety confirmed in production.** The restart happened in the middle of a round that
+already had its bet. Log: "round 1790572500 already has a row from before the restart; not
+betting on it again".
+
+**State at 05:27 UTC:**
+
+| | BTC 5-minute | weather |
+|---|---|---|
+| bets placed | 149 | 40 |
+| settled | 148 | 6 |
+| won / lost | 99 / 49 | 1 / 5 |
+| P&L | +$61.17 | −$13.65 |
+| bankroll | $261.14 | $186.35 |
+| open | 1 | 34 |
+| rounds recorded | 170, none without a row | |
+| no bet possible / missed while the VM was off | 3 / 18 | |
+
+**Read the BTC profit with care.** Bets on the market's favourite won 83 of 98 and made $10.07.
+Bets on the other side won only 14 of 48 and made $48.42, because a win bought at 7 to 30 cents
+pays many times the stake. A handful of long shots carry the result. That is luck-heavy.
+
+**Learning phase finished at 05:35 UTC** after 150 settled rounds. First pattern-based bet:
+$15.41 on Down at 150 s left, because the cell "150 s left, gap 2 to 4 bps, page leader = market
+favourite" showed the leader winning 29 of 31 times against an average cost of 84 cents. The
+stake is the 6 % maximum. 31 rounds is a thin basis for the maximum stake: watch whether that
+cell keeps its record as it grows.
+
+**Weather, first settlements (27 September events):** Miami's high fell in 88-89°F and New
+York's in 64-65°F. Of 6 random bets, 1 won (No on New York 66-67°F at 68 cents) and 5 lost.
+Six bets say nothing yet.

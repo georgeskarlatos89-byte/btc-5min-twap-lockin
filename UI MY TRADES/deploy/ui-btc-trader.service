@@ -15,8 +15,8 @@ RestartSec=5
 # take more than this, and it yields to every other service (Nice).
 Nice=5
 CPUQuota=250%
-MemoryHigh=2200M
-MemoryMax=2500M
+MemoryHigh=4000M
+MemoryMax=5000M
 # kill the browser children together with the trader
 KillMode=control-group
 TimeoutStopSec=25

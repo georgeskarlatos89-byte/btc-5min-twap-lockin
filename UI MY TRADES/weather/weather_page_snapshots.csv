@@ -197,3 +197,245 @@ visit_utc,event_slug,city,event_date,bracket_label,ui_yes_cents,ui_no_cents,ui_p
 2026-09-27T19:08:11Z,highest-temperature-in-seoul-on-september-28-2026,Seoul,2026-09-28,25°C,0.08,0.93,8%,"$4,074 Vol.",ui
 2026-09-27T19:08:11Z,highest-temperature-in-seoul-on-september-28-2026,Seoul,2026-09-28,26°C,0.02,0.99,2%,"$1,458 Vol.",ui
 2026-09-27T19:08:11Z,highest-temperature-in-seoul-on-september-28-2026,Seoul,2026-09-28,27°C or higher,0.01,0.997,1%,"$1,163 Vol.",ui
+2026-09-27T19:43:14Z,highest-temperature-in-hong-kong-on-september-28-2026,Hong Kong,2026-09-28,26°C or below,0.001,,<1%,$73 Vol.,ui
+2026-09-27T19:43:14Z,highest-temperature-in-hong-kong-on-september-28-2026,Hong Kong,2026-09-28,27°C,0.001,,<1%,$100 Vol.,ui
+2026-09-27T19:43:14Z,highest-temperature-in-hong-kong-on-september-28-2026,Hong Kong,2026-09-28,28°C,0.001,,<1%,$388 Vol.,ui
+2026-09-27T19:43:14Z,highest-temperature-in-hong-kong-on-september-28-2026,Hong Kong,2026-09-28,29°C,0.009,0.998,1%,$571 Vol.,ui
+2026-09-27T19:43:14Z,highest-temperature-in-hong-kong-on-september-28-2026,Hong Kong,2026-09-28,30°C,0.009,0.994,1%,"$1,934 Vol.",ui
+2026-09-27T19:43:14Z,highest-temperature-in-hong-kong-on-september-28-2026,Hong Kong,2026-09-28,31°C,0.04,0.98,3%,"$4,901 Vol.",ui
+2026-09-27T19:43:14Z,highest-temperature-in-hong-kong-on-september-28-2026,Hong Kong,2026-09-28,32°C,0.47,0.56,45%,"$6,013 Vol.",ui
+2026-09-27T19:43:14Z,highest-temperature-in-hong-kong-on-september-28-2026,Hong Kong,2026-09-28,33°C,0.5,0.52,49%,"$4,616 Vol.",ui
+2026-09-27T19:43:14Z,highest-temperature-in-hong-kong-on-september-28-2026,Hong Kong,2026-09-28,34°C,0.04,0.99,3%,"$2,749 Vol.",ui
+2026-09-27T19:43:14Z,highest-temperature-in-hong-kong-on-september-28-2026,Hong Kong,2026-09-28,35°C,0.009,0.998,1%,$218 Vol.,ui
+2026-09-27T19:43:14Z,highest-temperature-in-hong-kong-on-september-28-2026,Hong Kong,2026-09-28,36°C or higher,0.002,,<1%,$488 Vol.,ui
+2026-09-27T19:52:25Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,18°C or below,0.001,,<1%,"$1,230 Vol.",ui
+2026-09-27T19:52:25Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,19°C,0.001,,<1%,"$1,335 Vol.",ui
+2026-09-27T19:52:25Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,20°C,0.001,,<1%,"$1,172 Vol.",ui
+2026-09-27T19:52:25Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,21°C,0.001,,<1%,$924 Vol.,ui
+2026-09-27T19:52:25Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,22°C,0.001,,<1%,"$1,104 Vol.",ui
+2026-09-27T19:52:25Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,23°C,0.04,0.98,3%,"$1,789 Vol.",ui
+2026-09-27T19:52:25Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,24°C,0.18,0.83,18%,"$1,627 Vol.",ui
+2026-09-27T19:52:25Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,25°C,0.44,0.59,43%,"$1,471 Vol.",ui
+2026-09-27T19:52:25Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,26°C,0.31,0.72,30%,"$1,146 Vol.",ui
+2026-09-27T19:52:25Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,27°C,0.07,0.96,6%,"$4,921 Vol.",ui
+2026-09-27T19:52:25Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,28°C or higher,0.009,0.996,1%,$708 Vol.,ui
+2026-09-27T20:43:45Z,highest-temperature-in-shanghai-on-september-28-2026,Shanghai,2026-09-28,23°C or below,0.001,,<1%,"$1,304 Vol.",ui
+2026-09-27T20:43:45Z,highest-temperature-in-shanghai-on-september-28-2026,Shanghai,2026-09-28,24°C,0.001,,<1%,"$3,863 Vol.",ui
+2026-09-27T20:43:45Z,highest-temperature-in-shanghai-on-september-28-2026,Shanghai,2026-09-28,25°C,0.001,,<1%,"$5,497 Vol.",ui
+2026-09-27T20:43:45Z,highest-temperature-in-shanghai-on-september-28-2026,Shanghai,2026-09-28,26°C,0.35,0.68,34%,"$3,604 Vol.",ui
+2026-09-27T20:43:45Z,highest-temperature-in-shanghai-on-september-28-2026,Shanghai,2026-09-28,27°C,0.55,0.47,54%,"$4,173 Vol.",ui
+2026-09-27T20:43:45Z,highest-temperature-in-shanghai-on-september-28-2026,Shanghai,2026-09-28,28°C,0.15,0.86,15%,"$2,245 Vol.",ui
+2026-09-27T20:43:45Z,highest-temperature-in-shanghai-on-september-28-2026,Shanghai,2026-09-28,29°C,0.03,0.99,2%,"$1,441 Vol.",ui
+2026-09-27T20:43:45Z,highest-temperature-in-shanghai-on-september-28-2026,Shanghai,2026-09-28,30°C,0.003,0.999,<1%,"$1,500 Vol.",ui
+2026-09-27T20:43:45Z,highest-temperature-in-shanghai-on-september-28-2026,Shanghai,2026-09-28,31°C,0.001,,<1%,$417 Vol.,ui
+2026-09-27T20:43:45Z,highest-temperature-in-shanghai-on-september-28-2026,Shanghai,2026-09-28,32°C,0.001,,<1%,$224 Vol.,ui
+2026-09-27T20:43:45Z,highest-temperature-in-shanghai-on-september-28-2026,Shanghai,2026-09-28,33°C or higher,0.001,,<1%,$20 Vol.,ui
+2026-09-27T20:48:56Z,highest-temperature-in-hong-kong-on-september-28-2026,Hong Kong,2026-09-28,26°C or below,0.001,,<1%,$73 Vol.,ui
+2026-09-27T20:48:56Z,highest-temperature-in-hong-kong-on-september-28-2026,Hong Kong,2026-09-28,27°C,0.001,,<1%,$100 Vol.,ui
+2026-09-27T20:48:56Z,highest-temperature-in-hong-kong-on-september-28-2026,Hong Kong,2026-09-28,28°C,0.001,,<1%,$388 Vol.,ui
+2026-09-27T20:48:56Z,highest-temperature-in-hong-kong-on-september-28-2026,Hong Kong,2026-09-28,29°C,0.009,0.999,1%,$614 Vol.,ui
+2026-09-27T20:48:56Z,highest-temperature-in-hong-kong-on-september-28-2026,Hong Kong,2026-09-28,30°C,0.009,0.994,1%,"$1,934 Vol.",ui
+2026-09-27T20:48:56Z,highest-temperature-in-hong-kong-on-september-28-2026,Hong Kong,2026-09-28,31°C,0.04,0.98,3%,"$4,901 Vol.",ui
+2026-09-27T20:48:56Z,highest-temperature-in-hong-kong-on-september-28-2026,Hong Kong,2026-09-28,32°C,0.47,0.55,46%,"$6,038 Vol.",ui
+2026-09-27T20:48:56Z,highest-temperature-in-hong-kong-on-september-28-2026,Hong Kong,2026-09-28,33°C,0.48,0.56,46%,"$4,658 Vol.",ui
+2026-09-27T20:48:56Z,highest-temperature-in-hong-kong-on-september-28-2026,Hong Kong,2026-09-28,34°C,0.04,0.98,3%,"$2,749 Vol.",ui
+2026-09-27T20:48:56Z,highest-temperature-in-hong-kong-on-september-28-2026,Hong Kong,2026-09-28,35°C,0.009,0.997,1%,$218 Vol.,ui
+2026-09-27T20:48:56Z,highest-temperature-in-hong-kong-on-september-28-2026,Hong Kong,2026-09-28,36°C or higher,0.002,,<1%,$488 Vol.,ui
+2026-09-27T20:57:07Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,59°F or below,0.02,0.99,2%,"$1,016 Vol.",ui
+2026-09-27T20:57:07Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,60-61°F,0.13,0.9,12%,"$1,945 Vol.",ui
+2026-09-27T20:57:07Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,62-63°F,0.52,0.49,52%,"$4,088 Vol.",ui
+2026-09-27T20:57:07Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,64-65°F,0.34,0.68,33%,"$2,013 Vol.",ui
+2026-09-27T20:57:07Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,66-67°F,0.06,0.96,5%,"$1,365 Vol.",ui
+2026-09-27T20:57:07Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,68-69°F,0.02,0.99,2%,$833 Vol.,ui
+2026-09-27T20:57:07Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,70-71°F,0.002,,<1%,$708 Vol.,ui
+2026-09-27T20:57:07Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,72-73°F,0.001,,<1%,$114 Vol.,ui
+2026-09-27T20:57:07Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,74-75°F,0.002,0.999,<1%,$796 Vol.,ui
+2026-09-27T20:57:07Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,76-77°F,0.001,,<1%,"$1,519 Vol.",ui
+2026-09-27T20:57:07Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,78°F or higher,0.001,,<1%,$850 Vol.,ui
+2026-09-27T21:17:20Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,18°C or below,0.004,,<1%,$260 Vol.,ui
+2026-09-27T21:17:20Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,19°C,0.001,,<1%,$100 Vol.,ui
+2026-09-27T21:17:20Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,20°C,0.001,,<1%,$100 Vol.,ui
+2026-09-27T21:17:20Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,21°C,0.02,,2%,$0 Vol.,ui
+2026-09-27T21:17:20Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,22°C,0.02,,2%,$176 Vol.,ui
+2026-09-27T21:17:20Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,23°C,0.1,0.93,9%,$158 Vol.,ui
+2026-09-27T21:17:20Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,24°C,0.27,0.76,26%,$321 Vol.,ui
+2026-09-27T21:17:20Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,25°C,0.37,0.64,37%,"$1,001 Vol.",ui
+2026-09-27T21:17:20Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,26°C,0.27,0.79,24%,"$1,308 Vol.",ui
+2026-09-27T21:17:20Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,27°C,0.04,0.97,4%,$155 Vol.,ui
+2026-09-27T21:17:20Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,28°C or higher,0.02,,2%,$28 Vol.,ui
+2026-09-27T22:35:49Z,highest-temperature-in-tokyo-on-september-29-2026,Tokyo,2026-09-29,17°C or below,0.004,0.999,<1%,$172 Vol.,ui
+2026-09-27T22:35:49Z,highest-temperature-in-tokyo-on-september-29-2026,Tokyo,2026-09-29,18°C,0.004,0.999,<1%,$317 Vol.,ui
+2026-09-27T22:35:49Z,highest-temperature-in-tokyo-on-september-29-2026,Tokyo,2026-09-29,19°C,0.01,0.999,1%,$57 Vol.,ui
+2026-09-27T22:35:49Z,highest-temperature-in-tokyo-on-september-29-2026,Tokyo,2026-09-29,20°C,0.01,0.997,1%,$100 Vol.,ui
+2026-09-27T22:35:49Z,highest-temperature-in-tokyo-on-september-29-2026,Tokyo,2026-09-29,21°C,0.06,0.97,5%,$507 Vol.,ui
+2026-09-27T22:35:49Z,highest-temperature-in-tokyo-on-september-29-2026,Tokyo,2026-09-29,22°C,0.17,0.87,15%,$780 Vol.,ui
+2026-09-27T22:35:49Z,highest-temperature-in-tokyo-on-september-29-2026,Tokyo,2026-09-29,23°C,0.36,0.66,35%,$950 Vol.,ui
+2026-09-27T22:35:49Z,highest-temperature-in-tokyo-on-september-29-2026,Tokyo,2026-09-29,24°C,0.32,0.69,32%,"$1,403 Vol.",ui
+2026-09-27T22:35:49Z,highest-temperature-in-tokyo-on-september-29-2026,Tokyo,2026-09-29,25°C,0.13,0.91,11%,"$1,563 Vol.",ui
+2026-09-27T22:35:49Z,highest-temperature-in-tokyo-on-september-29-2026,Tokyo,2026-09-29,26°C,0.02,0.99,2%,$512 Vol.,ui
+2026-09-27T22:35:49Z,highest-temperature-in-tokyo-on-september-29-2026,Tokyo,2026-09-29,27°C or higher,0.02,0.99,2%,$322 Vol.,ui
+2026-09-27T22:38:58Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,75°F or below,0.004,,<1%,$224 Vol.,ui
+2026-09-27T22:38:58Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,76-77°F,0.001,,<1%,$110 Vol.,ui
+2026-09-27T22:38:58Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,78-79°F,0.001,,<1%,$105 Vol.,ui
+2026-09-27T22:38:58Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,80-81°F,0.001,,<1%,$145 Vol.,ui
+2026-09-27T22:38:58Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,82-83°F,0.001,,<1%,$518 Vol.,ui
+2026-09-27T22:38:58Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,84-85°F,0.04,0.98,3%,$959 Vol.,ui
+2026-09-27T22:38:58Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,86-87°F,0.16,0.88,14%,"$3,344 Vol.",ui
+2026-09-27T22:38:58Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,88-89°F,0.53,0.5,52%,"$2,792 Vol.",ui
+2026-09-27T22:38:58Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,90-91°F,0.28,0.73,28%,"$3,276 Vol.",ui
+2026-09-27T22:38:58Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,92-93°F,0.03,0.98,3%,$700 Vol.,ui
+2026-09-27T22:38:58Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,94°F or higher,0.004,0.998,<1%,$462 Vol.,ui
+2026-09-27T23:11:15Z,highest-temperature-in-seoul-on-september-29-2026,Seoul,2026-09-29,18°C or below,0.001,,<1%,"$1,151 Vol.",ui
+2026-09-27T23:11:15Z,highest-temperature-in-seoul-on-september-29-2026,Seoul,2026-09-29,19°C,0.001,,<1%,$100 Vol.,ui
+2026-09-27T23:11:15Z,highest-temperature-in-seoul-on-september-29-2026,Seoul,2026-09-29,20°C,0.002,0.999,<1%,$269 Vol.,ui
+2026-09-27T23:11:15Z,highest-temperature-in-seoul-on-september-29-2026,Seoul,2026-09-29,21°C,0.02,,2%,$0 Vol.,ui
+2026-09-27T23:11:15Z,highest-temperature-in-seoul-on-september-29-2026,Seoul,2026-09-29,22°C,0.04,0.99,3%,$689 Vol.,ui
+2026-09-27T23:11:15Z,highest-temperature-in-seoul-on-september-29-2026,Seoul,2026-09-29,23°C,0.3,0.73,29%,"$3,292 Vol.",ui
+2026-09-27T23:11:15Z,highest-temperature-in-seoul-on-september-29-2026,Seoul,2026-09-29,24°C,0.5,0.51,50%,"$1,212 Vol.",ui
+2026-09-27T23:11:15Z,highest-temperature-in-seoul-on-september-29-2026,Seoul,2026-09-29,25°C,0.2,0.83,19%,"$1,181 Vol.",ui
+2026-09-27T23:11:15Z,highest-temperature-in-seoul-on-september-29-2026,Seoul,2026-09-29,26°C,0.03,0.99,2%,$592 Vol.,ui
+2026-09-27T23:11:15Z,highest-temperature-in-seoul-on-september-29-2026,Seoul,2026-09-29,27°C,0.007,0.998,<1%,$613 Vol.,ui
+2026-09-27T23:11:15Z,highest-temperature-in-seoul-on-september-29-2026,Seoul,2026-09-29,28°C or higher,0.007,,1%,$674 Vol.,ui
+2026-09-27T23:32:28Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,18°C or below,0.004,,<1%,$260 Vol.,ui
+2026-09-27T23:32:28Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,19°C,0.001,,<1%,$100 Vol.,ui
+2026-09-27T23:32:28Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,20°C,0.001,,<1%,$100 Vol.,ui
+2026-09-27T23:32:28Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,21°C,0.02,,2%,$65 Vol.,ui
+2026-09-27T23:32:28Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,22°C,0.02,0.99,2%,$210 Vol.,ui
+2026-09-27T23:32:28Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,23°C,0.14,0.89,13%,$480 Vol.,ui
+2026-09-27T23:32:28Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,24°C,0.34,0.69,33%,$639 Vol.,ui
+2026-09-27T23:32:28Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,25°C,0.36,0.66,35%,"$1,167 Vol.",ui
+2026-09-27T23:32:28Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,26°C,0.17,0.87,15%,"$1,984 Vol.",ui
+2026-09-27T23:32:28Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,27°C,0.04,0.98,3%,$168 Vol.,ui
+2026-09-27T23:32:28Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,28°C or higher,0.02,,2%,$28 Vol.,ui
+2026-09-27T23:45:41Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,75°F or below,0.001,,<1%,$224 Vol.,ui
+2026-09-27T23:45:41Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,76-77°F,0.001,,<1%,$110 Vol.,ui
+2026-09-27T23:45:41Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,78-79°F,0.001,,<1%,$105 Vol.,ui
+2026-09-27T23:45:41Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,80-81°F,0.001,,<1%,$145 Vol.,ui
+2026-09-27T23:45:41Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,82-83°F,0.001,,<1%,$518 Vol.,ui
+2026-09-27T23:45:41Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,84-85°F,0.04,0.98,3%,$964 Vol.,ui
+2026-09-27T23:45:41Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,86-87°F,0.14,0.87,14%,"$3,374 Vol.",ui
+2026-09-27T23:45:41Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,88-89°F,0.54,0.47,54%,"$3,009 Vol.",ui
+2026-09-27T23:45:41Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,90-91°F,0.31,0.71,30%,"$3,353 Vol.",ui
+2026-09-27T23:45:41Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,92-93°F,0.04,0.97,4%,$980 Vol.,ui
+2026-09-27T23:45:41Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,94°F or higher,0.01,0.996,1%,"$1,507 Vol.",ui
+2026-09-27T23:46:50Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,18°C or below,0.001,,<1%,"$1,230 Vol.",ui
+2026-09-27T23:46:50Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,19°C,0.001,,<1%,"$1,335 Vol.",ui
+2026-09-27T23:46:50Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,20°C,0.001,,<1%,"$1,172 Vol.",ui
+2026-09-27T23:46:50Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,21°C,0.001,,<1%,$934 Vol.,ui
+2026-09-27T23:46:50Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,22°C,0.001,,<1%,"$1,104 Vol.",ui
+2026-09-27T23:46:50Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,23°C,0.001,,<1%,"$3,609 Vol.",ui
+2026-09-27T23:46:50Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,24°C,0.38,0.67,36%,"$2,627 Vol.",ui
+2026-09-27T23:46:50Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,25°C,0.41,0.62,40%,"$1,678 Vol.",ui
+2026-09-27T23:46:50Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,26°C,0.23,0.84,20%,"$1,740 Vol.",ui
+2026-09-27T23:46:50Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,27°C,0.06,0.96,5%,"$6,136 Vol.",ui
+2026-09-27T23:46:50Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,28°C or higher,0.009,0.995,1%,$874 Vol.,ui
+2026-09-28T00:37:13Z,highest-temperature-in-shanghai-on-september-28-2026,Shanghai,2026-09-28,23°C or below,0.001,,<1%,"$1,304 Vol.",ui
+2026-09-28T00:37:13Z,highest-temperature-in-shanghai-on-september-28-2026,Shanghai,2026-09-28,24°C,0.001,,<1%,"$3,863 Vol.",ui
+2026-09-28T00:37:13Z,highest-temperature-in-shanghai-on-september-28-2026,Shanghai,2026-09-28,25°C,0.001,,<1%,"$5,798 Vol.",ui
+2026-09-28T00:37:13Z,highest-temperature-in-shanghai-on-september-28-2026,Shanghai,2026-09-28,26°C,0.66,0.44,61%,"$5,703 Vol.",ui
+2026-09-28T00:37:13Z,highest-temperature-in-shanghai-on-september-28-2026,Shanghai,2026-09-28,27°C,0.44,0.68,38%,"$5,737 Vol.",ui
+2026-09-28T00:37:13Z,highest-temperature-in-shanghai-on-september-28-2026,Shanghai,2026-09-28,28°C,0.06,0.97,5%,"$3,154 Vol.",ui
+2026-09-28T00:37:13Z,highest-temperature-in-shanghai-on-september-28-2026,Shanghai,2026-09-28,29°C,0.01,,1%,"$1,895 Vol.",ui
+2026-09-28T00:37:13Z,highest-temperature-in-shanghai-on-september-28-2026,Shanghai,2026-09-28,30°C,0.001,,<1%,"$1,956 Vol.",ui
+2026-09-28T00:37:13Z,highest-temperature-in-shanghai-on-september-28-2026,Shanghai,2026-09-28,31°C,0.001,,<1%,$417 Vol.,ui
+2026-09-28T00:37:13Z,highest-temperature-in-shanghai-on-september-28-2026,Shanghai,2026-09-28,32°C,0.001,,<1%,$224 Vol.,ui
+2026-09-28T00:37:13Z,highest-temperature-in-shanghai-on-september-28-2026,Shanghai,2026-09-28,33°C or higher,0.001,,<1%,$20 Vol.,ui
+2026-09-28T00:47:26Z,highest-temperature-in-seoul-on-september-28-2026,Seoul,2026-09-28,17°C or below,0.001,,<1%,$609 Vol.,ui
+2026-09-28T00:47:26Z,highest-temperature-in-seoul-on-september-28-2026,Seoul,2026-09-28,18°C,0.001,,<1%,$420 Vol.,ui
+2026-09-28T00:47:26Z,highest-temperature-in-seoul-on-september-28-2026,Seoul,2026-09-28,19°C,0.001,,<1%,$931 Vol.,ui
+2026-09-28T00:47:26Z,highest-temperature-in-seoul-on-september-28-2026,Seoul,2026-09-28,20°C,0.001,,<1%,$411 Vol.,ui
+2026-09-28T00:47:26Z,highest-temperature-in-seoul-on-september-28-2026,Seoul,2026-09-28,21°C,0.001,,<1%,"$1,827 Vol.",ui
+2026-09-28T00:47:26Z,highest-temperature-in-seoul-on-september-28-2026,Seoul,2026-09-28,22°C,0.04,0.99,3%,"$2,630 Vol.",ui
+2026-09-28T00:47:26Z,highest-temperature-in-seoul-on-september-28-2026,Seoul,2026-09-28,23°C,0.42,0.59,42%,"$6,024 Vol.",ui
+2026-09-28T00:47:26Z,highest-temperature-in-seoul-on-september-28-2026,Seoul,2026-09-28,24°C,0.48,0.57,45%,"$3,774 Vol.",ui
+2026-09-28T00:47:26Z,highest-temperature-in-seoul-on-september-28-2026,Seoul,2026-09-28,25°C,0.13,0.92,11%,"$5,000 Vol.",ui
+2026-09-28T00:47:26Z,highest-temperature-in-seoul-on-september-28-2026,Seoul,2026-09-28,26°C,0.04,0.98,3%,"$2,355 Vol.",ui
+2026-09-28T00:47:26Z,highest-temperature-in-seoul-on-september-28-2026,Seoul,2026-09-28,27°C or higher,0.009,0.998,1%,"$2,369 Vol.",ui
+2026-09-28T01:07:43Z,highest-temperature-in-hong-kong-on-september-29-2026,Hong Kong,2026-09-29,26°C or below,0.01,0.999,1%,$5 Vol.,ui
+2026-09-28T01:07:43Z,highest-temperature-in-hong-kong-on-september-29-2026,Hong Kong,2026-09-29,27°C,0.001,,<1%,$100 Vol.,ui
+2026-09-28T01:07:43Z,highest-temperature-in-hong-kong-on-september-29-2026,Hong Kong,2026-09-29,28°C,0.001,,<1%,$100 Vol.,ui
+2026-09-28T01:07:43Z,highest-temperature-in-hong-kong-on-september-29-2026,Hong Kong,2026-09-29,29°C,0.01,0.999,1%,$147 Vol.,ui
+2026-09-28T01:07:43Z,highest-temperature-in-hong-kong-on-september-29-2026,Hong Kong,2026-09-29,30°C,0.009,0.999,1%,$7 Vol.,ui
+2026-09-28T01:07:43Z,highest-temperature-in-hong-kong-on-september-29-2026,Hong Kong,2026-09-29,31°C,0.07,0.97,5%,$5 Vol.,ui
+2026-09-28T01:07:43Z,highest-temperature-in-hong-kong-on-september-29-2026,Hong Kong,2026-09-29,32°C,0.37,0.66,36%,$416 Vol.,ui
+2026-09-28T01:07:43Z,highest-temperature-in-hong-kong-on-september-29-2026,Hong Kong,2026-09-29,33°C,0.46,0.56,45%,"$1,084 Vol.",ui
+2026-09-28T01:07:43Z,highest-temperature-in-hong-kong-on-september-29-2026,Hong Kong,2026-09-29,34°C,0.15,0.87,14%,$42 Vol.,ui
+2026-09-28T01:07:43Z,highest-temperature-in-hong-kong-on-september-29-2026,Hong Kong,2026-09-29,35°C,0.009,0.997,1%,$61 Vol.,ui
+2026-09-28T01:07:43Z,highest-temperature-in-hong-kong-on-september-29-2026,Hong Kong,2026-09-29,36°C or higher,0.01,0.998,1%,$80 Vol.,ui
+2026-09-28T01:49:04Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,18°C or below,0.001,,<1%,$290 Vol.,ui
+2026-09-28T01:49:04Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,19°C,0.001,,<1%,$100 Vol.,ui
+2026-09-28T01:49:04Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,20°C,0.001,,<1%,$100 Vol.,ui
+2026-09-28T01:49:04Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,21°C,0.01,0.998,1%,$75 Vol.,ui
+2026-09-28T01:49:04Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,22°C,0.03,0.98,3%,$256 Vol.,ui
+2026-09-28T01:49:04Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,23°C,0.12,0.91,11%,$658 Vol.,ui
+2026-09-28T01:49:04Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,24°C,0.25,0.78,24%,"$2,339 Vol.",ui
+2026-09-28T01:49:04Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,25°C,0.38,0.63,38%,"$1,931 Vol.",ui
+2026-09-28T01:49:04Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,26°C,0.21,0.81,20%,"$2,316 Vol.",ui
+2026-09-28T01:49:04Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,27°C,0.04,0.97,4%,$493 Vol.,ui
+2026-09-28T01:49:04Z,highest-temperature-in-london-on-september-29-2026,London,2026-09-29,28°C or higher,0.006,0.996,1%,$83 Vol.,ui
+2026-09-28T01:49:11Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,59°F or below,0.04,0.99,3%,"$2,050 Vol.",ui
+2026-09-28T01:49:11Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,60-61°F,0.18,0.83,18%,"$2,639 Vol.",ui
+2026-09-28T01:49:11Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,62-63°F,0.43,0.59,42%,"$4,618 Vol.",ui
+2026-09-28T01:49:11Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,64-65°F,0.29,0.72,29%,"$2,917 Vol.",ui
+2026-09-28T01:49:11Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,66-67°F,0.06,0.95,6%,"$1,600 Vol.",ui
+2026-09-28T01:49:11Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,68-69°F,0.02,0.99,2%,$995 Vol.,ui
+2026-09-28T01:49:11Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,70-71°F,0.001,,<1%,$708 Vol.,ui
+2026-09-28T01:49:11Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,72-73°F,0.001,,<1%,$114 Vol.,ui
+2026-09-28T01:49:11Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,74-75°F,0.002,,<1%,"$1,527 Vol.",ui
+2026-09-28T01:49:11Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,76-77°F,0.001,,<1%,"$1,519 Vol.",ui
+2026-09-28T01:49:11Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,78°F or higher,0.001,,<1%,$850 Vol.,ui
+2026-09-28T02:04:26Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,59°F or below,0.04,0.99,3%,"$2,050 Vol.",ui
+2026-09-28T02:04:26Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,60-61°F,0.18,0.83,18%,"$2,639 Vol.",ui
+2026-09-28T02:04:26Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,62-63°F,0.44,0.58,43%,"$4,631 Vol.",ui
+2026-09-28T02:04:26Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,64-65°F,0.29,0.72,29%,"$2,931 Vol.",ui
+2026-09-28T02:04:26Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,66-67°F,0.06,0.95,6%,"$1,600 Vol.",ui
+2026-09-28T02:04:26Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,68-69°F,0.02,0.99,2%,$995 Vol.,ui
+2026-09-28T02:04:26Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,70-71°F,0.001,,<1%,$708 Vol.,ui
+2026-09-28T02:04:26Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,72-73°F,0.001,,<1%,$114 Vol.,ui
+2026-09-28T02:04:26Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,74-75°F,0.002,,<1%,"$1,527 Vol.",ui
+2026-09-28T02:04:26Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,76-77°F,0.001,,<1%,"$1,519 Vol.",ui
+2026-09-28T02:04:26Z,highest-temperature-in-nyc-on-september-28-2026,NYC,2026-09-28,78°F or higher,0.001,,<1%,$850 Vol.,ui
+2026-09-28T02:57:50Z,highest-temperature-in-shanghai-on-september-29-2026,Shanghai,2026-09-29,20°C or below,0.001,,<1%,$180 Vol.,ui
+2026-09-28T02:57:50Z,highest-temperature-in-shanghai-on-september-29-2026,Shanghai,2026-09-29,21°C,0.001,,<1%,$95 Vol.,ui
+2026-09-28T02:57:50Z,highest-temperature-in-shanghai-on-september-29-2026,Shanghai,2026-09-29,22°C,0.002,0.999,<1%,$513 Vol.,ui
+2026-09-28T02:57:50Z,highest-temperature-in-shanghai-on-september-29-2026,Shanghai,2026-09-29,23°C,0.01,0.994,1%,"$1,121 Vol.",ui
+2026-09-28T02:57:50Z,highest-temperature-in-shanghai-on-september-29-2026,Shanghai,2026-09-29,24°C,0.18,0.85,16%,$894 Vol.,ui
+2026-09-28T02:57:50Z,highest-temperature-in-shanghai-on-september-29-2026,Shanghai,2026-09-29,25°C,0.52,0.49,52%,"$1,466 Vol.",ui
+2026-09-28T02:57:50Z,highest-temperature-in-shanghai-on-september-29-2026,Shanghai,2026-09-29,26°C,0.25,0.76,25%,"$1,095 Vol.",ui
+2026-09-28T02:57:50Z,highest-temperature-in-shanghai-on-september-29-2026,Shanghai,2026-09-29,27°C,0.06,0.96,5%,$595 Vol.,ui
+2026-09-28T02:57:50Z,highest-temperature-in-shanghai-on-september-29-2026,Shanghai,2026-09-29,28°C,0.01,0.996,1%,$541 Vol.,ui
+2026-09-28T02:57:50Z,highest-temperature-in-shanghai-on-september-29-2026,Shanghai,2026-09-29,29°C,0.009,0.999,1%,$53 Vol.,ui
+2026-09-28T02:57:50Z,highest-temperature-in-shanghai-on-september-29-2026,Shanghai,2026-09-29,30°C or higher,0.001,,<1%,$100 Vol.,ui
+2026-09-28T04:15:20Z,highest-temperature-in-shanghai-on-september-29-2026,Shanghai,2026-09-29,20°C or below,0.001,,<1%,$180 Vol.,ui
+2026-09-28T04:15:20Z,highest-temperature-in-shanghai-on-september-29-2026,Shanghai,2026-09-29,21°C,0.001,,<1%,$95 Vol.,ui
+2026-09-28T04:15:20Z,highest-temperature-in-shanghai-on-september-29-2026,Shanghai,2026-09-29,22°C,0.002,0.999,<1%,$513 Vol.,ui
+2026-09-28T04:15:20Z,highest-temperature-in-shanghai-on-september-29-2026,Shanghai,2026-09-29,23°C,0.009,0.995,1%,"$1,121 Vol.",ui
+2026-09-28T04:15:20Z,highest-temperature-in-shanghai-on-september-29-2026,Shanghai,2026-09-29,24°C,0.17,0.85,16%,$895 Vol.,ui
+2026-09-28T04:15:20Z,highest-temperature-in-shanghai-on-september-29-2026,Shanghai,2026-09-29,25°C,0.52,0.5,51%,"$1,472 Vol.",ui
+2026-09-28T04:15:20Z,highest-temperature-in-shanghai-on-september-29-2026,Shanghai,2026-09-29,26°C,0.25,0.76,25%,"$1,096 Vol.",ui
+2026-09-28T04:15:20Z,highest-temperature-in-shanghai-on-september-29-2026,Shanghai,2026-09-29,27°C,0.06,0.96,5%,$595 Vol.,ui
+2026-09-28T04:15:20Z,highest-temperature-in-shanghai-on-september-29-2026,Shanghai,2026-09-29,28°C,0.01,0.996,1%,$541 Vol.,ui
+2026-09-28T04:15:20Z,highest-temperature-in-shanghai-on-september-29-2026,Shanghai,2026-09-29,29°C,0.009,0.999,1%,$53 Vol.,ui
+2026-09-28T04:15:20Z,highest-temperature-in-shanghai-on-september-29-2026,Shanghai,2026-09-29,30°C or higher,0.001,,<1%,$100 Vol.,ui
+2026-09-28T04:15:28Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,18°C or below,0.001,,<1%,"$1,230 Vol.",ui
+2026-09-28T04:15:28Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,19°C,0.001,,<1%,"$1,335 Vol.",ui
+2026-09-28T04:15:28Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,20°C,0.001,,<1%,"$1,172 Vol.",ui
+2026-09-28T04:15:28Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,21°C,0.001,,<1%,$934 Vol.,ui
+2026-09-28T04:15:28Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,22°C,0.001,,<1%,"$1,104 Vol.",ui
+2026-09-28T04:15:28Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,23°C,0.001,,<1%,"$3,626 Vol.",ui
+2026-09-28T04:15:28Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,24°C,0.001,,<1%,"$6,820 Vol.",ui
+2026-09-28T04:15:28Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,25°C,0.001,,<1%,"$5,710 Vol.",ui
+2026-09-28T04:15:28Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,26°C,0.93,0.11,91%,"$3,547 Vol.",ui
+2026-09-28T04:15:28Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,27°C,0.11,0.94,9%,"$9,252 Vol.",ui
+2026-09-28T04:15:28Z,highest-temperature-in-tokyo-on-september-28-2026,Tokyo,2026-09-28,28°C or higher,0.008,0.996,1%,"$4,216 Vol.",ui
+2026-09-28T05:23:56Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,75°F or below,0.001,,<1%,$224 Vol.,ui
+2026-09-28T05:23:56Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,76-77°F,0.001,,<1%,$110 Vol.,ui
+2026-09-28T05:23:56Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,78-79°F,0.001,,<1%,$105 Vol.,ui
+2026-09-28T05:23:56Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,80-81°F,0.001,,<1%,$145 Vol.,ui
+2026-09-28T05:23:56Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,82-83°F,0.001,,<1%,$518 Vol.,ui
+2026-09-28T05:23:56Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,84-85°F,0.03,0.99,2%,"$1,529 Vol.",ui
+2026-09-28T05:23:56Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,86-87°F,0.17,0.88,15%,"$4,485 Vol.",ui
+2026-09-28T05:23:56Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,88-89°F,0.61,0.43,59%,"$4,034 Vol.",ui
+2026-09-28T05:23:56Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,90-91°F,0.26,0.77,25%,"$4,726 Vol.",ui
+2026-09-28T05:23:56Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,92-93°F,0.04,0.98,3%,"$2,487 Vol.",ui
+2026-09-28T05:23:56Z,highest-temperature-in-miami-on-september-28-2026,Miami,2026-09-28,94°F or higher,0.01,0.996,1%,"$1,869 Vol.",ui
