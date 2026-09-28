@@ -1,0 +1,40 @@
+== line classes ==
+  673  ROUND-RESULT #m 
+  584  SKIP #m 
+  541  PULL MAKERS — SPOT_MOVE #bps/#s
+  134  MAKER (DRY) #m BUY Up #sh @ #
+  134  MAKER (DRY) #m BUY Down #sh @ #
+   95  PULL MAKERS — BAND_EXIT mid=# #m
+   44  🔵 BOX ARMED (vol) — sigma#h=#bps > #x baseline
+   41  PULL MAKERS — LIQ cascade SELL/longs #M/#s
+   32  ⬜ BOX DISARMED — hold_s expired without new si
+   25  RTDS connected; subscribing chainlink-spot
+   18  RTDS problem ConnectionClosedOK(Close(code=#, 
+   10  🔵 BOX ARMED (vol) — LIQ cascade arms vol-box: 
+    5  liq feed shape: # rows, sample={'ts': 
+    4  S# vol-event binary box starting (forever) — m
+    4  moondev liq error JSONDecodeError('Expecting v
+    3  PULL MAKERS — LIQ cascade BUY/shorts #M/#s
+    2  moondev liq error JSONDecodeError('Expecting p
+    2  🔵 BOX ARMED (vol) — IMB_EXTREME # arms vol-box
+    2  moondev liq error JSONDecodeError("Expecting '
+    2  PULL MAKERS — IMB_EXTREME #
+    2  RTDS silent for #s — reconnecting (stall watch
+    2  PAIR-ARB THIN #m: combined # < cap but top-of-
+
+== arm reasons ==
+[('sigma#h=#bps > #x baseline #bps', 44), ('LIQ cascade arms vol-box: cascade SELL/longs $#M/#s', 7), ('LIQ cascade arms vol-box: cascade BUY/shorts $#M/#s', 3), ('IMB_EXTREME # arms vol-box', 2)]
+vol arms with sigma: n=44 sigma min/med/max 2.2/6.7/12.0 | baseline at arm min/med/max 1.20/3.00/5.10
+
+== maker quotes == 268 | by series Counter({'5m': 198, '15m': 70})
+pull reasons: [('SPOT_MOVE #bps/#s', 541), ('BAND_EXIT mid=# #m', 95), ('LIQ cascade SELL/longs $#M/#s', 41), ('LIQ cascade BUY/shorts $#M/#s', 3), ('IMB_EXTREME #', 2)]
+skip reasons: [('box mode disarmed (no event / no vol)', 577), ('mid # outside box band', 7)]
+fills/rejects/arb/thin: 0 0 0 2
+errors: [("RTDS problem ConnectionClosedOK(Close(code=#, reason='Going ", 18), ("moondev liq error JSONDecodeError('Expecting value: line # c", 4), ("moondev liq error JSONDecodeError('Expecting property name e", 2), ('RTDS silent for #s — reconnecting (stall watchdog)', 2), ('moondev liq error JSONDecodeError("Expecting \',\' delimiter: ', 1), ('moondev liq error JSONDecodeError("Expecting \':\' delimiter: ', 1)]
+
+quote lifetime until pull/close: n=134 median 31s p25 19s p75 47s | ended by [('PULL MAKERS — BAND_EXI', 123), ('⬜ BOX DISARMED — hold_', 6), ('PULL MAKERS — LIQ casc', 3), ('PULL MAKERS — SPOT_MOV', 2)]
+
+pulls.csv rows 682 [('SPOT_MOVE #bps/#s', 541), ('BAND_EXIT mid=# #m', 95), ('LIQ cascade SELL/longs $#M/#s', 41), ('LIQ cascade BUY/shorts $#M/#s', 3), ('IMB_EXTREME #', 2)]
+pulls span 2026-09-26 12:40:00 -> 2026-09-28 06:20:37
+
+files present: ['smoke.log', 's10_stats.json', 's10-box.service.log', 's10_pulls.csv', 's10_box.log']

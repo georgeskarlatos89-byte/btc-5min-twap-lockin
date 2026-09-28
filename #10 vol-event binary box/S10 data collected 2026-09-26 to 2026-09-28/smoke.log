@@ -1,0 +1,20 @@
+[10:49:58Z] S10 vol-event binary box starting (BOUNDED 30min) — maker straddle @ 0.45 x 20sh, pair-arb cap $0.97 post-fee, leg-risk timeout 60s chase-to-$0.97-else-unwind, vol gate 1.8x baseline, band (0.4, 0.6)
+[10:49:58Z] liq feed shape: 240 rows, sample={'ts': 1790419684.216, 'usd': 18833.63, 'side': 'short', 'sym': 'XPL'}
+[10:49:58Z] SKIP 15m 1790419500: box mode disarmed (no event / no vol)
+[10:49:58Z] RTDS connected; subscribing chainlink-spot
+[10:50:01Z] SKIP 5m 1790419800: box mode disarmed (no event / no vol)
+[10:55:00Z] SKIP 5m 1790420100: box mode disarmed (no event / no vol)
+[10:55:09Z] ROUND-RESULT 5m 1790419500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:00:01Z] SKIP 15m 1790420400: box mode disarmed (no event / no vol)
+[11:00:02Z] SKIP 5m 1790420400: box mode disarmed (no event / no vol)
+[11:00:09Z] ROUND-RESULT 5m 1790419800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:01:00Z] ROUND-RESULT 5m 1790420100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:03:07Z] ROUND-RESULT 15m 1790419500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:05:01Z] SKIP 5m 1790420700: box mode disarmed (no event / no vol)
+[11:10:01Z] SKIP 5m 1790421000: box mode disarmed (no event / no vol)
+[11:10:10Z] ROUND-RESULT 5m 1790420400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:15:02Z] SKIP 15m 1790421300: box mode disarmed (no event / no vol)
+[11:15:02Z] SKIP 5m 1790421300: box mode disarmed (no event / no vol)
+[11:15:11Z] ROUND-RESULT 5m 1790420700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:16:33Z] ROUND-RESULT 5m 1790421000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:19:40Z] ROUND-RESULT 15m 1790420400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 

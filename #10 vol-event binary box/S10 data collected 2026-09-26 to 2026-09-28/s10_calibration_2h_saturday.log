@@ -1,0 +1,1447 @@
+[10:49:58Z] === S10 VOL-GATE CALIBRATION MODE — sitting 120min, collecting spot samples ===
+[10:49:58Z] RTDS connected; subscribing chainlink-spot
+  [calib +5s] n=   3  sigma1h=  0.0bps  sigma5m=  0.0bps  gate fires at >1.8x baseline
+  [calib +10s] n=   8  sigma1h=  0.0bps  sigma5m=  0.0bps  gate fires at >1.8x baseline
+  [calib +15s] n=  14  sigma1h=  0.0bps  sigma5m=  0.0bps  gate fires at >1.8x baseline
+  [calib +20s] n=  18  sigma1h=  0.0bps  sigma5m=  0.0bps  gate fires at >1.8x baseline
+  [calib +25s] n=  23  sigma1h=  0.0bps  sigma5m=  0.0bps  gate fires at >1.8x baseline
+  [calib +30s] n=  28  sigma1h=  0.0bps  sigma5m=  0.0bps  gate fires at >1.8x baseline
+  [calib +35s] n=  33  sigma1h=  0.0bps  sigma5m=  0.0bps  gate fires at >1.8x baseline
+  [calib +40s] n=  39  sigma1h=  0.0bps  sigma5m=  0.0bps  gate fires at >1.8x baseline
+  [calib +45s] n=  44  sigma1h=  0.0bps  sigma5m=  0.0bps  gate fires at >1.8x baseline
+  [calib +50s] n=  49  sigma1h=  0.0bps  sigma5m=  0.0bps  gate fires at >1.8x baseline
+  [calib +55s] n=  54  sigma1h=  0.0bps  sigma5m=  0.0bps  gate fires at >1.8x baseline
+  [calib +60s] n=  59  sigma1h=  0.0bps  sigma5m=  0.0bps  gate fires at >1.8x baseline
+  [calib +65s] n=  63  sigma1h=  2.7bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +70s] n=  68  sigma1h=  2.6bps  sigma5m=  2.6bps  gate fires at >1.8x baseline
+  [calib +75s] n=  73  sigma1h=  2.5bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +80s] n=  78  sigma1h=  2.5bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +85s] n=  83  sigma1h=  2.4bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +90s] n=  88  sigma1h=  2.3bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +95s] n=  93  sigma1h=  2.3bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +100s] n=  98  sigma1h=  2.2bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +105s] n= 104  sigma1h=  2.1bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +110s] n= 109  sigma1h=  2.1bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +115s] n= 113  sigma1h=  2.1bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +120s] n= 118  sigma1h=  2.0bps  sigma5m=  2.0bps  gate fires at >1.8x baseline
+  [calib +125s] n= 123  sigma1h=  2.0bps  sigma5m=  2.0bps  gate fires at >1.8x baseline
+  [calib +130s] n= 129  sigma1h=  1.9bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +135s] n= 134  sigma1h=  1.9bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +140s] n= 139  sigma1h=  1.9bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +145s] n= 143  sigma1h=  1.8bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +150s] n= 148  sigma1h=  1.8bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +155s] n= 153  sigma1h=  1.8bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +160s] n= 158  sigma1h=  1.8bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +165s] n= 163  sigma1h=  1.7bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +170s] n= 168  sigma1h=  1.7bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +175s] n= 173  sigma1h=  1.7bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +180s] n= 178  sigma1h=  1.7bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +185s] n= 183  sigma1h=  1.7bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +190s] n= 189  sigma1h=  1.6bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +195s] n= 193  sigma1h=  1.6bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +200s] n= 199  sigma1h=  1.6bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +205s] n= 204  sigma1h=  1.6bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +210s] n= 209  sigma1h=  1.5bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +215s] n= 213  sigma1h=  1.5bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +220s] n= 219  sigma1h=  1.5bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +225s] n= 223  sigma1h=  1.7bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +230s] n= 229  sigma1h=  1.6bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +235s] n= 233  sigma1h=  1.6bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +240s] n= 239  sigma1h=  1.6bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +245s] n= 244  sigma1h=  1.7bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +250s] n= 248  sigma1h=  1.8bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +255s] n= 253  sigma1h=  1.7bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +260s] n= 258  sigma1h=  1.7bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +265s] n= 264  sigma1h=  1.7bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +270s] n= 268  sigma1h=  1.7bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +275s] n= 273  sigma1h=  1.7bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +280s] n= 279  sigma1h=  1.7bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +285s] n= 283  sigma1h=  1.6bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +290s] n= 289  sigma1h=  1.6bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +295s] n= 294  sigma1h=  1.6bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +300s] n= 298  sigma1h=  1.6bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +305s] n= 303  sigma1h=  1.6bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +310s] n= 308  sigma1h=  1.6bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +315s] n= 313  sigma1h=  1.6bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +320s] n= 319  sigma1h=  1.6bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +325s] n= 324  sigma1h=  1.6bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +330s] n= 329  sigma1h=  1.6bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +335s] n= 333  sigma1h=  1.6bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +340s] n= 338  sigma1h=  1.6bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +345s] n= 342  sigma1h=  1.6bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +350s] n= 348  sigma1h=  1.8bps  sigma5m=  2.0bps  gate fires at >1.8x baseline
+  [calib +355s] n= 353  sigma1h=  1.9bps  sigma5m=  2.0bps  gate fires at >1.8x baseline
+  [calib +360s] n= 356  sigma1h=  1.9bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +365s] n= 360  sigma1h=  2.1bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +370s] n= 366  sigma1h=  2.2bps  sigma5m=  2.0bps  gate fires at >1.8x baseline
+  [calib +375s] n= 370  sigma1h=  2.2bps  sigma5m=  2.0bps  gate fires at >1.8x baseline
+  [calib +380s] n= 375  sigma1h=  2.2bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +385s] n= 379  sigma1h=  2.2bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +390s] n= 384  sigma1h=  2.3bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +395s] n= 389  sigma1h=  2.3bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +400s] n= 394  sigma1h=  2.3bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +405s] n= 399  sigma1h=  2.3bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +410s] n= 405  sigma1h=  2.3bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +415s] n= 409  sigma1h=  2.3bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +420s] n= 415  sigma1h=  2.3bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +425s] n= 419  sigma1h=  2.3bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +430s] n= 423  sigma1h=  2.2bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +435s] n= 428  sigma1h=  2.2bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +440s] n= 434  sigma1h=  2.2bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +445s] n= 438  sigma1h=  2.2bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +450s] n= 443  sigma1h=  2.2bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +455s] n= 448  sigma1h=  2.2bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +460s] n= 453  sigma1h=  2.2bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +465s] n= 458  sigma1h=  2.2bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +470s] n= 464  sigma1h=  2.1bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +475s] n= 468  sigma1h=  2.1bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +480s] n= 474  sigma1h=  2.1bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +485s] n= 479  sigma1h=  2.1bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +490s] n= 484  sigma1h=  2.1bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +495s] n= 489  sigma1h=  2.1bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +500s] n= 493  sigma1h=  2.1bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +505s] n= 499  sigma1h=  2.1bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +510s] n= 503  sigma1h=  2.1bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +515s] n= 508  sigma1h=  2.0bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +520s] n= 513  sigma1h=  2.0bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +525s] n= 519  sigma1h=  2.0bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +530s] n= 523  sigma1h=  2.0bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +535s] n= 529  sigma1h=  2.0bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +540s] n= 533  sigma1h=  2.0bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +545s] n= 539  sigma1h=  2.0bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +550s] n= 544  sigma1h=  2.0bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +555s] n= 549  sigma1h=  2.0bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +560s] n= 554  sigma1h=  2.0bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +565s] n= 558  sigma1h=  2.0bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +570s] n= 563  sigma1h=  1.9bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +575s] n= 569  sigma1h=  1.9bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +580s] n= 573  sigma1h=  1.9bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +585s] n= 579  sigma1h=  1.9bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +590s] n= 583  sigma1h=  1.9bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +595s] n= 589  sigma1h=  1.9bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +600s] n= 594  sigma1h=  1.9bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +605s] n= 599  sigma1h=  1.9bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +610s] n= 604  sigma1h=  1.9bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +615s] n= 609  sigma1h=  1.9bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +620s] n= 613  sigma1h=  1.9bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +625s] n= 619  sigma1h=  1.9bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +630s] n= 623  sigma1h=  1.9bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +635s] n= 628  sigma1h=  1.9bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +640s] n= 634  sigma1h=  1.8bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +645s] n= 639  sigma1h=  1.8bps  sigma5m=  2.0bps  gate fires at >1.8x baseline
+  [calib +650s] n= 644  sigma1h=  1.8bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +655s] n= 649  sigma1h=  1.8bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +660s] n= 654  sigma1h=  1.8bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +665s] n= 659  sigma1h=  1.8bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +670s] n= 662  sigma1h=  2.3bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +675s] n= 668  sigma1h=  2.4bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +680s] n= 673  sigma1h=  2.5bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +685s] n= 678  sigma1h=  2.5bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +690s] n= 682  sigma1h=  2.5bps  sigma5m=  2.6bps  gate fires at >1.8x baseline
+  [calib +695s] n= 688  sigma1h=  2.6bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +700s] n= 693  sigma1h=  2.6bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +705s] n= 698  sigma1h=  2.6bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +710s] n= 703  sigma1h=  2.7bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +715s] n= 708  sigma1h=  2.7bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +720s] n= 713  sigma1h=  2.7bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +725s] n= 718  sigma1h=  2.7bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +730s] n= 723  sigma1h=  2.7bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +735s] n= 728  sigma1h=  2.7bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +740s] n= 733  sigma1h=  2.7bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +745s] n= 738  sigma1h=  2.7bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +750s] n= 743  sigma1h=  2.6bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +755s] n= 748  sigma1h=  2.6bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +760s] n= 753  sigma1h=  2.6bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +765s] n= 757  sigma1h=  2.6bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +770s] n= 763  sigma1h=  2.6bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +775s] n= 768  sigma1h=  2.6bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +780s] n= 772  sigma1h=  2.6bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +785s] n= 777  sigma1h=  2.6bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +790s] n= 783  sigma1h=  2.6bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +795s] n= 787  sigma1h=  2.6bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +800s] n= 792  sigma1h=  2.6bps  sigma5m=  3.4bps  gate fires at >1.8x baseline
+  [calib +805s] n= 798  sigma1h=  2.7bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +810s] n= 803  sigma1h=  2.7bps  sigma5m=  3.6bps  gate fires at >1.8x baseline
+  [calib +815s] n= 807  sigma1h=  2.7bps  sigma5m=  3.6bps  gate fires at >1.8x baseline
+  [calib +820s] n= 813  sigma1h=  2.8bps  sigma5m=  3.7bps  gate fires at >1.8x baseline
+  [calib +825s] n= 818  sigma1h=  2.8bps  sigma5m=  3.7bps  gate fires at >1.8x baseline
+  [calib +830s] n= 823  sigma1h=  2.7bps  sigma5m=  3.7bps  gate fires at >1.8x baseline
+  [calib +835s] n= 828  sigma1h=  2.7bps  sigma5m=  3.7bps  gate fires at >1.8x baseline
+  [calib +840s] n= 833  sigma1h=  2.7bps  sigma5m=  3.7bps  gate fires at >1.8x baseline
+  [calib +845s] n= 838  sigma1h=  2.7bps  sigma5m=  3.7bps  gate fires at >1.8x baseline
+  [calib +850s] n= 842  sigma1h=  2.7bps  sigma5m=  3.7bps  gate fires at >1.8x baseline
+  [calib +855s] n= 847  sigma1h=  2.7bps  sigma5m=  3.7bps  gate fires at >1.8x baseline
+  [calib +860s] n= 852  sigma1h=  2.7bps  sigma5m=  3.7bps  gate fires at >1.8x baseline
+  [calib +865s] n= 857  sigma1h=  2.7bps  sigma5m=  3.7bps  gate fires at >1.8x baseline
+  [calib +870s] n= 862  sigma1h=  2.7bps  sigma5m=  3.7bps  gate fires at >1.8x baseline
+  [calib +875s] n= 867  sigma1h=  2.7bps  sigma5m=  3.7bps  gate fires at >1.8x baseline
+  [calib +880s] n= 872  sigma1h=  2.7bps  sigma5m=  3.7bps  gate fires at >1.8x baseline
+  [calib +885s] n= 877  sigma1h=  2.7bps  sigma5m=  3.8bps  gate fires at >1.8x baseline
+  [calib +890s] n= 883  sigma1h=  2.7bps  sigma5m=  3.8bps  gate fires at >1.8x baseline
+  [calib +895s] n= 888  sigma1h=  2.7bps  sigma5m=  3.8bps  gate fires at >1.8x baseline
+  [calib +900s] n= 893  sigma1h=  2.7bps  sigma5m=  3.8bps  gate fires at >1.8x baseline
+  [calib +905s] n= 897  sigma1h=  2.7bps  sigma5m=  3.9bps  gate fires at >1.8x baseline
+  [calib +910s] n= 902  sigma1h=  2.7bps  sigma5m=  3.9bps  gate fires at >1.8x baseline
+  [calib +915s] n= 907  sigma1h=  2.7bps  sigma5m=  3.9bps  gate fires at >1.8x baseline
+  [calib +920s] n= 913  sigma1h=  2.7bps  sigma5m=  4.0bps  gate fires at >1.8x baseline
+  [calib +925s] n= 917  sigma1h=  2.8bps  sigma5m=  4.1bps  gate fires at >1.8x baseline
+  [calib +930s] n= 923  sigma1h=  2.8bps  sigma5m=  4.1bps  gate fires at >1.8x baseline
+  [calib +935s] n= 928  sigma1h=  2.8bps  sigma5m=  4.1bps  gate fires at >1.8x baseline
+  [calib +940s] n= 933  sigma1h=  2.8bps  sigma5m=  4.1bps  gate fires at >1.8x baseline
+  [calib +945s] n= 938  sigma1h=  2.8bps  sigma5m=  4.1bps  gate fires at >1.8x baseline
+  [calib +950s] n= 943  sigma1h=  2.8bps  sigma5m=  4.1bps  gate fires at >1.8x baseline
+  [calib +955s] n= 948  sigma1h=  2.8bps  sigma5m=  4.1bps  gate fires at >1.8x baseline
+  [calib +960s] n= 953  sigma1h=  2.8bps  sigma5m=  4.1bps  gate fires at >1.8x baseline
+  [calib +965s] n= 958  sigma1h=  2.7bps  sigma5m=  4.1bps  gate fires at >1.8x baseline
+  [calib +970s] n= 963  sigma1h=  2.7bps  sigma5m=  3.6bps  gate fires at >1.8x baseline
+  [calib +975s] n= 968  sigma1h=  2.7bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +980s] n= 973  sigma1h=  2.7bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +985s] n= 978  sigma1h=  2.7bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +990s] n= 982  sigma1h=  2.7bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +995s] n= 988  sigma1h=  2.7bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +1000s] n= 992  sigma1h=  2.7bps  sigma5m=  3.0bps  gate fires at >1.8x baseline
+  [calib +1005s] n= 998  sigma1h=  2.7bps  sigma5m=  3.0bps  gate fires at >1.8x baseline
+  [calib +1010s] n=1002  sigma1h=  2.7bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +1015s] n=1007  sigma1h=  2.7bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +1020s] n=1013  sigma1h=  2.7bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1025s] n=1018  sigma1h=  2.7bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1030s] n=1023  sigma1h=  2.7bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1035s] n=1028  sigma1h=  2.7bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1040s] n=1032  sigma1h=  2.7bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1045s] n=1038  sigma1h=  2.7bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1050s] n=1043  sigma1h=  2.7bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1055s] n=1048  sigma1h=  2.7bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1060s] n=1053  sigma1h=  2.7bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1065s] n=1058  sigma1h=  2.7bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1070s] n=1063  sigma1h=  2.7bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1075s] n=1068  sigma1h=  2.7bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1080s] n=1073  sigma1h=  2.7bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +1085s] n=1078  sigma1h=  2.6bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +1090s] n=1083  sigma1h=  2.9bps  sigma5m=  3.6bps  gate fires at >1.8x baseline
+  [calib +1095s] n=1087  sigma1h=  2.9bps  sigma5m=  3.6bps  gate fires at >1.8x baseline
+  [calib +1100s] n=1092  sigma1h=  2.9bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1105s] n=1096  sigma1h=  2.9bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +1110s] n=1102  sigma1h=  2.9bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +1115s] n=1107  sigma1h=  2.9bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +1120s] n=1112  sigma1h=  2.9bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +1125s] n=1117  sigma1h=  2.9bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +1130s] n=1122  sigma1h=  2.9bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +1135s] n=1127  sigma1h=  2.9bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +1140s] n=1132  sigma1h=  2.9bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +1145s] n=1137  sigma1h=  2.9bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +1150s] n=1142  sigma1h=  2.9bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +1155s] n=1145  sigma1h=  2.9bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +1160s] n=1146  sigma1h=  2.9bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +1165s] n=1149  sigma1h=  2.9bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +1170s] n=1153  sigma1h=  2.9bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +1175s] n=1159  sigma1h=  2.9bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +1180s] n=1164  sigma1h=  2.8bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +1185s] n=1169  sigma1h=  2.8bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +1190s] n=1174  sigma1h=  2.8bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +1195s] n=1179  sigma1h=  2.8bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +1200s] n=1184  sigma1h=  2.8bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +1205s] n=1188  sigma1h=  2.8bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +1210s] n=1194  sigma1h=  2.9bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1215s] n=1199  sigma1h=  2.9bps  sigma5m=  3.4bps  gate fires at >1.8x baseline
+  [calib +1220s] n=1204  sigma1h=  2.9bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +1225s] n=1209  sigma1h=  2.9bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +1230s] n=1213  sigma1h=  2.9bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +1235s] n=1219  sigma1h=  2.9bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +1240s] n=1224  sigma1h=  2.9bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +1245s] n=1228  sigma1h=  2.9bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +1250s] n=1234  sigma1h=  3.0bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1255s] n=1239  sigma1h=  3.0bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1261s] n=1244  sigma1h=  3.0bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1266s] n=1249  sigma1h=  3.0bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1271s] n=1254  sigma1h=  2.9bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1276s] n=1259  sigma1h=  2.9bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1281s] n=1264  sigma1h=  2.9bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1286s] n=1268  sigma1h=  2.9bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1291s] n=1273  sigma1h=  2.9bps  sigma5m=  3.6bps  gate fires at >1.8x baseline
+  [calib +1296s] n=1278  sigma1h=  2.9bps  sigma5m=  3.6bps  gate fires at >1.8x baseline
+  [calib +1301s] n=1283  sigma1h=  2.9bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1306s] n=1288  sigma1h=  2.9bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1311s] n=1293  sigma1h=  2.9bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1316s] n=1298  sigma1h=  2.9bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1321s] n=1303  sigma1h=  2.9bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1326s] n=1308  sigma1h=  2.9bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1331s] n=1313  sigma1h=  2.9bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1336s] n=1318  sigma1h=  2.9bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1341s] n=1323  sigma1h=  2.9bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1346s] n=1328  sigma1h=  2.9bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1351s] n=1333  sigma1h=  2.9bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1356s] n=1337  sigma1h=  2.9bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1361s] n=1342  sigma1h=  2.9bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1366s] n=1348  sigma1h=  2.9bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1371s] n=1352  sigma1h=  2.9bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1376s] n=1357  sigma1h=  2.9bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1381s] n=1360  sigma1h=  2.9bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +1386s] n=1361  sigma1h=  2.9bps  sigma5m=  3.0bps  gate fires at >1.8x baseline
+  [calib +1391s] n=1366  sigma1h=  2.9bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +1396s] n=1371  sigma1h=  2.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +1401s] n=1376  sigma1h=  2.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +1406s] n=1380  sigma1h=  2.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +1411s] n=1384  sigma1h=  2.9bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1416s] n=1390  sigma1h=  2.9bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1421s] n=1395  sigma1h=  2.9bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1426s] n=1399  sigma1h=  2.9bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +1431s] n=1405  sigma1h=  2.9bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +1436s] n=1410  sigma1h=  2.9bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1441s] n=1415  sigma1h=  2.9bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1446s] n=1420  sigma1h=  2.9bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1451s] n=1425  sigma1h=  2.9bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1456s] n=1430  sigma1h=  2.9bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1461s] n=1435  sigma1h=  2.9bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1466s] n=1440  sigma1h=  2.8bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1471s] n=1445  sigma1h=  2.8bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1476s] n=1450  sigma1h=  2.9bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1481s] n=1455  sigma1h=  2.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +1486s] n=1460  sigma1h=  2.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +1491s] n=1465  sigma1h=  2.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +1496s] n=1469  sigma1h=  2.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +1501s] n=1474  sigma1h=  2.8bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +1506s] n=1479  sigma1h=  2.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +1511s] n=1484  sigma1h=  2.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +1516s] n=1489  sigma1h=  2.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +1521s] n=1494  sigma1h=  2.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +1526s] n=1499  sigma1h=  2.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +1531s] n=1504  sigma1h=  2.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +1536s] n=1509  sigma1h=  2.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +1541s] n=1514  sigma1h=  2.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +1546s] n=1519  sigma1h=  2.8bps  sigma5m=  2.0bps  gate fires at >1.8x baseline
+  [calib +1551s] n=1524  sigma1h=  2.8bps  sigma5m=  2.0bps  gate fires at >1.8x baseline
+  [calib +1556s] n=1529  sigma1h=  2.8bps  sigma5m=  2.0bps  gate fires at >1.8x baseline
+  [calib +1561s] n=1534  sigma1h=  2.8bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +1566s] n=1539  sigma1h=  2.8bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +1571s] n=1544  sigma1h=  2.8bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +1576s] n=1549  sigma1h=  2.8bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +1581s] n=1554  sigma1h=  2.8bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +1586s] n=1558  sigma1h=  2.8bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +1591s] n=1564  sigma1h=  2.8bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +1596s] n=1568  sigma1h=  2.8bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +1601s] n=1574  sigma1h=  2.8bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +1606s] n=1579  sigma1h=  2.8bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +1611s] n=1584  sigma1h=  2.8bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +1616s] n=1588  sigma1h=  2.8bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +1621s] n=1593  sigma1h=  2.8bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +1626s] n=1599  sigma1h=  2.8bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +1631s] n=1604  sigma1h=  2.8bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +1636s] n=1608  sigma1h=  2.8bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +1641s] n=1613  sigma1h=  2.8bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +1646s] n=1618  sigma1h=  2.8bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +1651s] n=1623  sigma1h=  2.8bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +1656s] n=1628  sigma1h=  2.8bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +1661s] n=1633  sigma1h=  2.8bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +1666s] n=1638  sigma1h=  2.8bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +1671s] n=1643  sigma1h=  2.8bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +1676s] n=1648  sigma1h=  2.8bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +1681s] n=1653  sigma1h=  2.8bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +1686s] n=1657  sigma1h=  2.8bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +1691s] n=1662  sigma1h=  2.8bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +1696s] n=1667  sigma1h=  2.8bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +1701s] n=1672  sigma1h=  2.8bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +1706s] n=1677  sigma1h=  2.8bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +1711s] n=1682  sigma1h=  2.7bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +1716s] n=1687  sigma1h=  2.7bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +1721s] n=1692  sigma1h=  2.7bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +1726s] n=1697  sigma1h=  2.7bps  sigma5m=  2.0bps  gate fires at >1.8x baseline
+  [calib +1731s] n=1702  sigma1h=  2.7bps  sigma5m=  2.0bps  gate fires at >1.8x baseline
+  [calib +1736s] n=1707  sigma1h=  2.7bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +1741s] n=1712  sigma1h=  2.7bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +1746s] n=1717  sigma1h=  2.7bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +1751s] n=1722  sigma1h=  2.7bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +1756s] n=1727  sigma1h=  2.7bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +1761s] n=1733  sigma1h=  2.7bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +1766s] n=1737  sigma1h=  2.7bps  sigma5m=  2.0bps  gate fires at >1.8x baseline
+  [calib +1771s] n=1742  sigma1h=  2.7bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +1776s] n=1747  sigma1h=  2.7bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +1781s] n=1752  sigma1h=  2.7bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +1786s] n=1757  sigma1h=  2.7bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +1791s] n=1762  sigma1h=  2.7bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +1796s] n=1768  sigma1h=  2.7bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +1801s] n=1772  sigma1h=  2.7bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +1806s] n=1777  sigma1h=  2.7bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +1811s] n=1783  sigma1h=  2.7bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +1816s] n=1787  sigma1h=  2.7bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +1821s] n=1792  sigma1h=  2.7bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +1826s] n=1797  sigma1h=  2.7bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +1831s] n=1802  sigma1h=  2.7bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +1836s] n=1808  sigma1h=  2.7bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +1841s] n=1812  sigma1h=  2.7bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +1846s] n=1817  sigma1h=  2.7bps  sigma5m=  2.0bps  gate fires at >1.8x baseline
+  [calib +1851s] n=1822  sigma1h=  2.7bps  sigma5m=  2.0bps  gate fires at >1.8x baseline
+  [calib +1856s] n=1827  sigma1h=  2.7bps  sigma5m=  2.0bps  gate fires at >1.8x baseline
+  [calib +1861s] n=1832  sigma1h=  2.7bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +1866s] n=1837  sigma1h=  2.7bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +1871s] n=1842  sigma1h=  2.7bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +1876s] n=1848  sigma1h=  2.7bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +1881s] n=1852  sigma1h=  2.7bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +1886s] n=1857  sigma1h=  2.7bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +1891s] n=1862  sigma1h=  2.7bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +1896s] n=1867  sigma1h=  2.7bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +1901s] n=1872  sigma1h=  2.7bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +1906s] n=1877  sigma1h=  2.7bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +1911s] n=1882  sigma1h=  2.7bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +1916s] n=1887  sigma1h=  2.6bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +1921s] n=1892  sigma1h=  2.6bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +1926s] n=1897  sigma1h=  2.6bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +1931s] n=1902  sigma1h=  2.6bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +1936s] n=1906  sigma1h=  2.6bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +1941s] n=1911  sigma1h=  2.6bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +1946s] n=1916  sigma1h=  2.6bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +1951s] n=1921  sigma1h=  2.6bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +1956s] n=1926  sigma1h=  2.6bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +1961s] n=1932  sigma1h=  2.6bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +1966s] n=1936  sigma1h=  2.6bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +1971s] n=1941  sigma1h=  2.6bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +1976s] n=1946  sigma1h=  2.6bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +1981s] n=1951  sigma1h=  2.6bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +1986s] n=1956  sigma1h=  2.6bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +1991s] n=1961  sigma1h=  2.6bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +1996s] n=1967  sigma1h=  2.6bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +2001s] n=1970  sigma1h=  2.6bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2006s] n=1975  sigma1h=  2.6bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2011s] n=1980  sigma1h=  2.6bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2016s] n=1985  sigma1h=  2.6bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2021s] n=1990  sigma1h=  2.6bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2026s] n=1994  sigma1h=  2.6bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2031s] n=1999  sigma1h=  2.6bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2036s] n=2004  sigma1h=  2.6bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2041s] n=2009  sigma1h=  2.6bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2046s] n=2014  sigma1h=  2.6bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2051s] n=2020  sigma1h=  2.6bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2056s] n=2024  sigma1h=  2.6bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2061s] n=2030  sigma1h=  2.6bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2066s] n=2034  sigma1h=  2.6bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2071s] n=2039  sigma1h=  2.6bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2076s] n=2044  sigma1h=  2.5bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2081s] n=2049  sigma1h=  2.5bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2086s] n=2054  sigma1h=  2.5bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2091s] n=2060  sigma1h=  2.5bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2096s] n=2065  sigma1h=  2.5bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2101s] n=2070  sigma1h=  2.5bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2106s] n=2075  sigma1h=  2.5bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2111s] n=2080  sigma1h=  2.5bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2116s] n=2085  sigma1h=  2.5bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2121s] n=2089  sigma1h=  2.5bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2126s] n=2095  sigma1h=  2.5bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2131s] n=2100  sigma1h=  2.5bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2136s] n=2105  sigma1h=  2.5bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2141s] n=2110  sigma1h=  2.5bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +2146s] n=2114  sigma1h=  2.5bps  sigma5m=  0.6bps  gate fires at >1.8x baseline
+  [calib +2151s] n=2120  sigma1h=  2.5bps  sigma5m=  0.6bps  gate fires at >1.8x baseline
+  [calib +2156s] n=2124  sigma1h=  2.5bps  sigma5m=  0.6bps  gate fires at >1.8x baseline
+  [calib +2161s] n=2129  sigma1h=  2.5bps  sigma5m=  0.6bps  gate fires at >1.8x baseline
+  [calib +2166s] n=2135  sigma1h=  2.5bps  sigma5m=  0.6bps  gate fires at >1.8x baseline
+  [calib +2171s] n=2140  sigma1h=  2.5bps  sigma5m=  0.6bps  gate fires at >1.8x baseline
+  [calib +2176s] n=2144  sigma1h=  2.5bps  sigma5m=  0.6bps  gate fires at >1.8x baseline
+  [calib +2181s] n=2149  sigma1h=  2.5bps  sigma5m=  0.6bps  gate fires at >1.8x baseline
+  [calib +2186s] n=2155  sigma1h=  2.5bps  sigma5m=  0.6bps  gate fires at >1.8x baseline
+  [calib +2191s] n=2159  sigma1h=  2.5bps  sigma5m=  0.6bps  gate fires at >1.8x baseline
+  [calib +2196s] n=2164  sigma1h=  2.5bps  sigma5m=  0.6bps  gate fires at >1.8x baseline
+  [calib +2201s] n=2170  sigma1h=  2.5bps  sigma5m=  0.6bps  gate fires at >1.8x baseline
+  [calib +2206s] n=2174  sigma1h=  2.5bps  sigma5m=  0.6bps  gate fires at >1.8x baseline
+  [calib +2211s] n=2180  sigma1h=  2.5bps  sigma5m=  0.6bps  gate fires at >1.8x baseline
+  [calib +2216s] n=2184  sigma1h=  2.5bps  sigma5m=  0.6bps  gate fires at >1.8x baseline
+  [calib +2221s] n=2188  sigma1h=  2.5bps  sigma5m=  0.6bps  gate fires at >1.8x baseline
+  [calib +2226s] n=2194  sigma1h=  2.5bps  sigma5m=  0.6bps  gate fires at >1.8x baseline
+  [calib +2231s] n=2198  sigma1h=  2.5bps  sigma5m=  0.6bps  gate fires at >1.8x baseline
+  [calib +2236s] n=2203  sigma1h=  2.5bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +2241s] n=2208  sigma1h=  2.5bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +2246s] n=2214  sigma1h=  2.5bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +2251s] n=2219  sigma1h=  2.5bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +2256s] n=2224  sigma1h=  2.5bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +2261s] n=2227  sigma1h=  2.5bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +2266s] n=2232  sigma1h=  2.5bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2271s] n=2237  sigma1h=  2.5bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2276s] n=2242  sigma1h=  2.5bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2281s] n=2247  sigma1h=  2.5bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2286s] n=2252  sigma1h=  2.5bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2291s] n=2257  sigma1h=  2.4bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2296s] n=2262  sigma1h=  2.4bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2301s] n=2268  sigma1h=  2.4bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2306s] n=2273  sigma1h=  2.4bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2311s] n=2278  sigma1h=  2.4bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2316s] n=2282  sigma1h=  2.4bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +2321s] n=2287  sigma1h=  2.4bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +2326s] n=2292  sigma1h=  2.4bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +2331s] n=2298  sigma1h=  2.4bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +2336s] n=2303  sigma1h=  2.4bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +2341s] n=2307  sigma1h=  2.4bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +2346s] n=2313  sigma1h=  2.4bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +2351s] n=2317  sigma1h=  2.4bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +2356s] n=2323  sigma1h=  2.4bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +2361s] n=2328  sigma1h=  2.4bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +2366s] n=2332  sigma1h=  2.4bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +2371s] n=2337  sigma1h=  2.4bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +2376s] n=2342  sigma1h=  2.4bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +2381s] n=2348  sigma1h=  2.4bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +2386s] n=2353  sigma1h=  2.4bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +2391s] n=2358  sigma1h=  2.4bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +2396s] n=2361  sigma1h=  2.4bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +2401s] n=2367  sigma1h=  2.4bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +2406s] n=2371  sigma1h=  2.4bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2411s] n=2376  sigma1h=  2.4bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2416s] n=2381  sigma1h=  2.4bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2421s] n=2386  sigma1h=  2.4bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2426s] n=2392  sigma1h=  2.4bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2431s] n=2397  sigma1h=  2.4bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2436s] n=2402  sigma1h=  2.4bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2441s] n=2407  sigma1h=  2.4bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2446s] n=2411  sigma1h=  2.4bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2451s] n=2417  sigma1h=  2.4bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2456s] n=2422  sigma1h=  2.4bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2461s] n=2427  sigma1h=  2.4bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2466s] n=2432  sigma1h=  2.4bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2471s] n=2437  sigma1h=  2.4bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2476s] n=2442  sigma1h=  2.4bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2481s] n=2447  sigma1h=  2.4bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2486s] n=2452  sigma1h=  2.4bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2491s] n=2457  sigma1h=  2.4bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2496s] n=2461  sigma1h=  2.4bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2501s] n=2466  sigma1h=  2.4bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2506s] n=2471  sigma1h=  2.4bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2511s] n=2476  sigma1h=  2.4bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2516s] n=2481  sigma1h=  2.4bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2521s] n=2486  sigma1h=  2.4bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2526s] n=2491  sigma1h=  2.4bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2531s] n=2496  sigma1h=  2.4bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2536s] n=2501  sigma1h=  2.4bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2541s] n=2504  sigma1h=  2.4bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2546s] n=2504  sigma1h=  2.4bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +2551s] n=2509  sigma1h=  2.3bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2556s] n=2513  sigma1h=  2.3bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +2561s] n=2519  sigma1h=  2.3bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +2566s] n=2524  sigma1h=  2.3bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +2571s] n=2529  sigma1h=  2.3bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +2576s] n=2534  sigma1h=  2.3bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +2581s] n=2538  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2586s] n=2543  sigma1h=  2.3bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +2591s] n=2548  sigma1h=  2.3bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +2596s] n=2552  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2601s] n=2557  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2606s] n=2563  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2611s] n=2568  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2616s] n=2573  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2621s] n=2578  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2626s] n=2583  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2631s] n=2588  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2636s] n=2593  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2641s] n=2598  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2646s] n=2603  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2651s] n=2608  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2656s] n=2613  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2661s] n=2617  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2666s] n=2623  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2671s] n=2628  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2676s] n=2632  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2681s] n=2636  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2686s] n=2642  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2691s] n=2647  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2696s] n=2651  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2701s] n=2656  sigma1h=  2.3bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2706s] n=2661  sigma1h=  2.3bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +2711s] n=2666  sigma1h=  2.3bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +2716s] n=2671  sigma1h=  2.3bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +2721s] n=2675  sigma1h=  2.3bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +2727s] n=2680  sigma1h=  2.3bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +2732s] n=2685  sigma1h=  2.3bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +2737s] n=2690  sigma1h=  2.3bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +2742s] n=2695  sigma1h=  2.3bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2747s] n=2700  sigma1h=  2.3bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2752s] n=2705  sigma1h=  2.3bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2757s] n=2710  sigma1h=  2.3bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2762s] n=2715  sigma1h=  2.3bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2767s] n=2719  sigma1h=  2.3bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2772s] n=2725  sigma1h=  2.3bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2777s] n=2729  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2782s] n=2735  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2787s] n=2739  sigma1h=  2.3bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2792s] n=2744  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2797s] n=2749  sigma1h=  2.3bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +2802s] n=2755  sigma1h=  2.3bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2807s] n=2760  sigma1h=  2.3bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2812s] n=2765  sigma1h=  2.3bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2817s] n=2770  sigma1h=  2.3bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2822s] n=2775  sigma1h=  2.3bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2827s] n=2780  sigma1h=  2.3bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2832s] n=2785  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2837s] n=2790  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2842s] n=2795  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2847s] n=2800  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2852s] n=2805  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2857s] n=2810  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2862s] n=2815  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2867s] n=2820  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2872s] n=2825  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2877s] n=2830  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2882s] n=2835  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2887s] n=2840  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2892s] n=2845  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2897s] n=2850  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2902s] n=2854  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2907s] n=2859  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2912s] n=2864  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2917s] n=2869  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2922s] n=2874  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2927s] n=2879  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2932s] n=2883  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2937s] n=2889  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2942s] n=2894  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2947s] n=2899  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2952s] n=2904  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2957s] n=2909  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2962s] n=2914  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2967s] n=2919  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2972s] n=2924  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2977s] n=2929  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2982s] n=2934  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2987s] n=2939  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2992s] n=2944  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +2997s] n=2949  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +3002s] n=2954  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +3007s] n=2959  sigma1h=  2.2bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +3012s] n=2964  sigma1h=  2.2bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +3017s] n=2969  sigma1h=  2.2bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +3022s] n=2975  sigma1h=  2.2bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +3027s] n=2979  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +3032s] n=2984  sigma1h=  2.2bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +3037s] n=2989  sigma1h=  2.2bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +3042s] n=2994  sigma1h=  2.2bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +3047s] n=2998  sigma1h=  2.2bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +3052s] n=3003  sigma1h=  2.2bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +3057s] n=3008  sigma1h=  2.2bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +3062s] n=3013  sigma1h=  2.2bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +3067s] n=3018  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3072s] n=3024  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3077s] n=3028  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3082s] n=3033  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3087s] n=3038  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3092s] n=3043  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3097s] n=3048  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3102s] n=3053  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3107s] n=3058  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3112s] n=3063  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3117s] n=3068  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3122s] n=3073  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3127s] n=3078  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3132s] n=3082  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3137s] n=3087  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3142s] n=3092  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3147s] n=3096  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3152s] n=3102  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3157s] n=3106  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3162s] n=3111  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3167s] n=3116  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3172s] n=3121  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3177s] n=3126  sigma1h=  2.2bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +3182s] n=3131  sigma1h=  2.2bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +3187s] n=3136  sigma1h=  2.2bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +3192s] n=3141  sigma1h=  2.2bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +3197s] n=3145  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3202s] n=3150  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3207s] n=3156  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3212s] n=3160  sigma1h=  2.2bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3217s] n=3165  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +3222s] n=3170  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +3227s] n=3175  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +3232s] n=3181  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +3237s] n=3186  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +3242s] n=3190  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +3247s] n=3195  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +3252s] n=3200  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +3257s] n=3205  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +3262s] n=3211  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +3267s] n=3215  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +3272s] n=3219  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +3277s] n=3225  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +3282s] n=3230  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +3287s] n=3235  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +3292s] n=3240  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +3297s] n=3246  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +3302s] n=3250  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +3307s] n=3256  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +3312s] n=3260  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +3317s] n=3265  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +3322s] n=3270  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +3327s] n=3275  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +3332s] n=3279  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +3337s] n=3285  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +3342s] n=3289  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3347s] n=3294  sigma1h=  2.1bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +3352s] n=3299  sigma1h=  2.1bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +3357s] n=3304  sigma1h=  2.1bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +3362s] n=3309  sigma1h=  2.1bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +3367s] n=3314  sigma1h=  2.1bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3372s] n=3318  sigma1h=  2.1bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3377s] n=3323  sigma1h=  2.1bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3382s] n=3328  sigma1h=  2.1bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3387s] n=3333  sigma1h=  2.1bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3392s] n=3338  sigma1h=  2.1bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3397s] n=3342  sigma1h=  2.1bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3402s] n=3348  sigma1h=  2.1bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3407s] n=3352  sigma1h=  2.1bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3412s] n=3357  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3417s] n=3363  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3422s] n=3367  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3427s] n=3372  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3432s] n=3377  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3437s] n=3382  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3442s] n=3388  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3447s] n=3393  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3452s] n=3398  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3457s] n=3402  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3462s] n=3407  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3467s] n=3412  sigma1h=  2.1bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +3472s] n=3418  sigma1h=  2.1bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +3477s] n=3422  sigma1h=  2.1bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +3482s] n=3427  sigma1h=  2.1bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +3487s] n=3432  sigma1h=  2.1bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +3492s] n=3437  sigma1h=  2.1bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +3497s] n=3442  sigma1h=  2.1bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +3502s] n=3447  sigma1h=  2.1bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +3507s] n=3452  sigma1h=  2.1bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +3512s] n=3456  sigma1h=  2.1bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +3517s] n=3462  sigma1h=  2.1bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3522s] n=3466  sigma1h=  2.1bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3527s] n=3471  sigma1h=  2.1bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +3532s] n=3476  sigma1h=  2.1bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +3537s] n=3480  sigma1h=  2.1bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +3542s] n=3485  sigma1h=  2.1bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +3547s] n=3491  sigma1h=  2.1bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +3552s] n=3495  sigma1h=  2.1bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +3557s] n=3501  sigma1h=  2.1bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +3562s] n=3505  sigma1h=  2.1bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +3567s] n=3511  sigma1h=  2.1bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +3572s] n=3516  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3577s] n=3521  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3582s] n=3526  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3587s] n=3531  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3592s] n=3535  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3597s] n=3541  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3602s] n=3546  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3607s] n=3551  sigma1h=  2.1bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +3612s] n=3556  sigma1h=  2.1bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +3617s] n=3561  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3622s] n=3566  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3627s] n=3570  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3632s] n=3575  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3637s] n=3581  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3642s] n=3585  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3647s] n=3590  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3652s] n=3595  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3657s] n=3600  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3662s] n=3605  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3667s] n=3610  sigma1h=  2.1bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +3672s] n=3615  sigma1h=  2.1bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +3677s] n=3620  sigma1h=  2.1bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +3682s] n=3625  sigma1h=  2.1bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +3687s] n=3629  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3692s] n=3635  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3697s] n=3640  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3702s] n=3644  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3707s] n=3649  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3712s] n=3654  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3717s] n=3659  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3722s] n=3665  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3727s] n=3670  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3732s] n=3675  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3737s] n=3680  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3742s] n=3685  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3747s] n=3690  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3752s] n=3694  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3757s] n=3699  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3762s] n=3704  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +3767s] n=3709  sigma1h=  2.1bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +3772s] n=3714  sigma1h=  2.1bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +3777s] n=3719  sigma1h=  2.1bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +3782s] n=3724  sigma1h=  2.1bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +3787s] n=3729  sigma1h=  2.1bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3792s] n=3734  sigma1h=  2.1bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3797s] n=3738  sigma1h=  2.1bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3802s] n=3744  sigma1h=  2.1bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3807s] n=3748  sigma1h=  2.1bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3812s] n=3753  sigma1h=  2.1bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3817s] n=3758  sigma1h=  2.1bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3822s] n=3763  sigma1h=  2.1bps  sigma5m=  1.4bps  gate fires at >1.8x baseline
+  [calib +3827s] n=3768  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3832s] n=3773  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3838s] n=3777  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3843s] n=3783  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3848s] n=3788  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3853s] n=3793  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3858s] n=3798  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3863s] n=3803  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +3868s] n=3808  sigma1h=  2.1bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +3873s] n=3813  sigma1h=  2.1bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +3878s] n=3818  sigma1h=  2.1bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +3883s] n=3823  sigma1h=  2.1bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +3888s] n=3828  sigma1h=  2.1bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +3893s] n=3833  sigma1h=  2.1bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +3898s] n=3838  sigma1h=  2.1bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +3903s] n=3843  sigma1h=  2.1bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +3908s] n=3848  sigma1h=  2.1bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +3913s] n=3853  sigma1h=  2.1bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +3918s] n=3858  sigma1h=  2.1bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +3923s] n=3863  sigma1h=  2.1bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +3928s] n=3868  sigma1h=  2.1bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +3933s] n=3873  sigma1h=  2.1bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +3938s] n=3878  sigma1h=  2.1bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +3943s] n=3883  sigma1h=  2.1bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +3948s] n=3888  sigma1h=  2.1bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +3953s] n=3893  sigma1h=  2.1bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +3958s] n=3898  sigma1h=  2.0bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +3963s] n=3901  sigma1h=  2.0bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +3968s] n=3907  sigma1h=  2.0bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +3973s] n=3912  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +3978s] n=3917  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +3983s] n=3921  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +3988s] n=3926  sigma1h=  2.0bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +3993s] n=3931  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +3998s] n=3936  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4003s] n=3941  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4008s] n=3946  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4013s] n=3951  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4018s] n=3956  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4023s] n=3961  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4028s] n=3966  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4033s] n=3971  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4038s] n=3976  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4043s] n=3981  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4048s] n=3985  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4053s] n=3990  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4058s] n=3995  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4063s] n=4000  sigma1h=  2.0bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4068s] n=4004  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4073s] n=4009  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4078s] n=4014  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4083s] n=4019  sigma1h=  2.0bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4088s] n=4024  sigma1h=  2.0bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4093s] n=4028  sigma1h=  2.0bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4098s] n=4034  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4103s] n=4039  sigma1h=  2.0bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4108s] n=4044  sigma1h=  2.0bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4113s] n=4049  sigma1h=  2.0bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4118s] n=4054  sigma1h=  2.0bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4123s] n=4059  sigma1h=  2.0bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4128s] n=4064  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4133s] n=4069  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4138s] n=4074  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4143s] n=4079  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4148s] n=4084  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4153s] n=4090  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4158s] n=4094  sigma1h=  2.0bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4163s] n=4099  sigma1h=  2.0bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4168s] n=4104  sigma1h=  2.0bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4173s] n=4109  sigma1h=  2.0bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4178s] n=4114  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4183s] n=4119  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4188s] n=4124  sigma1h=  2.0bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4193s] n=4129  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4198s] n=4134  sigma1h=  2.0bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4203s] n=4139  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4208s] n=4144  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4213s] n=4149  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4218s] n=4154  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4223s] n=4159  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4228s] n=4164  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4233s] n=4169  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4238s] n=4174  sigma1h=  2.0bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +4243s] n=4180  sigma1h=  2.0bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4248s] n=4184  sigma1h=  2.0bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4253s] n=4189  sigma1h=  2.0bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4258s] n=4194  sigma1h=  2.0bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4263s] n=4199  sigma1h=  2.0bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4268s] n=4204  sigma1h=  1.9bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4273s] n=4209  sigma1h=  1.9bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4278s] n=4214  sigma1h=  1.9bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4283s] n=4219  sigma1h=  1.9bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4288s] n=4224  sigma1h=  1.9bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4293s] n=4229  sigma1h=  1.8bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4298s] n=4234  sigma1h=  1.8bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4303s] n=4239  sigma1h=  1.8bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4308s] n=4244  sigma1h=  1.8bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4313s] n=4249  sigma1h=  1.8bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4318s] n=4254  sigma1h=  1.8bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4323s] n=4259  sigma1h=  1.8bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4328s] n=4264  sigma1h=  1.8bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4333s] n=4269  sigma1h=  1.8bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4338s] n=4274  sigma1h=  1.8bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4343s] n=4279  sigma1h=  1.8bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4348s] n=4284  sigma1h=  1.8bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4353s] n=4289  sigma1h=  1.8bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4358s] n=4295  sigma1h=  1.8bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4363s] n=4300  sigma1h=  1.8bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4368s] n=4304  sigma1h=  1.8bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4373s] n=4309  sigma1h=  1.8bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +4378s] n=4314  sigma1h=  1.8bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +4383s] n=4319  sigma1h=  1.8bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +4388s] n=4325  sigma1h=  1.8bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +4393s] n=4329  sigma1h=  1.8bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +4398s] n=4335  sigma1h=  1.8bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +4403s] n=4339  sigma1h=  1.8bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +4408s] n=4344  sigma1h=  1.8bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +4413s] n=4349  sigma1h=  1.8bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +4418s] n=4349  sigma1h=  1.7bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +4423s] n=4352  sigma1h=  1.8bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +4428s] n=4357  sigma1h=  1.8bps  sigma5m=  2.0bps  gate fires at >1.8x baseline
+  [calib +4433s] n=4362  sigma1h=  1.8bps  sigma5m=  2.0bps  gate fires at >1.8x baseline
+  [calib +4438s] n=4367  sigma1h=  1.8bps  sigma5m=  2.0bps  gate fires at >1.8x baseline
+  [calib +4443s] n=4372  sigma1h=  1.8bps  sigma5m=  2.0bps  gate fires at >1.8x baseline
+  [calib +4448s] n=4377  sigma1h=  1.8bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +4453s] n=4382  sigma1h=  1.8bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +4458s] n=4386  sigma1h=  1.8bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +4463s] n=4392  sigma1h=  1.8bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +4468s] n=4396  sigma1h=  1.8bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +4473s] n=4401  sigma1h=  1.8bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +4478s] n=4407  sigma1h=  1.8bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +4483s] n=4411  sigma1h=  1.8bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +4488s] n=4417  sigma1h=  1.8bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +4493s] n=4422  sigma1h=  1.8bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +4498s] n=4427  sigma1h=  1.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +4503s] n=4431  sigma1h=  1.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +4508s] n=4437  sigma1h=  1.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +4513s] n=4441  sigma1h=  1.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +4518s] n=4446  sigma1h=  1.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +4523s] n=4452  sigma1h=  1.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +4528s] n=4457  sigma1h=  1.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +4533s] n=4462  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +4538s] n=4467  sigma1h=  1.8bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +4543s] n=4472  sigma1h=  1.8bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +4548s] n=4476  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +4553s] n=4481  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +4558s] n=4487  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +4563s] n=4491  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +4568s] n=4496  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +4573s] n=4502  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +4578s] n=4507  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +4583s] n=4512  sigma1h=  1.8bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +4588s] n=4517  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +4593s] n=4522  sigma1h=  1.8bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +4598s] n=4527  sigma1h=  1.8bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +4603s] n=4532  sigma1h=  1.8bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +4608s] n=4537  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +4613s] n=4542  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +4618s] n=4547  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +4623s] n=4551  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +4628s] n=4556  sigma1h=  1.8bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +4633s] n=4561  sigma1h=  1.8bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +4638s] n=4565  sigma1h=  1.8bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +4643s] n=4570  sigma1h=  1.8bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +4648s] n=4575  sigma1h=  1.8bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +4653s] n=4580  sigma1h=  1.8bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +4658s] n=4586  sigma1h=  1.8bps  sigma5m=  3.2bps  gate fires at >1.8x baseline
+  [calib +4663s] n=4590  sigma1h=  1.8bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +4668s] n=4595  sigma1h=  1.9bps  sigma5m=  3.6bps  gate fires at >1.8x baseline
+  [calib +4673s] n=4601  sigma1h=  1.9bps  sigma5m=  3.6bps  gate fires at >1.8x baseline
+  [calib +4678s] n=4606  sigma1h=  1.9bps  sigma5m=  3.7bps  gate fires at >1.8x baseline
+  [calib +4683s] n=4611  sigma1h=  1.9bps  sigma5m=  3.6bps  gate fires at >1.8x baseline
+  [calib +4688s] n=4616  sigma1h=  1.8bps  sigma5m=  3.6bps  gate fires at >1.8x baseline
+  [calib +4693s] n=4621  sigma1h=  1.8bps  sigma5m=  3.6bps  gate fires at >1.8x baseline
+  [calib +4698s] n=4625  sigma1h=  1.8bps  sigma5m=  3.6bps  gate fires at >1.8x baseline
+  [calib +4703s] n=4631  sigma1h=  1.8bps  sigma5m=  3.6bps  gate fires at >1.8x baseline
+  [calib +4708s] n=4636  sigma1h=  1.8bps  sigma5m=  3.6bps  gate fires at >1.8x baseline
+  [calib +4713s] n=4641  sigma1h=  1.8bps  sigma5m=  3.4bps  gate fires at >1.8x baseline
+  [calib +4718s] n=4646  sigma1h=  1.8bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +4723s] n=4651  sigma1h=  1.8bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +4728s] n=4656  sigma1h=  1.8bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +4733s] n=4661  sigma1h=  1.8bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +4738s] n=4666  sigma1h=  1.8bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +4743s] n=4671  sigma1h=  1.8bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +4748s] n=4676  sigma1h=  1.8bps  sigma5m=  3.0bps  gate fires at >1.8x baseline
+  [calib +4753s] n=4681  sigma1h=  1.8bps  sigma5m=  3.0bps  gate fires at >1.8x baseline
+  [calib +4758s] n=4686  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +4763s] n=4691  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +4768s] n=4696  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +4773s] n=4700  sigma1h=  1.8bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +4778s] n=4706  sigma1h=  1.8bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +4784s] n=4711  sigma1h=  1.8bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +4789s] n=4716  sigma1h=  1.8bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +4794s] n=4721  sigma1h=  1.8bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +4799s] n=4726  sigma1h=  1.8bps  sigma5m=  3.0bps  gate fires at >1.8x baseline
+  [calib +4804s] n=4731  sigma1h=  1.8bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +4809s] n=4736  sigma1h=  1.8bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +4814s] n=4741  sigma1h=  1.8bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +4819s] n=4746  sigma1h=  1.8bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +4824s] n=4751  sigma1h=  1.8bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +4829s] n=4756  sigma1h=  1.8bps  sigma5m=  3.3bps  gate fires at >1.8x baseline
+  [calib +4834s] n=4761  sigma1h=  1.8bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +4839s] n=4765  sigma1h=  1.8bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +4844s] n=4771  sigma1h=  1.8bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +4849s] n=4776  sigma1h=  1.7bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +4854s] n=4781  sigma1h=  1.7bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +4859s] n=4786  sigma1h=  1.7bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +4864s] n=4791  sigma1h=  1.7bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +4869s] n=4796  sigma1h=  1.7bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +4874s] n=4801  sigma1h=  1.7bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +4879s] n=4806  sigma1h=  1.7bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +4884s] n=4811  sigma1h=  1.7bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +4889s] n=4816  sigma1h=  1.7bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +4894s] n=4821  sigma1h=  1.7bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +4899s] n=4826  sigma1h=  1.7bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +4904s] n=4831  sigma1h=  1.7bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +4909s] n=4836  sigma1h=  1.7bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +4914s] n=4841  sigma1h=  1.7bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +4919s] n=4845  sigma1h=  1.7bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +4924s] n=4851  sigma1h=  1.8bps  sigma5m=  3.1bps  gate fires at >1.8x baseline
+  [calib +4929s] n=4857  sigma1h=  1.8bps  sigma5m=  3.0bps  gate fires at >1.8x baseline
+  [calib +4934s] n=4861  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +4939s] n=4866  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +4944s] n=4871  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +4949s] n=4876  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +4954s] n=4881  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +4959s] n=4886  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +4964s] n=4891  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +4969s] n=4896  sigma1h=  1.8bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +4974s] n=4901  sigma1h=  1.8bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +4979s] n=4906  sigma1h=  1.8bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +4984s] n=4910  sigma1h=  1.8bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +4989s] n=4915  sigma1h=  1.8bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +4994s] n=4921  sigma1h=  1.8bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +4999s] n=4926  sigma1h=  1.8bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +5004s] n=4930  sigma1h=  1.8bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +5009s] n=4935  sigma1h=  1.8bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +5014s] n=4940  sigma1h=  1.8bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +5019s] n=4945  sigma1h=  1.8bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +5024s] n=4950  sigma1h=  1.8bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +5029s] n=4955  sigma1h=  1.7bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +5034s] n=4959  sigma1h=  1.7bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +5039s] n=4964  sigma1h=  1.7bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +5044s] n=4969  sigma1h=  1.7bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +5049s] n=4973  sigma1h=  1.7bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +5054s] n=4978  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +5059s] n=4983  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +5064s] n=4988  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +5069s] n=4993  sigma1h=  1.8bps  sigma5m=  2.9bps  gate fires at >1.8x baseline
+  [calib +5074s] n=4998  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5079s] n=5003  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5084s] n=5008  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5089s] n=5013  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5094s] n=5018  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5099s] n=5023  sigma1h=  1.8bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +5104s] n=5028  sigma1h=  1.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +5109s] n=5033  sigma1h=  1.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +5114s] n=5038  sigma1h=  1.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +5119s] n=5043  sigma1h=  1.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +5124s] n=5049  sigma1h=  1.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +5129s] n=5053  sigma1h=  1.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +5134s] n=5057  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5139s] n=5062  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5144s] n=5067  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5149s] n=5072  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5154s] n=5077  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5159s] n=5082  sigma1h=  1.8bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +5164s] n=5087  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5169s] n=5092  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5174s] n=5097  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5179s] n=5102  sigma1h=  1.8bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +5184s] n=5106  sigma1h=  1.8bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +5189s] n=5113  sigma1h=  1.8bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +5194s] n=5117  sigma1h=  1.8bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +5199s] n=5122  sigma1h=  1.8bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +5204s] n=5127  sigma1h=  1.8bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +5209s] n=5132  sigma1h=  1.8bps  sigma5m=  2.8bps  gate fires at >1.8x baseline
+  [calib +5214s] n=5137  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5219s] n=5142  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5224s] n=5148  sigma1h=  1.8bps  sigma5m=  2.6bps  gate fires at >1.8x baseline
+  [calib +5229s] n=5152  sigma1h=  1.8bps  sigma5m=  2.6bps  gate fires at >1.8x baseline
+  [calib +5234s] n=5157  sigma1h=  1.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +5239s] n=5162  sigma1h=  1.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +5244s] n=5167  sigma1h=  1.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +5249s] n=5172  sigma1h=  1.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +5254s] n=5177  sigma1h=  1.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +5259s] n=5182  sigma1h=  1.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +5264s] n=5187  sigma1h=  1.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +5269s] n=5193  sigma1h=  1.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +5274s] n=5197  sigma1h=  1.8bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +5279s] n=5203  sigma1h=  1.8bps  sigma5m=  2.6bps  gate fires at >1.8x baseline
+  [calib +5284s] n=5208  sigma1h=  1.8bps  sigma5m=  2.6bps  gate fires at >1.8x baseline
+  [calib +5289s] n=5212  sigma1h=  1.8bps  sigma5m=  2.6bps  gate fires at >1.8x baseline
+  [calib +5294s] n=5217  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5299s] n=5221  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5304s] n=5227  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5309s] n=5231  sigma1h=  1.8bps  sigma5m=  2.6bps  gate fires at >1.8x baseline
+  [calib +5314s] n=5236  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5319s] n=5242  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5324s] n=5245  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5329s] n=5250  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5334s] n=5256  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5339s] n=5261  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5344s] n=5266  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5349s] n=5271  sigma1h=  1.8bps  sigma5m=  2.7bps  gate fires at >1.8x baseline
+  [calib +5354s] n=5276  sigma1h=  1.8bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +5359s] n=5280  sigma1h=  1.8bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +5364s] n=5285  sigma1h=  1.8bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +5369s] n=5290  sigma1h=  1.8bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +5374s] n=5294  sigma1h=  1.8bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +5379s] n=5299  sigma1h=  1.8bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +5384s] n=5304  sigma1h=  1.8bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +5389s] n=5309  sigma1h=  1.8bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +5394s] n=5314  sigma1h=  1.8bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +5399s] n=5319  sigma1h=  1.8bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +5404s] n=5324  sigma1h=  2.0bps  sigma5m=  3.6bps  gate fires at >1.8x baseline
+  [calib +5409s] n=5330  sigma1h=  2.0bps  sigma5m=  3.6bps  gate fires at >1.8x baseline
+  [calib +5414s] n=5335  sigma1h=  2.0bps  sigma5m=  3.6bps  gate fires at >1.8x baseline
+  [calib +5419s] n=5340  sigma1h=  2.0bps  sigma5m=  3.6bps  gate fires at >1.8x baseline
+  [calib +5424s] n=5344  sigma1h=  2.0bps  sigma5m=  3.6bps  gate fires at >1.8x baseline
+  [calib +5429s] n=5350  sigma1h=  2.0bps  sigma5m=  3.5bps  gate fires at >1.8x baseline
+  [calib +5434s] n=5355  sigma1h=  2.0bps  sigma5m=  3.4bps  gate fires at >1.8x baseline
+  [calib +5439s] n=5359  sigma1h=  2.0bps  sigma5m=  3.4bps  gate fires at >1.8x baseline
+  [calib +5444s] n=5365  sigma1h=  2.1bps  sigma5m=  3.9bps  gate fires at >1.8x baseline
+  [calib +5449s] n=5370  sigma1h=  2.1bps  sigma5m=  3.9bps  gate fires at >1.8x baseline
+  [calib +5454s] n=5375  sigma1h=  2.1bps  sigma5m=  3.9bps  gate fires at >1.8x baseline
+  [calib +5459s] n=5379  sigma1h=  2.1bps  sigma5m=  3.9bps  gate fires at >1.8x baseline
+  [calib +5464s] n=5384  sigma1h=  2.1bps  sigma5m=  3.9bps  gate fires at >1.8x baseline
+  [calib +5469s] n=5390  sigma1h=  2.1bps  sigma5m=  3.9bps  gate fires at >1.8x baseline
+  [calib +5474s] n=5395  sigma1h=  2.1bps  sigma5m=  3.9bps  gate fires at >1.8x baseline
+  [calib +5479s] n=5400  sigma1h=  2.1bps  sigma5m=  3.9bps  gate fires at >1.8x baseline
+  [calib +5484s] n=5404  sigma1h=  2.1bps  sigma5m=  3.9bps  gate fires at >1.8x baseline
+  [calib +5489s] n=5410  sigma1h=  2.1bps  sigma5m=  3.9bps  gate fires at >1.8x baseline
+  [calib +5494s] n=5415  sigma1h=  2.1bps  sigma5m=  3.9bps  gate fires at >1.8x baseline
+  [calib +5499s] n=5419  sigma1h=  2.1bps  sigma5m=  3.9bps  gate fires at >1.8x baseline
+  [calib +5504s] n=5425  sigma1h=  2.1bps  sigma5m=  3.9bps  gate fires at >1.8x baseline
+  [calib +5509s] n=5429  sigma1h=  2.1bps  sigma5m=  4.0bps  gate fires at >1.8x baseline
+  [calib +5514s] n=5433  sigma1h=  2.1bps  sigma5m=  4.0bps  gate fires at >1.8x baseline
+  [calib +5519s] n=5439  sigma1h=  2.1bps  sigma5m=  4.0bps  gate fires at >1.8x baseline
+  [calib +5524s] n=5443  sigma1h=  2.1bps  sigma5m=  4.0bps  gate fires at >1.8x baseline
+  [calib +5529s] n=5449  sigma1h=  2.1bps  sigma5m=  4.0bps  gate fires at >1.8x baseline
+  [calib +5534s] n=5454  sigma1h=  2.1bps  sigma5m=  4.0bps  gate fires at >1.8x baseline
+  [calib +5539s] n=5459  sigma1h=  2.1bps  sigma5m=  4.0bps  gate fires at >1.8x baseline
+  [calib +5544s] n=5464  sigma1h=  2.1bps  sigma5m=  4.0bps  gate fires at >1.8x baseline
+  [calib +5549s] n=5469  sigma1h=  2.1bps  sigma5m=  4.0bps  gate fires at >1.8x baseline
+  [calib +5554s] n=5474  sigma1h=  2.1bps  sigma5m=  4.0bps  gate fires at >1.8x baseline
+  [calib +5559s] n=5479  sigma1h=  2.1bps  sigma5m=  3.9bps  gate fires at >1.8x baseline
+  [calib +5564s] n=5484  sigma1h=  2.1bps  sigma5m=  3.9bps  gate fires at >1.8x baseline
+  [calib +5569s] n=5489  sigma1h=  2.1bps  sigma5m=  3.9bps  gate fires at >1.8x baseline
+  [calib +5574s] n=5494  sigma1h=  2.1bps  sigma5m=  3.9bps  gate fires at >1.8x baseline
+  [calib +5579s] n=5499  sigma1h=  2.1bps  sigma5m=  3.9bps  gate fires at >1.8x baseline
+  [calib +5584s] n=5504  sigma1h=  2.1bps  sigma5m=  3.9bps  gate fires at >1.8x baseline
+  [calib +5589s] n=5509  sigma1h=  2.1bps  sigma5m=  3.9bps  gate fires at >1.8x baseline
+  [calib +5594s] n=5513  sigma1h=  2.1bps  sigma5m=  3.8bps  gate fires at >1.8x baseline
+  [calib +5599s] n=5519  sigma1h=  2.1bps  sigma5m=  3.8bps  gate fires at >1.8x baseline
+  [calib +5604s] n=5524  sigma1h=  2.1bps  sigma5m=  3.8bps  gate fires at >1.8x baseline
+  [calib +5609s] n=5529  sigma1h=  2.1bps  sigma5m=  3.8bps  gate fires at >1.8x baseline
+  [calib +5614s] n=5534  sigma1h=  2.1bps  sigma5m=  3.8bps  gate fires at >1.8x baseline
+  [calib +5619s] n=5539  sigma1h=  2.1bps  sigma5m=  3.8bps  gate fires at >1.8x baseline
+  [calib +5624s] n=5544  sigma1h=  2.1bps  sigma5m=  3.7bps  gate fires at >1.8x baseline
+  [calib +5629s] n=5549  sigma1h=  2.1bps  sigma5m=  3.7bps  gate fires at >1.8x baseline
+  [calib +5634s] n=5554  sigma1h=  2.1bps  sigma5m=  3.7bps  gate fires at >1.8x baseline
+  [calib +5639s] n=5559  sigma1h=  2.1bps  sigma5m=  3.7bps  gate fires at >1.8x baseline
+  [calib +5644s] n=5563  sigma1h=  2.1bps  sigma5m=  3.7bps  gate fires at >1.8x baseline
+  [calib +5649s] n=5569  sigma1h=  2.1bps  sigma5m=  3.7bps  gate fires at >1.8x baseline
+  [calib +5654s] n=5574  sigma1h=  2.1bps  sigma5m=  3.7bps  gate fires at >1.8x baseline
+  [calib +5659s] n=5579  sigma1h=  2.1bps  sigma5m=  3.7bps  gate fires at >1.8x baseline
+  [calib +5664s] n=5584  sigma1h=  2.1bps  sigma5m=  3.7bps  gate fires at >1.8x baseline
+  [calib +5669s] n=5589  sigma1h=  2.1bps  sigma5m=  3.8bps  gate fires at >1.8x baseline
+  [calib +5674s] n=5594  sigma1h=  2.1bps  sigma5m=  3.8bps  gate fires at >1.8x baseline
+  [calib +5679s] n=5599  sigma1h=  2.1bps  sigma5m=  3.8bps  gate fires at >1.8x baseline
+  [calib +5685s] n=5604  sigma1h=  2.1bps  sigma5m=  3.8bps  gate fires at >1.8x baseline
+  [calib +5690s] n=5609  sigma1h=  2.1bps  sigma5m=  3.8bps  gate fires at >1.8x baseline
+  [calib +5695s] n=5614  sigma1h=  2.1bps  sigma5m=  3.8bps  gate fires at >1.8x baseline
+  [calib +5700s] n=5619  sigma1h=  2.1bps  sigma5m=  3.8bps  gate fires at >1.8x baseline
+  [calib +5705s] n=5624  sigma1h=  2.1bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +5710s] n=5629  sigma1h=  2.1bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +5715s] n=5634  sigma1h=  2.1bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +5720s] n=5638  sigma1h=  2.1bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +5725s] n=5643  sigma1h=  2.1bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +5730s] n=5648  sigma1h=  2.1bps  sigma5m=  2.6bps  gate fires at >1.8x baseline
+  [calib +5735s] n=5653  sigma1h=  2.1bps  sigma5m=  2.6bps  gate fires at >1.8x baseline
+  [calib +5740s] n=5658  sigma1h=  2.1bps  sigma5m=  2.6bps  gate fires at >1.8x baseline
+  [calib +5745s] n=5663  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5750s] n=5668  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5755s] n=5672  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5760s] n=5678  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5765s] n=5683  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +5770s] n=5688  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +5775s] n=5693  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +5780s] n=5697  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +5785s] n=5702  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +5790s] n=5706  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +5795s] n=5707  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +5800s] n=5711  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5805s] n=5716  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5810s] n=5721  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5815s] n=5726  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5820s] n=5731  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5825s] n=5736  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5830s] n=5741  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5835s] n=5746  sigma1h=  2.1bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +5840s] n=5751  sigma1h=  2.1bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +5845s] n=5755  sigma1h=  2.1bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +5850s] n=5760  sigma1h=  2.1bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +5855s] n=5766  sigma1h=  2.1bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +5860s] n=5771  sigma1h=  2.1bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +5865s] n=5776  sigma1h=  2.1bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +5870s] n=5782  sigma1h=  2.1bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +5875s] n=5786  sigma1h=  2.1bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +5880s] n=5791  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5885s] n=5796  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5890s] n=5801  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5895s] n=5806  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5900s] n=5811  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5905s] n=5816  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5910s] n=5821  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5915s] n=5826  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5920s] n=5831  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5925s] n=5836  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5930s] n=5841  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5935s] n=5846  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5940s] n=5851  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5945s] n=5856  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5950s] n=5861  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5955s] n=5866  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5960s] n=5871  sigma1h=  2.1bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +5965s] n=5876  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +5970s] n=5881  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +5975s] n=5886  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +5980s] n=5891  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +5985s] n=5896  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +5990s] n=5901  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +5995s] n=5906  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +6000s] n=5911  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +6005s] n=5915  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +6010s] n=5921  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +6015s] n=5926  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +6020s] n=5930  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +6025s] n=5935  sigma1h=  2.1bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +6030s] n=5940  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +6035s] n=5945  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +6040s] n=5950  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +6045s] n=5955  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +6050s] n=5961  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +6055s] n=5965  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +6060s] n=5970  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +6065s] n=5975  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +6070s] n=5980  sigma1h=  2.1bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +6075s] n=5985  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +6080s] n=5990  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +6085s] n=5995  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +6090s] n=6000  sigma1h=  2.1bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +6095s] n=6006  sigma1h=  2.1bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +6100s] n=6010  sigma1h=  2.1bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +6105s] n=6015  sigma1h=  2.1bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +6110s] n=6021  sigma1h=  2.1bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +6115s] n=6025  sigma1h=  2.1bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +6120s] n=6031  sigma1h=  2.1bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +6125s] n=6035  sigma1h=  2.1bps  sigma5m=  1.0bps  gate fires at >1.8x baseline
+  [calib +6130s] n=6040  sigma1h=  2.1bps  sigma5m=  0.9bps  gate fires at >1.8x baseline
+  [calib +6135s] n=6046  sigma1h=  2.1bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +6140s] n=6050  sigma1h=  2.1bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +6145s] n=6055  sigma1h=  2.1bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +6150s] n=6060  sigma1h=  2.1bps  sigma5m=  0.8bps  gate fires at >1.8x baseline
+  [calib +6155s] n=6065  sigma1h=  2.1bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +6160s] n=6069  sigma1h=  2.1bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +6165s] n=6074  sigma1h=  2.1bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +6170s] n=6078  sigma1h=  2.1bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +6175s] n=6083  sigma1h=  2.1bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +6180s] n=6088  sigma1h=  2.1bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +6185s] n=6094  sigma1h=  2.1bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +6190s] n=6098  sigma1h=  2.1bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +6195s] n=6103  sigma1h=  2.1bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +6200s] n=6108  sigma1h=  2.1bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +6205s] n=6113  sigma1h=  2.1bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +6210s] n=6119  sigma1h=  2.1bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +6215s] n=6123  sigma1h=  2.1bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +6220s] n=6129  sigma1h=  2.1bps  sigma5m=  0.7bps  gate fires at >1.8x baseline
+  [calib +6225s] n=6134  sigma1h=  2.2bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +6230s] n=6139  sigma1h=  2.2bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +6235s] n=6144  sigma1h=  2.2bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +6240s] n=6148  sigma1h=  2.2bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +6245s] n=6153  sigma1h=  2.2bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +6250s] n=6158  sigma1h=  2.2bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +6255s] n=6162  sigma1h=  2.2bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +6260s] n=6167  sigma1h=  2.2bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +6265s] n=6172  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6270s] n=6177  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6275s] n=6182  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6280s] n=6187  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6285s] n=6192  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6290s] n=6196  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6295s] n=6202  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6300s] n=6207  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6305s] n=6212  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6310s] n=6217  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6315s] n=6222  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6320s] n=6226  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6325s] n=6232  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6330s] n=6237  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6335s] n=6242  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6340s] n=6246  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6345s] n=6252  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6350s] n=6256  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6355s] n=6262  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6360s] n=6267  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6365s] n=6272  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6370s] n=6277  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6375s] n=6282  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6380s] n=6287  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6385s] n=6292  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6390s] n=6297  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6395s] n=6302  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6400s] n=6307  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6405s] n=6312  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6410s] n=6316  sigma1h=  2.2bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +6415s] n=6321  sigma1h=  2.2bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +6420s] n=6325  sigma1h=  2.2bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +6425s] n=6331  sigma1h=  2.2bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +6430s] n=6336  sigma1h=  2.2bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6435s] n=6341  sigma1h=  2.2bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6440s] n=6345  sigma1h=  2.2bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6445s] n=6351  sigma1h=  2.2bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6450s] n=6356  sigma1h=  2.2bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6455s] n=6361  sigma1h=  2.2bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6460s] n=6366  sigma1h=  2.2bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6465s] n=6371  sigma1h=  2.2bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +6470s] n=6376  sigma1h=  2.2bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +6475s] n=6380  sigma1h=  2.2bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +6481s] n=6386  sigma1h=  2.2bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +6486s] n=6391  sigma1h=  2.2bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +6491s] n=6395  sigma1h=  2.2bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +6496s] n=6401  sigma1h=  2.2bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +6501s] n=6406  sigma1h=  2.2bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +6506s] n=6411  sigma1h=  2.2bps  sigma5m=  2.6bps  gate fires at >1.8x baseline
+  [calib +6511s] n=6416  sigma1h=  2.2bps  sigma5m=  2.6bps  gate fires at >1.8x baseline
+  [calib +6516s] n=6421  sigma1h=  2.2bps  sigma5m=  2.6bps  gate fires at >1.8x baseline
+  [calib +6521s] n=6426  sigma1h=  2.2bps  sigma5m=  2.6bps  gate fires at >1.8x baseline
+  [calib +6526s] n=6431  sigma1h=  2.2bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6531s] n=6436  sigma1h=  2.2bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6536s] n=6440  sigma1h=  2.2bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6541s] n=6446  sigma1h=  2.2bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6546s] n=6451  sigma1h=  2.2bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6551s] n=6456  sigma1h=  2.2bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6556s] n=6461  sigma1h=  2.2bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6561s] n=6466  sigma1h=  2.2bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6566s] n=6471  sigma1h=  2.2bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6571s] n=6476  sigma1h=  2.2bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6576s] n=6481  sigma1h=  2.2bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6581s] n=6486  sigma1h=  2.2bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6586s] n=6491  sigma1h=  2.2bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +6591s] n=6496  sigma1h=  2.2bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6596s] n=6501  sigma1h=  2.2bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6601s] n=6506  sigma1h=  2.2bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6606s] n=6511  sigma1h=  2.2bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +6611s] n=6516  sigma1h=  2.2bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +6616s] n=6522  sigma1h=  2.2bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +6621s] n=6526  sigma1h=  2.3bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +6626s] n=6530  sigma1h=  2.3bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +6631s] n=6536  sigma1h=  2.3bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +6636s] n=6541  sigma1h=  2.3bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +6641s] n=6546  sigma1h=  2.2bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +6646s] n=6550  sigma1h=  2.2bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +6651s] n=6555  sigma1h=  2.2bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +6656s] n=6560  sigma1h=  2.2bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +6661s] n=6565  sigma1h=  2.2bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +6666s] n=6570  sigma1h=  2.2bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +6671s] n=6574  sigma1h=  2.2bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +6676s] n=6578  sigma1h=  2.2bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +6681s] n=6583  sigma1h=  2.2bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +6686s] n=6588  sigma1h=  2.2bps  sigma5m=  2.3bps  gate fires at >1.8x baseline
+  [calib +6691s] n=6593  sigma1h=  2.2bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +6696s] n=6598  sigma1h=  2.2bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +6701s] n=6603  sigma1h=  2.2bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +6706s] n=6608  sigma1h=  2.2bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +6711s] n=6613  sigma1h=  2.2bps  sigma5m=  2.4bps  gate fires at >1.8x baseline
+  [calib +6716s] n=6618  sigma1h=  2.2bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +6721s] n=6623  sigma1h=  2.3bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +6726s] n=6628  sigma1h=  2.3bps  sigma5m=  2.5bps  gate fires at >1.8x baseline
+  [calib +6731s] n=6633  sigma1h=  2.3bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6736s] n=6638  sigma1h=  2.3bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6741s] n=6643  sigma1h=  2.3bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +6746s] n=6648  sigma1h=  2.3bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +6751s] n=6653  sigma1h=  2.3bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6756s] n=6658  sigma1h=  2.3bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6761s] n=6663  sigma1h=  2.3bps  sigma5m=  2.2bps  gate fires at >1.8x baseline
+  [calib +6766s] n=6668  sigma1h=  2.3bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +6771s] n=6674  sigma1h=  2.3bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +6776s] n=6678  sigma1h=  2.3bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +6781s] n=6684  sigma1h=  2.3bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +6786s] n=6688  sigma1h=  2.3bps  sigma5m=  2.1bps  gate fires at >1.8x baseline
+  [calib +6791s] n=6693  sigma1h=  2.3bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +6796s] n=6699  sigma1h=  2.3bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +6801s] n=6703  sigma1h=  2.3bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +6806s] n=6709  sigma1h=  2.3bps  sigma5m=  1.9bps  gate fires at >1.8x baseline
+  [calib +6811s] n=6714  sigma1h=  2.3bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +6816s] n=6718  sigma1h=  2.3bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +6821s] n=6723  sigma1h=  2.3bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +6826s] n=6728  sigma1h=  2.3bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +6831s] n=6733  sigma1h=  2.3bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +6836s] n=6738  sigma1h=  2.3bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +6841s] n=6743  sigma1h=  2.3bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +6846s] n=6748  sigma1h=  2.3bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +6851s] n=6753  sigma1h=  2.3bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +6856s] n=6758  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +6861s] n=6763  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +6866s] n=6768  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +6871s] n=6773  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +6876s] n=6778  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +6881s] n=6783  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +6886s] n=6789  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +6891s] n=6793  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +6896s] n=6798  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +6901s] n=6803  sigma1h=  2.2bps  sigma5m=  1.8bps  gate fires at >1.8x baseline
+  [calib +6906s] n=6808  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6911s] n=6813  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6916s] n=6819  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6921s] n=6823  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6926s] n=6829  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6931s] n=6834  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6936s] n=6838  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6941s] n=6843  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6946s] n=6848  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6951s] n=6853  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6956s] n=6858  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6961s] n=6864  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6966s] n=6868  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6971s] n=6873  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6976s] n=6878  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6981s] n=6884  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6986s] n=6888  sigma1h=  2.2bps  sigma5m=  1.7bps  gate fires at >1.8x baseline
+  [calib +6991s] n=6893  sigma1h=  2.2bps  sigma5m=  1.6bps  gate fires at >1.8x baseline
+  [calib +6996s] n=6899  sigma1h=  2.2bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +7001s] n=6904  sigma1h=  2.2bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +7006s] n=6908  sigma1h=  2.3bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +7011s] n=6914  sigma1h=  2.3bps  sigma5m=  1.5bps  gate fires at >1.8x baseline
+  [calib +7016s] n=6919  sigma1h=  2.3bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +7021s] n=6924  sigma1h=  2.3bps  sigma5m=  1.3bps  gate fires at >1.8x baseline
+  [calib +7026s] n=6929  sigma1h=  2.3bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +7031s] n=6934  sigma1h=  2.3bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +7036s] n=6939  sigma1h=  2.3bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +7041s] n=6944  sigma1h=  2.3bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +7046s] n=6949  sigma1h=  2.3bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +7051s] n=6954  sigma1h=  2.3bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +7056s] n=6959  sigma1h=  2.3bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +7061s] n=6963  sigma1h=  2.3bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +7066s] n=6968  sigma1h=  2.2bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +7071s] n=6973  sigma1h=  2.2bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +7076s] n=6979  sigma1h=  2.2bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +7081s] n=6981  sigma1h=  2.2bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +7086s] n=6982  sigma1h=  2.2bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +7091s] n=6987  sigma1h=  2.2bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +7096s] n=6992  sigma1h=  2.2bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +7101s] n=6997  sigma1h=  2.2bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +7106s] n=7002  sigma1h=  2.2bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +7111s] n=7007  sigma1h=  2.2bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +7116s] n=7012  sigma1h=  2.2bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +7121s] n=7016  sigma1h=  2.2bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +7126s] n=7022  sigma1h=  2.2bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +7131s] n=7027  sigma1h=  2.2bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +7136s] n=7032  sigma1h=  2.2bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +7141s] n=7037  sigma1h=  2.2bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +7146s] n=7042  sigma1h=  2.2bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +7151s] n=7047  sigma1h=  2.2bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +7156s] n=7052  sigma1h=  2.2bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +7161s] n=7057  sigma1h=  2.2bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +7166s] n=7062  sigma1h=  2.2bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +7171s] n=7067  sigma1h=  2.2bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +7176s] n=7072  sigma1h=  2.2bps  sigma5m=  1.1bps  gate fires at >1.8x baseline
+  [calib +7181s] n=7077  sigma1h=  2.2bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +7186s] n=7082  sigma1h=  2.2bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +7191s] n=7087  sigma1h=  2.2bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+  [calib +7196s] n=7092  sigma1h=  2.2bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+[12:49:58Z] RTDS problem ConnectionClosedOK(Close(code=1001, reason='Going away'), Close(code=1001, reason='Going away'), True), backoff 2s
+  [calib +7201s] n=7095  sigma1h=  2.2bps  sigma5m=  1.2bps  gate fires at >1.8x baseline
+
+Baseline sigma_5m  = 2.17 bps
+Baseline sigma_1h  = 7.52 bps (scaled)
+Vol gate threshold = 3.91 bps (1.8x 5m baseline)
+SIGMA_BASE_BPS suggested value: 2.2

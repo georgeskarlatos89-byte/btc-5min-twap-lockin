@@ -1,0 +1,23 @@
+================================================================
+S10 KILL-TEST REPORT
+================================================================
+armed events:        45
+two-leg completions: 0
+two-leg fill rate:     0.0%   (kill if < 30%, n>=20)
+pair gains:          $+0.00
+unwind losses:       -$0.00
+net (events):        $+0.00
+total strategy pnl:  $+0.00
+day pnl:             $+0.00
+
+🔴 KILL (rule 1): two-leg fill rate < 30%
+🟢 rule 2 (unwind ≤ pair gains): PASS
+
+maker_quotes:  268
+maker_fills:   0
+taker_pairs:   0
+pairs_won:     0
+chases:        0
+arms: calendar=0 vol=56
+sigma baseline: 6.45 bps   peak: 13.55 bps
+================================================================

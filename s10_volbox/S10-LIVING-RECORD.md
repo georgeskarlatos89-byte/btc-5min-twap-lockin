@@ -150,3 +150,76 @@ calendar-silent → 1; LIVE flip → 1.
   about 1.5 weeks of calendar time, but the guide wants 60+ for a serious interval.
 - **Pairing with S6/S46:** S6 flattens above 1.5× baseline, S10 arms above 1.8×; the gap is
   intentional and untouched.
+
+---
+
+## Part #2 — Calibration result, kill-test status after 43 hours, data pushed for analysis (2026-09-28, Monday 06:36Z)
+
+### Context
+The user asked to confirm: "S10 has met its own kill rule. It shows 43 armed events with 0%
+two-leg completion, and its rule says kill below 30%", then to push all collected data to
+GitHub for analysis. Checked against the VM, not from memory.
+
+### Calibration final (Saturday 10:49Z-12:50Z, 7,095 samples)
+| item | value |
+|---|---|
+| Baseline sigma_5m | 2.17 bps |
+| Baseline sigma_1h (scaled, fixed label) | 7.52 bps |
+| Vol gate threshold at 1.8x | 3.91 bps |
+| Suggested SIGMA_BASE_BPS | 2.2 (default 7.0) |
+
+Not applied, for the reason given in Part #1: a weekend baseline arms the gate on ordinary
+tape. The data below shows that this is exactly what happened through the rolling median.
+
+### Kill test, read from `s10_stats.json` at 2026-09-28 06:36Z
+| item | value |
+|---|---|
+| armed events (15m rounds) | 45 (43 when the user looked) |
+| two-leg completions | 0 |
+| two-leg rate | 0.0 % -> rule 1 prints KILL (needs n >= 20, rate >= 30 %) |
+| rule 2 (unwind losses <= pair gains) | PASS, trivially: both are $0.00 |
+| armed 5m rounds (counted separately) | 115 |
+| maker quotes / fills | 268 / 0 |
+| pair-arb fires | 0 (2 refused as too thin) |
+| rounds settled | 673 |
+
+**So yes, by the letter of its own rule S10 is in KILL.** What the number is made of:
+
+| what | value |
+|---|---|
+| calendar (release) arms | **0** |
+| volatility arms | 56: sigma over baseline 44, liquidation cascade 10, imbalance 2 |
+| baseline at the moment of a sigma arm | min 1.20, median 3.00, max 5.10 bps |
+| sigma at the moment of a sigma arm | min 2.2, median 6.7, max 12.0 bps |
+| how quote pairs ended | 123 of 134 by BAND_EXIT (mid left 0.40-0.60), 6 by disarm, 3 by cascade |
+| quote lifetime | median 31 s (p25 19 s, p75 47 s) |
+| pulls | 682: SPOT_MOVE 541, BAND_EXIT 95, LIQ cascade 44, IMB 2 |
+| errors | 18 RTDS normal closes (reconnected), 8 cut-off Moon Dev answers, 0 tracebacks |
+
+### Honest reading
+1. The sample contains **no macro release at all**. It ran Saturday 11:20Z to Monday 06:36Z;
+   the first calendar bucket of its life is today 12:30Z. The strategy's actual claim
+   ("whipsaws around US data prints") has been tested on zero prints.
+2. Every armed event came from the volatility gate, and most of those came from the
+   weekend-quiet rolling baseline (median 3.0 bps at arm time, against the 7.0 the strategy
+   document measured on a weekday). Part #1 flagged this risk; the data confirms it.
+3. What the data does show, and it is real evidence: in vol-armed rounds the 0.45 straddle
+   never filled once in 268 quotes, because the market leaves the 0.40-0.60 band within about
+   half a minute. The maker half of S10 does not work in that regime. The pair-arb half
+   found a sub-$0.97 combined ask twice, both times without 20 shares of depth.
+4. Not yet checked (analysis to do on the pushed data): whether any taker SELL at or below
+   0.45 printed while a quote was resting, which separates "no one sold to us" from "the DRY
+   fill rule could not see it".
+
+### Other session's change, for the record
+`s10_box.py` was changed on the VM 2026-09-28 05:39Z by another session (backup kept as
+`s10_box.py.pre-mdretry-20260928`): one immediate retry when the ~290 KB Moon Dev answer
+arrives cut off. Plumbing only. Both versions are in the data folder so the analysis knows
+which code produced which lines.
+
+### Data pushed
+Folder `S10 data collected 2026-09-26 to 2026-09-28/` (local #10 folder and GitHub
+`#10 vol-event binary box/`): full engine log, service log, pulls CSV, stats JSON, smoke log,
+2-hour calibration log, kill-test output, log analysis, both engine versions, snapshot time.
+No fills or pairs CSV exists because no fill or pair ever happened.
+

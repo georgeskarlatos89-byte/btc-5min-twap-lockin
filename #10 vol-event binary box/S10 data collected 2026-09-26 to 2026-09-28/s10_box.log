@@ -1,0 +1,2366 @@
+[10:49:58Z] S10 vol-event binary box starting (BOUNDED 30min) — maker straddle @ 0.45 x 20sh, pair-arb cap $0.97 post-fee, leg-risk timeout 60s chase-to-$0.97-else-unwind, vol gate 1.8x baseline, band (0.4, 0.6)
+[10:49:58Z] liq feed shape: 240 rows, sample={'ts': 1790419684.216, 'usd': 18833.63, 'side': 'short', 'sym': 'XPL'}
+[10:49:58Z] SKIP 15m 1790419500: box mode disarmed (no event / no vol)
+[10:49:58Z] RTDS connected; subscribing chainlink-spot
+[10:50:01Z] SKIP 5m 1790419800: box mode disarmed (no event / no vol)
+[10:55:00Z] SKIP 5m 1790420100: box mode disarmed (no event / no vol)
+[10:55:09Z] ROUND-RESULT 5m 1790419500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:00:01Z] SKIP 15m 1790420400: box mode disarmed (no event / no vol)
+[11:00:02Z] SKIP 5m 1790420400: box mode disarmed (no event / no vol)
+[11:00:09Z] ROUND-RESULT 5m 1790419800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:01:00Z] ROUND-RESULT 5m 1790420100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:03:07Z] ROUND-RESULT 15m 1790419500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:05:01Z] SKIP 5m 1790420700: box mode disarmed (no event / no vol)
+[11:10:01Z] SKIP 5m 1790421000: box mode disarmed (no event / no vol)
+[11:10:10Z] ROUND-RESULT 5m 1790420400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:15:02Z] SKIP 15m 1790421300: box mode disarmed (no event / no vol)
+[11:15:02Z] SKIP 5m 1790421300: box mode disarmed (no event / no vol)
+[11:15:11Z] ROUND-RESULT 5m 1790420700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:16:33Z] ROUND-RESULT 5m 1790421000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:19:40Z] ROUND-RESULT 15m 1790420400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:20:08Z] S10 vol-event binary box starting (forever) — maker straddle @ 0.45 x 20sh, pair-arb cap $0.97 post-fee, leg-risk timeout 60s chase-to-$0.97-else-unwind, vol gate 1.8x baseline, band (0.4, 0.6)
+[11:20:08Z] liq feed shape: 159 rows, sample={'ts': 1790421038.738, 'usd': 50480.96, 'side': 'short', 'sym': 'TRUMP'}
+[11:20:09Z] SKIP 15m 1790421300: box mode disarmed (no event / no vol)
+[11:20:09Z] SKIP 5m 1790421600: box mode disarmed (no event / no vol)
+[11:20:09Z] RTDS connected; subscribing chainlink-spot
+[11:22:06Z] S10 vol-event binary box starting (forever) — maker straddle @ 0.45 x 20sh, pair-arb cap $0.97 post-fee, leg-risk timeout 60s chase-to-$0.97-else-unwind, vol gate 1.8x baseline, band (0.4, 0.6)
+[11:22:07Z] liq feed shape: 146 rows, sample={'ts': 1790421532.202, 'usd': 49089.58, 'side': 'short', 'sym': 'ETH'}
+[11:22:07Z] SKIP 15m 1790421300: box mode disarmed (no event / no vol)
+[11:22:07Z] RTDS connected; subscribing chainlink-spot
+[11:22:16Z] 🛑 KILL file present — FLAT (hard gate)
+[11:22:20Z] 🔔 KILL file removed — gates re-evaluated
+[11:25:00Z] SKIP 5m 1790421900: box mode disarmed (no event / no vol)
+[11:26:31Z] ROUND-RESULT 5m 1790421600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:30:01Z] SKIP 15m 1790422200: box mode disarmed (no event / no vol)
+[11:30:01Z] SKIP 5m 1790422200: box mode disarmed (no event / no vol)
+[11:31:32Z] ROUND-RESULT 15m 1790421300: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:31:32Z] ROUND-RESULT 5m 1790421900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:35:01Z] SKIP 5m 1790422500: box mode disarmed (no event / no vol)
+[11:37:03Z] ROUND-RESULT 5m 1790422200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:40:01Z] SKIP 5m 1790422800: box mode disarmed (no event / no vol)
+[11:41:01Z] ROUND-RESULT 5m 1790422500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:45:00Z] SKIP 15m 1790423100: box mode disarmed (no event / no vol)
+[11:45:00Z] SKIP 5m 1790423100: box mode disarmed (no event / no vol)
+[11:47:07Z] ROUND-RESULT 5m 1790422800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:50:00Z] SKIP 5m 1790423400: box mode disarmed (no event / no vol)
+[11:50:14Z] ROUND-RESULT 15m 1790422200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:55:01Z] SKIP 5m 1790423700: box mode disarmed (no event / no vol)
+[11:55:10Z] ROUND-RESULT 5m 1790423100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:58:05Z] ROUND-RESULT 5m 1790423400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:00:00Z] SKIP 15m 1790424000: box mode disarmed (no event / no vol)
+[12:00:00Z] SKIP 5m 1790424000: box mode disarmed (no event / no vol)
+[12:02:35Z] ROUND-RESULT 5m 1790423700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:05:01Z] SKIP 5m 1790424300: box mode disarmed (no event / no vol)
+[12:06:14Z] ROUND-RESULT 15m 1790423100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:08:06Z] ROUND-RESULT 5m 1790424000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:10:00Z] SKIP 5m 1790424600: box mode disarmed (no event / no vol)
+[12:13:05Z] ROUND-RESULT 5m 1790424300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:15:00Z] SKIP 15m 1790424900: box mode disarmed (no event / no vol)
+[12:15:00Z] SKIP 5m 1790424900: box mode disarmed (no event / no vol)
+[12:17:03Z] ROUND-RESULT 15m 1790424000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:18:05Z] ROUND-RESULT 5m 1790424600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:20:02Z] SKIP 5m 1790425200: box mode disarmed (no event / no vol)
+[12:23:07Z] ROUND-RESULT 5m 1790424900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:25:01Z] SKIP 5m 1790425500: box mode disarmed (no event / no vol)
+[12:28:04Z] ROUND-RESULT 5m 1790425200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:30:02Z] SKIP 15m 1790425800: box mode disarmed (no event / no vol)
+[12:30:02Z] SKIP 5m 1790425800: box mode disarmed (no event / no vol)
+[12:31:02Z] ROUND-RESULT 15m 1790424900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:33:07Z] ROUND-RESULT 5m 1790425500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:35:02Z] SKIP 5m 1790426100: box mode disarmed (no event / no vol)
+[12:37:07Z] 🔵 BOX ARMED (vol) — sigma1h=2.2bps > 1.8x baseline 1.2bps | hold 600s | armed until 12:47:07Z
+[12:37:08Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[12:37:08Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[12:38:06Z] ROUND-RESULT 5m 1790425800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:39:30Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[12:39:30Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[12:40:00Z] PULL MAKERS — BAND_EXIT mid=0.68 5m
+[12:43:05Z] ROUND-RESULT 5m 1790426100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:44:32Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[12:44:32Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[12:44:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[12:44:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[12:45:35Z] PULL MAKERS — BAND_EXIT mid=0.68 5m
+[12:46:00Z] ROUND-RESULT 15m 1790425800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:47:07Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[12:47:07Z] SKIP 15m 1790426700: box mode disarmed (no event / no vol)
+[12:47:08Z] 🔵 BOX ARMED (vol) — sigma1h=2.2bps > 1.8x baseline 1.2bps | hold 600s | armed until 12:57:08Z
+[12:48:05Z] ROUND-RESULT 5m 1790426400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:49:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[12:49:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[12:50:22Z] PULL MAKERS — BAND_EXIT mid=0.60 5m
+[12:53:06Z] ROUND-RESULT 5m 1790426700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:54:30Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[12:54:30Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[12:57:09Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[12:58:05Z] ROUND-RESULT 5m 1790427000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:00:01Z] SKIP 15m 1790427600: box mode disarmed (no event / no vol)
+[13:00:03Z] SKIP 5m 1790427600: box mode disarmed (no event / no vol)
+[13:02:37Z] ROUND-RESULT 15m 1790426700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:03:08Z] ROUND-RESULT 5m 1790427300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:05:01Z] SKIP 5m 1790427900: box mode disarmed (no event / no vol)
+[13:08:06Z] ROUND-RESULT 5m 1790427600: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:10:00Z] SKIP 5m 1790428200: box mode disarmed (no event / no vol)
+[13:11:02Z] 🔵 BOX ARMED (vol) — sigma1h=3.4bps > 1.8x baseline 1.8bps | hold 600s | armed until 13:21:02Z
+[13:11:02Z] PULL MAKERS — SPOT_MOVE 7.9bps/10s
+[13:11:03Z] PULL MAKERS — SPOT_MOVE 8.1bps/10s
+[13:11:04Z] PULL MAKERS — SPOT_MOVE 8.2bps/10s
+[13:11:05Z] PULL MAKERS — SPOT_MOVE 8.3bps/10s
+[13:11:06Z] PULL MAKERS — SPOT_MOVE 8.8bps/10s
+[13:11:07Z] PULL MAKERS — SPOT_MOVE 8.9bps/10s
+[13:11:08Z] PULL MAKERS — SPOT_MOVE 8.9bps/10s
+[13:11:09Z] PULL MAKERS — SPOT_MOVE 9.0bps/10s
+[13:11:10Z] PULL MAKERS — SPOT_MOVE 8.9bps/10s
+[13:11:10Z] PULL MAKERS — SPOT_MOVE 8.9bps/10s
+[13:13:38Z] ROUND-RESULT 5m 1790427900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:14:31Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[13:14:31Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[13:14:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[13:14:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[13:16:02Z] ROUND-RESULT 15m 1790427600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:16:04Z] PULL MAKERS — BAND_EXIT mid=0.38 15m
+[13:18:39Z] ROUND-RESULT 5m 1790428200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:19:30Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[13:19:30Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[13:20:00Z] PULL MAKERS — BAND_EXIT mid=0.64 5m
+[13:21:02Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[13:21:03Z] SKIP 15m 1790428500: box mode disarmed (no event / no vol)
+[13:21:03Z] SKIP 5m 1790428800: box mode disarmed (no event / no vol)
+[13:22:07Z] RTDS problem ConnectionClosedOK(Close(code=1001, reason='Going away'), Close(code=1001, reason='Going away'), True), backoff 2s
+[13:22:09Z] RTDS connected; subscribing chainlink-spot
+[13:22:36Z] ROUND-RESULT 5m 1790428500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:25:00Z] SKIP 5m 1790429100: box mode disarmed (no event / no vol)
+[13:28:36Z] ROUND-RESULT 5m 1790428800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:30:01Z] SKIP 15m 1790429400: box mode disarmed (no event / no vol)
+[13:30:01Z] SKIP 5m 1790429400: box mode disarmed (no event / no vol)
+[13:30:40Z] 🔵 BOX ARMED (vol) — sigma1h=3.8bps > 1.8x baseline 2.1bps | hold 600s | armed until 13:40:40Z
+[13:30:41Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[13:30:41Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[13:31:01Z] ROUND-RESULT 15m 1790428500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:31:12Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[13:31:12Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[13:31:26Z] PULL MAKERS — BAND_EXIT mid=0.39 5m
+[13:33:38Z] ROUND-RESULT 5m 1790429100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:34:30Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[13:34:30Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[13:34:46Z] PULL MAKERS — BAND_EXIT mid=0.60 5m
+[13:35:07Z] moondev liq error JSONDecodeError('Expecting property name enclosed in double quotes: line 1 column 32761 (char 32760)')
+[13:38:37Z] ROUND-RESULT 5m 1790429400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:39:30Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[13:39:30Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[13:39:44Z] PULL MAKERS — BAND_EXIT mid=0.60 5m
+[13:40:40Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[13:40:41Z] SKIP 5m 1790430000: box mode disarmed (no event / no vol)
+[13:40:41Z] 🔵 BOX ARMED (vol) — sigma1h=3.9bps > 1.8x baseline 2.1bps | hold 600s | armed until 13:50:41Z
+[13:43:38Z] ROUND-RESULT 5m 1790429700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:44:31Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[13:44:31Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[13:44:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[13:44:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[13:45:00Z] PULL MAKERS — BAND_EXIT mid=0.60 5m
+[13:48:40Z] ROUND-RESULT 5m 1790430000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:49:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[13:49:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[13:49:55Z] PULL MAKERS — BAND_EXIT mid=0.39 5m
+[13:50:15Z] ROUND-RESULT 15m 1790429400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:50:42Z] 🔵 BOX ARMED (vol) — sigma1h=4.0bps > 1.8x baseline 2.2bps | hold 600s | armed until 14:00:42Z
+[13:53:36Z] ROUND-RESULT 5m 1790430300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:54:30Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[13:54:30Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[13:54:37Z] PULL MAKERS — BAND_EXIT mid=0.64 5m
+[13:58:36Z] ROUND-RESULT 5m 1790430600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:59:31Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[13:59:31Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[13:59:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[13:59:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[14:00:08Z] PULL MAKERS — BAND_EXIT mid=0.33 5m
+[14:00:42Z] 🔵 BOX ARMED (vol) — sigma1h=4.2bps > 1.8x baseline 2.2bps | hold 600s | armed until 14:10:42Z
+[14:02:04Z] ROUND-RESULT 15m 1790430300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:03:39Z] ROUND-RESULT 5m 1790430900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:04:30Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[14:04:30Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[14:04:35Z] PULL MAKERS — BAND_EXIT mid=0.61 5m
+[14:08:37Z] ROUND-RESULT 5m 1790431200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:09:30Z] SKIP 5m 1790431800: mid 0.69 outside box band
+[14:10:42Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[14:10:43Z] 🔵 BOX ARMED (vol) — sigma1h=4.2bps > 1.8x baseline 2.2bps | hold 600s | armed until 14:20:43Z
+[14:13:37Z] ROUND-RESULT 5m 1790431500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:14:30Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[14:14:30Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[14:14:30Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[14:14:30Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[14:15:02Z] PULL MAKERS — BAND_EXIT mid=0.62 5m
+[14:18:37Z] ROUND-RESULT 5m 1790431800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:19:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[14:19:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[14:20:44Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[14:20:44Z] SKIP 15m 1790432100: box mode disarmed (no event / no vol)
+[14:20:44Z] SKIP 5m 1790432400: box mode disarmed (no event / no vol)
+[14:20:46Z] PULL MAKERS — BAND_EXIT mid=0.39 5m
+[14:21:13Z] ROUND-RESULT 15m 1790431200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:24:07Z] ROUND-RESULT 5m 1790432100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:25:02Z] SKIP 5m 1790432700: box mode disarmed (no event / no vol)
+[14:28:36Z] ROUND-RESULT 5m 1790432400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:30:01Z] SKIP 15m 1790433000: box mode disarmed (no event / no vol)
+[14:30:01Z] SKIP 5m 1790433000: box mode disarmed (no event / no vol)
+[14:32:35Z] ROUND-RESULT 15m 1790432100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:33:37Z] ROUND-RESULT 5m 1790432700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:35:02Z] SKIP 5m 1790433300: box mode disarmed (no event / no vol)
+[14:38:38Z] ROUND-RESULT 5m 1790433000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:40:01Z] SKIP 5m 1790433600: box mode disarmed (no event / no vol)
+[14:44:08Z] ROUND-RESULT 5m 1790433300: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:45:00Z] SKIP 15m 1790433900: box mode disarmed (no event / no vol)
+[14:45:01Z] SKIP 5m 1790433900: box mode disarmed (no event / no vol)
+[14:46:32Z] ROUND-RESULT 15m 1790433000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:49:07Z] ROUND-RESULT 5m 1790433600: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:50:02Z] SKIP 5m 1790434200: box mode disarmed (no event / no vol)
+[14:54:09Z] ROUND-RESULT 5m 1790433900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:55:02Z] SKIP 5m 1790434500: box mode disarmed (no event / no vol)
+[14:59:07Z] ROUND-RESULT 5m 1790434200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:00:01Z] SKIP 15m 1790434800: box mode disarmed (no event / no vol)
+[15:00:01Z] SKIP 5m 1790434800: box mode disarmed (no event / no vol)
+[15:04:09Z] ROUND-RESULT 15m 1790433900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:04:09Z] ROUND-RESULT 5m 1790434500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:05:02Z] SKIP 5m 1790435100: box mode disarmed (no event / no vol)
+[15:09:09Z] ROUND-RESULT 5m 1790434800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:10:01Z] SKIP 5m 1790435400: box mode disarmed (no event / no vol)
+[15:13:37Z] ROUND-RESULT 5m 1790435100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:15:00Z] SKIP 15m 1790435700: box mode disarmed (no event / no vol)
+[15:15:00Z] SKIP 5m 1790435700: box mode disarmed (no event / no vol)
+[15:19:08Z] ROUND-RESULT 5m 1790435400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:20:00Z] SKIP 5m 1790436000: box mode disarmed (no event / no vol)
+[15:20:42Z] ROUND-RESULT 15m 1790434800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:22:09Z] RTDS problem ConnectionClosedOK(Close(code=1001, reason='Going away'), Close(code=1001, reason='Going away'), True), backoff 2s
+[15:22:12Z] RTDS connected; subscribing chainlink-spot
+[15:24:08Z] ROUND-RESULT 5m 1790435700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:25:00Z] SKIP 5m 1790436300: box mode disarmed (no event / no vol)
+[15:29:39Z] ROUND-RESULT 5m 1790436000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:30:00Z] SKIP 15m 1790436600: box mode disarmed (no event / no vol)
+[15:30:01Z] SKIP 5m 1790436600: box mode disarmed (no event / no vol)
+[15:33:06Z] ROUND-RESULT 15m 1790435700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:34:15Z] 🔵 BOX ARMED (vol) — IMB_EXTREME 0.88 arms vol-box | hold 300s | armed until 15:39:15Z
+[15:34:30Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[15:34:30Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[15:35:01Z] PULL MAKERS — BAND_EXIT mid=0.40 5m
+[15:35:10Z] ROUND-RESULT 5m 1790436300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:36:01Z] ROUND-RESULT 5m 1790436600: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:39:16Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[15:40:00Z] SKIP 5m 1790437200: box mode disarmed (no event / no vol)
+[15:45:01Z] SKIP 15m 1790437500: box mode disarmed (no event / no vol)
+[15:45:01Z] SKIP 5m 1790437500: box mode disarmed (no event / no vol)
+[15:45:10Z] ROUND-RESULT 5m 1790436900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:46:01Z] ROUND-RESULT 15m 1790436600: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:50:02Z] SKIP 5m 1790437800: box mode disarmed (no event / no vol)
+[15:50:44Z] ROUND-RESULT 5m 1790437200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:55:00Z] SKIP 5m 1790438100: box mode disarmed (no event / no vol)
+[15:55:11Z] ROUND-RESULT 5m 1790437500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[16:00:02Z] SKIP 15m 1790438400: box mode disarmed (no event / no vol)
+[16:00:02Z] SKIP 5m 1790438400: box mode disarmed (no event / no vol)
+[16:00:11Z] ROUND-RESULT 5m 1790437800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[16:04:41Z] ROUND-RESULT 15m 1790437500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[16:05:00Z] SKIP 5m 1790438700: box mode disarmed (no event / no vol)
+[16:05:11Z] ROUND-RESULT 5m 1790438100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[16:10:02Z] SKIP 5m 1790439000: box mode disarmed (no event / no vol)
+[16:10:11Z] ROUND-RESULT 5m 1790438400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[16:15:01Z] SKIP 15m 1790439300: box mode disarmed (no event / no vol)
+[16:15:01Z] SKIP 5m 1790439300: box mode disarmed (no event / no vol)
+[16:15:10Z] ROUND-RESULT 5m 1790438700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[16:16:02Z] ROUND-RESULT 5m 1790439000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[16:16:34Z] ROUND-RESULT 15m 1790438400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[16:20:00Z] SKIP 5m 1790439600: box mode disarmed (no event / no vol)
+[16:25:00Z] SKIP 5m 1790439900: box mode disarmed (no event / no vol)
+[16:25:11Z] ROUND-RESULT 5m 1790439300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[16:30:01Z] SKIP 15m 1790440200: box mode disarmed (no event / no vol)
+[16:30:02Z] SKIP 5m 1790440200: box mode disarmed (no event / no vol)
+[16:30:11Z] ROUND-RESULT 5m 1790439600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[16:30:40Z] moondev liq error JSONDecodeError("Expecting ',' delimiter: line 1 column 32761 (char 32760)")
+[16:31:00Z] ROUND-RESULT 5m 1790439900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[16:33:37Z] ROUND-RESULT 15m 1790439300: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[16:35:01Z] SKIP 5m 1790440500: box mode disarmed (no event / no vol)
+[16:36:33Z] ROUND-RESULT 5m 1790440200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[16:40:00Z] SKIP 5m 1790440800: box mode disarmed (no event / no vol)
+[16:45:01Z] SKIP 15m 1790441100: box mode disarmed (no event / no vol)
+[16:45:02Z] SKIP 5m 1790441100: box mode disarmed (no event / no vol)
+[16:45:11Z] ROUND-RESULT 5m 1790440500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[16:46:02Z] ROUND-RESULT 15m 1790440200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[16:50:00Z] SKIP 5m 1790441400: box mode disarmed (no event / no vol)
+[16:50:13Z] ROUND-RESULT 5m 1790440800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[16:55:05Z] SKIP 5m 1790441700: box mode disarmed (no event / no vol)
+[16:55:09Z] ROUND-RESULT 5m 1790441100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[17:00:02Z] SKIP 15m 1790442000: box mode disarmed (no event / no vol)
+[17:00:02Z] SKIP 5m 1790442000: box mode disarmed (no event / no vol)
+[17:00:11Z] ROUND-RESULT 5m 1790441400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[17:01:00Z] ROUND-RESULT 15m 1790441100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[17:05:01Z] SKIP 5m 1790442300: box mode disarmed (no event / no vol)
+[17:05:10Z] ROUND-RESULT 5m 1790441700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[17:10:02Z] SKIP 5m 1790442600: box mode disarmed (no event / no vol)
+[17:10:13Z] ROUND-RESULT 5m 1790442000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[17:15:00Z] SKIP 15m 1790442900: box mode disarmed (no event / no vol)
+[17:15:00Z] SKIP 5m 1790442900: box mode disarmed (no event / no vol)
+[17:15:11Z] ROUND-RESULT 5m 1790442300: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[17:16:32Z] ROUND-RESULT 15m 1790442000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[17:20:00Z] SKIP 5m 1790443200: box mode disarmed (no event / no vol)
+[17:20:09Z] ROUND-RESULT 5m 1790442600: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[17:22:12Z] RTDS problem ConnectionClosedOK(Close(code=1001, reason='Going away'), Close(code=1001, reason='Going away'), True), backoff 2s
+[17:22:14Z] RTDS connected; subscribing chainlink-spot
+[17:25:01Z] SKIP 5m 1790443500: box mode disarmed (no event / no vol)
+[17:25:13Z] ROUND-RESULT 5m 1790442900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[17:27:04Z] ROUND-RESULT 5m 1790443200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[17:30:02Z] SKIP 15m 1790443800: box mode disarmed (no event / no vol)
+[17:30:02Z] SKIP 5m 1790443800: box mode disarmed (no event / no vol)
+[17:33:38Z] ROUND-RESULT 15m 1790442900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[17:35:02Z] SKIP 5m 1790444100: box mode disarmed (no event / no vol)
+[17:35:13Z] ROUND-RESULT 5m 1790443500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[17:36:02Z] ROUND-RESULT 5m 1790443800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[17:40:02Z] SKIP 5m 1790444400: box mode disarmed (no event / no vol)
+[17:41:02Z] ROUND-RESULT 5m 1790444100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[17:45:02Z] SKIP 15m 1790444700: box mode disarmed (no event / no vol)
+[17:45:02Z] SKIP 5m 1790444700: box mode disarmed (no event / no vol)
+[17:46:33Z] ROUND-RESULT 5m 1790444400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[17:49:09Z] ROUND-RESULT 15m 1790443800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[17:50:01Z] SKIP 5m 1790445000: box mode disarmed (no event / no vol)
+[17:52:04Z] ROUND-RESULT 5m 1790444700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[17:55:00Z] SKIP 5m 1790445300: box mode disarmed (no event / no vol)
+[17:57:02Z] ROUND-RESULT 5m 1790445000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:00:00Z] SKIP 15m 1790445600: box mode disarmed (no event / no vol)
+[18:00:00Z] SKIP 5m 1790445600: box mode disarmed (no event / no vol)
+[18:02:04Z] ROUND-RESULT 5m 1790445300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:03:07Z] ROUND-RESULT 15m 1790444700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:05:01Z] SKIP 5m 1790445900: box mode disarmed (no event / no vol)
+[18:10:02Z] SKIP 5m 1790446200: box mode disarmed (no event / no vol)
+[18:10:11Z] ROUND-RESULT 5m 1790445600: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:12:04Z] ROUND-RESULT 5m 1790445900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:15:00Z] SKIP 15m 1790446500: box mode disarmed (no event / no vol)
+[18:15:00Z] SKIP 5m 1790446500: box mode disarmed (no event / no vol)
+[18:16:32Z] ROUND-RESULT 15m 1790445600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:17:03Z] ROUND-RESULT 5m 1790446200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:20:01Z] SKIP 5m 1790446800: box mode disarmed (no event / no vol)
+[18:22:05Z] ROUND-RESULT 5m 1790446500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:25:01Z] SKIP 5m 1790447100: box mode disarmed (no event / no vol)
+[18:27:34Z] ROUND-RESULT 5m 1790446800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:30:00Z] SKIP 15m 1790447400: box mode disarmed (no event / no vol)
+[18:30:00Z] SKIP 5m 1790447400: box mode disarmed (no event / no vol)
+[18:31:32Z] ROUND-RESULT 5m 1790447100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:32:03Z] ROUND-RESULT 15m 1790446500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:35:00Z] SKIP 5m 1790447700: box mode disarmed (no event / no vol)
+[18:37:34Z] ROUND-RESULT 5m 1790447400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:40:00Z] SKIP 5m 1790448000: box mode disarmed (no event / no vol)
+[18:42:03Z] ROUND-RESULT 5m 1790447700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:45:01Z] SKIP 15m 1790448300: box mode disarmed (no event / no vol)
+[18:45:01Z] SKIP 5m 1790448300: box mode disarmed (no event / no vol)
+[18:47:05Z] ROUND-RESULT 5m 1790448000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:48:07Z] ROUND-RESULT 15m 1790447400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:50:02Z] SKIP 5m 1790448600: box mode disarmed (no event / no vol)
+[18:52:36Z] ROUND-RESULT 5m 1790448300: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:54:52Z] moondev liq error JSONDecodeError('Expecting value: line 1 column 1 (char 0)')
+[18:55:02Z] SKIP 5m 1790448900: box mode disarmed (no event / no vol)
+[18:56:33Z] ROUND-RESULT 5m 1790448600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:00:00Z] SKIP 15m 1790449200: box mode disarmed (no event / no vol)
+[19:00:00Z] SKIP 5m 1790449200: box mode disarmed (no event / no vol)
+[19:01:01Z] ROUND-RESULT 15m 1790448300: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:02:35Z] ROUND-RESULT 5m 1790448900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:05:01Z] SKIP 5m 1790449500: box mode disarmed (no event / no vol)
+[19:07:35Z] ROUND-RESULT 5m 1790449200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:10:02Z] SKIP 5m 1790449800: box mode disarmed (no event / no vol)
+[19:12:36Z] ROUND-RESULT 5m 1790449500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:15:00Z] SKIP 15m 1790450100: box mode disarmed (no event / no vol)
+[19:15:01Z] SKIP 5m 1790450100: box mode disarmed (no event / no vol)
+[19:17:35Z] ROUND-RESULT 5m 1790449800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:20:02Z] SKIP 5m 1790450400: box mode disarmed (no event / no vol)
+[19:20:44Z] ROUND-RESULT 15m 1790449200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:22:14Z] RTDS problem ConnectionClosedOK(Close(code=1001, reason='Going away'), Close(code=1001, reason='Going away'), True), backoff 2s
+[19:22:17Z] RTDS connected; subscribing chainlink-spot
+[19:22:34Z] ROUND-RESULT 5m 1790450100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:25:01Z] SKIP 5m 1790450700: box mode disarmed (no event / no vol)
+[19:27:35Z] ROUND-RESULT 5m 1790450400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:30:00Z] SKIP 15m 1790451000: box mode disarmed (no event / no vol)
+[19:30:00Z] SKIP 5m 1790451000: box mode disarmed (no event / no vol)
+[19:32:35Z] ROUND-RESULT 15m 1790450100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:32:35Z] ROUND-RESULT 5m 1790450700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:35:01Z] SKIP 5m 1790451300: box mode disarmed (no event / no vol)
+[19:38:06Z] ROUND-RESULT 5m 1790451000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:40:00Z] SKIP 5m 1790451600: box mode disarmed (no event / no vol)
+[19:43:06Z] ROUND-RESULT 5m 1790451300: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:45:02Z] SKIP 15m 1790451900: box mode disarmed (no event / no vol)
+[19:45:02Z] SKIP 5m 1790451900: box mode disarmed (no event / no vol)
+[19:47:03Z] ROUND-RESULT 5m 1790451600: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:48:05Z] ROUND-RESULT 15m 1790451000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:50:03Z] SKIP 5m 1790452200: box mode disarmed (no event / no vol)
+[19:53:37Z] ROUND-RESULT 5m 1790451900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:55:02Z] SKIP 5m 1790452500: box mode disarmed (no event / no vol)
+[19:59:08Z] ROUND-RESULT 5m 1790452200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:00:02Z] SKIP 15m 1790452800: box mode disarmed (no event / no vol)
+[20:00:02Z] SKIP 5m 1790452800: box mode disarmed (no event / no vol)
+[20:03:38Z] ROUND-RESULT 15m 1790451900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:03:38Z] ROUND-RESULT 5m 1790452500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:05:01Z] SKIP 5m 1790453100: box mode disarmed (no event / no vol)
+[20:08:38Z] ROUND-RESULT 5m 1790452800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:10:01Z] SKIP 5m 1790453400: box mode disarmed (no event / no vol)
+[20:13:37Z] ROUND-RESULT 5m 1790453100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:15:01Z] SKIP 15m 1790453700: box mode disarmed (no event / no vol)
+[20:15:01Z] SKIP 5m 1790453700: box mode disarmed (no event / no vol)
+[20:16:32Z] ROUND-RESULT 15m 1790452800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:19:07Z] ROUND-RESULT 5m 1790453400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:20:02Z] SKIP 5m 1790454000: box mode disarmed (no event / no vol)
+[20:23:07Z] ROUND-RESULT 5m 1790453700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:25:02Z] SKIP 5m 1790454300: box mode disarmed (no event / no vol)
+[20:29:08Z] ROUND-RESULT 5m 1790454000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:30:01Z] SKIP 15m 1790454600: box mode disarmed (no event / no vol)
+[20:30:01Z] SKIP 5m 1790454600: box mode disarmed (no event / no vol)
+[20:33:38Z] ROUND-RESULT 15m 1790453700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:34:09Z] ROUND-RESULT 5m 1790454300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:35:01Z] SKIP 5m 1790454900: box mode disarmed (no event / no vol)
+[20:38:36Z] ROUND-RESULT 5m 1790454600: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:40:01Z] SKIP 5m 1790455200: box mode disarmed (no event / no vol)
+[20:42:50Z] 🔵 BOX ARMED (vol) — IMB_EXTREME 0.13 arms vol-box | hold 300s | armed until 20:47:50Z
+[20:43:36Z] ROUND-RESULT 5m 1790454900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:44:21Z] PULL MAKERS — IMB_EXTREME 0.13
+[20:44:32Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[20:44:32Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[20:44:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[20:44:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[20:44:59Z] PULL MAKERS — BAND_EXIT mid=0.64 5m
+[20:45:53Z] PULL MAKERS — IMB_EXTREME 0.13
+[20:46:02Z] ROUND-RESULT 15m 1790454600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:47:52Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[20:47:52Z] SKIP 15m 1790455500: box mode disarmed (no event / no vol)
+[20:48:39Z] ROUND-RESULT 5m 1790455200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:50:00Z] SKIP 5m 1790455800: box mode disarmed (no event / no vol)
+[20:54:08Z] ROUND-RESULT 5m 1790455500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:55:00Z] SKIP 5m 1790456100: box mode disarmed (no event / no vol)
+[20:59:06Z] ROUND-RESULT 5m 1790455800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:00:02Z] SKIP 15m 1790456400: box mode disarmed (no event / no vol)
+[21:00:02Z] SKIP 5m 1790456400: box mode disarmed (no event / no vol)
+[21:03:36Z] ROUND-RESULT 15m 1790455500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:03:36Z] ROUND-RESULT 5m 1790456100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:05:02Z] SKIP 5m 1790456700: box mode disarmed (no event / no vol)
+[21:09:07Z] ROUND-RESULT 5m 1790456400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:10:02Z] SKIP 5m 1790457000: box mode disarmed (no event / no vol)
+[21:14:07Z] ROUND-RESULT 5m 1790456700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:15:00Z] SKIP 15m 1790457300: box mode disarmed (no event / no vol)
+[21:15:00Z] SKIP 5m 1790457300: box mode disarmed (no event / no vol)
+[21:16:01Z] ROUND-RESULT 15m 1790456400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:19:07Z] ROUND-RESULT 5m 1790457000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:20:01Z] SKIP 5m 1790457600: box mode disarmed (no event / no vol)
+[21:22:17Z] RTDS problem ConnectionClosedOK(Close(code=1001, reason='Going away'), Close(code=1001, reason='Going away'), True), backoff 2s
+[21:22:19Z] RTDS connected; subscribing chainlink-spot
+[21:24:07Z] ROUND-RESULT 5m 1790457300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:25:02Z] SKIP 5m 1790457900: box mode disarmed (no event / no vol)
+[21:29:07Z] ROUND-RESULT 5m 1790457600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:30:02Z] SKIP 15m 1790458200: box mode disarmed (no event / no vol)
+[21:30:02Z] SKIP 5m 1790458200: box mode disarmed (no event / no vol)
+[21:30:07Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[21:31:31Z] ROUND-RESULT 15m 1790457300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:34:37Z] ROUND-RESULT 5m 1790457900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:35:01Z] SKIP 5m 1790458500: box mode disarmed (no event / no vol)
+[21:39:38Z] ROUND-RESULT 5m 1790458200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:40:01Z] SKIP 5m 1790458800: box mode disarmed (no event / no vol)
+[21:44:38Z] ROUND-RESULT 5m 1790458500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:45:02Z] SKIP 15m 1790459100: box mode disarmed (no event / no vol)
+[21:45:02Z] SKIP 5m 1790459100: box mode disarmed (no event / no vol)
+[21:48:05Z] ROUND-RESULT 15m 1790458200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:50:01Z] SKIP 5m 1790459400: box mode disarmed (no event / no vol)
+[21:50:10Z] ROUND-RESULT 5m 1790458800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:55:00Z] SKIP 5m 1790459700: box mode disarmed (no event / no vol)
+[21:55:09Z] ROUND-RESULT 5m 1790459100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:00:02Z] SKIP 15m 1790460000: box mode disarmed (no event / no vol)
+[22:00:02Z] SKIP 5m 1790460000: box mode disarmed (no event / no vol)
+[22:00:09Z] ROUND-RESULT 5m 1790459400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:01:02Z] ROUND-RESULT 5m 1790459700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:02:34Z] ROUND-RESULT 15m 1790459100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:05:01Z] SKIP 5m 1790460300: box mode disarmed (no event / no vol)
+[22:06:01Z] ROUND-RESULT 5m 1790460000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:06:08Z] PULL MAKERS — SPOT_MOVE 9.0bps/10s
+[22:06:09Z] PULL MAKERS — SPOT_MOVE 11.2bps/10s
+[22:06:10Z] PULL MAKERS — SPOT_MOVE 13.2bps/10s
+[22:06:11Z] PULL MAKERS — SPOT_MOVE 14.8bps/10s
+[22:06:12Z] PULL MAKERS — SPOT_MOVE 12.4bps/10s
+[22:06:13Z] PULL MAKERS — SPOT_MOVE 11.5bps/10s
+[22:06:14Z] PULL MAKERS — SPOT_MOVE 10.6bps/10s
+[22:06:15Z] PULL MAKERS — SPOT_MOVE 10.3bps/10s
+[22:06:16Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[22:06:17Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[22:06:23Z] 🔵 BOX ARMED (vol) — LIQ cascade arms vol-box: cascade BUY/shorts $44.20M/10s | hold 300s | armed until 22:11:23Z
+[22:06:34Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[22:09:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[22:09:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[22:10:00Z] PULL MAKERS — BAND_EXIT mid=0.64 5m
+[22:11:02Z] ROUND-RESULT 5m 1790460300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:11:24Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[22:11:24Z] SKIP 5m 1790460600: box mode disarmed (no event / no vol)
+[22:15:02Z] SKIP 15m 1790460900: box mode disarmed (no event / no vol)
+[22:15:02Z] SKIP 5m 1790460900: box mode disarmed (no event / no vol)
+[22:16:01Z] ROUND-RESULT 15m 1790460000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:20:01Z] SKIP 5m 1790461200: box mode disarmed (no event / no vol)
+[22:20:10Z] ROUND-RESULT 5m 1790460600: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:25:01Z] SKIP 5m 1790461500: box mode disarmed (no event / no vol)
+[22:25:40Z] ROUND-RESULT 5m 1790460900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:28:06Z] PULL MAKERS — SPOT_MOVE 6.3bps/10s
+[22:28:07Z] PULL MAKERS — SPOT_MOVE 6.5bps/10s
+[22:28:08Z] PULL MAKERS — SPOT_MOVE 6.7bps/10s
+[22:28:09Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[22:28:10Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[22:29:05Z] ROUND-RESULT 5m 1790461200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:30:00Z] SKIP 15m 1790461800: box mode disarmed (no event / no vol)
+[22:30:00Z] SKIP 5m 1790461800: box mode disarmed (no event / no vol)
+[22:34:38Z] ROUND-RESULT 15m 1790460900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:35:01Z] SKIP 5m 1790462100: box mode disarmed (no event / no vol)
+[22:35:10Z] ROUND-RESULT 5m 1790461500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:36:01Z] ROUND-RESULT 5m 1790461800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:40:01Z] SKIP 5m 1790462400: box mode disarmed (no event / no vol)
+[22:41:31Z] ROUND-RESULT 5m 1790462100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:45:02Z] SKIP 15m 1790462700: box mode disarmed (no event / no vol)
+[22:45:02Z] SKIP 5m 1790462700: box mode disarmed (no event / no vol)
+[22:46:01Z] ROUND-RESULT 15m 1790461800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:46:32Z] ROUND-RESULT 5m 1790462400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:50:01Z] SKIP 5m 1790463000: box mode disarmed (no event / no vol)
+[22:55:01Z] SKIP 5m 1790463300: box mode disarmed (no event / no vol)
+[22:55:07Z] ROUND-RESULT 5m 1790462700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:55:12Z] RTDS silent for 60s — reconnecting (stall watchdog)
+[22:55:12Z] RTDS connected; subscribing chainlink-spot
+[22:55:13Z] 🔵 BOX ARMED (vol) — sigma1h=4.6bps > 1.8x baseline 2.5bps | hold 600s | armed until 23:05:13Z
+[22:56:31Z] ROUND-RESULT 5m 1790463000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:59:30Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[22:59:30Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[22:59:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[22:59:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[23:00:06Z] PULL MAKERS — BAND_EXIT mid=0.60 5m
+[23:01:33Z] ROUND-RESULT 5m 1790463300: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:04:30Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[23:04:30Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[23:05:09Z] ROUND-RESULT 15m 1790462700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:05:13Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[23:05:13Z] SKIP 15m 1790463600: box mode disarmed (no event / no vol)
+[23:05:13Z] SKIP 5m 1790463900: box mode disarmed (no event / no vol)
+[23:05:13Z] 🔵 BOX ARMED (vol) — sigma1h=4.6bps > 1.8x baseline 2.5bps | hold 600s | armed until 23:15:13Z
+[23:05:26Z] PULL MAKERS — BAND_EXIT mid=0.29 5m
+[23:07:03Z] ROUND-RESULT 5m 1790463600: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:09:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[23:09:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[23:11:00Z] ROUND-RESULT 5m 1790463900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:11:24Z] PULL MAKERS — BAND_EXIT mid=0.83 5m
+[23:14:31Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[23:14:31Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[23:14:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[23:14:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[23:15:02Z] PULL MAKERS — BAND_EXIT mid=0.69 5m
+[23:15:15Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[23:15:15Z] SKIP 15m 1790464500: box mode disarmed (no event / no vol)
+[23:15:15Z] SKIP 5m 1790464500: box mode disarmed (no event / no vol)
+[23:16:33Z] ROUND-RESULT 15m 1790463600: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:20:00Z] SKIP 5m 1790464800: box mode disarmed (no event / no vol)
+[23:20:11Z] ROUND-RESULT 5m 1790464200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:21:02Z] ROUND-RESULT 5m 1790464500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:25:02Z] SKIP 5m 1790465100: box mode disarmed (no event / no vol)
+[23:27:03Z] ROUND-RESULT 5m 1790464800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:30:01Z] SKIP 15m 1790465400: box mode disarmed (no event / no vol)
+[23:30:01Z] SKIP 5m 1790465400: box mode disarmed (no event / no vol)
+[23:31:00Z] ROUND-RESULT 5m 1790465100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:33:03Z] ROUND-RESULT 15m 1790464500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:35:00Z] SKIP 5m 1790465700: box mode disarmed (no event / no vol)
+[23:36:02Z] ROUND-RESULT 5m 1790465400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:40:00Z] SKIP 5m 1790466000: box mode disarmed (no event / no vol)
+[23:43:35Z] ROUND-RESULT 5m 1790465700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:45:00Z] SKIP 15m 1790466300: box mode disarmed (no event / no vol)
+[23:45:00Z] SKIP 5m 1790466300: box mode disarmed (no event / no vol)
+[23:46:32Z] ROUND-RESULT 15m 1790465400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:49:06Z] ROUND-RESULT 5m 1790466000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:50:01Z] SKIP 5m 1790466600: box mode disarmed (no event / no vol)
+[23:52:32Z] ROUND-RESULT 5m 1790466300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:55:00Z] SKIP 5m 1790466900: box mode disarmed (no event / no vol)
+[23:57:02Z] ROUND-RESULT 5m 1790466600: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:00:00Z] SKIP 15m 1790467200: box mode disarmed (no event / no vol)
+[00:00:00Z] SKIP 5m 1790467200: box mode disarmed (no event / no vol)
+[00:03:05Z] ROUND-RESULT 15m 1790466300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:05:02Z] SKIP 5m 1790467500: box mode disarmed (no event / no vol)
+[00:05:08Z] ROUND-RESULT 5m 1790466900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:06:32Z] ROUND-RESULT 5m 1790467200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:10:01Z] SKIP 5m 1790467800: box mode disarmed (no event / no vol)
+[00:12:03Z] ROUND-RESULT 5m 1790467500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:15:00Z] SKIP 15m 1790468100: box mode disarmed (no event / no vol)
+[00:15:00Z] SKIP 5m 1790468100: box mode disarmed (no event / no vol)
+[00:16:02Z] ROUND-RESULT 15m 1790467200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:17:03Z] ROUND-RESULT 5m 1790467800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:20:02Z] SKIP 5m 1790468400: box mode disarmed (no event / no vol)
+[00:21:32Z] ROUND-RESULT 5m 1790468100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:25:00Z] SKIP 5m 1790468700: box mode disarmed (no event / no vol)
+[00:27:05Z] ROUND-RESULT 5m 1790468400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:30:01Z] SKIP 15m 1790469000: box mode disarmed (no event / no vol)
+[00:30:01Z] SKIP 5m 1790469000: box mode disarmed (no event / no vol)
+[00:32:32Z] ROUND-RESULT 15m 1790468100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:33:03Z] ROUND-RESULT 5m 1790468700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:35:02Z] SKIP 5m 1790469300: box mode disarmed (no event / no vol)
+[00:38:34Z] ROUND-RESULT 5m 1790469000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:40:01Z] SKIP 5m 1790469600: box mode disarmed (no event / no vol)
+[00:43:34Z] ROUND-RESULT 5m 1790469300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:45:01Z] SKIP 15m 1790469900: box mode disarmed (no event / no vol)
+[00:45:01Z] SKIP 5m 1790469900: box mode disarmed (no event / no vol)
+[00:47:33Z] ROUND-RESULT 15m 1790469000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:48:34Z] ROUND-RESULT 5m 1790469600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:50:00Z] SKIP 5m 1790470200: box mode disarmed (no event / no vol)
+[00:54:37Z] ROUND-RESULT 5m 1790469900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:55:02Z] SKIP 5m 1790470500: box mode disarmed (no event / no vol)
+[00:55:12Z] RTDS problem ConnectionClosedOK(Close(code=1001, reason='Going away'), Close(code=1001, reason='Going away'), True), backoff 2s
+[00:55:14Z] RTDS connected; subscribing chainlink-spot
+[00:59:36Z] ROUND-RESULT 5m 1790470200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:00:02Z] SKIP 15m 1790470800: box mode disarmed (no event / no vol)
+[01:00:03Z] SKIP 5m 1790470800: box mode disarmed (no event / no vol)
+[01:03:35Z] ROUND-RESULT 15m 1790469900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:04:37Z] ROUND-RESULT 5m 1790470500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:05:02Z] SKIP 5m 1790471100: box mode disarmed (no event / no vol)
+[01:09:36Z] ROUND-RESULT 5m 1790470800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:10:00Z] SKIP 5m 1790471400: box mode disarmed (no event / no vol)
+[01:15:02Z] SKIP 15m 1790471700: box mode disarmed (no event / no vol)
+[01:15:02Z] SKIP 5m 1790471700: box mode disarmed (no event / no vol)
+[01:15:06Z] ROUND-RESULT 5m 1790471100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:16:32Z] ROUND-RESULT 15m 1790470800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:16:32Z] ROUND-RESULT 5m 1790471400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:20:01Z] SKIP 5m 1790472000: box mode disarmed (no event / no vol)
+[01:25:01Z] SKIP 5m 1790472300: box mode disarmed (no event / no vol)
+[01:25:07Z] ROUND-RESULT 5m 1790471700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:27:01Z] ROUND-RESULT 5m 1790472000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:30:00Z] SKIP 15m 1790472600: box mode disarmed (no event / no vol)
+[01:30:00Z] SKIP 5m 1790472600: box mode disarmed (no event / no vol)
+[01:31:33Z] ROUND-RESULT 15m 1790471700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:32:03Z] ROUND-RESULT 5m 1790472300: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:35:02Z] SKIP 5m 1790472900: box mode disarmed (no event / no vol)
+[01:37:02Z] ROUND-RESULT 5m 1790472600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:40:00Z] SKIP 5m 1790473200: box mode disarmed (no event / no vol)
+[01:45:02Z] SKIP 15m 1790473500: box mode disarmed (no event / no vol)
+[01:45:02Z] SKIP 5m 1790473500: box mode disarmed (no event / no vol)
+[01:45:06Z] ROUND-RESULT 5m 1790472900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:47:02Z] ROUND-RESULT 15m 1790472600: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:47:33Z] ROUND-RESULT 5m 1790473200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:50:00Z] SKIP 5m 1790473800: box mode disarmed (no event / no vol)
+[01:52:34Z] ROUND-RESULT 5m 1790473500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:55:01Z] SKIP 5m 1790474100: box mode disarmed (no event / no vol)
+[01:57:01Z] ROUND-RESULT 5m 1790473800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:00:01Z] SKIP 15m 1790474400: box mode disarmed (no event / no vol)
+[02:00:01Z] SKIP 5m 1790474400: box mode disarmed (no event / no vol)
+[02:02:04Z] ROUND-RESULT 15m 1790473500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:02:04Z] ROUND-RESULT 5m 1790474100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:05:01Z] SKIP 5m 1790474700: box mode disarmed (no event / no vol)
+[02:09:06Z] ROUND-RESULT 5m 1790474400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:10:02Z] SKIP 5m 1790475000: box mode disarmed (no event / no vol)
+[02:12:34Z] ROUND-RESULT 5m 1790474700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:15:00Z] SKIP 15m 1790475300: box mode disarmed (no event / no vol)
+[02:15:00Z] SKIP 5m 1790475300: box mode disarmed (no event / no vol)
+[02:17:03Z] ROUND-RESULT 15m 1790474400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:19:06Z] ROUND-RESULT 5m 1790475000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:20:02Z] SKIP 5m 1790475600: box mode disarmed (no event / no vol)
+[02:24:05Z] ROUND-RESULT 5m 1790475300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:25:01Z] SKIP 5m 1790475900: box mode disarmed (no event / no vol)
+[02:29:07Z] ROUND-RESULT 5m 1790475600: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:30:01Z] SKIP 15m 1790476200: box mode disarmed (no event / no vol)
+[02:30:01Z] SKIP 5m 1790476200: box mode disarmed (no event / no vol)
+[02:31:00Z] ROUND-RESULT 15m 1790475300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:34:04Z] ROUND-RESULT 5m 1790475900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:35:00Z] SKIP 5m 1790476500: box mode disarmed (no event / no vol)
+[02:40:01Z] SKIP 5m 1790476800: box mode disarmed (no event / no vol)
+[02:40:08Z] ROUND-RESULT 5m 1790476200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:44:36Z] ROUND-RESULT 5m 1790476500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:45:02Z] SKIP 15m 1790477100: box mode disarmed (no event / no vol)
+[02:45:02Z] SKIP 5m 1790477100: box mode disarmed (no event / no vol)
+[02:49:05Z] ROUND-RESULT 15m 1790476200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:49:36Z] ROUND-RESULT 5m 1790476800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:50:00Z] SKIP 5m 1790477400: box mode disarmed (no event / no vol)
+[02:55:02Z] SKIP 5m 1790477700: box mode disarmed (no event / no vol)
+[02:55:08Z] ROUND-RESULT 5m 1790477100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:55:14Z] RTDS problem ConnectionClosedOK(Close(code=1001, reason='Going away'), Close(code=1001, reason='Going away'), True), backoff 2s
+[02:55:16Z] RTDS connected; subscribing chainlink-spot
+[03:00:02Z] SKIP 15m 1790478000: box mode disarmed (no event / no vol)
+[03:00:02Z] SKIP 5m 1790478000: box mode disarmed (no event / no vol)
+[03:00:06Z] ROUND-RESULT 5m 1790477400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:02:33Z] ROUND-RESULT 15m 1790477100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:05:01Z] SKIP 5m 1790478300: box mode disarmed (no event / no vol)
+[03:05:08Z] ROUND-RESULT 5m 1790477700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:10:02Z] SKIP 5m 1790478600: box mode disarmed (no event / no vol)
+[03:10:06Z] ROUND-RESULT 5m 1790478000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:11:01Z] ROUND-RESULT 5m 1790478300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:15:02Z] SKIP 15m 1790478900: box mode disarmed (no event / no vol)
+[03:15:02Z] SKIP 5m 1790478900: box mode disarmed (no event / no vol)
+[03:16:01Z] ROUND-RESULT 5m 1790478600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:19:35Z] ROUND-RESULT 15m 1790478000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:20:00Z] SKIP 5m 1790479200: box mode disarmed (no event / no vol)
+[03:21:01Z] ROUND-RESULT 5m 1790478900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:25:01Z] SKIP 5m 1790479500: box mode disarmed (no event / no vol)
+[03:26:31Z] ROUND-RESULT 5m 1790479200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:30:00Z] SKIP 15m 1790479800: box mode disarmed (no event / no vol)
+[03:30:00Z] SKIP 5m 1790479800: box mode disarmed (no event / no vol)
+[03:31:02Z] ROUND-RESULT 15m 1790478900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:31:33Z] ROUND-RESULT 5m 1790479500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:35:01Z] SKIP 5m 1790480100: box mode disarmed (no event / no vol)
+[03:37:04Z] ROUND-RESULT 5m 1790479800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:40:01Z] SKIP 5m 1790480400: box mode disarmed (no event / no vol)
+[03:41:33Z] ROUND-RESULT 5m 1790480100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:42:03Z] moondev liq error JSONDecodeError('Expecting value: line 1 column 1 (char 0)')
+[03:45:00Z] SKIP 15m 1790480700: box mode disarmed (no event / no vol)
+[03:45:00Z] SKIP 5m 1790480700: box mode disarmed (no event / no vol)
+[03:47:35Z] ROUND-RESULT 5m 1790480400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:48:37Z] ROUND-RESULT 15m 1790479800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:50:00Z] SKIP 5m 1790481000: box mode disarmed (no event / no vol)
+[03:55:02Z] SKIP 5m 1790481300: box mode disarmed (no event / no vol)
+[03:55:12Z] ROUND-RESULT 5m 1790480700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:00:00Z] SKIP 15m 1790481600: box mode disarmed (no event / no vol)
+[04:00:00Z] SKIP 5m 1790481600: box mode disarmed (no event / no vol)
+[04:00:13Z] ROUND-RESULT 5m 1790481000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:02:03Z] ROUND-RESULT 5m 1790481300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:04:06Z] ROUND-RESULT 15m 1790480700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:05:02Z] SKIP 5m 1790481900: box mode disarmed (no event / no vol)
+[04:10:00Z] SKIP 5m 1790482200: box mode disarmed (no event / no vol)
+[04:10:06Z] ROUND-RESULT 5m 1790481600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:12:33Z] ROUND-RESULT 5m 1790481900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:15:01Z] SKIP 15m 1790482500: box mode disarmed (no event / no vol)
+[04:15:01Z] SKIP 5m 1790482500: box mode disarmed (no event / no vol)
+[04:16:00Z] ROUND-RESULT 15m 1790481600: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:17:32Z] ROUND-RESULT 5m 1790482200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:20:01Z] SKIP 5m 1790482800: box mode disarmed (no event / no vol)
+[04:23:03Z] ROUND-RESULT 5m 1790482500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:25:00Z] SKIP 5m 1790483100: box mode disarmed (no event / no vol)
+[04:28:04Z] ROUND-RESULT 5m 1790482800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:30:00Z] SKIP 15m 1790483400: box mode disarmed (no event / no vol)
+[04:30:00Z] SKIP 5m 1790483400: box mode disarmed (no event / no vol)
+[04:31:01Z] ROUND-RESULT 15m 1790482500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:33:03Z] ROUND-RESULT 5m 1790483100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:35:00Z] SKIP 5m 1790483700: box mode disarmed (no event / no vol)
+[04:38:04Z] ROUND-RESULT 5m 1790483400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:40:01Z] SKIP 5m 1790484000: box mode disarmed (no event / no vol)
+[04:43:33Z] ROUND-RESULT 5m 1790483700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:45:00Z] SKIP 15m 1790484300: box mode disarmed (no event / no vol)
+[04:45:01Z] SKIP 5m 1790484300: box mode disarmed (no event / no vol)
+[04:46:00Z] ROUND-RESULT 15m 1790483400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:48:33Z] ROUND-RESULT 5m 1790484000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:50:01Z] SKIP 5m 1790484600: box mode disarmed (no event / no vol)
+[04:53:33Z] ROUND-RESULT 5m 1790484300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:55:02Z] SKIP 5m 1790484900: box mode disarmed (no event / no vol)
+[04:55:16Z] RTDS problem ConnectionClosedOK(Close(code=1001, reason='Going away'), Close(code=1001, reason='Going away'), True), backoff 2s
+[04:55:19Z] RTDS connected; subscribing chainlink-spot
+[04:59:38Z] ROUND-RESULT 5m 1790484600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:00:02Z] SKIP 15m 1790485200: box mode disarmed (no event / no vol)
+[05:00:02Z] SKIP 5m 1790485200: box mode disarmed (no event / no vol)
+[05:02:34Z] ROUND-RESULT 15m 1790484300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:04:37Z] ROUND-RESULT 5m 1790484900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:05:02Z] SKIP 5m 1790485500: box mode disarmed (no event / no vol)
+[05:10:00Z] SKIP 5m 1790485800: box mode disarmed (no event / no vol)
+[05:10:07Z] ROUND-RESULT 5m 1790485200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:11:01Z] ROUND-RESULT 5m 1790485500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:15:02Z] SKIP 15m 1790486100: box mode disarmed (no event / no vol)
+[05:15:02Z] SKIP 5m 1790486100: box mode disarmed (no event / no vol)
+[05:18:04Z] ROUND-RESULT 15m 1790485200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:20:01Z] SKIP 5m 1790486400: box mode disarmed (no event / no vol)
+[05:20:07Z] ROUND-RESULT 5m 1790485800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:21:00Z] ROUND-RESULT 5m 1790486100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:25:01Z] SKIP 5m 1790486700: box mode disarmed (no event / no vol)
+[05:30:01Z] SKIP 15m 1790487000: box mode disarmed (no event / no vol)
+[05:30:01Z] SKIP 5m 1790487000: box mode disarmed (no event / no vol)
+[05:30:08Z] ROUND-RESULT 5m 1790486400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:34:06Z] ROUND-RESULT 15m 1790486100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:35:00Z] SKIP 5m 1790487300: box mode disarmed (no event / no vol)
+[05:35:09Z] ROUND-RESULT 5m 1790486700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:36:01Z] ROUND-RESULT 5m 1790487000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:37:04Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[05:37:04Z] PULL MAKERS — SPOT_MOVE 6.3bps/10s
+[05:37:06Z] PULL MAKERS — SPOT_MOVE 7.7bps/10s
+[05:37:06Z] PULL MAKERS — SPOT_MOVE 7.8bps/10s
+[05:37:08Z] PULL MAKERS — SPOT_MOVE 7.2bps/10s
+[05:37:08Z] PULL MAKERS — SPOT_MOVE 9.5bps/10s
+[05:37:10Z] PULL MAKERS — SPOT_MOVE 7.6bps/10s
+[05:37:11Z] PULL MAKERS — SPOT_MOVE 6.8bps/10s
+[05:40:00Z] SKIP 5m 1790487600: box mode disarmed (no event / no vol)
+[05:41:02Z] ROUND-RESULT 5m 1790487300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:45:00Z] SKIP 15m 1790487900: box mode disarmed (no event / no vol)
+[05:45:00Z] SKIP 5m 1790487900: box mode disarmed (no event / no vol)
+[05:46:02Z] ROUND-RESULT 15m 1790487000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:50:00Z] SKIP 5m 1790488200: box mode disarmed (no event / no vol)
+[05:50:09Z] ROUND-RESULT 5m 1790487600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:55:00Z] SKIP 5m 1790488500: box mode disarmed (no event / no vol)
+[05:55:09Z] ROUND-RESULT 5m 1790487900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:56:32Z] ROUND-RESULT 5m 1790488200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:00:02Z] SKIP 15m 1790488800: box mode disarmed (no event / no vol)
+[06:00:02Z] SKIP 5m 1790488800: box mode disarmed (no event / no vol)
+[06:01:02Z] ROUND-RESULT 15m 1790487900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:05:00Z] SKIP 5m 1790489100: box mode disarmed (no event / no vol)
+[06:05:09Z] ROUND-RESULT 5m 1790488500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:07:03Z] ROUND-RESULT 5m 1790488800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:10:01Z] SKIP 5m 1790489400: box mode disarmed (no event / no vol)
+[06:13:05Z] ROUND-RESULT 5m 1790489100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:15:01Z] SKIP 15m 1790489700: box mode disarmed (no event / no vol)
+[06:15:01Z] SKIP 5m 1790489700: box mode disarmed (no event / no vol)
+[06:17:33Z] ROUND-RESULT 15m 1790488800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:17:33Z] ROUND-RESULT 5m 1790489400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:20:01Z] SKIP 5m 1790490000: box mode disarmed (no event / no vol)
+[06:22:34Z] ROUND-RESULT 5m 1790489700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:25:02Z] SKIP 5m 1790490300: box mode disarmed (no event / no vol)
+[06:27:33Z] ROUND-RESULT 5m 1790490000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:30:01Z] SKIP 15m 1790490600: box mode disarmed (no event / no vol)
+[06:30:01Z] SKIP 5m 1790490600: box mode disarmed (no event / no vol)
+[06:33:04Z] ROUND-RESULT 5m 1790490300: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:33:34Z] ROUND-RESULT 15m 1790489700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:35:01Z] SKIP 5m 1790490900: box mode disarmed (no event / no vol)
+[06:38:04Z] ROUND-RESULT 5m 1790490600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:40:01Z] SKIP 5m 1790491200: box mode disarmed (no event / no vol)
+[06:43:03Z] ROUND-RESULT 5m 1790490900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:45:02Z] SKIP 15m 1790491500: box mode disarmed (no event / no vol)
+[06:45:02Z] SKIP 5m 1790491500: box mode disarmed (no event / no vol)
+[06:47:03Z] ROUND-RESULT 5m 1790491200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:49:37Z] ROUND-RESULT 15m 1790490600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:50:02Z] SKIP 5m 1790491800: box mode disarmed (no event / no vol)
+[06:53:04Z] ROUND-RESULT 5m 1790491500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:55:01Z] SKIP 5m 1790492100: box mode disarmed (no event / no vol)
+[06:55:18Z] RTDS problem ConnectionClosedOK(Close(code=1001, reason='Going away'), Close(code=1001, reason='Going away'), True), backoff 2s
+[06:55:21Z] RTDS connected; subscribing chainlink-spot
+[06:58:03Z] ROUND-RESULT 5m 1790491800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[07:00:00Z] SKIP 15m 1790492400: box mode disarmed (no event / no vol)
+[07:00:00Z] SKIP 5m 1790492400: box mode disarmed (no event / no vol)
+[07:02:33Z] ROUND-RESULT 15m 1790491500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[07:02:33Z] ROUND-RESULT 5m 1790492100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[07:05:02Z] SKIP 5m 1790492700: box mode disarmed (no event / no vol)
+[07:08:06Z] ROUND-RESULT 5m 1790492400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[07:10:02Z] SKIP 5m 1790493000: box mode disarmed (no event / no vol)
+[07:13:34Z] ROUND-RESULT 5m 1790492700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[07:15:00Z] SKIP 15m 1790493300: box mode disarmed (no event / no vol)
+[07:15:00Z] SKIP 5m 1790493300: box mode disarmed (no event / no vol)
+[07:18:36Z] ROUND-RESULT 5m 1790493000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[07:20:01Z] SKIP 5m 1790493600: box mode disarmed (no event / no vol)
+[07:20:10Z] ROUND-RESULT 15m 1790492400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[07:23:35Z] ROUND-RESULT 5m 1790493300: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[07:25:00Z] SKIP 5m 1790493900: box mode disarmed (no event / no vol)
+[07:29:06Z] ROUND-RESULT 5m 1790493600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[07:30:01Z] SKIP 15m 1790494200: box mode disarmed (no event / no vol)
+[07:30:01Z] SKIP 5m 1790494200: box mode disarmed (no event / no vol)
+[07:32:03Z] ROUND-RESULT 15m 1790493300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[07:34:07Z] ROUND-RESULT 5m 1790493900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[07:35:00Z] SKIP 5m 1790494500: box mode disarmed (no event / no vol)
+[07:36:31Z] ROUND-RESULT 5m 1790494200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[07:40:01Z] SKIP 5m 1790494800: box mode disarmed (no event / no vol)
+[07:45:01Z] SKIP 15m 1790495100: box mode disarmed (no event / no vol)
+[07:45:01Z] SKIP 5m 1790495100: box mode disarmed (no event / no vol)
+[07:45:07Z] ROUND-RESULT 5m 1790494500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[07:46:00Z] ROUND-RESULT 5m 1790494800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[07:46:31Z] ROUND-RESULT 15m 1790494200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[07:50:02Z] SKIP 5m 1790495400: box mode disarmed (no event / no vol)
+[07:55:01Z] SKIP 5m 1790495700: box mode disarmed (no event / no vol)
+[07:55:10Z] ROUND-RESULT 5m 1790495100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[07:58:05Z] ROUND-RESULT 5m 1790495400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[08:00:02Z] SKIP 15m 1790496000: box mode disarmed (no event / no vol)
+[08:00:02Z] SKIP 5m 1790496000: box mode disarmed (no event / no vol)
+[08:01:33Z] ROUND-RESULT 15m 1790495100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[08:03:37Z] ROUND-RESULT 5m 1790495700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[08:05:02Z] SKIP 5m 1790496300: box mode disarmed (no event / no vol)
+[08:06:32Z] ROUND-RESULT 5m 1790496000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[08:10:00Z] SKIP 5m 1790496600: box mode disarmed (no event / no vol)
+[08:12:02Z] ROUND-RESULT 5m 1790496300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[08:15:01Z] SKIP 15m 1790496900: box mode disarmed (no event / no vol)
+[08:15:01Z] SKIP 5m 1790496900: box mode disarmed (no event / no vol)
+[08:17:34Z] ROUND-RESULT 15m 1790496000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[08:19:07Z] ROUND-RESULT 5m 1790496600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[08:19:38Z] moondev liq error JSONDecodeError("Expecting ':' delimiter: line 1 column 57326 (char 57325)")
+[08:20:01Z] SKIP 5m 1790497200: box mode disarmed (no event / no vol)
+[08:23:36Z] ROUND-RESULT 5m 1790496900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[08:25:01Z] SKIP 5m 1790497500: box mode disarmed (no event / no vol)
+[08:29:06Z] ROUND-RESULT 5m 1790497200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[08:30:02Z] SKIP 15m 1790497800: box mode disarmed (no event / no vol)
+[08:30:02Z] SKIP 5m 1790497800: box mode disarmed (no event / no vol)
+[08:33:06Z] ROUND-RESULT 15m 1790496900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[08:33:37Z] ROUND-RESULT 5m 1790497500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[08:35:02Z] SKIP 5m 1790498100: box mode disarmed (no event / no vol)
+[08:39:07Z] ROUND-RESULT 5m 1790497800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[08:40:01Z] SKIP 5m 1790498400: box mode disarmed (no event / no vol)
+[08:44:06Z] ROUND-RESULT 5m 1790498100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[08:45:02Z] SKIP 15m 1790498700: box mode disarmed (no event / no vol)
+[08:45:02Z] SKIP 5m 1790498700: box mode disarmed (no event / no vol)
+[08:47:04Z] ROUND-RESULT 15m 1790497800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[08:49:06Z] ROUND-RESULT 5m 1790498400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[08:50:01Z] SKIP 5m 1790499000: box mode disarmed (no event / no vol)
+[08:54:06Z] ROUND-RESULT 5m 1790498700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[08:55:02Z] SKIP 5m 1790499300: box mode disarmed (no event / no vol)
+[08:55:21Z] RTDS problem ConnectionClosedOK(Close(code=1001, reason='Going away'), Close(code=1001, reason='Going away'), True), backoff 2s
+[08:55:23Z] RTDS connected; subscribing chainlink-spot
+[08:59:07Z] ROUND-RESULT 5m 1790499000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[09:00:02Z] SKIP 15m 1790499600: box mode disarmed (no event / no vol)
+[09:00:02Z] SKIP 5m 1790499600: box mode disarmed (no event / no vol)
+[09:04:06Z] ROUND-RESULT 15m 1790498700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[09:04:06Z] ROUND-RESULT 5m 1790499300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[09:05:01Z] SKIP 5m 1790499900: box mode disarmed (no event / no vol)
+[09:06:00Z] ROUND-RESULT 5m 1790499600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[09:10:01Z] SKIP 5m 1790500200: box mode disarmed (no event / no vol)
+[09:11:01Z] ROUND-RESULT 5m 1790499900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[09:12:28Z] PULL MAKERS — SPOT_MOVE 6.0bps/10s
+[09:12:29Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[09:12:30Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[09:12:31Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[09:12:32Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[09:12:33Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[09:15:00Z] SKIP 15m 1790500500: box mode disarmed (no event / no vol)
+[09:15:00Z] SKIP 5m 1790500500: box mode disarmed (no event / no vol)
+[09:16:02Z] ROUND-RESULT 15m 1790499600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[09:20:01Z] SKIP 5m 1790500800: box mode disarmed (no event / no vol)
+[09:20:13Z] ROUND-RESULT 5m 1790500200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[09:25:00Z] SKIP 5m 1790501100: box mode disarmed (no event / no vol)
+[09:25:11Z] ROUND-RESULT 5m 1790500500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[09:30:01Z] SKIP 15m 1790501400: box mode disarmed (no event / no vol)
+[09:30:01Z] SKIP 5m 1790501400: box mode disarmed (no event / no vol)
+[09:30:08Z] ROUND-RESULT 5m 1790500800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[09:32:04Z] ROUND-RESULT 15m 1790500500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[09:35:02Z] SKIP 5m 1790501700: box mode disarmed (no event / no vol)
+[09:35:11Z] ROUND-RESULT 5m 1790501100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[09:37:03Z] ROUND-RESULT 5m 1790501400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[09:40:01Z] SKIP 5m 1790502000: box mode disarmed (no event / no vol)
+[09:42:02Z] ROUND-RESULT 5m 1790501700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[09:45:01Z] SKIP 15m 1790502300: box mode disarmed (no event / no vol)
+[09:45:01Z] SKIP 5m 1790502300: box mode disarmed (no event / no vol)
+[09:46:32Z] ROUND-RESULT 15m 1790501400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[09:47:03Z] ROUND-RESULT 5m 1790502000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[09:50:01Z] SKIP 5m 1790502600: box mode disarmed (no event / no vol)
+[09:52:34Z] ROUND-RESULT 5m 1790502300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[09:55:01Z] SKIP 5m 1790502900: box mode disarmed (no event / no vol)
+[09:58:05Z] ROUND-RESULT 5m 1790502600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[10:00:02Z] SKIP 15m 1790503200: box mode disarmed (no event / no vol)
+[10:00:02Z] SKIP 5m 1790503200: box mode disarmed (no event / no vol)
+[10:01:02Z] ROUND-RESULT 15m 1790502300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[10:03:09Z] ROUND-RESULT 5m 1790502900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[10:05:02Z] SKIP 5m 1790503500: box mode disarmed (no event / no vol)
+[10:08:06Z] ROUND-RESULT 5m 1790503200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[10:10:00Z] SKIP 5m 1790503800: box mode disarmed (no event / no vol)
+[10:12:33Z] ROUND-RESULT 5m 1790503500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[10:15:00Z] SKIP 15m 1790504100: box mode disarmed (no event / no vol)
+[10:15:00Z] SKIP 5m 1790504100: box mode disarmed (no event / no vol)
+[10:15:12Z] PULL MAKERS — SPOT_MOVE 6.5bps/10s
+[10:15:13Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[10:15:14Z] PULL MAKERS — SPOT_MOVE 6.7bps/10s
+[10:15:15Z] PULL MAKERS — SPOT_MOVE 6.3bps/10s
+[10:15:16Z] PULL MAKERS — SPOT_MOVE 6.3bps/10s
+[10:15:17Z] PULL MAKERS — SPOT_MOVE 6.3bps/10s
+[10:15:18Z] PULL MAKERS — SPOT_MOVE 6.3bps/10s
+[10:15:41Z] PULL MAKERS — SPOT_MOVE 6.7bps/10s
+[10:15:42Z] PULL MAKERS — SPOT_MOVE 6.8bps/10s
+[10:17:34Z] ROUND-RESULT 15m 1790503200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[10:17:34Z] ROUND-RESULT 5m 1790503800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[10:20:02Z] SKIP 5m 1790504400: box mode disarmed (no event / no vol)
+[10:24:09Z] ROUND-RESULT 5m 1790504100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[10:25:01Z] SKIP 5m 1790504700: box mode disarmed (no event / no vol)
+[10:29:06Z] ROUND-RESULT 5m 1790504400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[10:30:01Z] SKIP 15m 1790505000: box mode disarmed (no event / no vol)
+[10:30:02Z] SKIP 5m 1790505000: box mode disarmed (no event / no vol)
+[10:31:32Z] ROUND-RESULT 15m 1790504100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[10:34:08Z] ROUND-RESULT 5m 1790504700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[10:35:00Z] SKIP 5m 1790505300: box mode disarmed (no event / no vol)
+[10:39:40Z] ROUND-RESULT 5m 1790505000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[10:40:01Z] SKIP 5m 1790505600: box mode disarmed (no event / no vol)
+[10:44:07Z] ROUND-RESULT 5m 1790505300: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[10:45:00Z] SKIP 15m 1790505900: box mode disarmed (no event / no vol)
+[10:45:00Z] SKIP 5m 1790505900: box mode disarmed (no event / no vol)
+[10:46:31Z] ROUND-RESULT 15m 1790505000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[10:49:38Z] ROUND-RESULT 5m 1790505600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[10:50:01Z] SKIP 5m 1790506200: box mode disarmed (no event / no vol)
+[10:55:01Z] SKIP 5m 1790506500: box mode disarmed (no event / no vol)
+[10:55:10Z] ROUND-RESULT 5m 1790505900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[10:55:23Z] RTDS problem ConnectionClosedOK(Close(code=1001, reason='Going away'), Close(code=1001, reason='Going away'), True), backoff 2s
+[10:55:26Z] RTDS connected; subscribing chainlink-spot
+[10:56:01Z] ROUND-RESULT 5m 1790506200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:00:02Z] SKIP 15m 1790506800: box mode disarmed (no event / no vol)
+[11:00:02Z] SKIP 5m 1790506800: box mode disarmed (no event / no vol)
+[11:01:00Z] ROUND-RESULT 5m 1790506500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:03:05Z] ROUND-RESULT 15m 1790505900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:05:00Z] SKIP 5m 1790507100: box mode disarmed (no event / no vol)
+[11:10:01Z] SKIP 5m 1790507400: box mode disarmed (no event / no vol)
+[11:10:12Z] ROUND-RESULT 5m 1790506800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:12:04Z] ROUND-RESULT 5m 1790507100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:15:01Z] SKIP 15m 1790507700: box mode disarmed (no event / no vol)
+[11:15:02Z] SKIP 5m 1790507700: box mode disarmed (no event / no vol)
+[11:16:01Z] ROUND-RESULT 15m 1790506800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:20:01Z] SKIP 5m 1790508000: box mode disarmed (no event / no vol)
+[11:20:12Z] ROUND-RESULT 5m 1790507400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:21:32Z] ROUND-RESULT 5m 1790507700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:25:02Z] SKIP 5m 1790508300: box mode disarmed (no event / no vol)
+[11:30:01Z] SKIP 15m 1790508600: box mode disarmed (no event / no vol)
+[11:30:01Z] SKIP 5m 1790508600: box mode disarmed (no event / no vol)
+[11:30:10Z] ROUND-RESULT 5m 1790508000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:33:06Z] ROUND-RESULT 15m 1790507700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:35:00Z] SKIP 5m 1790508900: box mode disarmed (no event / no vol)
+[11:35:11Z] ROUND-RESULT 5m 1790508300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:36:31Z] ROUND-RESULT 5m 1790508600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:40:00Z] SKIP 5m 1790509200: box mode disarmed (no event / no vol)
+[11:42:02Z] ROUND-RESULT 5m 1790508900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:45:00Z] SKIP 15m 1790509500: box mode disarmed (no event / no vol)
+[11:45:00Z] SKIP 5m 1790509500: box mode disarmed (no event / no vol)
+[11:46:32Z] ROUND-RESULT 5m 1790509200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:47:03Z] ROUND-RESULT 15m 1790508600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:50:02Z] SKIP 5m 1790509800: box mode disarmed (no event / no vol)
+[11:51:31Z] ROUND-RESULT 5m 1790509500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[11:55:00Z] SKIP 5m 1790510100: box mode disarmed (no event / no vol)
+[11:56:33Z] ROUND-RESULT 5m 1790509800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:00:00Z] SKIP 15m 1790510400: box mode disarmed (no event / no vol)
+[12:00:01Z] SKIP 5m 1790510400: box mode disarmed (no event / no vol)
+[12:02:35Z] ROUND-RESULT 15m 1790509500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:04:08Z] ROUND-RESULT 5m 1790510100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:05:00Z] SKIP 5m 1790510700: box mode disarmed (no event / no vol)
+[12:06:31Z] ROUND-RESULT 5m 1790510400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:10:01Z] SKIP 5m 1790511000: box mode disarmed (no event / no vol)
+[12:12:03Z] ROUND-RESULT 5m 1790510700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:15:00Z] SKIP 15m 1790511300: box mode disarmed (no event / no vol)
+[12:15:00Z] SKIP 5m 1790511300: box mode disarmed (no event / no vol)
+[12:17:03Z] ROUND-RESULT 5m 1790511000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:18:37Z] ROUND-RESULT 15m 1790510400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:20:00Z] SKIP 5m 1790511600: box mode disarmed (no event / no vol)
+[12:25:02Z] SKIP 5m 1790511900: box mode disarmed (no event / no vol)
+[12:25:11Z] ROUND-RESULT 5m 1790511300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:26:33Z] ROUND-RESULT 5m 1790511600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:30:02Z] SKIP 15m 1790512200: box mode disarmed (no event / no vol)
+[12:30:02Z] SKIP 5m 1790512200: box mode disarmed (no event / no vol)
+[12:33:06Z] ROUND-RESULT 15m 1790511300: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:35:00Z] SKIP 5m 1790512500: box mode disarmed (no event / no vol)
+[12:35:11Z] ROUND-RESULT 5m 1790511900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:37:02Z] ROUND-RESULT 5m 1790512200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:40:01Z] SKIP 5m 1790512800: box mode disarmed (no event / no vol)
+[12:45:01Z] SKIP 15m 1790513100: box mode disarmed (no event / no vol)
+[12:45:01Z] SKIP 5m 1790513100: box mode disarmed (no event / no vol)
+[12:45:12Z] ROUND-RESULT 5m 1790512500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:46:01Z] ROUND-RESULT 15m 1790512200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:50:01Z] SKIP 5m 1790513400: box mode disarmed (no event / no vol)
+[12:50:12Z] ROUND-RESULT 5m 1790512800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:52:04Z] ROUND-RESULT 5m 1790513100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[12:55:02Z] SKIP 5m 1790513700: box mode disarmed (no event / no vol)
+[12:55:25Z] RTDS problem ConnectionClosedOK(Close(code=1001, reason='Going away'), Close(code=1001, reason='Going away'), True), backoff 2s
+[12:55:28Z] RTDS connected; subscribing chainlink-spot
+[12:57:05Z] ROUND-RESULT 5m 1790513400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:00:02Z] SKIP 15m 1790514000: box mode disarmed (no event / no vol)
+[13:00:02Z] SKIP 5m 1790514000: box mode disarmed (no event / no vol)
+[13:01:01Z] ROUND-RESULT 15m 1790513100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:02:04Z] ROUND-RESULT 5m 1790513700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:05:01Z] SKIP 5m 1790514300: box mode disarmed (no event / no vol)
+[13:07:02Z] ROUND-RESULT 5m 1790514000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:10:00Z] SKIP 5m 1790514600: box mode disarmed (no event / no vol)
+[13:12:03Z] ROUND-RESULT 5m 1790514300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:15:00Z] SKIP 15m 1790514900: box mode disarmed (no event / no vol)
+[13:15:00Z] SKIP 5m 1790514900: box mode disarmed (no event / no vol)
+[13:16:03Z] ROUND-RESULT 15m 1790514000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:17:03Z] ROUND-RESULT 5m 1790514600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:20:02Z] SKIP 5m 1790515200: box mode disarmed (no event / no vol)
+[13:22:35Z] ROUND-RESULT 5m 1790514900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:25:00Z] SKIP 5m 1790515500: box mode disarmed (no event / no vol)
+[13:28:07Z] ROUND-RESULT 5m 1790515200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:30:02Z] SKIP 15m 1790515800: box mode disarmed (no event / no vol)
+[13:30:03Z] SKIP 5m 1790515800: box mode disarmed (no event / no vol)
+[13:31:01Z] ROUND-RESULT 15m 1790514900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:32:06Z] PULL MAKERS — SPOT_MOVE 6.0bps/10s
+[13:33:10Z] ROUND-RESULT 5m 1790515500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:34:22Z] 🔵 BOX ARMED (vol) — LIQ cascade arms vol-box: cascade BUY/shorts $1.62M/10s | hold 300s | armed until 13:39:22Z
+[13:34:32Z] SKIP 5m 1790516100: mid 0.39 outside box band
+[13:38:06Z] ROUND-RESULT 5m 1790515800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:39:22Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[13:39:22Z] 🔵 BOX ARMED (vol) — sigma1h=5.6bps > 1.8x baseline 2.9bps | hold 600s | armed until 13:49:22Z
+[13:39:33Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[13:39:33Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[13:40:27Z] PULL MAKERS — BAND_EXIT mid=0.36 5m
+[13:43:40Z] ROUND-RESULT 5m 1790516100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:44:31Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[13:44:31Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[13:44:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[13:44:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[13:45:03Z] PULL MAKERS — BAND_EXIT mid=0.29 5m
+[13:46:04Z] ROUND-RESULT 15m 1790515800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:48:39Z] ROUND-RESULT 5m 1790516400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:49:23Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[13:49:23Z] SKIP 15m 1790516700: box mode disarmed (no event / no vol)
+[13:49:23Z] 🔵 BOX ARMED (vol) — sigma1h=6.0bps > 1.8x baseline 2.9bps | hold 600s | armed until 13:59:23Z
+[13:49:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[13:49:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[13:50:21Z] PULL MAKERS — BAND_EXIT mid=0.60 5m
+[13:54:08Z] ROUND-RESULT 5m 1790516700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[13:54:33Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[13:54:33Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[13:55:26Z] PULL MAKERS — BAND_EXIT mid=0.64 5m
+[13:58:51Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[13:58:52Z] PULL MAKERS — SPOT_MOVE 7.6bps/10s
+[13:58:52Z] PULL MAKERS — SPOT_MOVE 7.6bps/10s
+[13:58:54Z] PULL MAKERS — SPOT_MOVE 7.7bps/10s
+[13:58:55Z] PULL MAKERS — SPOT_MOVE 7.8bps/10s
+[13:58:56Z] PULL MAKERS — SPOT_MOVE 7.9bps/10s
+[13:58:57Z] PULL MAKERS — SPOT_MOVE 7.9bps/10s
+[13:59:23Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[13:59:24Z] 🔵 BOX ARMED (vol) — sigma1h=6.2bps > 1.8x baseline 2.9bps | hold 600s | armed until 14:09:24Z
+[13:59:30Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[13:59:30Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[13:59:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[13:59:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[13:59:38Z] ROUND-RESULT 5m 1790517000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:00:44Z] PULL MAKERS — BAND_EXIT mid=0.61 5m
+[14:02:07Z] ROUND-RESULT 15m 1790516700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:03:37Z] ROUND-RESULT 5m 1790517300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:04:30Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[14:04:30Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[14:06:01Z] ROUND-RESULT 5m 1790517600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:06:05Z] PULL MAKERS — BAND_EXIT mid=0.68 5m
+[14:09:24Z] 🔵 BOX ARMED (vol) — sigma1h=5.9bps > 1.8x baseline 2.9bps | hold 600s | armed until 14:19:24Z
+[14:09:33Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[14:09:33Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[14:09:54Z] PULL MAKERS — BAND_EXIT mid=0.64 5m
+[14:14:33Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[14:14:33Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[14:14:33Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[14:14:33Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[14:14:44Z] ROUND-RESULT 5m 1790517900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:15:39Z] PULL MAKERS — BAND_EXIT mid=0.61 5m
+[14:17:38Z] ROUND-RESULT 15m 1790517600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:19:13Z] ROUND-RESULT 5m 1790518200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:19:25Z] 🔵 BOX ARMED (vol) — sigma1h=5.4bps > 1.8x baseline 2.9bps | hold 600s | armed until 14:29:25Z
+[14:19:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[14:19:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[14:19:45Z] PULL MAKERS — BAND_EXIT mid=0.38 5m
+[14:24:33Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[14:24:33Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[14:24:39Z] PULL MAKERS — BAND_EXIT mid=0.61 5m
+[14:24:42Z] ROUND-RESULT 5m 1790518500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:29:25Z] 🔵 BOX ARMED (vol) — sigma1h=5.8bps > 1.8x baseline 2.9bps | hold 600s | armed until 14:39:25Z
+[14:29:32Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[14:29:32Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[14:29:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[14:29:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[14:30:14Z] ROUND-RESULT 5m 1790518800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:30:25Z] PULL MAKERS — BAND_EXIT mid=0.64 5m
+[14:31:03Z] ROUND-RESULT 15m 1790518500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:31:03Z] ROUND-RESULT 5m 1790519100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:34:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[14:34:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[14:35:11Z] PULL MAKERS — BAND_EXIT mid=0.39 5m
+[14:36:03Z] ROUND-RESULT 5m 1790519400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:39:26Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[14:39:31Z] 🔵 BOX ARMED (vol) — sigma1h=5.4bps > 1.8x baseline 2.9bps | hold 600s | armed until 14:49:31Z
+[14:39:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[14:39:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[14:40:16Z] PAIR-ARB THIN 15m: combined $0.9266 < cap but top-of-book size Up 5 / Down 41 < 20sh — not fired
+[14:40:46Z] PULL MAKERS — BAND_EXIT mid=0.60 5m
+[14:41:01Z] ROUND-RESULT 5m 1790519700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:44:31Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[14:44:31Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[14:44:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[14:44:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[14:44:59Z] PULL MAKERS — BAND_EXIT mid=0.37 5m
+[14:46:32Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[14:48:08Z] ROUND-RESULT 15m 1790519400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:48:20Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[14:48:21Z] PULL MAKERS — SPOT_MOVE 6.3bps/10s
+[14:48:23Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[14:48:25Z] PULL MAKERS — SPOT_MOVE 6.7bps/10s
+[14:48:25Z] PULL MAKERS — SPOT_MOVE 6.9bps/10s
+[14:48:27Z] PULL MAKERS — SPOT_MOVE 7.6bps/10s
+[14:48:27Z] PULL MAKERS — SPOT_MOVE 8.8bps/10s
+[14:48:29Z] PULL MAKERS — SPOT_MOVE 9.5bps/10s
+[14:48:29Z] PULL MAKERS — SPOT_MOVE 9.8bps/10s
+[14:48:30Z] PULL MAKERS — SPOT_MOVE 9.2bps/10s
+[14:48:32Z] PULL MAKERS — SPOT_MOVE 10.1bps/10s
+[14:48:33Z] PULL MAKERS — SPOT_MOVE 10.5bps/10s
+[14:48:33Z] PULL MAKERS — SPOT_MOVE 9.5bps/10s
+[14:48:34Z] PULL MAKERS — SPOT_MOVE 9.3bps/10s
+[14:48:35Z] PULL MAKERS — SPOT_MOVE 11.2bps/10s
+[14:48:37Z] PULL MAKERS — SPOT_MOVE 12.5bps/10s
+[14:48:39Z] PULL MAKERS — SPOT_MOVE 12.6bps/10s
+[14:48:39Z] PULL MAKERS — SPOT_MOVE 12.5bps/10s
+[14:48:50Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[14:48:51Z] PULL MAKERS — SPOT_MOVE 6.9bps/10s
+[14:48:53Z] PULL MAKERS — SPOT_MOVE 8.4bps/10s
+[14:48:53Z] PULL MAKERS — SPOT_MOVE 8.3bps/10s
+[14:48:54Z] PULL MAKERS — SPOT_MOVE 8.4bps/10s
+[14:48:54Z] PULL MAKERS — SPOT_MOVE 7.0bps/10s
+[14:48:56Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[14:49:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[14:49:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[14:49:32Z] 🔵 BOX ARMED (vol) — sigma1h=6.3bps > 1.8x baseline 2.9bps | hold 600s | armed until 14:59:32Z
+[14:49:58Z] PULL MAKERS — SPOT_MOVE 6.3bps/10s
+[14:49:59Z] PULL MAKERS — SPOT_MOVE 6.0bps/10s
+[14:50:18Z] ROUND-RESULT 5m 1790520000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:51:04Z] ROUND-RESULT 5m 1790520300: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[14:51:44Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[14:51:44Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[14:51:45Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[14:51:46Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[14:54:32Z] SKIP 5m 1790520900: mid 0.38 outside box band
+[14:54:38Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[14:54:38Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[14:54:41Z] PULL MAKERS — BAND_EXIT mid=0.38 5m
+[14:55:28Z] RTDS problem ConnectionClosedOK(Close(code=1001, reason='Going away'), Close(code=1001, reason='Going away'), True), backoff 2s
+[14:55:39Z] RTDS connected; subscribing chainlink-spot
+[14:59:32Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[14:59:32Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[14:59:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[14:59:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[14:59:32Z] 🔵 BOX ARMED (vol) — sigma1h=6.7bps > 1.8x baseline 2.9bps | hold 600s | armed until 15:09:32Z
+[14:59:57Z] PULL MAKERS — BAND_EXIT mid=0.39 5m
+[15:00:16Z] ROUND-RESULT 5m 1790520600: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:01:02Z] ROUND-RESULT 15m 1790520300: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:01:34Z] ROUND-RESULT 5m 1790520900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:02:35Z] PULL MAKERS — SPOT_MOVE 6.8bps/10s
+[15:02:35Z] PULL MAKERS — SPOT_MOVE 6.8bps/10s
+[15:03:18Z] PAIR-ARB THIN 5m: combined $0.9203 < cap but top-of-book size Up 10 / Down 88 < 20sh — not fired
+[15:04:08Z] RTDS silent for 60s — reconnecting (stall watchdog)
+[15:04:08Z] RTDS connected; subscribing chainlink-spot
+[15:04:30Z] PULL MAKERS — SPOT_MOVE 7.2bps/10s
+[15:04:30Z] PULL MAKERS — SPOT_MOVE 7.1bps/10s
+[15:04:30Z] PULL MAKERS — SPOT_MOVE 7.1bps/10s
+[15:04:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[15:04:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[15:04:32Z] PULL MAKERS — SPOT_MOVE 6.7bps/10s
+[15:04:32Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[15:04:33Z] PULL MAKERS — SPOT_MOVE 6.7bps/10s
+[15:04:33Z] PULL MAKERS — SPOT_MOVE 6.7bps/10s
+[15:04:34Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[15:04:35Z] PULL MAKERS — SPOT_MOVE 6.3bps/10s
+[15:04:35Z] PULL MAKERS — SPOT_MOVE 7.5bps/10s
+[15:04:35Z] PULL MAKERS — SPOT_MOVE 8.6bps/10s
+[15:04:35Z] PULL MAKERS — SPOT_MOVE 8.2bps/10s
+[15:04:35Z] PULL MAKERS — SPOT_MOVE 8.3bps/10s
+[15:04:35Z] PULL MAKERS — SPOT_MOVE 10.3bps/10s
+[15:04:36Z] PULL MAKERS — SPOT_MOVE 10.4bps/10s
+[15:04:36Z] PULL MAKERS — SPOT_MOVE 10.6bps/10s
+[15:04:36Z] PULL MAKERS — SPOT_MOVE 10.7bps/10s
+[15:04:37Z] PULL MAKERS — SPOT_MOVE 10.5bps/10s
+[15:04:38Z] PULL MAKERS — SPOT_MOVE 7.0bps/10s
+[15:04:38Z] PULL MAKERS — SPOT_MOVE 6.9bps/10s
+[15:04:38Z] PULL MAKERS — SPOT_MOVE 6.0bps/10s
+[15:04:46Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[15:04:46Z] PULL MAKERS — SPOT_MOVE 6.0bps/10s
+[15:04:47Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[15:04:47Z] PULL MAKERS — SPOT_MOVE 6.0bps/10s
+[15:04:57Z] PULL MAKERS — SPOT_MOVE 7.8bps/10s
+[15:05:42Z] PULL MAKERS — SPOT_MOVE 6.9bps/10s
+[15:05:43Z] PULL MAKERS — SPOT_MOVE 8.2bps/10s
+[15:05:44Z] PULL MAKERS — SPOT_MOVE 8.0bps/10s
+[15:05:45Z] PULL MAKERS — SPOT_MOVE 8.3bps/10s
+[15:05:46Z] PULL MAKERS — SPOT_MOVE 7.8bps/10s
+[15:05:47Z] PULL MAKERS — SPOT_MOVE 7.8bps/10s
+[15:05:48Z] PULL MAKERS — SPOT_MOVE 8.4bps/10s
+[15:05:49Z] PULL MAKERS — SPOT_MOVE 9.7bps/10s
+[15:05:50Z] PULL MAKERS — SPOT_MOVE 8.5bps/10s
+[15:05:59Z] PULL MAKERS — SPOT_MOVE 7.0bps/10s
+[15:05:59Z] PULL MAKERS — SPOT_MOVE 7.4bps/10s
+[15:05:59Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[15:06:00Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[15:06:31Z] ROUND-RESULT 5m 1790521200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:07:15Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[15:07:15Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[15:07:16Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[15:09:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[15:09:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[15:09:33Z] 🔵 BOX ARMED (vol) — sigma1h=8.3bps > 1.8x baseline 3.0bps | hold 600s | armed until 15:19:33Z
+[15:10:45Z] PULL MAKERS — BAND_EXIT mid=0.66 5m
+[15:14:31Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[15:14:31Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[15:14:32Z] SKIP 5m 1790522100: mid 0.65 outside box band
+[15:15:16Z] ROUND-RESULT 5m 1790521500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:15:34Z] PULL MAKERS — BAND_EXIT mid=0.61 15m
+[15:16:32Z] ROUND-RESULT 15m 1790521200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:16:32Z] ROUND-RESULT 5m 1790521800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:19:32Z] SKIP 5m 1790522400: mid 0.60 outside box band
+[15:19:34Z] 🔵 BOX ARMED (vol) — sigma1h=8.4bps > 1.8x baseline 3.0bps | hold 600s | armed until 15:29:34Z
+[15:20:20Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[15:20:20Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[15:20:22Z] PULL MAKERS — BAND_EXIT mid=0.62 5m
+[15:21:34Z] ROUND-RESULT 5m 1790522100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:21:47Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[15:24:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[15:24:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[15:24:39Z] PULL MAKERS — BAND_EXIT mid=0.38 5m
+[15:26:33Z] ROUND-RESULT 5m 1790522400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:26:57Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[15:27:53Z] PULL MAKERS — SPOT_MOVE 7.5bps/10s
+[15:27:54Z] PULL MAKERS — SPOT_MOVE 7.9bps/10s
+[15:29:30Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[15:29:30Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[15:29:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[15:29:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[15:29:35Z] 🔵 BOX ARMED (vol) — sigma1h=8.5bps > 1.8x baseline 3.0bps | hold 600s | armed until 15:39:35Z
+[15:29:50Z] PULL MAKERS — BAND_EXIT mid=0.61 5m
+[15:31:18Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[15:31:19Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[15:31:34Z] ROUND-RESULT 15m 1790522100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:34:33Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[15:34:33Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[15:34:56Z] PULL MAKERS — BAND_EXIT mid=0.39 5m
+[15:35:10Z] ROUND-RESULT 5m 1790522700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:37:34Z] ROUND-RESULT 5m 1790523000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:39:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[15:39:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[15:39:35Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[15:39:37Z] 🔵 BOX ARMED (vol) — sigma1h=8.5bps > 1.8x baseline 3.0bps | hold 600s | armed until 15:49:37Z
+[15:40:21Z] PULL MAKERS — BAND_EXIT mid=0.40 5m
+[15:42:38Z] ROUND-RESULT 5m 1790523300: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:44:30Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[15:44:30Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[15:44:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[15:44:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[15:44:37Z] PULL MAKERS — BAND_EXIT mid=0.39 5m
+[15:46:01Z] ROUND-RESULT 15m 1790523000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:47:36Z] ROUND-RESULT 5m 1790523600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:49:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[15:49:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[15:49:37Z] 🔵 BOX ARMED (vol) — sigma1h=7.6bps > 1.8x baseline 3.0bps | hold 600s | armed until 15:59:37Z
+[15:51:17Z] PULL MAKERS — BAND_EXIT mid=0.64 5m
+[15:52:38Z] ROUND-RESULT 5m 1790523900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:54:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[15:54:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[15:54:38Z] PULL MAKERS — BAND_EXIT mid=0.36 5m
+[15:55:21Z] moondev liq error TimeoutError('The read operation timed out')
+[15:57:38Z] ROUND-RESULT 5m 1790524200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[15:59:33Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[15:59:33Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[15:59:33Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[15:59:33Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[15:59:37Z] 🔵 BOX ARMED (vol) — sigma1h=7.3bps > 1.8x baseline 3.0bps | hold 600s | armed until 16:09:37Z
+[16:00:34Z] PULL MAKERS — BAND_EXIT mid=0.60 15m
+[16:02:37Z] ROUND-RESULT 5m 1790524500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[16:04:11Z] ROUND-RESULT 15m 1790523900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[16:04:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[16:04:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[16:04:50Z] PULL MAKERS — BAND_EXIT mid=0.64 5m
+[16:07:36Z] ROUND-RESULT 5m 1790524800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[16:09:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[16:09:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[16:09:35Z] PULL MAKERS — BAND_EXIT mid=0.62 5m
+[16:09:40Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[16:10:01Z] SKIP 5m 1790525400: box mode disarmed (no event / no vol)
+[16:13:10Z] ROUND-RESULT 5m 1790525100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[16:15:02Z] SKIP 15m 1790525700: box mode disarmed (no event / no vol)
+[16:15:02Z] SKIP 5m 1790525700: box mode disarmed (no event / no vol)
+[17:48:37Z] S10 vol-event binary box starting (forever) — maker straddle @ 0.45 x 20sh, pair-arb cap $0.97 post-fee, leg-risk timeout 60s chase-to-$0.97-else-unwind, vol gate 1.8x baseline, band (0.4, 0.6)
+[17:48:38Z] liq feed shape: 126 rows, sample={'ts': 1790531185.013, 'usd': 23200.25, 'side': 'short', 'sym': 'NEAR'}
+[17:48:38Z] SKIP 15m 1790531100: box mode disarmed (no event / no vol)
+[17:48:38Z] RTDS connected; subscribing chainlink-spot
+[17:50:02Z] SKIP 5m 1790531400: box mode disarmed (no event / no vol)
+[17:54:07Z] ROUND-RESULT 5m 1790531100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[17:55:00Z] SKIP 5m 1790531700: box mode disarmed (no event / no vol)
+[17:59:07Z] ROUND-RESULT 5m 1790531400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:00:01Z] SKIP 15m 1790532000: box mode disarmed (no event / no vol)
+[18:00:01Z] SKIP 5m 1790532000: box mode disarmed (no event / no vol)
+[18:01:01Z] ROUND-RESULT 15m 1790531100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:04:41Z] ROUND-RESULT 5m 1790531700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:05:02Z] SKIP 5m 1790532300: box mode disarmed (no event / no vol)
+[18:09:40Z] ROUND-RESULT 5m 1790532000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:10:00Z] SKIP 5m 1790532600: box mode disarmed (no event / no vol)
+[18:14:07Z] ROUND-RESULT 5m 1790532300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:15:00Z] SKIP 15m 1790532900: box mode disarmed (no event / no vol)
+[18:15:00Z] SKIP 5m 1790532900: box mode disarmed (no event / no vol)
+[18:17:02Z] ROUND-RESULT 5m 1790532600: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:18:35Z] ROUND-RESULT 15m 1790532000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:20:00Z] SKIP 5m 1790533200: box mode disarmed (no event / no vol)
+[18:24:39Z] ROUND-RESULT 5m 1790532900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:25:00Z] SKIP 5m 1790533500: box mode disarmed (no event / no vol)
+[18:29:40Z] ROUND-RESULT 5m 1790533200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:30:01Z] SKIP 15m 1790533800: box mode disarmed (no event / no vol)
+[18:30:02Z] SKIP 5m 1790533800: box mode disarmed (no event / no vol)
+[18:31:02Z] ROUND-RESULT 15m 1790532900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:34:41Z] ROUND-RESULT 5m 1790533500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:35:01Z] SKIP 5m 1790534100: box mode disarmed (no event / no vol)
+[18:40:01Z] SKIP 5m 1790534400: box mode disarmed (no event / no vol)
+[18:40:12Z] ROUND-RESULT 5m 1790533800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:45:01Z] SKIP 15m 1790534700: box mode disarmed (no event / no vol)
+[18:45:01Z] SKIP 5m 1790534700: box mode disarmed (no event / no vol)
+[18:45:41Z] ROUND-RESULT 5m 1790534100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:49:41Z] ROUND-RESULT 5m 1790534400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:50:02Z] SKIP 5m 1790535000: box mode disarmed (no event / no vol)
+[18:50:12Z] ROUND-RESULT 15m 1790533800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[18:55:02Z] SKIP 5m 1790535300: box mode disarmed (no event / no vol)
+[18:55:11Z] ROUND-RESULT 5m 1790534700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:00:00Z] SKIP 15m 1790535600: box mode disarmed (no event / no vol)
+[19:00:00Z] SKIP 5m 1790535600: box mode disarmed (no event / no vol)
+[19:00:38Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[19:00:40Z] ROUND-RESULT 5m 1790535000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:02:35Z] ROUND-RESULT 15m 1790534700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:05:00Z] SKIP 5m 1790535900: box mode disarmed (no event / no vol)
+[19:05:42Z] ROUND-RESULT 5m 1790535300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:06:02Z] ROUND-RESULT 5m 1790535600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:10:01Z] SKIP 5m 1790536200: box mode disarmed (no event / no vol)
+[19:11:01Z] ROUND-RESULT 5m 1790535900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:15:01Z] SKIP 15m 1790536500: box mode disarmed (no event / no vol)
+[19:15:01Z] SKIP 5m 1790536500: box mode disarmed (no event / no vol)
+[19:18:05Z] ROUND-RESULT 15m 1790535600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:20:01Z] SKIP 5m 1790536800: box mode disarmed (no event / no vol)
+[19:20:12Z] ROUND-RESULT 5m 1790536200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:21:01Z] ROUND-RESULT 5m 1790536500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:25:01Z] SKIP 5m 1790537100: box mode disarmed (no event / no vol)
+[19:26:01Z] ROUND-RESULT 5m 1790536800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:30:00Z] SKIP 15m 1790537400: box mode disarmed (no event / no vol)
+[19:30:00Z] SKIP 5m 1790537400: box mode disarmed (no event / no vol)
+[19:31:00Z] ROUND-RESULT 5m 1790537100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:33:06Z] ROUND-RESULT 15m 1790536500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:35:00Z] SKIP 5m 1790537700: box mode disarmed (no event / no vol)
+[19:37:16Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[19:37:17Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[19:37:19Z] PULL MAKERS — SPOT_MOVE 6.0bps/10s
+[19:37:20Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[19:37:21Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[19:37:22Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[19:37:23Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[19:39:11Z] ROUND-RESULT 5m 1790537400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:40:01Z] SKIP 5m 1790538000: box mode disarmed (no event / no vol)
+[19:41:02Z] ROUND-RESULT 5m 1790537700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:45:02Z] SKIP 15m 1790538300: box mode disarmed (no event / no vol)
+[19:45:02Z] SKIP 5m 1790538300: box mode disarmed (no event / no vol)
+[19:47:34Z] ROUND-RESULT 15m 1790537400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:48:38Z] RTDS problem ConnectionClosedOK(Close(code=1001, reason='Going away'), Close(code=1001, reason='Going away'), True), backoff 2s
+[19:48:41Z] RTDS connected; subscribing chainlink-spot
+[19:50:02Z] SKIP 5m 1790538600: box mode disarmed (no event / no vol)
+[19:50:11Z] ROUND-RESULT 5m 1790538000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[19:55:00Z] SKIP 5m 1790538900: box mode disarmed (no event / no vol)
+[19:55:44Z] ROUND-RESULT 5m 1790538300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:00:00Z] SKIP 15m 1790539200: box mode disarmed (no event / no vol)
+[20:00:00Z] SKIP 5m 1790539200: box mode disarmed (no event / no vol)
+[20:00:41Z] ROUND-RESULT 5m 1790538600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:03:37Z] ROUND-RESULT 15m 1790538300: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:05:00Z] SKIP 5m 1790539500: box mode disarmed (no event / no vol)
+[20:05:42Z] ROUND-RESULT 5m 1790538900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:10:00Z] SKIP 5m 1790539800: box mode disarmed (no event / no vol)
+[20:10:40Z] ROUND-RESULT 5m 1790539200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:15:00Z] SKIP 15m 1790540100: box mode disarmed (no event / no vol)
+[20:15:00Z] SKIP 5m 1790540100: box mode disarmed (no event / no vol)
+[20:15:41Z] ROUND-RESULT 5m 1790539500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:16:32Z] ROUND-RESULT 5m 1790539800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:19:38Z] ROUND-RESULT 15m 1790539200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:20:01Z] SKIP 5m 1790540400: box mode disarmed (no event / no vol)
+[20:21:32Z] ROUND-RESULT 5m 1790540100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:25:02Z] SKIP 5m 1790540700: box mode disarmed (no event / no vol)
+[20:26:33Z] ROUND-RESULT 5m 1790540400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:30:01Z] SKIP 15m 1790541000: box mode disarmed (no event / no vol)
+[20:30:02Z] SKIP 5m 1790541000: box mode disarmed (no event / no vol)
+[20:31:02Z] ROUND-RESULT 15m 1790540100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:34:40Z] ROUND-RESULT 5m 1790540700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:35:01Z] SKIP 5m 1790541300: box mode disarmed (no event / no vol)
+[20:37:03Z] ROUND-RESULT 5m 1790541000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:40:01Z] SKIP 5m 1790541600: box mode disarmed (no event / no vol)
+[20:45:02Z] SKIP 15m 1790541900: box mode disarmed (no event / no vol)
+[20:45:02Z] SKIP 5m 1790541900: box mode disarmed (no event / no vol)
+[20:45:11Z] ROUND-RESULT 5m 1790541300: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:46:34Z] ROUND-RESULT 15m 1790541000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:47:36Z] ROUND-RESULT 5m 1790541600: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:50:01Z] SKIP 5m 1790542200: box mode disarmed (no event / no vol)
+[20:52:03Z] ROUND-RESULT 5m 1790541900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[20:55:02Z] SKIP 5m 1790542500: box mode disarmed (no event / no vol)
+[20:57:04Z] ROUND-RESULT 5m 1790542200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:00:02Z] SKIP 15m 1790542800: box mode disarmed (no event / no vol)
+[21:00:02Z] SKIP 5m 1790542800: box mode disarmed (no event / no vol)
+[21:03:22Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[21:04:11Z] ROUND-RESULT 15m 1790541900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:05:01Z] SKIP 5m 1790543100: box mode disarmed (no event / no vol)
+[21:05:14Z] ROUND-RESULT 5m 1790542500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:07:02Z] ROUND-RESULT 5m 1790542800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:10:00Z] SKIP 5m 1790543400: box mode disarmed (no event / no vol)
+[21:13:35Z] ROUND-RESULT 5m 1790543100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:15:01Z] SKIP 15m 1790543700: box mode disarmed (no event / no vol)
+[21:15:01Z] SKIP 5m 1790543700: box mode disarmed (no event / no vol)
+[21:16:01Z] ROUND-RESULT 15m 1790542800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:17:03Z] ROUND-RESULT 5m 1790543400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:20:01Z] SKIP 5m 1790544000: box mode disarmed (no event / no vol)
+[21:22:33Z] ROUND-RESULT 5m 1790543700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:25:02Z] SKIP 5m 1790544300: box mode disarmed (no event / no vol)
+[21:27:34Z] ROUND-RESULT 5m 1790544000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:30:01Z] SKIP 15m 1790544600: box mode disarmed (no event / no vol)
+[21:30:01Z] SKIP 5m 1790544600: box mode disarmed (no event / no vol)
+[21:33:37Z] ROUND-RESULT 15m 1790543700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:33:37Z] ROUND-RESULT 5m 1790544300: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:35:02Z] SKIP 5m 1790544900: box mode disarmed (no event / no vol)
+[21:37:34Z] ROUND-RESULT 5m 1790544600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:40:00Z] SKIP 5m 1790545200: box mode disarmed (no event / no vol)
+[21:44:07Z] ROUND-RESULT 5m 1790544900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:45:00Z] SKIP 15m 1790545500: box mode disarmed (no event / no vol)
+[21:45:00Z] SKIP 5m 1790545500: box mode disarmed (no event / no vol)
+[21:48:05Z] ROUND-RESULT 15m 1790544600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:48:05Z] ROUND-RESULT 5m 1790545200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:48:41Z] RTDS problem ConnectionClosedOK(Close(code=1001, reason='Going away'), Close(code=1001, reason='Going away'), True), backoff 2s
+[21:48:43Z] RTDS connected; subscribing chainlink-spot
+[21:50:01Z] SKIP 5m 1790545800: box mode disarmed (no event / no vol)
+[21:51:38Z] moondev liq error JSONDecodeError('Expecting property name enclosed in double quotes: line 1 column 16380 (char 16379)')
+[21:53:04Z] ROUND-RESULT 5m 1790545500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[21:55:01Z] SKIP 5m 1790546100: box mode disarmed (no event / no vol)
+[21:59:06Z] ROUND-RESULT 5m 1790545800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:00:01Z] SKIP 15m 1790546400: box mode disarmed (no event / no vol)
+[22:00:02Z] SKIP 5m 1790546400: box mode disarmed (no event / no vol)
+[22:00:46Z] PULL MAKERS — SPOT_MOVE 7.1bps/10s
+[22:00:49Z] PULL MAKERS — SPOT_MOVE 7.0bps/10s
+[22:00:50Z] PULL MAKERS — SPOT_MOVE 7.3bps/10s
+[22:00:51Z] PULL MAKERS — SPOT_MOVE 7.4bps/10s
+[22:00:52Z] PULL MAKERS — SPOT_MOVE 7.4bps/10s
+[22:00:54Z] PULL MAKERS — SPOT_MOVE 8.5bps/10s
+[22:00:54Z] PULL MAKERS — SPOT_MOVE 8.8bps/10s
+[22:00:55Z] PULL MAKERS — SPOT_MOVE 8.2bps/10s
+[22:01:01Z] ROUND-RESULT 15m 1790545500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:01:38Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[22:01:39Z] PULL MAKERS — SPOT_MOVE 8.1bps/10s
+[22:01:40Z] PULL MAKERS — SPOT_MOVE 8.1bps/10s
+[22:01:41Z] PULL MAKERS — SPOT_MOVE 8.8bps/10s
+[22:01:42Z] PULL MAKERS — SPOT_MOVE 9.7bps/10s
+[22:01:43Z] PULL MAKERS — SPOT_MOVE 7.0bps/10s
+[22:01:44Z] PULL MAKERS — SPOT_MOVE 7.0bps/10s
+[22:01:45Z] PULL MAKERS — SPOT_MOVE 6.9bps/10s
+[22:02:11Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[22:02:12Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[22:02:42Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[22:02:53Z] PULL MAKERS — SPOT_MOVE 6.9bps/10s
+[22:02:54Z] PULL MAKERS — SPOT_MOVE 7.0bps/10s
+[22:02:55Z] PULL MAKERS — SPOT_MOVE 7.9bps/10s
+[22:03:11Z] PULL MAKERS — SPOT_MOVE 6.5bps/10s
+[22:03:29Z] PULL MAKERS — SPOT_MOVE 6.3bps/10s
+[22:03:29Z] PULL MAKERS — SPOT_MOVE 6.5bps/10s
+[22:03:32Z] PULL MAKERS — SPOT_MOVE 6.3bps/10s
+[22:03:32Z] PULL MAKERS — SPOT_MOVE 7.0bps/10s
+[22:03:35Z] ROUND-RESULT 5m 1790546100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:03:36Z] PULL MAKERS — SPOT_MOVE 6.8bps/10s
+[22:05:02Z] SKIP 5m 1790546700: box mode disarmed (no event / no vol)
+[22:08:05Z] ROUND-RESULT 5m 1790546400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:09:54Z] 🔵 BOX ARMED (vol) — LIQ cascade arms vol-box: cascade SELL/longs $2.35M/10s | hold 300s | armed until 22:14:54Z
+[22:09:56Z] SKIP 5m 1790547000: mid 0.60 outside box band
+[22:10:00Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[22:10:00Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[22:10:05Z] PULL MAKERS — BAND_EXIT mid=0.60 5m
+[22:13:34Z] ROUND-RESULT 5m 1790546700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:14:01Z] PULL MAKERS — LIQ cascade SELL/longs $7.45M/10s
+[22:14:05Z] PULL MAKERS — LIQ cascade SELL/longs $7.45M/10s
+[22:14:31Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[22:14:31Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[22:14:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[22:14:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[22:14:56Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[22:15:01Z] SKIP 15m 1790547300: box mode disarmed (no event / no vol)
+[22:15:01Z] SKIP 5m 1790547300: box mode disarmed (no event / no vol)
+[22:15:23Z] PULL MAKERS — BAND_EXIT mid=0.39 5m
+[22:16:00Z] ROUND-RESULT 15m 1790546400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:19:06Z] ROUND-RESULT 5m 1790547000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:20:02Z] SKIP 5m 1790547600: box mode disarmed (no event / no vol)
+[22:20:21Z] 🔵 BOX ARMED (vol) — sigma1h=6.1bps > 1.8x baseline 3.4bps | hold 600s | armed until 22:30:21Z
+[22:20:46Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[22:20:46Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[22:20:52Z] PULL MAKERS — BAND_EXIT mid=0.66 5m
+[22:23:05Z] ROUND-RESULT 5m 1790547300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:24:30Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[22:24:30Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[22:25:07Z] PULL MAKERS — BAND_EXIT mid=0.65 5m
+[22:29:07Z] ROUND-RESULT 5m 1790547600: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:29:31Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[22:29:31Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[22:29:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[22:29:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[22:29:55Z] PULL MAKERS — BAND_EXIT mid=0.38 5m
+[22:30:22Z] 🔵 BOX ARMED (vol) — sigma1h=6.4bps > 1.8x baseline 3.4bps | hold 600s | armed until 22:40:22Z
+[22:31:00Z] ROUND-RESULT 15m 1790547300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:31:02Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[22:31:03Z] PULL MAKERS — SPOT_MOVE 6.3bps/10s
+[22:31:04Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[22:31:06Z] PULL MAKERS — SPOT_MOVE 7.2bps/10s
+[22:34:05Z] ROUND-RESULT 5m 1790547900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:34:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[22:34:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[22:34:39Z] PULL MAKERS — BAND_EXIT mid=0.39 5m
+[22:35:34Z] PULL MAKERS — SPOT_MOVE 8.5bps/10s
+[22:35:34Z] PULL MAKERS — SPOT_MOVE 9.0bps/10s
+[22:35:35Z] PULL MAKERS — SPOT_MOVE 9.1bps/10s
+[22:35:36Z] PULL MAKERS — SPOT_MOVE 8.8bps/10s
+[22:35:37Z] PULL MAKERS — SPOT_MOVE 10.0bps/10s
+[22:35:38Z] PULL MAKERS — SPOT_MOVE 10.7bps/10s
+[22:35:39Z] PULL MAKERS — SPOT_MOVE 11.3bps/10s
+[22:35:40Z] PULL MAKERS — SPOT_MOVE 11.5bps/10s
+[22:35:41Z] PULL MAKERS — SPOT_MOVE 11.6bps/10s
+[22:39:06Z] ROUND-RESULT 5m 1790548200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:39:30Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[22:39:30Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[22:40:04Z] PULL MAKERS — BAND_EXIT mid=0.40 5m
+[22:40:22Z] 🔵 BOX ARMED (vol) — sigma1h=7.2bps > 1.8x baseline 3.5bps | hold 600s | armed until 22:50:22Z
+[22:44:07Z] ROUND-RESULT 5m 1790548500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:44:31Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[22:44:31Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[22:44:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[22:44:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[22:45:02Z] PULL MAKERS — BAND_EXIT mid=0.36 5m
+[22:46:02Z] ROUND-RESULT 15m 1790548200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:49:09Z] ROUND-RESULT 5m 1790548800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:49:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[22:49:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[22:50:18Z] PULL MAKERS — BAND_EXIT mid=0.60 5m
+[22:50:22Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[22:50:22Z] SKIP 15m 1790549100: box mode disarmed (no event / no vol)
+[22:50:22Z] SKIP 5m 1790549400: box mode disarmed (no event / no vol)
+[22:50:22Z] 🔵 BOX ARMED (vol) — sigma1h=7.3bps > 1.8x baseline 3.5bps | hold 600s | armed until 23:00:22Z
+[22:54:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[22:54:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[22:55:09Z] ROUND-RESULT 5m 1790549100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[22:55:31Z] PULL MAKERS — BAND_EXIT mid=0.62 5m
+[22:59:31Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[22:59:31Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[22:59:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[22:59:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[22:59:38Z] PULL MAKERS — BAND_EXIT mid=0.38 5m
+[22:59:41Z] ROUND-RESULT 5m 1790549400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:00:18Z] PULL MAKERS — SPOT_MOVE 7.0bps/10s
+[23:00:19Z] PULL MAKERS — SPOT_MOVE 7.8bps/10s
+[23:00:19Z] PULL MAKERS — SPOT_MOVE 8.0bps/10s
+[23:00:21Z] PULL MAKERS — SPOT_MOVE 7.6bps/10s
+[23:00:22Z] PULL MAKERS — SPOT_MOVE 7.5bps/10s
+[23:00:23Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[23:00:23Z] SKIP 15m 1790550000: box mode disarmed (no event / no vol)
+[23:00:23Z] SKIP 5m 1790550000: box mode disarmed (no event / no vol)
+[23:00:23Z] 🔵 BOX ARMED (vol) — sigma1h=7.5bps > 1.8x baseline 3.5bps | hold 600s | armed until 23:10:23Z
+[23:00:23Z] PULL MAKERS — SPOT_MOVE 7.1bps/10s
+[23:00:24Z] PULL MAKERS — SPOT_MOVE 6.0bps/10s
+[23:01:32Z] ROUND-RESULT 15m 1790549100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:04:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[23:04:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[23:04:38Z] ROUND-RESULT 5m 1790549700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:05:03Z] PULL MAKERS — BAND_EXIT mid=0.60 5m
+[23:06:01Z] ROUND-RESULT 5m 1790550000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:09:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[23:09:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[23:10:12Z] PULL MAKERS — BAND_EXIT mid=0.38 5m
+[23:10:24Z] 🔵 BOX ARMED (vol) — sigma1h=6.3bps > 1.8x baseline 3.5bps | hold 600s | armed until 23:20:24Z
+[23:14:30Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[23:14:30Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[23:14:30Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[23:14:30Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[23:14:37Z] ROUND-RESULT 5m 1790550300: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:14:56Z] PULL MAKERS — BAND_EXIT mid=0.39 5m
+[23:16:32Z] ROUND-RESULT 15m 1790550000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:19:30Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[23:19:30Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[23:19:55Z] PULL MAKERS — BAND_EXIT mid=0.61 5m
+[23:20:09Z] ROUND-RESULT 5m 1790550600: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:20:26Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[23:20:26Z] SKIP 15m 1790550900: box mode disarmed (no event / no vol)
+[23:20:26Z] SKIP 5m 1790551200: box mode disarmed (no event / no vol)
+[23:25:01Z] SKIP 5m 1790551500: box mode disarmed (no event / no vol)
+[23:25:07Z] ROUND-RESULT 5m 1790550900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:28:38Z] 🔵 BOX ARMED (vol) — sigma1h=6.3bps > 1.8x baseline 3.5bps | hold 600s | armed until 23:38:38Z
+[23:29:30Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[23:29:30Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[23:29:30Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[23:29:30Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[23:30:06Z] ROUND-RESULT 5m 1790551200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:30:27Z] PULL MAKERS — BAND_EXIT mid=0.61 5m
+[23:31:00Z] ROUND-RESULT 5m 1790551500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:32:33Z] ROUND-RESULT 15m 1790550900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:34:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[23:34:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[23:35:01Z] PULL MAKERS — BAND_EXIT mid=0.60 5m
+[23:35:31Z] PULL MAKERS — SPOT_MOVE 6.8bps/10s
+[23:35:32Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[23:35:33Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[23:35:34Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[23:35:35Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[23:35:35Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[23:35:37Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[23:35:38Z] PULL MAKERS — SPOT_MOVE 6.0bps/10s
+[23:38:39Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[23:40:01Z] SKIP 5m 1790552400: box mode disarmed (no event / no vol)
+[23:40:08Z] ROUND-RESULT 5m 1790551800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:44:05Z] ROUND-RESULT 5m 1790552100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:45:01Z] SKIP 15m 1790552700: box mode disarmed (no event / no vol)
+[23:45:01Z] SKIP 5m 1790552700: box mode disarmed (no event / no vol)
+[23:47:03Z] ROUND-RESULT 5m 1790552400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:47:49Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[23:47:51Z] PULL MAKERS — SPOT_MOVE 6.3bps/10s
+[23:47:51Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[23:47:52Z] PULL MAKERS — SPOT_MOVE 6.3bps/10s
+[23:47:53Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[23:47:54Z] PULL MAKERS — SPOT_MOVE 6.5bps/10s
+[23:47:55Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[23:47:56Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[23:48:34Z] ROUND-RESULT 15m 1790551800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:48:43Z] RTDS problem ConnectionClosedOK(Close(code=1001, reason='Going away'), Close(code=1001, reason='Going away'), True), backoff 2s
+[23:48:45Z] RTDS connected; subscribing chainlink-spot
+[23:50:00Z] SKIP 5m 1790553000: box mode disarmed (no event / no vol)
+[23:54:05Z] ROUND-RESULT 5m 1790552700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[23:55:01Z] SKIP 5m 1790553300: box mode disarmed (no event / no vol)
+[23:58:12Z] PULL MAKERS — SPOT_MOVE 6.3bps/10s
+[23:58:13Z] PULL MAKERS — SPOT_MOVE 7.7bps/10s
+[23:58:14Z] PULL MAKERS — SPOT_MOVE 7.8bps/10s
+[23:58:15Z] PULL MAKERS — SPOT_MOVE 7.2bps/10s
+[23:58:16Z] PULL MAKERS — SPOT_MOVE 7.2bps/10s
+[23:58:17Z] PULL MAKERS — SPOT_MOVE 7.3bps/10s
+[23:58:18Z] PULL MAKERS — SPOT_MOVE 7.2bps/10s
+[23:58:19Z] PULL MAKERS — SPOT_MOVE 7.3bps/10s
+[23:58:20Z] PULL MAKERS — SPOT_MOVE 7.1bps/10s
+[23:58:21Z] PULL MAKERS — SPOT_MOVE 7.3bps/10s
+[23:59:38Z] ROUND-RESULT 5m 1790553000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:00:02Z] SKIP 15m 1790553600: box mode disarmed (no event / no vol)
+[00:00:02Z] SKIP 5m 1790553600: box mode disarmed (no event / no vol)
+[00:03:36Z] ROUND-RESULT 15m 1790552700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:04:37Z] ROUND-RESULT 5m 1790553300: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:05:00Z] SKIP 5m 1790553900: box mode disarmed (no event / no vol)
+[00:06:02Z] ROUND-RESULT 5m 1790553600: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:10:01Z] SKIP 5m 1790554200: box mode disarmed (no event / no vol)
+[00:14:36Z] ROUND-RESULT 5m 1790553900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:15:01Z] SKIP 15m 1790554500: box mode disarmed (no event / no vol)
+[00:15:02Z] SKIP 5m 1790554500: box mode disarmed (no event / no vol)
+[00:16:01Z] ROUND-RESULT 15m 1790553600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:19:42Z] PULL MAKERS — SPOT_MOVE 7.3bps/10s
+[00:19:43Z] PULL MAKERS — SPOT_MOVE 7.6bps/10s
+[00:19:43Z] PULL MAKERS — SPOT_MOVE 7.5bps/10s
+[00:19:45Z] PULL MAKERS — SPOT_MOVE 7.5bps/10s
+[00:19:46Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[00:19:57Z] PULL MAKERS — SPOT_MOVE 6.3bps/10s
+[00:19:58Z] PULL MAKERS — SPOT_MOVE 6.5bps/10s
+[00:20:00Z] SKIP 5m 1790554800: box mode disarmed (no event / no vol)
+[00:20:09Z] ROUND-RESULT 5m 1790554200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:20:42Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[00:20:44Z] PULL MAKERS — SPOT_MOVE 6.8bps/10s
+[00:21:01Z] ROUND-RESULT 5m 1790554500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:21:03Z] PULL MAKERS — SPOT_MOVE 7.5bps/10s
+[00:21:04Z] PULL MAKERS — SPOT_MOVE 9.8bps/10s
+[00:21:05Z] PULL MAKERS — SPOT_MOVE 12.1bps/10s
+[00:21:05Z] PULL MAKERS — SPOT_MOVE 12.6bps/10s
+[00:21:08Z] PULL MAKERS — SPOT_MOVE 10.0bps/10s
+[00:21:08Z] PULL MAKERS — SPOT_MOVE 10.0bps/10s
+[00:21:09Z] PULL MAKERS — SPOT_MOVE 10.5bps/10s
+[00:21:10Z] 🔵 BOX ARMED (vol) — LIQ cascade arms vol-box: cascade BUY/shorts $2.38M/10s | hold 300s | armed until 00:26:10Z
+[00:21:10Z] PULL MAKERS — SPOT_MOVE 11.7bps/10s
+[00:21:11Z] PULL MAKERS — SPOT_MOVE 12.9bps/10s
+[00:21:12Z] PULL MAKERS — SPOT_MOVE 13.3bps/10s
+[00:21:17Z] PULL MAKERS — LIQ cascade BUY/shorts $2.09M/10s
+[00:21:21Z] PULL MAKERS — LIQ cascade BUY/shorts $3.84M/10s
+[00:21:25Z] PULL MAKERS — LIQ cascade BUY/shorts $3.84M/10s
+[00:21:32Z] PULL MAKERS — SPOT_MOVE 6.3bps/10s
+[00:21:44Z] PULL MAKERS — SPOT_MOVE 6.5bps/10s
+[00:22:43Z] PULL MAKERS — SPOT_MOVE 7.0bps/10s
+[00:22:44Z] PULL MAKERS — SPOT_MOVE 7.6bps/10s
+[00:22:45Z] PULL MAKERS — SPOT_MOVE 7.5bps/10s
+[00:22:47Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[00:24:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[00:24:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[00:24:53Z] PULL MAKERS — BAND_EXIT mid=0.40 5m
+[00:26:10Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[00:26:10Z] SKIP 5m 1790555100: box mode disarmed (no event / no vol)
+[00:26:11Z] 🔵 BOX ARMED (vol) — sigma1h=7.1bps > 1.8x baseline 3.7bps | hold 600s | armed until 00:36:11Z
+[00:27:03Z] ROUND-RESULT 5m 1790554800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:28:03Z] PULL MAKERS — SPOT_MOVE 7.3bps/10s
+[00:28:04Z] PULL MAKERS — SPOT_MOVE 7.7bps/10s
+[00:28:05Z] PULL MAKERS — SPOT_MOVE 8.1bps/10s
+[00:28:06Z] PULL MAKERS — SPOT_MOVE 10.0bps/10s
+[00:28:08Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[00:28:09Z] PULL MAKERS — SPOT_MOVE 6.0bps/10s
+[00:28:10Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[00:28:11Z] PULL MAKERS — SPOT_MOVE 6.7bps/10s
+[00:28:12Z] PULL MAKERS — SPOT_MOVE 6.7bps/10s
+[00:28:49Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[00:28:50Z] PULL MAKERS — SPOT_MOVE 6.3bps/10s
+[00:29:30Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[00:29:30Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[00:29:30Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[00:29:30Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[00:30:03Z] PULL MAKERS — BAND_EXIT mid=0.40 5m
+[00:31:07Z] PULL MAKERS — SPOT_MOVE 7.8bps/10s
+[00:31:08Z] PULL MAKERS — SPOT_MOVE 8.4bps/10s
+[00:31:09Z] PULL MAKERS — SPOT_MOVE 10.7bps/10s
+[00:31:11Z] PULL MAKERS — SPOT_MOVE 11.4bps/10s
+[00:31:11Z] PULL MAKERS — SPOT_MOVE 12.1bps/10s
+[00:31:12Z] PULL MAKERS — SPOT_MOVE 15.6bps/10s
+[00:31:12Z] PULL MAKERS — SPOT_MOVE 18.5bps/10s
+[00:31:14Z] PULL MAKERS — SPOT_MOVE 16.4bps/10s
+[00:31:15Z] PULL MAKERS — SPOT_MOVE 13.9bps/10s
+[00:31:16Z] PULL MAKERS — SPOT_MOVE 8.3bps/10s
+[00:31:17Z] PULL MAKERS — SPOT_MOVE 8.0bps/10s
+[00:31:22Z] PULL MAKERS — SPOT_MOVE 6.7bps/10s
+[00:32:04Z] PULL MAKERS — SPOT_MOVE 9.3bps/10s
+[00:32:05Z] PULL MAKERS — SPOT_MOVE 8.2bps/10s
+[00:32:05Z] PULL MAKERS — SPOT_MOVE 8.0bps/10s
+[00:32:07Z] PULL MAKERS — SPOT_MOVE 8.0bps/10s
+[00:32:08Z] PULL MAKERS — SPOT_MOVE 8.5bps/10s
+[00:32:08Z] PULL MAKERS — SPOT_MOVE 8.0bps/10s
+[00:32:10Z] PULL MAKERS — SPOT_MOVE 7.7bps/10s
+[00:32:33Z] ROUND-RESULT 5m 1790555100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:32:36Z] PULL MAKERS — SPOT_MOVE 6.7bps/10s
+[00:32:36Z] PULL MAKERS — SPOT_MOVE 8.0bps/10s
+[00:32:37Z] PULL MAKERS — SPOT_MOVE 9.3bps/10s
+[00:32:38Z] PULL MAKERS — SPOT_MOVE 9.1bps/10s
+[00:32:39Z] PULL MAKERS — SPOT_MOVE 8.3bps/10s
+[00:32:40Z] PULL MAKERS — SPOT_MOVE 8.3bps/10s
+[00:32:41Z] PULL MAKERS — SPOT_MOVE 8.5bps/10s
+[00:32:42Z] PULL MAKERS — SPOT_MOVE 7.6bps/10s
+[00:32:43Z] PULL MAKERS — SPOT_MOVE 7.2bps/10s
+[00:32:55Z] PULL MAKERS — SPOT_MOVE 7.2bps/10s
+[00:33:34Z] ROUND-RESULT 15m 1790554500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:34:25Z] PULL MAKERS — SPOT_MOVE 7.2bps/10s
+[00:34:26Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[00:34:26Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[00:34:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[00:34:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[00:34:38Z] PULL MAKERS — BAND_EXIT mid=0.61 5m
+[00:34:41Z] PULL MAKERS — SPOT_MOVE 7.3bps/10s
+[00:34:42Z] PULL MAKERS — SPOT_MOVE 7.5bps/10s
+[00:34:43Z] PULL MAKERS — SPOT_MOVE 7.5bps/10s
+[00:34:44Z] PULL MAKERS — SPOT_MOVE 6.8bps/10s
+[00:34:45Z] PULL MAKERS — SPOT_MOVE 7.3bps/10s
+[00:34:46Z] PULL MAKERS — SPOT_MOVE 8.2bps/10s
+[00:35:20Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[00:35:21Z] PULL MAKERS — SPOT_MOVE 8.1bps/10s
+[00:35:21Z] PULL MAKERS — SPOT_MOVE 9.4bps/10s
+[00:35:23Z] PULL MAKERS — SPOT_MOVE 8.7bps/10s
+[00:35:24Z] PULL MAKERS — SPOT_MOVE 8.5bps/10s
+[00:35:24Z] PULL MAKERS — SPOT_MOVE 9.0bps/10s
+[00:35:26Z] PULL MAKERS — SPOT_MOVE 10.2bps/10s
+[00:35:27Z] PULL MAKERS — SPOT_MOVE 9.6bps/10s
+[00:35:28Z] PULL MAKERS — SPOT_MOVE 8.8bps/10s
+[00:36:12Z] 🔵 BOX ARMED (vol) — sigma1h=9.3bps > 1.8x baseline 3.7bps | hold 600s | armed until 00:46:12Z
+[00:37:19Z] PULL MAKERS — LIQ cascade SELL/longs $97.50M/10s
+[00:37:32Z] ROUND-RESULT 5m 1790555400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:38:21Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[00:38:22Z] PULL MAKERS — SPOT_MOVE 6.5bps/10s
+[00:39:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[00:39:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[00:39:58Z] PULL MAKERS — BAND_EXIT mid=0.35 5m
+[00:40:07Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[00:40:08Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[00:43:03Z] ROUND-RESULT 5m 1790555700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:44:31Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[00:44:31Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[00:44:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[00:44:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[00:44:43Z] PULL MAKERS — BAND_EXIT mid=0.64 5m
+[00:46:00Z] ROUND-RESULT 15m 1790555400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:46:12Z] 🔵 BOX ARMED (vol) — sigma1h=9.8bps > 1.8x baseline 3.7bps | hold 600s | armed until 00:56:12Z
+[00:48:34Z] ROUND-RESULT 5m 1790556000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:49:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[00:49:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[00:50:34Z] PULL MAKERS — BAND_EXIT mid=0.60 5m
+[00:52:41Z] PULL MAKERS — SPOT_MOVE 6.9bps/10s
+[00:52:42Z] PULL MAKERS — SPOT_MOVE 6.9bps/10s
+[00:52:43Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[00:52:44Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[00:53:34Z] ROUND-RESULT 5m 1790556300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:54:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[00:54:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[00:54:45Z] PULL MAKERS — BAND_EXIT mid=0.39 5m
+[00:55:01Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[00:56:12Z] 🔵 BOX ARMED (vol) — sigma1h=10.1bps > 1.8x baseline 3.7bps | hold 600s | armed until 01:06:12Z
+[00:58:33Z] ROUND-RESULT 5m 1790556600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[00:58:34Z] PULL MAKERS — SPOT_MOVE 7.2bps/10s
+[00:58:35Z] PULL MAKERS — SPOT_MOVE 7.9bps/10s
+[00:58:36Z] PULL MAKERS — SPOT_MOVE 7.6bps/10s
+[00:59:30Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[00:59:30Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[00:59:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[00:59:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[01:00:07Z] PULL MAKERS — BAND_EXIT mid=0.39 15m
+[01:00:07Z] PULL MAKERS — SPOT_MOVE 7.1bps/10s
+[01:00:08Z] PULL MAKERS — SPOT_MOVE 8.8bps/10s
+[01:00:09Z] PULL MAKERS — SPOT_MOVE 9.5bps/10s
+[01:00:10Z] PULL MAKERS — SPOT_MOVE 8.9bps/10s
+[01:00:11Z] PULL MAKERS — SPOT_MOVE 7.8bps/10s
+[01:00:12Z] PULL MAKERS — SPOT_MOVE 7.3bps/10s
+[01:00:15Z] PULL MAKERS — SPOT_MOVE 8.4bps/10s
+[01:01:00Z] ROUND-RESULT 5m 1790556900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:01:24Z] PULL MAKERS — SPOT_MOVE 7.5bps/10s
+[01:01:25Z] PULL MAKERS — SPOT_MOVE 8.2bps/10s
+[01:01:26Z] PULL MAKERS — SPOT_MOVE 8.8bps/10s
+[01:01:27Z] PULL MAKERS — SPOT_MOVE 8.0bps/10s
+[01:01:30Z] PULL MAKERS — SPOT_MOVE 6.0bps/10s
+[01:01:30Z] PULL MAKERS — SPOT_MOVE 6.3bps/10s
+[01:01:47Z] PULL MAKERS — SPOT_MOVE 8.0bps/10s
+[01:01:48Z] PULL MAKERS — SPOT_MOVE 7.3bps/10s
+[01:02:33Z] ROUND-RESULT 15m 1790556300: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:04:30Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[01:04:30Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[01:04:44Z] PULL MAKERS — BAND_EXIT mid=0.64 5m
+[01:05:21Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[01:05:23Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[01:06:12Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[01:06:12Z] SKIP 15m 1790557200: box mode disarmed (no event / no vol)
+[01:06:12Z] SKIP 5m 1790557500: box mode disarmed (no event / no vol)
+[01:06:12Z] 🔵 BOX ARMED (vol) — sigma1h=11.2bps > 1.8x baseline 3.7bps | hold 600s | armed until 01:16:12Z
+[01:06:13Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[01:06:41Z] PULL MAKERS — SPOT_MOVE 9.4bps/10s
+[01:06:42Z] PULL MAKERS — SPOT_MOVE 10.8bps/10s
+[01:06:43Z] PULL MAKERS — SPOT_MOVE 8.7bps/10s
+[01:06:57Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[01:06:58Z] PULL MAKERS — SPOT_MOVE 6.7bps/10s
+[01:08:14Z] moondev liq error IncompleteRead(65163 bytes read, 131921 more expected)
+[01:09:07Z] ROUND-RESULT 5m 1790557200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:09:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[01:09:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[01:09:49Z] PULL MAKERS — BAND_EXIT mid=0.36 5m
+[01:09:54Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[01:09:55Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[01:09:56Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[01:09:56Z] PULL MAKERS — SPOT_MOVE 6.5bps/10s
+[01:14:31Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[01:14:31Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[01:14:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[01:14:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[01:14:36Z] ROUND-RESULT 5m 1790557500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:15:02Z] PULL MAKERS — BAND_EXIT mid=0.39 5m
+[01:15:24Z] PULL MAKERS — SPOT_MOVE 6.5bps/10s
+[01:16:02Z] ROUND-RESULT 15m 1790557200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:16:13Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[01:16:13Z] SKIP 15m 1790558100: box mode disarmed (no event / no vol)
+[01:16:13Z] SKIP 5m 1790558100: box mode disarmed (no event / no vol)
+[01:16:13Z] 🔵 BOX ARMED (vol) — sigma1h=12.0bps > 1.8x baseline 3.7bps | hold 600s | armed until 01:26:13Z
+[01:17:04Z] ROUND-RESULT 5m 1790557800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:18:00Z] PULL MAKERS — SPOT_MOVE 6.7bps/10s
+[01:18:01Z] PULL MAKERS — SPOT_MOVE 6.9bps/10s
+[01:18:03Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[01:19:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[01:19:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[01:19:48Z] PULL MAKERS — BAND_EXIT mid=0.64 5m
+[01:19:49Z] PULL MAKERS — SPOT_MOVE 7.1bps/10s
+[01:19:50Z] PULL MAKERS — SPOT_MOVE 6.5bps/10s
+[01:19:50Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[01:22:33Z] ROUND-RESULT 5m 1790558100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:23:04Z] PULL MAKERS — SPOT_MOVE 6.8bps/10s
+[01:23:05Z] PULL MAKERS — SPOT_MOVE 7.2bps/10s
+[01:23:05Z] PULL MAKERS — SPOT_MOVE 8.1bps/10s
+[01:23:06Z] PULL MAKERS — SPOT_MOVE 8.0bps/10s
+[01:23:07Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[01:23:08Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[01:23:20Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[01:23:21Z] PULL MAKERS — SPOT_MOVE 6.5bps/10s
+[01:23:22Z] PULL MAKERS — SPOT_MOVE 6.8bps/10s
+[01:23:23Z] PULL MAKERS — SPOT_MOVE 6.7bps/10s
+[01:24:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[01:24:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[01:25:40Z] PULL MAKERS — BAND_EXIT mid=0.36 5m
+[01:25:55Z] PULL MAKERS — SPOT_MOVE 6.0bps/10s
+[01:26:00Z] ROUND-RESULT 5m 1790558400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:26:13Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[01:26:13Z] SKIP 5m 1790558700: box mode disarmed (no event / no vol)
+[01:26:13Z] 🔵 BOX ARMED (vol) — sigma1h=11.5bps > 1.8x baseline 3.8bps | hold 600s | armed until 01:36:13Z
+[01:29:06Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[01:29:31Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[01:29:31Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[01:29:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[01:29:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[01:30:12Z] PULL MAKERS — BAND_EXIT mid=0.60 5m
+[01:31:01Z] ROUND-RESULT 5m 1790558700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:32:35Z] ROUND-RESULT 15m 1790558100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:34:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[01:34:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[01:35:03Z] PULL MAKERS — BAND_EXIT mid=0.34 5m
+[01:35:12Z] PULL MAKERS — SPOT_MOVE 7.1bps/10s
+[01:35:12Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[01:35:14Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[01:35:15Z] PULL MAKERS — SPOT_MOVE 6.7bps/10s
+[01:35:16Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[01:36:14Z] 🔵 BOX ARMED (vol) — sigma1h=10.2bps > 1.8x baseline 3.8bps | hold 600s | armed until 01:46:14Z
+[01:36:32Z] ROUND-RESULT 5m 1790559000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:39:29Z] moondev liq error JSONDecodeError('Expecting value: line 1 column 1 (char 0)')
+[01:39:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[01:39:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[01:39:42Z] PULL MAKERS — BAND_EXIT mid=0.62 5m
+[01:41:02Z] ROUND-RESULT 5m 1790559300: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:41:43Z] PULL MAKERS — SPOT_MOVE 7.1bps/10s
+[01:41:44Z] PULL MAKERS — SPOT_MOVE 7.9bps/10s
+[01:41:45Z] PULL MAKERS — SPOT_MOVE 8.4bps/10s
+[01:41:46Z] PULL MAKERS — SPOT_MOVE 8.5bps/10s
+[01:44:16Z] PULL MAKERS — SPOT_MOVE 6.7bps/10s
+[01:44:17Z] PULL MAKERS — SPOT_MOVE 6.9bps/10s
+[01:44:17Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[01:44:19Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[01:44:31Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[01:44:31Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[01:44:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[01:44:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[01:44:50Z] PULL MAKERS — BAND_EXIT mid=0.39 5m
+[01:45:28Z] PULL MAKERS — SPOT_MOVE 6.5bps/10s
+[01:45:29Z] PULL MAKERS — SPOT_MOVE 7.0bps/10s
+[01:45:30Z] PULL MAKERS — SPOT_MOVE 7.0bps/10s
+[01:46:04Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[01:46:05Z] PULL MAKERS — SPOT_MOVE 6.7bps/10s
+[01:46:06Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[01:46:07Z] PULL MAKERS — SPOT_MOVE 6.0bps/10s
+[01:46:14Z] 🔵 BOX ARMED (vol) — sigma1h=10.2bps > 1.8x baseline 3.8bps | hold 600s | armed until 01:56:14Z
+[01:46:32Z] ROUND-RESULT 15m 1790559000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:48:36Z] ROUND-RESULT 5m 1790559600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:48:45Z] RTDS problem ConnectionClosedOK(Close(code=1001, reason='Going away'), Close(code=1001, reason='Going away'), True), backoff 2s
+[01:48:48Z] RTDS connected; subscribing chainlink-spot
+[01:49:22Z] PULL MAKERS — SPOT_MOVE 7.2bps/10s
+[01:49:23Z] PULL MAKERS — SPOT_MOVE 7.3bps/10s
+[01:49:24Z] PULL MAKERS — SPOT_MOVE 7.6bps/10s
+[01:49:24Z] PULL MAKERS — LIQ cascade SELL/longs $1.95M/10s
+[01:49:25Z] PULL MAKERS — SPOT_MOVE 7.0bps/10s
+[01:49:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[01:49:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[01:49:31Z] PULL MAKERS — LIQ cascade SELL/longs $43.17M/10s
+[01:49:40Z] PULL MAKERS — LIQ cascade SELL/longs $40.91M/10s
+[01:49:47Z] PULL MAKERS — LIQ cascade SELL/longs $10.00M/10s
+[01:49:51Z] PULL MAKERS — LIQ cascade SELL/longs $3.64M/10s
+[01:49:56Z] PULL MAKERS — LIQ cascade SELL/longs $3.68M/10s
+[01:50:03Z] PULL MAKERS — LIQ cascade SELL/longs $8.80M/10s
+[01:50:07Z] PULL MAKERS — LIQ cascade SELL/longs $8.67M/10s
+[01:50:12Z] PULL MAKERS — LIQ cascade SELL/longs $1011.68M/10s
+[01:50:18Z] PULL MAKERS — LIQ cascade SELL/longs $1012.02M/10s
+[01:50:23Z] PULL MAKERS — LIQ cascade SELL/longs $1012.04M/10s
+[01:50:28Z] PULL MAKERS — SPOT_MOVE 6.5bps/10s
+[01:50:29Z] PULL MAKERS — SPOT_MOVE 6.9bps/10s
+[01:50:30Z] PULL MAKERS — SPOT_MOVE 7.2bps/10s
+[01:50:31Z] PULL MAKERS — SPOT_MOVE 9.0bps/10s
+[01:50:32Z] PULL MAKERS — SPOT_MOVE 8.8bps/10s
+[01:50:33Z] PULL MAKERS — SPOT_MOVE 9.3bps/10s
+[01:50:34Z] PULL MAKERS — SPOT_MOVE 9.1bps/10s
+[01:50:35Z] PULL MAKERS — SPOT_MOVE 9.5bps/10s
+[01:50:36Z] PULL MAKERS — SPOT_MOVE 10.0bps/10s
+[01:50:38Z] PULL MAKERS — SPOT_MOVE 8.0bps/10s
+[01:50:39Z] PULL MAKERS — SPOT_MOVE 7.4bps/10s
+[01:50:40Z] PULL MAKERS — SPOT_MOVE 6.7bps/10s
+[01:50:41Z] PULL MAKERS — SPOT_MOVE 7.8bps/10s
+[01:50:42Z] PULL MAKERS — SPOT_MOVE 8.3bps/10s
+[01:50:43Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[01:50:46Z] PULL MAKERS — SPOT_MOVE 6.9bps/10s
+[01:50:47Z] PULL MAKERS — SPOT_MOVE 6.5bps/10s
+[01:50:48Z] PULL MAKERS — SPOT_MOVE 6.7bps/10s
+[01:50:49Z] PULL MAKERS — SPOT_MOVE 6.9bps/10s
+[01:51:51Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[01:51:52Z] PULL MAKERS — SPOT_MOVE 6.5bps/10s
+[01:51:53Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[01:52:40Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[01:52:41Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[01:52:42Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[01:54:30Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[01:54:30Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[01:54:55Z] PULL MAKERS — BAND_EXIT mid=0.38 5m
+[01:55:08Z] ROUND-RESULT 5m 1790559900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:56:14Z] 🔵 BOX ARMED (vol) — sigma1h=10.5bps > 1.8x baseline 3.8bps | hold 600s | armed until 02:06:14Z
+[01:56:56Z] moondev liq error JSONDecodeError('Expecting value: line 1 column 24562 (char 24561)')
+[01:57:03Z] ROUND-RESULT 5m 1790560200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[01:57:20Z] PULL MAKERS — SPOT_MOVE 7.1bps/10s
+[01:57:21Z] PULL MAKERS — SPOT_MOVE 7.0bps/10s
+[01:57:22Z] PULL MAKERS — SPOT_MOVE 7.1bps/10s
+[01:57:23Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[01:57:24Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[01:57:25Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[01:57:26Z] PULL MAKERS — SPOT_MOVE 7.7bps/10s
+[01:57:27Z] PULL MAKERS — SPOT_MOVE 7.6bps/10s
+[01:57:28Z] PULL MAKERS — SPOT_MOVE 6.8bps/10s
+[01:57:29Z] PULL MAKERS — SPOT_MOVE 6.7bps/10s
+[01:59:30Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[01:59:30Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[01:59:30Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[01:59:30Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[02:00:01Z] PULL MAKERS — BAND_EXIT mid=0.40 5m
+[02:01:12Z] PULL MAKERS — LIQ cascade SELL/longs $66.07M/10s
+[02:01:19Z] PULL MAKERS — LIQ cascade SELL/longs $66.08M/10s
+[02:01:23Z] PULL MAKERS — LIQ cascade SELL/longs $66.06M/10s
+[02:01:36Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[02:01:36Z] PULL MAKERS — SPOT_MOVE 7.2bps/10s
+[02:01:37Z] PULL MAKERS — SPOT_MOVE 6.5bps/10s
+[02:01:48Z] PULL MAKERS — SPOT_MOVE 6.8bps/10s
+[02:01:49Z] PULL MAKERS — SPOT_MOVE 7.2bps/10s
+[02:01:51Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[02:02:04Z] ROUND-RESULT 5m 1790560500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:02:14Z] PULL MAKERS — SPOT_MOVE 7.7bps/10s
+[02:02:21Z] PULL MAKERS — SPOT_MOVE 6.7bps/10s
+[02:02:22Z] PULL MAKERS — SPOT_MOVE 6.9bps/10s
+[02:02:23Z] PULL MAKERS — SPOT_MOVE 6.9bps/10s
+[02:03:05Z] ROUND-RESULT 15m 1790559900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:03:21Z] PULL MAKERS — LIQ cascade SELL/longs $4.42M/10s
+[02:03:28Z] PULL MAKERS — LIQ cascade SELL/longs $2.85M/10s
+[02:03:32Z] PULL MAKERS — LIQ cascade SELL/longs $2.99M/10s
+[02:03:38Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[02:03:38Z] PULL MAKERS — LIQ cascade SELL/longs $2.87M/10s
+[02:04:02Z] PULL MAKERS — SPOT_MOVE 7.3bps/10s
+[02:04:03Z] PULL MAKERS — SPOT_MOVE 8.2bps/10s
+[02:04:04Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[02:04:05Z] PULL MAKERS — SPOT_MOVE 6.7bps/10s
+[02:04:06Z] PULL MAKERS — SPOT_MOVE 7.1bps/10s
+[02:04:07Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[02:04:09Z] PULL MAKERS — SPOT_MOVE 7.6bps/10s
+[02:04:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[02:04:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[02:05:01Z] PULL MAKERS — BAND_EXIT mid=0.61 5m
+[02:06:14Z] 🔵 BOX ARMED (vol) — sigma1h=10.4bps > 1.8x baseline 3.9bps | hold 600s | armed until 02:16:14Z
+[02:07:02Z] ROUND-RESULT 5m 1790560800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:08:25Z] PULL MAKERS — SPOT_MOVE 6.5bps/10s
+[02:09:30Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[02:09:30Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[02:10:00Z] PULL MAKERS — BAND_EXIT mid=0.39 5m
+[02:10:11Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[02:14:32Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[02:14:32Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[02:14:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[02:14:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[02:15:07Z] ROUND-RESULT 5m 1790561100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:15:25Z] PULL MAKERS — BAND_EXIT mid=0.35 5m
+[02:16:15Z] 🔵 BOX ARMED (vol) — sigma1h=9.9bps > 1.8x baseline 5.1bps | hold 600s | armed until 02:26:15Z
+[02:18:05Z] ROUND-RESULT 5m 1790561400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:19:06Z] ROUND-RESULT 15m 1790560800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:19:30Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[02:19:30Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[02:19:46Z] PULL MAKERS — BAND_EXIT mid=0.60 5m
+[02:21:53Z] PULL MAKERS — SPOT_MOVE 6.9bps/10s
+[02:21:54Z] PULL MAKERS — SPOT_MOVE 6.8bps/10s
+[02:21:55Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[02:23:04Z] ROUND-RESULT 5m 1790561700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:24:27Z] PULL MAKERS — SPOT_MOVE 7.8bps/10s
+[02:24:29Z] PULL MAKERS — SPOT_MOVE 10.2bps/10s
+[02:24:29Z] PULL MAKERS — SPOT_MOVE 10.2bps/10s
+[02:24:30Z] PULL MAKERS — SPOT_MOVE 10.2bps/10s
+[02:24:32Z] SKIP 5m 1790562300: mid 0.64 outside box band
+[02:24:32Z] PULL MAKERS — SPOT_MOVE 10.9bps/10s
+[02:24:32Z] PULL MAKERS — SPOT_MOVE 10.7bps/10s
+[02:24:33Z] PULL MAKERS — SPOT_MOVE 10.6bps/10s
+[02:24:34Z] PULL MAKERS — SPOT_MOVE 10.0bps/10s
+[02:24:35Z] PULL MAKERS — SPOT_MOVE 10.0bps/10s
+[02:26:15Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[02:28:34Z] ROUND-RESULT 5m 1790562000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:30:01Z] SKIP 15m 1790562600: box mode disarmed (no event / no vol)
+[02:30:01Z] SKIP 5m 1790562600: box mode disarmed (no event / no vol)
+[02:33:33Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[02:33:34Z] ROUND-RESULT 15m 1790561700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:33:34Z] ROUND-RESULT 5m 1790562300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:33:36Z] PULL MAKERS — SPOT_MOVE 6.0bps/10s
+[02:33:37Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[02:33:38Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[02:35:01Z] SKIP 5m 1790562900: box mode disarmed (no event / no vol)
+[02:35:25Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[02:35:26Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[02:35:27Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[02:35:28Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[02:39:04Z] ROUND-RESULT 5m 1790562600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:40:00Z] SKIP 5m 1790563200: box mode disarmed (no event / no vol)
+[02:43:35Z] ROUND-RESULT 5m 1790562900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:45:00Z] SKIP 15m 1790563500: box mode disarmed (no event / no vol)
+[02:45:00Z] SKIP 5m 1790563500: box mode disarmed (no event / no vol)
+[02:46:02Z] ROUND-RESULT 15m 1790562600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:46:50Z] PULL MAKERS — SPOT_MOVE 7.2bps/10s
+[02:46:51Z] PULL MAKERS — SPOT_MOVE 7.0bps/10s
+[02:46:52Z] PULL MAKERS — SPOT_MOVE 8.1bps/10s
+[02:46:53Z] PULL MAKERS — SPOT_MOVE 8.1bps/10s
+[02:46:54Z] PULL MAKERS — SPOT_MOVE 11.9bps/10s
+[02:46:55Z] PULL MAKERS — SPOT_MOVE 11.1bps/10s
+[02:46:56Z] PULL MAKERS — SPOT_MOVE 10.5bps/10s
+[02:46:57Z] PULL MAKERS — SPOT_MOVE 10.0bps/10s
+[02:46:58Z] PULL MAKERS — SPOT_MOVE 9.4bps/10s
+[02:49:37Z] ROUND-RESULT 5m 1790563200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:50:00Z] SKIP 5m 1790563800: box mode disarmed (no event / no vol)
+[02:54:35Z] ROUND-RESULT 5m 1790563500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[02:55:02Z] SKIP 5m 1790564100: box mode disarmed (no event / no vol)
+[02:59:36Z] ROUND-RESULT 5m 1790563800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:00:02Z] SKIP 15m 1790564400: box mode disarmed (no event / no vol)
+[03:00:02Z] SKIP 5m 1790564400: box mode disarmed (no event / no vol)
+[03:00:05Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[03:00:06Z] PULL MAKERS — SPOT_MOVE 6.3bps/10s
+[03:00:07Z] PULL MAKERS — SPOT_MOVE 6.3bps/10s
+[03:00:08Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[03:04:39Z] ROUND-RESULT 15m 1790563500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:05:01Z] SKIP 5m 1790564700: box mode disarmed (no event / no vol)
+[03:05:10Z] ROUND-RESULT 5m 1790564100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:10:01Z] SKIP 5m 1790565000: box mode disarmed (no event / no vol)
+[03:10:08Z] ROUND-RESULT 5m 1790564400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:15:02Z] SKIP 15m 1790565300: box mode disarmed (no event / no vol)
+[03:15:02Z] SKIP 5m 1790565300: box mode disarmed (no event / no vol)
+[03:15:06Z] ROUND-RESULT 5m 1790564700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:18:05Z] ROUND-RESULT 15m 1790564400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:20:00Z] SKIP 5m 1790565600: box mode disarmed (no event / no vol)
+[03:20:09Z] ROUND-RESULT 5m 1790565000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:24:25Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[03:24:26Z] PULL MAKERS — SPOT_MOVE 7.0bps/10s
+[03:24:27Z] PULL MAKERS — SPOT_MOVE 7.5bps/10s
+[03:24:28Z] PULL MAKERS — SPOT_MOVE 7.4bps/10s
+[03:25:01Z] SKIP 5m 1790565900: box mode disarmed (no event / no vol)
+[03:25:08Z] ROUND-RESULT 5m 1790565300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:25:50Z] 🔵 BOX ARMED (vol) — LIQ cascade arms vol-box: cascade SELL/longs $27.16M/10s | hold 300s | armed until 03:30:50Z
+[03:25:54Z] PULL MAKERS — LIQ cascade SELL/longs $27.20M/10s
+[03:26:09Z] PULL MAKERS — LIQ cascade SELL/longs $27.18M/10s
+[03:26:58Z] PULL MAKERS — LIQ cascade SELL/longs $4.16M/10s
+[03:27:04Z] PULL MAKERS — LIQ cascade SELL/longs $4.18M/10s
+[03:27:09Z] PULL MAKERS — LIQ cascade SELL/longs $4.18M/10s
+[03:27:33Z] ROUND-RESULT 5m 1790565600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:29:31Z] MAKER (DRY) 15m BUY Up 20sh @ 0.45
+[03:29:31Z] MAKER (DRY) 15m BUY Down 20sh @ 0.45
+[03:29:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[03:29:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[03:29:55Z] PULL MAKERS — LIQ cascade SELL/longs $373.37M/10s
+[03:30:50Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[03:30:50Z] SKIP 15m 1790566200: box mode disarmed (no event / no vol)
+[03:30:50Z] SKIP 5m 1790566200: box mode disarmed (no event / no vol)
+[03:32:34Z] ROUND-RESULT 15m 1790565300: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:32:35Z] ROUND-RESULT 5m 1790565900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:34:09Z] 🔵 BOX ARMED (vol) — LIQ cascade arms vol-box: cascade SELL/longs $14.58M/10s | hold 300s | armed until 03:39:09Z
+[03:34:16Z] PULL MAKERS — LIQ cascade SELL/longs $14.58M/10s
+[03:34:31Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[03:34:31Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[03:34:36Z] PULL MAKERS — BAND_EXIT mid=0.64 5m
+[03:39:11Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[03:40:01Z] SKIP 5m 1790566800: box mode disarmed (no event / no vol)
+[03:40:09Z] ROUND-RESULT 5m 1790566200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:42:33Z] ROUND-RESULT 5m 1790566500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:45:01Z] SKIP 15m 1790567100: box mode disarmed (no event / no vol)
+[03:45:01Z] SKIP 5m 1790567100: box mode disarmed (no event / no vol)
+[03:47:02Z] ROUND-RESULT 15m 1790566200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:48:04Z] ROUND-RESULT 5m 1790566800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:48:48Z] RTDS problem ConnectionClosedOK(Close(code=1001, reason='Going away'), Close(code=1001, reason='Going away'), True), backoff 2s
+[03:48:50Z] RTDS connected; subscribing chainlink-spot
+[03:49:58Z] PULL MAKERS — SPOT_MOVE 9.5bps/10s
+[03:49:59Z] PULL MAKERS — SPOT_MOVE 9.3bps/10s
+[03:50:00Z] PULL MAKERS — SPOT_MOVE 9.1bps/10s
+[03:50:01Z] SKIP 5m 1790567400: box mode disarmed (no event / no vol)
+[03:50:01Z] PULL MAKERS — SPOT_MOVE 9.3bps/10s
+[03:50:02Z] PULL MAKERS — SPOT_MOVE 9.7bps/10s
+[03:50:03Z] PULL MAKERS — SPOT_MOVE 9.9bps/10s
+[03:50:04Z] PULL MAKERS — SPOT_MOVE 10.4bps/10s
+[03:50:05Z] PULL MAKERS — SPOT_MOVE 10.2bps/10s
+[03:50:06Z] PULL MAKERS — SPOT_MOVE 10.4bps/10s
+[03:52:32Z] ROUND-RESULT 5m 1790567100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[03:55:00Z] SKIP 5m 1790567700: box mode disarmed (no event / no vol)
+[03:57:02Z] ROUND-RESULT 5m 1790567400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:00:02Z] SKIP 15m 1790568000: box mode disarmed (no event / no vol)
+[04:00:02Z] SKIP 5m 1790568000: box mode disarmed (no event / no vol)
+[04:02:04Z] ROUND-RESULT 15m 1790567100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:03:06Z] ROUND-RESULT 5m 1790567700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:05:02Z] SKIP 5m 1790568300: box mode disarmed (no event / no vol)
+[04:09:07Z] ROUND-RESULT 5m 1790568000: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:10:00Z] SKIP 5m 1790568600: box mode disarmed (no event / no vol)
+[04:12:34Z] ROUND-RESULT 5m 1790568300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:15:01Z] SKIP 15m 1790568900: box mode disarmed (no event / no vol)
+[04:15:01Z] SKIP 5m 1790568900: box mode disarmed (no event / no vol)
+[04:17:32Z] ROUND-RESULT 15m 1790568000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:17:33Z] ROUND-RESULT 5m 1790568600: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:20:00Z] SKIP 5m 1790569200: box mode disarmed (no event / no vol)
+[04:23:05Z] ROUND-RESULT 5m 1790568900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:25:00Z] SKIP 5m 1790569500: box mode disarmed (no event / no vol)
+[04:29:06Z] ROUND-RESULT 5m 1790569200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:30:01Z] SKIP 15m 1790569800: box mode disarmed (no event / no vol)
+[04:30:01Z] SKIP 5m 1790569800: box mode disarmed (no event / no vol)
+[04:32:32Z] ROUND-RESULT 15m 1790568900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:35:01Z] SKIP 5m 1790570100: box mode disarmed (no event / no vol)
+[04:35:07Z] ROUND-RESULT 5m 1790569500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:40:01Z] SKIP 5m 1790570400: box mode disarmed (no event / no vol)
+[04:40:08Z] ROUND-RESULT 5m 1790569800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:45:01Z] SKIP 15m 1790570700: box mode disarmed (no event / no vol)
+[04:45:02Z] SKIP 5m 1790570700: box mode disarmed (no event / no vol)
+[04:45:06Z] ROUND-RESULT 5m 1790570100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:47:33Z] ROUND-RESULT 15m 1790569800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:49:36Z] ROUND-RESULT 5m 1790570400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:50:01Z] SKIP 5m 1790571000: box mode disarmed (no event / no vol)
+[04:51:31Z] ROUND-RESULT 5m 1790570700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[04:55:01Z] SKIP 5m 1790571300: box mode disarmed (no event / no vol)
+[04:56:31Z] ROUND-RESULT 5m 1790571000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:00:00Z] SKIP 15m 1790571600: box mode disarmed (no event / no vol)
+[05:00:00Z] SKIP 5m 1790571600: box mode disarmed (no event / no vol)
+[05:05:00Z] SKIP 5m 1790571900: box mode disarmed (no event / no vol)
+[05:05:09Z] ROUND-RESULT 5m 1790571300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:05:14Z] PULL MAKERS — SPOT_MOVE 6.0bps/10s
+[05:05:15Z] PULL MAKERS — SPOT_MOVE 6.0bps/10s
+[05:05:16Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[05:05:17Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[05:05:18Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[05:05:40Z] ROUND-RESULT 15m 1790570700: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:07:03Z] ROUND-RESULT 5m 1790571600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:10:02Z] SKIP 5m 1790572200: box mode disarmed (no event / no vol)
+[05:12:33Z] ROUND-RESULT 5m 1790571900: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:14:43Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[05:14:44Z] PULL MAKERS — SPOT_MOVE 6.5bps/10s
+[05:14:45Z] PULL MAKERS — SPOT_MOVE 6.3bps/10s
+[05:15:01Z] SKIP 15m 1790572500: box mode disarmed (no event / no vol)
+[05:15:01Z] SKIP 5m 1790572500: box mode disarmed (no event / no vol)
+[05:16:24Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[05:16:25Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[05:16:26Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[05:16:27Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[05:16:28Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[05:16:29Z] PULL MAKERS — SPOT_MOVE 6.2bps/10s
+[05:16:30Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[05:16:39Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[05:16:40Z] PULL MAKERS — SPOT_MOVE 6.6bps/10s
+[05:17:02Z] ROUND-RESULT 5m 1790572200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:17:33Z] ROUND-RESULT 15m 1790571600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:20:01Z] SKIP 5m 1790572800: box mode disarmed (no event / no vol)
+[05:21:32Z] ROUND-RESULT 5m 1790572500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:23:11Z] 🔵 BOX ARMED (vol) — LIQ cascade arms vol-box: cascade SELL/longs $4.27M/10s | hold 300s | armed until 05:28:11Z
+[05:23:18Z] PULL MAKERS — LIQ cascade SELL/longs $4.23M/10s
+[05:23:23Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[05:23:24Z] PULL MAKERS — SPOT_MOVE 12.3bps/10s
+[05:23:25Z] PULL MAKERS — SPOT_MOVE 8.6bps/10s
+[05:23:26Z] PULL MAKERS — SPOT_MOVE 7.8bps/10s
+[05:23:27Z] PULL MAKERS — LIQ cascade SELL/longs $13.84M/10s
+[05:23:27Z] PULL MAKERS — SPOT_MOVE 7.8bps/10s
+[05:23:28Z] PULL MAKERS — SPOT_MOVE 8.0bps/10s
+[05:23:29Z] PULL MAKERS — SPOT_MOVE 8.8bps/10s
+[05:23:30Z] PULL MAKERS — SPOT_MOVE 7.3bps/10s
+[05:23:33Z] PULL MAKERS — LIQ cascade SELL/longs $8.68M/10s
+[05:23:38Z] PULL MAKERS — LIQ cascade SELL/longs $7.40M/10s
+[05:24:00Z] PULL MAKERS — LIQ cascade SELL/longs $23.13M/10s
+[05:24:04Z] PULL MAKERS — LIQ cascade SELL/longs $23.16M/10s
+[05:24:30Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[05:24:30Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[05:25:06Z] PULL MAKERS — BAND_EXIT mid=0.40 5m
+[05:25:59Z] PULL MAKERS — SPOT_MOVE 6.1bps/10s
+[05:26:01Z] PULL MAKERS — SPOT_MOVE 6.8bps/10s
+[05:26:08Z] PULL MAKERS — LIQ cascade SELL/longs $1.86M/10s
+[05:26:12Z] PULL MAKERS — LIQ cascade SELL/longs $3.24M/10s
+[05:28:04Z] ROUND-RESULT 5m 1790572800: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:28:13Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[05:30:01Z] SKIP 15m 1790573400: box mode disarmed (no event / no vol)
+[05:30:02Z] SKIP 5m 1790573400: box mode disarmed (no event / no vol)
+[05:31:01Z] ROUND-RESULT 15m 1790572500: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:32:33Z] ROUND-RESULT 5m 1790573100: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:33:37Z] 🔵 BOX ARMED (vol) — LIQ cascade arms vol-box: cascade SELL/longs $13.30M/10s | hold 300s | armed until 05:38:37Z
+[05:33:41Z] PULL MAKERS — LIQ cascade SELL/longs $13.39M/10s
+[05:34:10Z] PULL MAKERS — LIQ cascade SELL/longs $18.69M/10s
+[05:34:32Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[05:34:32Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[05:35:34Z] PULL MAKERS — BAND_EXIT mid=0.62 5m
+[05:37:33Z] ROUND-RESULT 5m 1790573400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:38:39Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[05:38:51Z] PULL MAKERS — SPOT_MOVE 8.3bps/10s
+[05:38:52Z] PULL MAKERS — SPOT_MOVE 11.3bps/10s
+[05:38:53Z] PULL MAKERS — SPOT_MOVE 14.0bps/10s
+[05:38:54Z] PULL MAKERS — SPOT_MOVE 11.8bps/10s
+[05:38:55Z] PULL MAKERS — SPOT_MOVE 12.0bps/10s
+[05:38:56Z] PULL MAKERS — SPOT_MOVE 14.2bps/10s
+[05:38:57Z] PULL MAKERS — SPOT_MOVE 14.7bps/10s
+[05:38:58Z] PULL MAKERS — SPOT_MOVE 17.9bps/10s
+[05:38:59Z] PULL MAKERS — SPOT_MOVE 17.7bps/10s
+[05:38:59Z] 🔵 BOX ARMED (vol) — LIQ cascade arms vol-box: cascade SELL/longs $2.05M/10s | hold 300s | armed until 05:43:59Z
+[05:39:00Z] PULL MAKERS — SPOT_MOVE 9.9bps/10s
+[05:39:01Z] PULL MAKERS — SPOT_MOVE 10.2bps/10s
+[05:39:02Z] PULL MAKERS — SPOT_MOVE 9.6bps/10s
+[05:39:04Z] PULL MAKERS — LIQ cascade SELL/longs $6.13M/10s
+[05:39:04Z] PULL MAKERS — SPOT_MOVE 7.3bps/10s
+[05:39:06Z] S10 vol-event binary box starting (forever) — maker straddle @ 0.45 x 20sh, pair-arb cap $0.97 post-fee, leg-risk timeout 60s chase-to-$0.97-else-unwind, vol gate 1.8x baseline, band (0.4, 0.6)
+[05:39:06Z] liq feed shape: 3758 rows, sample={'ts': 1790573652.227, 'usd': 29824647.0, 'side': 'long', 'sym': 'ETHUSD_PERP'}
+[05:39:06Z] 🔵 BOX ARMED (vol) — LIQ cascade arms vol-box: cascade SELL/longs $6.13M/10s | hold 300s | armed until 05:44:06Z
+[05:39:06Z] RTDS connected; subscribing chainlink-spot
+[05:39:10Z] PULL MAKERS — LIQ cascade SELL/longs $5.38M/10s
+[05:39:14Z] PULL MAKERS — LIQ cascade SELL/longs $59.38M/10s
+[05:39:30Z] MAKER (DRY) 5m BUY Up 20sh @ 0.45
+[05:39:30Z] MAKER (DRY) 5m BUY Down 20sh @ 0.45
+[05:40:15Z] PULL MAKERS — BAND_EXIT mid=0.62 5m
+[05:42:49Z] moondev liq answer cut off (incomplete JSON) - asking again at once
+[05:43:35Z] ROUND-RESULT 5m 1790573700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:44:07Z] ⬜ BOX DISARMED — hold_s expired without new signal
+[05:45:00Z] SKIP 15m 1790574300: box mode disarmed (no event / no vol)
+[05:45:00Z] SKIP 5m 1790574300: box mode disarmed (no event / no vol)
+[05:46:41Z] PULL MAKERS — SPOT_MOVE 7.1bps/10s
+[05:46:42Z] PULL MAKERS — SPOT_MOVE 7.5bps/10s
+[05:46:43Z] PULL MAKERS — SPOT_MOVE 7.6bps/10s
+[05:46:44Z] PULL MAKERS — SPOT_MOVE 8.2bps/10s
+[05:46:45Z] PULL MAKERS — SPOT_MOVE 7.2bps/10s
+[05:46:46Z] PULL MAKERS — SPOT_MOVE 6.5bps/10s
+[05:47:28Z] moondev liq answer cut off (incomplete JSON) - asking again at once
+[05:48:06Z] ROUND-RESULT 15m 1790573400: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:48:37Z] ROUND-RESULT 5m 1790574000: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:50:01Z] SKIP 5m 1790574600: box mode disarmed (no event / no vol)
+[05:53:35Z] ROUND-RESULT 5m 1790574300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[05:55:02Z] SKIP 5m 1790574900: box mode disarmed (no event / no vol)
+[05:58:35Z] ROUND-RESULT 5m 1790574600: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:00:01Z] SKIP 15m 1790575200: box mode disarmed (no event / no vol)
+[06:00:01Z] SKIP 5m 1790575200: box mode disarmed (no event / no vol)
+[06:02:03Z] ROUND-RESULT 15m 1790574300: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:03:35Z] ROUND-RESULT 5m 1790574900: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:05:00Z] SKIP 5m 1790575500: box mode disarmed (no event / no vol)
+[06:09:08Z] ROUND-RESULT 5m 1790575200: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:10:00Z] SKIP 5m 1790575800: box mode disarmed (no event / no vol)
+[06:13:35Z] ROUND-RESULT 5m 1790575500: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:15:01Z] SKIP 15m 1790576100: box mode disarmed (no event / no vol)
+[06:15:01Z] SKIP 5m 1790576100: box mode disarmed (no event / no vol)
+[06:18:36Z] ROUND-RESULT 15m 1790575200: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:18:36Z] ROUND-RESULT 5m 1790575800: settled=Up two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:20:00Z] SKIP 5m 1790576400: box mode disarmed (no event / no vol)
+[06:20:32Z] PULL MAKERS — SPOT_MOVE 6.4bps/10s
+[06:20:33Z] PULL MAKERS — SPOT_MOVE 7.2bps/10s
+[06:20:34Z] PULL MAKERS — SPOT_MOVE 7.0bps/10s
+[06:20:35Z] PULL MAKERS — SPOT_MOVE 6.8bps/10s
+[06:20:36Z] PULL MAKERS — SPOT_MOVE 6.3bps/10s
+[06:20:37Z] PULL MAKERS — SPOT_MOVE 6.3bps/10s
+[06:25:02Z] SKIP 5m 1790576700: box mode disarmed (no event / no vol)
+[06:25:08Z] ROUND-RESULT 5m 1790576100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:30:02Z] SKIP 15m 1790577000: box mode disarmed (no event / no vol)
+[06:30:02Z] SKIP 5m 1790577000: box mode disarmed (no event / no vol)
+[06:30:09Z] ROUND-RESULT 5m 1790576400: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:33:37Z] ROUND-RESULT 15m 1790576100: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
+[06:35:00Z] SKIP 5m 1790577300: box mode disarmed (no event / no vol)
+[06:35:12Z] ROUND-RESULT 5m 1790576700: settled=Down two-leg=0 pnl $+0.00 day $+0.00 | 
