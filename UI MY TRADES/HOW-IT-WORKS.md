@@ -368,3 +368,47 @@ cell keeps its record as it grows.
 **Weather, first settlements (27 September events):** Miami's high fell in 88-89°F and New
 York's in 64-65°F. Of 6 random bets, 1 won (No on New York 66-67°F at 68 cents) and 5 lost.
 Six bets say nothing yet.
+
+### Part #5 — live dashboard in Chrome (2026-09-28)
+
+**How to open it:** double-click **OPEN DASHBOARD.bat** (on the Desktop and in this folder).
+A small window opens and stays open: that is the private, encrypted connection to the VPS.
+Chrome opens `http://localhost:8899`. Close the window when you are done watching.
+
+**What it shows**
+
+| part | content |
+|---|---|
+| top row | BTC bankroll, won/lost, today's result, rounds covered today, share read from the live page, phase |
+| round in progress | time left (and what the page's own countdown shows), price to beat, current price, who is ahead, the Up/Down prices a person sees, the real cost in the order book, the checkpoints, and this round's bet with its reason |
+| picture | what the trader's browser sees, a new picture every 5 seconds |
+| charts | bankroll after each settled bet; profit or loss of each of the last 80 bets (hover for details) |
+| tables | every recent round, the pattern table (cells with 30 or more rounds), favourite vs other side, weather by city, every weather bet |
+
+**How it is built**
+
+| piece | where | what it does |
+|---|---|---|
+| `ui_btc_trader.py` v1.0.9 | VPS | writes `state/btc_live.json` about once a second and `state/btc_page.jpg` every 5 s. No decision reads these files. It stays out of the way 2.5 s before each checkpoint |
+| `dashboard.py` + `dashboard.html` | VPS, service `ui-dashboard` | a viewer: reads the files and serves the page. Listens on 127.0.0.1 only. Any request other than reading is refused |
+| `OPEN DASHBOARD.bat` | this PC | opens the SSH tunnel (PC port 8899 to VPS port 8787) and Chrome; reconnects by itself if the connection drops |
+
+**Safety.** Nothing is opened to the internet: checked from the VPS's own external address, the
+port does not answer. No firewall rule was added. The dashboard cannot place a bet, change a
+setting or restart anything. Its service is capped at 40 % of one core and 300 MB.
+
+**Verified:** page 200, data 200 (67 KB), picture 200, unknown address 404, a write attempt
+405. Live view 0.5 to 1.2 s old when read. Opened in Chrome on this PC: every section rendered
+with live data, no browser errors. Chart colours passed the colour-blind and contrast checks
+in light and dark mode.
+
+**Errors on the way**
+
+| # | what went wrong | fix |
+|---|---|---|
+| E22 | PC port 8787 was already used by another program on this PC (`node server.js`, running since 26 September). My test only worked because it took the IPv6 side of the port | the launcher uses PC port 8899; the other program was not touched |
+| E23 | stopping my test tunnel left its SSH process alive | stopped that one process by its id |
+
+**What the charts show at a glance.** The bankroll sat between $155 and $200 for ten hours,
+then jumped to about $255 within minutes. One bet made +$79 and two made about +$27 each.
+Those three long shots are the whole profit. Without them the account would be down.

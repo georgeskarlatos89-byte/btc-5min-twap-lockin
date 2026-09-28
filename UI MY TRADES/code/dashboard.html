@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paper trading live view</title>
+<style>
+:root{color-scheme:light;
+  --page:#f9f9f7;--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;
+  --border:rgba(11,11,11,.10);--gain:#2a78d6;--loss:#e34948;--series:#2a78d6;--wash:rgba(42,120,214,.10);
+  --good:#0ca30c;--warn:#fab219;--serious:#ec835a;--crit:#d03b3b;--up-text:#006300;--chip:#f0efec}
+@media (prefers-color-scheme:dark){:root{color-scheme:dark;
+  --page:#0d0d0d;--surface:#1a1a19;--ink:#fff;--ink2:#c3c2b7;--muted:#898781;--grid:#2c2c2a;--axis:#383835;
+  --border:rgba(255,255,255,.10);--gain:#3987e5;--loss:#e66767;--series:#3987e5;--wash:rgba(57,135,229,.12);
+  --up-text:#0ca30c;--chip:#262624}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:1360px;margin:0 auto;padding:20px 16px 48px}
+header{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:baseline;margin-bottom:14px}
+h1{font-size:20px;margin:0;font-weight:650}
+.sub{color:var(--ink2)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-left:auto}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--chip);border-radius:999px;padding:3px 10px;font-size:12px;color:var(--ink2)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none}
+.dot.good{background:var(--good)}.dot.crit{background:var(--crit)}.dot.warn{background:var(--warn)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px}
+.card h2{font-size:13px;font-weight:600;color:var(--ink2);margin:0 0 10px;letter-spacing:.01em}
+.card h2 small{font-weight:400;color:var(--muted)}
+.grid{display:grid;gap:12px;margin-bottom:12px}
+.kpis{grid-template-columns:minmax(240px,1.3fr) repeat(5,minmax(140px,1fr))}
+.two{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}
+.half{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+@media (max-width:1100px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.kpis .hero{grid-column:1/-1}.two,.half{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:640px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.label{font-size:12px;color:var(--ink2)}
+.value{font-size:24px;font-weight:650;line-height:1.15;margin-top:2px}
+.hero .value{font-size:52px;letter-spacing:-.01em}
+.note{font-size:12px;color:var(--muted);margin-top:3px}
+.delta{font-size:13px;font-weight:600}
+.delta.up{color:var(--up-text)}.delta.down{color:var(--crit)}
+.live{display:grid;grid-template-columns:auto 1fr;gap:4px 18px;align-items:baseline}
+.count{font-size:64px;font-weight:650;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.kv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 16px;margin-top:14px}
+.kv .value{font-size:19px}
+.bet{margin-top:14px;padding:12px;border-radius:8px;background:var(--chip)}
+.bet b{font-size:17px}
+.slots{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.slot{font-size:11px;padding:2px 7px;border-radius:999px;border:1px solid var(--axis);color:var(--muted);font-variant-numeric:tabular-nums}
+.slot.done{background:var(--chip);color:var(--ink2);border-color:transparent}
+.slot.bet{border-color:var(--series);color:var(--ink);font-weight:600;box-shadow:inset 0 0 0 1px var(--series)}
+.shot{width:100%;border-radius:6px;border:1px solid var(--border);display:block;background:var(--chip);aspect-ratio:1440/900;object-fit:cover;object-position:top}
+svg{display:block;width:100%;height:auto;overflow:visible}
+.ax{font-size:11px;fill:var(--muted);font-variant-numeric:tabular-nums}
+.lbl{font-size:12px;fill:var(--ink2)}
+.legend{display:flex;gap:14px;font-size:12px;color:var(--ink2);margin:0 0 6px}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.chartbox{position:relative}
+.tip{position:absolute;pointer-events:none;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:6px 9px;font-size:12px;
+  box-shadow:0 4px 14px rgba(0,0,0,.12);white-space:nowrap;display:none;z-index:3}
+.tip b{font-size:13px}.tip span{color:var(--ink2)}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+th{font-weight:600;color:var(--ink2);text-align:left;padding:6px 8px;border-bottom:1px solid var(--axis);white-space:nowrap;position:sticky;top:0;background:var(--surface)}
+td{padding:5px 8px;border-bottom:1px solid var(--grid);white-space:nowrap}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+td.wrapc{white-space:normal;min-width:260px;color:var(--ink2)}
+.scroll{overflow:auto;max-height:420px}
+.st{display:inline-flex;align-items:center;gap:5px}
+.stale{opacity:.45}
+.banner{display:none;margin-bottom:12px;padding:10px 14px;border-radius:8px;background:var(--chip);border:1px solid var(--border)}
+a{color:inherit}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Paper trading live view</h1>
+    <span class="sub">Viewer only. Pretend money. Nothing can be changed from this page.</span>
+    <div class="chips" id="chips"></div>
+  </header>
+  <div class="banner" id="banner"></div>
+
+  <div class="grid kpis" id="kpis"></div>
+
+  <div class="grid two">
+    <div class="card" id="livecard">
+      <h2>BTC 5-minute round in progress <small id="range"></small></h2>
+      <div class="live">
+        <div><div class="label">time left</div><div class="count" id="count">-:--</div><div class="note" id="pagecount"></div></div>
+        <div id="lead"></div>
+      </div>
+      <div class="kv" id="kv"></div>
+      <div class="slots" id="slots"></div>
+      <div class="bet" id="bet"></div>
+    </div>
+    <div class="card">
+      <h2>What the trader's browser sees <small id="shotage"></small></h2>
+      <img class="shot" id="shot" alt="Picture of the Polymarket page the trader is reading">
+      <div class="note">A picture of the real page, taken on the VPS every 5 seconds. The price chart is switched off there to save processing power, so it does not appear.</div>
+    </div>
+  </div>
+
+  <div class="grid half">
+    <div class="card">
+      <h2>BTC bankroll after each settled bet <small>started at $200</small></h2>
+      <div class="chartbox"><svg id="c_bank" viewBox="0 0 640 260" tabindex="0" role="img" aria-label="Bankroll over time"></svg><div class="tip" id="t_bank"></div></div>
+    </div>
+    <div class="card">
+      <h2>Profit or loss of each bet <small id="pnl_n"></small></h2>
+      <div class="legend"><span><i class="sw" style="background:var(--gain)"></i>gain</span><span><i class="sw" style="background:var(--loss)"></i>loss</span></div>
+      <div class="chartbox"><svg id="c_pnl" viewBox="0 0 640 236" role="img" aria-label="Profit or loss per bet"></svg><div class="tip" id="t_pnl"></div></div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2>BTC rounds, newest first <small>the full history is in btc_trades_all.csv</small></h2>
+      <div class="scroll"><table id="tb_rounds"></table></div>
+    </div>
+  </div>
+
+  <div class="grid half">
+    <div class="card">
+      <h2>Pattern table: moments with 30 or more rounds <small id="pat_n"></small></h2>
+      <div class="scroll"><table id="tb_pat"></table></div>
+      <div class="note">Edge = how often that side won minus what it cost to buy, fee included. A cell is luck until it keeps its edge for days.</div>
+    </div>
+    <div class="card">
+      <h2>BTC: who was bought</h2>
+      <table id="tb_fav"></table>
+      <div class="note" id="favnote"></div>
+    </div>
+  </div>
+
+  <div class="grid kpis" id="wkpis"></div>
+  <div class="grid half">
+    <div class="card"><h2>Weather by city</h2><div class="scroll"><table id="tb_city"></table></div></div>
+    <div class="card"><h2>Weather bets, newest first <small>random picks, the control group</small></h2><div class="scroll"><table id="tb_wx"></table></div></div>
+  </div>
+  <div class="note" id="foot"></div>
+</div>
+
+<script>
+"use strict";
+const $ = id => document.getElementById(id);
+const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined && text !== null) e.textContent = text; return e; };
+const svg = (tag, attrs) => { const e = document.createElementNS("http://www.w3.org/2000/svg", tag); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; };
+const money = (v, sign) => v === null || v === undefined || v === "" || isNaN(v) ? "-" : (sign && v > 0 ? "+" : v < 0 ? "−" : "") + "$" + Math.abs(+v).toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+const price = v => v === null || v === undefined ? "-" : "$" + (+v).toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+const cents = v => v === null || v === undefined || v === "" ? "-" : Math.round(+v * 1000) / 10 + "¢";
+const hhmm = iso => iso ? iso.slice(11, 16) : "-";
+const dayhm = iso => iso ? iso.slice(5, 10) + " " + iso.slice(11, 16) : "-";
+const css = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+let S = null, offset = 0, lastOk = 0;
+
+function tile(parent, label, value, note, delta, hero) {
+  const c = el("div", "card" + (hero ? " hero" : ""));
+  c.appendChild(el("div", "label", label));
+  c.appendChild(el("div", "value", value));
+  if (delta) { const d = el("div", "delta " + (delta.v > 0 ? "up" : delta.v < 0 ? "down" : ""), (delta.v > 0 ? "▲ " : delta.v < 0 ? "▼ " : "") + delta.text); c.appendChild(d); }
+  if (note) c.appendChild(el("div", "note", note));
+  parent.appendChild(c);
+}
+function status(kind, text) { const s = el("span", "st"); s.appendChild(el("i", "dot " + kind)); s.appendChild(document.createTextNode(text)); return s; }
+function table(id, heads, rows) {
+  const t = $(id); t.replaceChildren();
+  const tr = el("tr"); heads.forEach(h => tr.appendChild(el("th", h.n ? "n" : "", h.t))); const th = el("thead"); th.appendChild(tr); t.appendChild(th);
+  const tb = el("tbody");
+  rows.forEach(r => { const x = el("tr"); r.forEach((c, i) => { const td = el("td", (heads[i].n ? "n " : "") + (heads[i].w ? "wrapc" : "")); if (c instanceof Node) td.appendChild(c); else td.textContent = (c === null || c === undefined || c === "") ? "-" : c; x.appendChild(td); }); tb.appendChild(x); });
+  t.appendChild(tb);
+}
+function nice(min, max, n) { const span = max - min || 1, raw = span / n, p = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / p; const step = (f < 1.5 ? 1 : f < 3 ? 2 : f < 7 ? 5 : 10) * p; const lo = Math.floor(min / step) * step, hi = Math.ceil(max / step) * step; const t = []; for (let v = lo; v <= hi + step / 2; v += step) t.push(+v.toFixed(6)); return t; }
+
+function lineChart(id, tipId, pts, base) {
+  const s = $(id); s.replaceChildren(); const W = 640, H = 260, L = 46, R = 64, T = 10, B = 26;
+  if (!pts.length) { s.appendChild(Object.assign(svg("text", {x: W / 2, y: H / 2, "text-anchor": "middle", class: "lbl"}), {textContent: "No settled bets yet"})); return; }
+  const xs = pts.map(p => Date.parse(p.t)), ys = pts.map(p => p.v);
+  const x0 = Math.min(...xs), x1 = Math.max(...xs, x0 + 1), tk = nice(Math.min(...ys, base), Math.max(...ys, base), 4), y0 = tk[0], y1 = tk[tk.length - 1];
+  const X = v => L + (v - x0) / (x1 - x0) * (W - L - R), Y = v => T + (1 - (v - y0) / (y1 - y0)) * (H - T - B);
+  tk.forEach(v => { s.appendChild(svg("line", {x1: L, x2: W - R, y1: Y(v), y2: Y(v), stroke: css("--grid"), "stroke-width": 1})); const t = svg("text", {x: L - 8, y: Y(v) + 4, "text-anchor": "end", class: "ax"}); t.textContent = "$" + v; s.appendChild(t); });
+  s.appendChild(svg("line", {x1: L, x2: W - R, y1: Y(base), y2: Y(base), stroke: css("--axis"), "stroke-width": 1}));
+  const bl = svg("text", {x: W - R + 6, y: Y(base) + 4, class: "ax"}); bl.textContent = "start $" + base; s.appendChild(bl);
+  const n = 4; for (let i = 0; i <= n; i++) { const v = x0 + (x1 - x0) * i / n, d = new Date(v).toISOString(); const t = svg("text", {x: X(v), y: H - 8, "text-anchor": i === 0 ? "start" : i === n ? "end" : "middle", class: "ax"}); t.textContent = (x1 - x0 > 20 * 3600e3 ? d.slice(5, 10) + " " : "") + d.slice(11, 16); s.appendChild(t); }
+  const d = pts.map((p, i) => (i ? "L" : "M") + X(xs[i]).toFixed(1) + " " + Y(p.v).toFixed(1)).join(" ");
+  s.appendChild(svg("path", {d: d + ` L ${X(x1).toFixed(1)} ${Y(base)} L ${X(x0).toFixed(1)} ${Y(base)} Z`, fill: css("--wash"), stroke: "none"}));
+  s.appendChild(svg("path", {d, fill: "none", stroke: css("--series"), "stroke-width": 2, "stroke-linejoin": "round", "stroke-linecap": "round"}));
+  const last = pts[pts.length - 1];
+  s.appendChild(svg("circle", {cx: X(x1), cy: Y(last.v), r: 5, fill: css("--series"), stroke: css("--surface"), "stroke-width": 2}));
+  let ly = Y(last.v) + 4; if (Math.abs(ly - (Y(base) + 4)) < 13) ly += (ly <= Y(base) + 4 ? -13 : 13);
+  const ll = svg("text", {x: W - R + 6, y: ly, class: "lbl", "font-weight": 600}); ll.textContent = "$" + last.v.toFixed(2); s.appendChild(ll);
+  const cross = svg("line", {y1: T, y2: H - B, stroke: css("--axis"), "stroke-width": 1, visibility: "hidden"}), mark = svg("circle", {r: 5, fill: css("--series"), stroke: css("--surface"), "stroke-width": 2, visibility: "hidden"});
+  s.appendChild(cross); s.appendChild(mark);
+  const hit = svg("rect", {x: L, y: T, width: W - L - R, height: H - T - B, fill: "transparent"}); s.appendChild(hit);
+  const tip = $(tipId); let idx = pts.length - 1;
+  const show = i => { idx = Math.max(0, Math.min(pts.length - 1, i)); const px = X(xs[idx]), py = Y(pts[idx].v); cross.setAttribute("x1", px); cross.setAttribute("x2", px); cross.setAttribute("visibility", "visible"); mark.setAttribute("cx", px); mark.setAttribute("cy", py); mark.setAttribute("visibility", "visible");
+    tip.replaceChildren(el("b", "", "$" + pts[idx].v.toFixed(2)), el("br"), el("span", "", "bankroll after the bet settled " + dayhm(pts[idx].t) + " UTC")); const r = s.getBoundingClientRect(); tip.style.display = "block"; const left = px / W * r.width; tip.style.left = Math.min(left + 12, r.width - tip.offsetWidth - 4) + "px"; tip.style.top = Math.max(0, py / H * r.height - 44) + "px"; };
+  const hide = () => { cross.setAttribute("visibility", "hidden"); mark.setAttribute("visibility", "hidden"); tip.style.display = "none"; };
+  hit.addEventListener("pointermove", e => { const r = s.getBoundingClientRect(), vx = (e.clientX - r.left) / r.width * W, tv = x0 + (vx - L) / (W - L - R) * (x1 - x0); let b = 0, bd = 1e18; xs.forEach((v, i) => { const dd = Math.abs(v - tv); if (dd < bd) { bd = dd; b = i; } }); show(b); });
+  hit.addEventListener("pointerleave", hide);
+  s.onkeydown = e => { if (e.key === "ArrowLeft") show(idx - 1); else if (e.key === "ArrowRight") show(idx + 1); else if (e.key === "Escape") hide(); };
+  s.onblur = hide;
+}
+
+function barChart(id, tipId, bars) {
+  const s = $(id); s.replaceChildren(); const W = 640, H = 236, L = 46, R = 10, T = 10, B = 24;
+  if (!bars.length) { s.appendChild(Object.assign(svg("text", {x: W / 2, y: H / 2, "text-anchor": "middle", class: "lbl"}), {textContent: "No settled bets yet"})); return; }
+  const vs = bars.map(b => b.v), tk = nice(Math.min(0, ...vs), Math.max(0, ...vs), 4), y0 = tk[0], y1 = tk[tk.length - 1];
+  const Y = v => T + (1 - (v - y0) / (y1 - y0)) * (H - T - B), band = (W - L - R) / bars.length, bw = Math.max(2, Math.min(24, band - 2));
+  tk.forEach(v => { s.appendChild(svg("line", {x1: L, x2: W - R, y1: Y(v), y2: Y(v), stroke: css("--grid"), "stroke-width": 1})); const t = svg("text", {x: L - 8, y: Y(v) + 4, "text-anchor": "end", class: "ax"}); t.textContent = (v < 0 ? "−$" : "$") + Math.abs(v); s.appendChild(t); });
+  s.appendChild(svg("line", {x1: L, x2: W - R, y1: Y(0), y2: Y(0), stroke: css("--axis"), "stroke-width": 1}));
+  const tip = $(tipId);
+  bars.forEach((b, i) => { const cx = L + band * i + band / 2, h = Math.max(1, Math.abs(Y(b.v) - Y(0))), up = b.v >= 0, x = cx - bw / 2, y = up ? Y(0) - h : Y(0), r = Math.min(4, bw / 2, h);
+    const d = up ? `M${x} ${y + h} V${y + r} Q${x} ${y} ${x + r} ${y} H${x + bw - r} Q${x + bw} ${y} ${x + bw} ${y + r} V${y + h} Z` : `M${x} ${y} V${y + h - r} Q${x} ${y + h} ${x + r} ${y + h} H${x + bw - r} Q${x + bw} ${y + h} ${x + bw} ${y + h - r} V${y} Z`;
+    const p = svg("path", {d, fill: css(up ? "--gain" : "--loss")}); s.appendChild(p);
+    const hit = svg("rect", {x: L + band * i, y: T, width: band, height: H - T - B, fill: "transparent", tabindex: 0}); s.appendChild(hit);
+    const on = () => { p.setAttribute("opacity", .7); tip.replaceChildren(el("b", "", money(b.v, true)), el("br"), el("span", "", `${b.choice || ""} at ${cents(b.px)}, stake ${money(b.bet)}`), el("br"), el("span", "", `round ${dayhm(b.t)} UTC, ${b.phase || ""}`)); const rr = s.getBoundingClientRect(); tip.style.display = "block"; tip.style.left = Math.min(cx / W * rr.width + 10, rr.width - tip.offsetWidth - 4) + "px"; tip.style.top = Math.max(0, Math.min(y, Y(0)) / H * rr.height - 10) + "px"; };
+    const off = () => { p.removeAttribute("opacity"); tip.style.display = "none"; };
+    hit.addEventListener("pointerenter", on); hit.addEventListener("pointerleave", off); hit.addEventListener("focus", on); hit.addEventListener("blur", off); });
+  const f = svg("text", {x: L, y: H - 6, class: "ax"}); f.textContent = dayhm(bars[0].t) + " UTC"; s.appendChild(f);
+  const g = svg("text", {x: W - R, y: H - 6, "text-anchor": "end", class: "ax"}); g.textContent = dayhm(bars[bars.length - 1].t) + " UTC"; s.appendChild(g);
+}
+
+function render() {
+  const b = S.btc || {}, w = S.weather || {}, live = S.live, sv = S.services || {};
+  // chips
+  const ch = $("chips"); ch.replaceChildren();
+  [["ui-btc-trader", "BTC trader"], ["ui-weather-trader", "weather trader"]].forEach(([k, n]) => { const x = sv[k] || {}; const c = el("span", "chip"); c.appendChild(el("i", "dot " + (x.state === "active" ? "good" : "crit"))); c.appendChild(document.createTextNode(n + ": " + (x.state === "active" ? "running" : (x.state || "unknown")) + (x.memory_mb ? ", " + x.memory_mb + " MB" : ""))); ch.appendChild(c); });
+  if (sv._machine) ch.appendChild(el("span", "chip", `VPS: ${sv._machine.cpus} CPUs, load ${sv._machine.load[0]}, ${sv._machine.mem_free_gb} GB free`));
+  // kpis
+  const k = $("kpis"); k.replaceChildren(); const d = (b.bankroll || 0) - (b.start_bankroll || 200), ph = b.page_health_6h || {};
+  tile(k, "BTC bankroll", money(b.bankroll), `${b.settled || 0} bets settled, ${b.open || 0} open`, {v: d, text: money(Math.abs(d)).replace("−", "") + (d >= 0 ? " above" : " below") + " the $200 start"}, true);
+  tile(k, "Won / lost", `${b.won || 0} / ${b.lost || 0}`, b.settled ? Math.round(100 * b.won / b.settled) + "% of settled bets won" : "");
+  tile(k, "Today (UTC)", money(b.today ? b.today.pnl : 0, true), b.today ? `${b.today.settled} bets settled, ${b.today.won} won` : "");
+  tile(k, "Rounds covered today", b.today ? `${b.today.recorded} of ${b.today.rounds_so_far}` : "-", b.today ? `${b.today.missed} missed while the trader was down` : "");
+  tile(k, "Read from the live page", ph.checkpoints ? Math.round(100 * ph.from_page / ph.checkpoints) + "%" : "-", ph.checkpoints ? `${ph.from_page} of ${ph.checkpoints} checkpoints, last 6 h` : "");
+  tile(k, "Phase", b.phase === "ADAPT" ? "Pattern-based" : "Learning", b.phase === "ADAPT" ? "stakes follow the pattern table" : `${b.settled_count || 0} of 150 rounds`);
+  // live
+  if (live) {
+    $("range").textContent = (live.page && live.page.title_range ? live.page.title_range : hhmm(live.round_start_utc) + " to " + hhmm(live.round_end_utc) + " UTC");
+    const p = live.page || {}, lead = $("lead"); lead.replaceChildren();
+    if (p.gap_usd !== null && p.gap_usd !== undefined) { lead.appendChild(el("div", "label", "on the page right now")); lead.appendChild(el("div", "value", (p.gap_usd >= 0 ? "Up" : "Down") + " is ahead by " + price(Math.abs(p.gap_usd)).replace("$", "$"))); lead.appendChild(el("div", "note", `${p.gap_bps > 0 ? "+" : ""}${p.gap_bps} basis points from the price to beat` + (live.book && live.book.market_favourite ? `. The order book favours ${live.book.market_favourite}.` : ""))); }
+    else { lead.appendChild(el("div", "label", "on the page right now")); lead.appendChild(el("div", "value", live.page_ready ? "waiting for the price to beat" : "page is switching to this round")); }
+    $("pagecount").textContent = p.countdown_s !== null && p.countdown_s !== undefined ? `page shows ${Math.floor(p.countdown_s / 60)}:${String(p.countdown_s % 60).padStart(2, "0")}` + (p.behind_clock_s !== null ? `, ${Math.abs(p.behind_clock_s)} s ${p.behind_clock_s >= 0 ? "behind" : "ahead of"} the clock` : "") : "page countdown not visible yet";
+    const kv = $("kv"); kv.replaceChildren();
+    const add = (l, v, n) => { const c = el("div"); c.appendChild(el("div", "label", l)); c.appendChild(el("div", "value", v)); if (n) c.appendChild(el("div", "note", n)); kv.appendChild(c); };
+    add("Price to beat", price(p.price_to_beat), "as shown on the page"); add("Current price", price(p.current_price), live.feed && live.feed.twap60 ? "feed says " + price(live.feed.twap60) : "");
+    add("Page shows Up / Down", cents(p.up_cents) + " / " + cents(p.down_cents), "the labels a person sees");
+    const bk = live.book || {}; add("Real cost to buy Up", cents(bk.up_ask), bk.as_of_slot_s ? `order book at ${bk.as_of_slot_s} s left` : "no checkpoint yet"); add("Real cost to buy Down", cents(bk.down_ask), ""); add("Page read took", p.read_latency_ms !== undefined && p.read_latency_ms !== null ? p.read_latency_ms + " ms" : "-", "");
+    const sl = $("slots"); sl.replaceChildren(); sl.appendChild(el("span", "label", "checkpoints (seconds left):"));
+    const betSlot = live.bet ? +live.bet.entry_slot_s_remaining : null;
+    [...(live.checkpoints_done || []), ...(live.checkpoints_left || [])].sort((a, c) => c - a).forEach(v => { const done = (live.checkpoints_done || []).includes(v); sl.appendChild(el("span", "slot" + (done ? " done" : "") + (v === betSlot ? " bet" : ""), v + (v === betSlot ? " bet" : ""))); });
+    const bt = $("bet"); bt.replaceChildren();
+    if (live.bet && live.bet.my_choice) { const h = el("div"); h.appendChild(el("b", "", "my_choice = " + live.bet.my_choice)); h.appendChild(document.createTextNode(`   stake ${money(live.bet.bet_usd)} at ${cents(live.bet.entry_price_exec)} per share, placed with ${live.bet.entry_slot_s_remaining} s left`)); bt.appendChild(h); bt.appendChild(el("div", "note", live.bet.choice_reason || "")); if (live.bet.est_edge_per_share !== null && live.bet.est_edge_per_share !== undefined && live.bet.est_edge_per_share !== "") bt.appendChild(el("div", "note", `estimated chance to win ${Math.round(live.bet.est_win_prob * 100)}%, estimated edge ${(live.bet.est_edge_per_share * 100).toFixed(1)}¢ per share`)); }
+    else if (live.bet) { bt.appendChild(el("b", "", "No bet this round")); bt.appendChild(el("div", "note", live.bet.choice_reason || live.bet.status || "")); }
+    else { bt.appendChild(el("b", "", "No bet yet this round")); bt.appendChild(el("div", "note", live.plan && live.plan.exploring ? `exploring: planned entry at ${live.plan.planned_slot_s} s left (earlier if the round is being decided)` : "waiting for a checkpoint whose pattern shows an edge; otherwise the minimum bet at 75 s left")); }
+  }
+  $("livecard").classList.toggle("stale", !live || S.live_age_s > 20);
+  // charts
+  lineChart("c_bank", "t_bank", b.bankroll_series || [], b.start_bankroll || 200);
+  barChart("c_pnl", "t_pnl", b.pnl_bars || []); $("pnl_n").textContent = (b.pnl_bars || []).length ? `last ${(b.pnl_bars || []).length} settled bets` : "";
+  // rounds table
+  const res = r => r.status === "SETTLED" ? status(r.win === "1" || r.win === 1 ? "good" : "crit", (r.win === "1" || r.win === 1 ? "won" : "lost")) : r.status === "OPEN" ? status("warn", "waiting for result") : r.status === "MISSED" ? status("", "missed (trader down)") : r.status === "NO_LIQUIDITY" ? status("", "nothing buyable") : (r.status || "-");
+  table("tb_rounds", [{t: "Round (UTC)"}, {t: "Result"}, {t: "my_choice"}, {t: "Official"}, {t: "Page said"}, {t: "Entered at", n: 1}, {t: "Gap (bps)", n: 1}, {t: "Paid", n: 1}, {t: "Page price", n: 1}, {t: "Stake", n: 1}, {t: "P&L", n: 1}, {t: "Bankroll", n: 1}, {t: "Read from"}, {t: "Why", w: 1}],
+    (b.recent || []).map(r => [dayhm(r.round_start_utc), res(r), r.my_choice, r.outcome_official, r.outcome_ui, r.entry_slot_s_remaining ? r.entry_slot_s_remaining + " s left" : "", r.gap_bps !== "" && r.gap_bps != null ? (+r.gap_bps).toFixed(2) : "", r.entry_price_exec ? cents(r.entry_price_exec) : "", r.entry_price_ui ? cents(r.entry_price_ui) : "", r.bet_usd && +r.bet_usd ? money(+r.bet_usd) : "", r.pnl_usd !== "" && r.pnl_usd != null ? money(+r.pnl_usd, true) : "", r.bankroll_after ? money(+r.bankroll_after) : "", (r.data_source || "").startsWith("api") ? "feed (page late)" : r.data_source === "ui" ? "page" : r.data_source, r.choice_reason]));
+  // patterns
+  const pt = b.patterns || {}; $("pat_n").textContent = `${pt.cells_30plus || 0} of ${pt.cells || 0} cells`;
+  table("tb_pat", [{t: "Seconds left", n: 1}, {t: "Gap (bps)"}, {t: "Page vs market"}, {t: "Rounds", n: 1}, {t: "Leader won", n: 1}, {t: "Leader cost", n: 1}, {t: "Edge buying leader", n: 1}, {t: "Edge buying other", n: 1}, {t: "Verdict"}],
+    (pt.top || []).map(r => [r.slot_s_remaining, r.gap_bucket_bps, r.page_vs_market === "page leader = market favourite" ? "agree" : r.page_vs_market === "no book to compare" ? "no book" : "disagree", r.observations, Math.round(r.leader_win_rate * 100) + "%", r.avg_leader_ask ? cents(r.avg_leader_ask) : "", r.edge_buy_leader !== "" ? (r.edge_buy_leader * 100).toFixed(1) + "¢" : "", r.edge_buy_underdog !== "" ? (r.edge_buy_underdog * 100).toFixed(1) + "¢" : "", r.verdict]));
+  const fs = b.favourite_split || {}; const f1 = fs.bought_favourite || {}, f2 = fs.bought_other_side || {};
+  table("tb_fav", [{t: "Side bought"}, {t: "Bets", n: 1}, {t: "Won", n: 1}, {t: "Win rate", n: 1}, {t: "P&L", n: 1}], [["the market's favourite", f1.bets, f1.won, f1.bets ? Math.round(100 * f1.won / f1.bets) + "%" : "", money(f1.pnl, true)], ["the other side", f2.bets, f2.won, f2.bets ? Math.round(100 * f2.won / f2.bets) + "%" : "", money(f2.pnl, true)]]);
+  const pv = b.page_vs_official || {}; $("favnote").textContent = `A win on the other side is bought cheap and pays many times the stake, so a few of them can carry the total. The page's own "past result" matched the official result on ${pv.agree || 0} rounds and differed on ${pv.disagree || 0}. Bets are always scored on the official result.`;
+  // weather
+  const wk = $("wkpis"); wk.replaceChildren(); const wd = (w.bankroll || 0) - (w.start_bankroll || 200);
+  tile(wk, "Weather bankroll", money(w.bankroll), "random picks in 8 cities", {v: wd, text: money(Math.abs(wd)) + (wd >= 0 ? " above" : " below") + " the $200 start"}, true);
+  tile(wk, "Won / lost", `${w.won || 0} / ${w.lost || 0}`, `${w.settled || 0} bets settled`); tile(wk, "P&L", money(w.pnl, true), "settled bets only");
+  tile(wk, "Waiting for a result", String(w.open || 0), "markets resolve after the day ends"); tile(wk, "Still planned", String(w.planned || 0), w.next_bet_utc ? "next at " + dayhm(w.next_bet_utc) + " UTC" : ""); tile(wk, "Visits with nothing open", String(w.no_open_bracket || 0), "day already decided");
+  table("tb_city", [{t: "City"}, {t: "Bets", n: 1}, {t: "Open", n: 1}, {t: "Settled", n: 1}, {t: "Won", n: 1}, {t: "P&L", n: 1}], Object.entries(w.by_city || {}).sort().map(([c, v]) => [c, v.bets, v.open, v.settled, v.won, v.settled ? money(v.pnl, true) : ""]));
+  table("tb_wx", [{t: "Placed (UTC)"}, {t: "City"}, {t: "Day"}, {t: "Bracket"}, {t: "my_choice"}, {t: "Paid", n: 1}, {t: "Stake", n: 1}, {t: "Result"}, {t: "Winning bracket"}, {t: "P&L", n: 1}],
+    (w.bets || []).map(r => [dayhm(r.placed_utc), r.city, r.event_date, r.bracket_label, r.my_choice, cents(r.entry_price_exec), money(+r.bet_usd), r.status === "SETTLED" ? status(r.win === "1" || r.win === 1 ? "good" : "crit", r.win === "1" || r.win === 1 ? "won" : "lost") : status("warn", "waiting"), r.winning_bracket, r.pnl_usd !== "" && r.pnl_usd != null ? money(+r.pnl_usd, true) : ""]));
+  $("shotage").textContent = S.shot_age_s !== null && S.shot_age_s !== undefined ? `taken ${Math.round(S.shot_age_s)} s ago` : "no picture yet";
+  $("foot").textContent = `VPS time ${S.server_utc.replace("T", " ").replace("Z", "")} UTC. Trader version ${live ? live.version : "-"}. Browser restarted ${live && live.browser_age_min !== null ? live.browser_age_min + " min ago" : "-"}. This page refreshes every 2 seconds.`;
+}
+
+function tick() {
+  if (!S || !S.live) return;
+  const now = Date.now() / 1000 + offset, end = S.live.round_start_unix + 300, rem = Math.max(0, Math.round(end - now));
+  $("count").textContent = Math.floor(rem / 60) + ":" + String(rem % 60).padStart(2, "0");
+}
+async function pull() {
+  try {
+    const t0 = Date.now(), r = await fetch("/api/state", {cache: "no-store"}); if (!r.ok) throw new Error(r.status);
+    S = await r.json(); offset = S.server_unix - (t0 + Date.now()) / 2000; lastOk = Date.now(); render();
+    const bn = $("banner"); const stale = S.live_age_s === null || S.live_age_s > 20;
+    bn.style.display = stale ? "block" : "none"; if (stale) bn.textContent = S.live ? `The BTC trader has not published its view for ${Math.round(S.live_age_s)} s. It may be restarting. The tables below are still correct.` : "The BTC trader has not published a live view yet.";
+  } catch (e) {
+    const bn = $("banner"); bn.style.display = "block"; bn.textContent = "Cannot reach the VPS. Is the tunnel window still open? Last update " + (lastOk ? Math.round((Date.now() - lastOk) / 1000) + " s ago." : "never."); $("livecard").classList.add("stale");
+  }
+}
+function shot() { const i = new Image(); i.onload = () => { $("shot").src = i.src; }; i.src = "/shot.jpg?t=" + Date.now(); }
+pull(); shot(); setInterval(pull, 2000); setInterval(tick, 250); setInterval(shot, 5000);
+</script>
+</body>
+</html>

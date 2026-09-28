@@ -52,6 +52,9 @@ BROWSER_MAX_AGE_S = 2 * 3600                      # was 6 h: the page grew to 2.
 RTDS = "wss://ws-live-data.polymarket.com"
 
 STATE_PATH = os.path.join(STATE_DIR, "btc_state.json")
+LIVE_PATH = os.path.join(STATE_DIR, "btc_live.json")     # what the dashboard shows as "now"
+SHOT_PATH = os.path.join(STATE_DIR, "btc_page.jpg")      # picture of the page the trader is reading
+LIVE_EVERY_S, SHOT_EVERY_S = 1.0, 5.0
 ALL_CSV = os.path.join(BTC_DIR, "btc_trades_all.csv")
 SNAP_CSV = os.path.join(BTC_DIR, "btc_round_snapshots.csv")
 TABLE_CSV = os.path.join(BTC_DIR, "btc_pattern_table.csv")
@@ -381,11 +384,11 @@ class Trader:
         except Exception as e:
             self.log(f"switch_ui error {e.__class__.__name__}: {str(e)[:100]}")
 
-    async def read_ui(self, start):
+    async def read_ui(self, start, timeout_s=5.5):
         """One reading of the page for round `start`, or None when the page is not usable."""
         if self.ui_ready_for != start:
             return None
-        d, lat = await self.ui.js(READ_JS, 5.5)
+        d, lat = await self.ui.js(READ_JS, timeout_s)
         if not d or d.get("slug") != f"btc-updown-5m-{start}":
             return None
         if d.get("dialog"):
@@ -645,6 +648,62 @@ class Trader:
                  f"(ui countdown {s['cd']}, source {s['src']}) gap {s['bps'] if s['bps'] is None else round(s['bps'], 2)} bps "
                  f"px {row.get('entry_price_exec')} | {row['choice_reason']}")
 
+    # ---------------------------------------------------------------- live view for the dashboard
+    async def live_tick(self, rnd, done):
+        """Publish the current view. Never raises, never delays a checkpoint, never feeds a decision."""
+        try:
+            start = rnd["start"]; end = start + T; t = now(); rem = end - t
+            ahead = [sl for sl in ALL_SLOTS if sl not in done and sl < rem]
+            if ahead and rem - max(ahead) < 2.5:                # a checkpoint is about to fire: stay out of its way
+                return
+            if t - getattr(self, "_live_t", 0) < LIVE_EVERY_S:
+                return
+            self._live_t = t
+            ui = await self.read_ui(start, 2.0)
+            if ui and ui.get("ptb") and not rnd.get("ptb_ui"):
+                await self.accept_ptb(rnd, ui)
+            last = rnd["snaps"][-1] if rnd["snaps"] else {}
+            row = rnd.get("row") or {}
+            cur = (ui or {}).get("price"); ptb = rnd.get("ptb_ui")
+            live = {
+                "written_utc": iso(now(), ms=True), "written_unix": round(now(), 2), "version": VERSION,
+                "round_start_unix": start, "round_start_utc": iso(start), "round_end_utc": iso(end),
+                "slug": f"btc-updown-5m-{start}", "ui_url": f"{SITE}/event/btc-updown-5m-{start}",
+                "clock_remaining_s": round(end - now(), 1), "page_ready": self.ui_ready_for == start,
+                "page": None if not ui else {
+                    "title_range": ui.get("range"), "price_to_beat": ptb, "price_to_beat_shown": ui.get("ptb"),
+                    "current_price": cur, "up_cents": ui.get("up"), "down_cents": ui.get("down"),
+                    "countdown_s": ui.get("countdown"), "read_latency_ms": ui.get("latency_ms"),
+                    "behind_clock_s": (None if ui.get("countdown") is None else round(ui["countdown"] - (end - ui["read_t"]), 1)),
+                    "gap_usd": (None if not (cur and ptb) else round(cur - ptb, 2)),
+                    "gap_bps": (None if not (cur and ptb) else round((cur - ptb) / ptb * 1e4, 2))},
+                "feed": {"twap60": r2(self.feed.twap) if self.feed.fresh() else None, "spot": r2(self.feed.spot)},
+                "book": {"up_bid": last.get("up_bid"), "up_ask": last.get("up_ask"), "down_bid": last.get("dn_bid"),
+                         "down_ask": last.get("dn_ask"), "as_of_slot_s": last.get("slot"),
+                         "market_favourite": last.get("fav")},
+                "plan": {"phase": rnd["plan"]["phase"], "exploring": rnd["plan"]["explore"],
+                         "planned_slot_s": rnd["plan"]["slot"] if rnd["plan"]["explore"] else None},
+                "checkpoints_done": sorted(done, reverse=True),
+                "checkpoints_left": sorted([sl for sl in ALL_SLOTS if sl not in done], reverse=True),
+                "bet": None if not row else {k: row.get(k) for k in (
+                    "status", "my_choice", "bet_usd", "shares", "entry_price_exec", "entry_price_ui", "entry_slot_s_remaining",
+                    "decision_utc", "choice_reason", "est_win_prob", "est_edge_per_share", "data_source", "exec_price_source")},
+                "bankroll": r2(self.equity()), "cash": r2(self.st["cash"]), "start_bankroll": self.st["start_bankroll"],
+                "settled_count": self.st["settled_count"], "learn_rounds": LEARN_ROUNDS, "loss_streak": self.st["loss_streak"],
+                "open_rounds": len(self.st["open"]), "browser_launches": self.ui.launches,
+                "browser_age_min": round((now() - self.ui.started) / 60, 1) if self.ui.started else None}
+            save_json(LIVE_PATH, live)
+            if self.ui_ready_for == start and self.ui.page is not None and t - getattr(self, "_shot_t", 0) >= SHOT_EVERY_S:
+                self._shot_t = t
+                tmp = SHOT_PATH + ".tmp.jpg"
+                await asyncio.wait_for(self.ui.page.screenshot(path=tmp, type="jpeg", quality=55,
+                                       clip={"x": 0, "y": 0, "width": 1440, "height": 900}), 3)
+                os.replace(tmp, SHOT_PATH)
+        except Exception as e:
+            if now() - getattr(self, "_live_err_t", 0) > 600:    # at most one line per 10 min
+                self._live_err_t = now()
+                self.log(f"live view not written ({e.__class__.__name__}); trading is not affected")
+
     # ---------------------------------------------------------------- one round
     async def run_round(self, start):
         end = start + T
@@ -683,6 +742,8 @@ class Trader:
                 ui = await self.read_ui(start)                  # catch the Price To Beat as soon as it appears
                 if ui and ui["ptb"]:
                     await self.accept_ptb(rnd, ui)
+            if not due:
+                await self.live_tick(rnd, done)
             await asyncio.sleep(0.5)
         if rnd["row"] is None:                                  # nothing could be decided at any checkpoint
             last = rnd["snaps"][-1] if rnd["snaps"] else {"slot": None, "t": now(), "rem": 0, "cd": None, "drift": None,

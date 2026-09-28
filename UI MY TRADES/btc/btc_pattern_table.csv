@@ -1,92 +1,92 @@
 slot_s_remaining,gap_bucket_bps,page_vs_market,observations,leader_wins,leader_win_rate,avg_leader_ask,avg_underdog_ask,edge_buy_leader,edge_buy_underdog,verdict
-240,0-0.5,page leader = market favourite,20,13,0.65,0.651,0.3595,-0.0169,-0.0256,too few observations
+240,0-0.5,page leader = market favourite,21,13,0.619,0.6457,0.3648,-0.0427,-0.0,too few observations
 240,0-0.5,page leader is NOT the market favourite,16,6,0.375,0.3844,0.6256,-0.0259,-0.017,too few observations
 240,0.5-1,page leader = market favourite,22,13,0.5909,0.6555,0.3586,-0.0804,0.0344,too few observations
 240,0.5-1,page leader is NOT the market favourite,2,1,0.5,0.375,0.64,0.1086,-0.1561,too few observations
 240,1-2,page leader = market favourite,26,22,0.8462,0.6842,0.3258,0.1468,-0.1873,too few observations
 240,1-2,page leader is NOT the market favourite,4,3,0.75,0.42,0.5925,0.3129,-0.3594,too few observations
-240,2-4,page leader = market favourite,33,22,0.6667,0.7258,0.2845,-0.073,0.0345,buy the underdog
+240,2-4,page leader = market favourite,35,24,0.6857,0.7271,0.2831,-0.0553,0.0169,no edge after fee
 240,2-4,page leader is NOT the market favourite,3,1,0.3333,0.38,0.63,-0.0632,0.0203,too few observations
-240,4-8,page leader = market favourite,16,16,1.0,0.7425,0.2675,0.2441,-0.2812,too few observations
-240,4-8,page leader is NOT the market favourite,1,0,0.0,0.39,0.62,-0.4067,0.3635,too few observations
+240,4-8,page leader = market favourite,17,17,1.0,0.7512,0.2588,0.2357,-0.2723,too few observations
+240,4-8,page leader is NOT the market favourite,2,1,0.5,0.44,0.57,0.0428,-0.0872,too few observations
 240,8+,page leader = market favourite,5,5,1.0,0.884,0.126,0.1088,-0.1337,too few observations
 210,0-0.5,page leader = market favourite,14,12,0.8571,0.6557,0.3543,0.1856,-0.2274,too few observations
-210,0-0.5,page leader is NOT the market favourite,9,3,0.3333,0.3689,0.6411,-0.0519,0.0094,too few observations
+210,0-0.5,page leader is NOT the market favourite,10,3,0.3,0.375,0.635,-0.0914,0.0488,too few observations
 210,0-0.5,no book to compare,1,1,1.0,,,,,too few observations
 210,0.5-1,page leader = market favourite,9,9,1.0,0.6844,0.3256,0.3004,-0.3409,too few observations
-210,0.5-1,page leader is NOT the market favourite,8,3,0.375,0.395,0.6138,-0.0367,-0.0053,too few observations
+210,0.5-1,page leader is NOT the market favourite,9,4,0.4444,0.3911,0.6178,0.0367,-0.0788,too few observations
 210,1-2,page leader = market favourite,30,23,0.7667,0.7253,0.2853,0.0274,-0.0663,buy the leader
 210,1-2,page leader is NOT the market favourite,4,2,0.5,0.4075,0.6025,0.0756,-0.1193,too few observations
-210,2-4,page leader = market favourite,32,26,0.8125,0.7378,0.2722,0.0611,-0.0986,buy the leader
+210,2-4,page leader = market favourite,33,27,0.8182,0.7424,0.2676,0.0624,-0.0995,buy the leader
 210,2-4,page leader is NOT the market favourite,1,0,0.0,0.5,0.51,-0.5175,0.4725,too few observations
-210,4-8,page leader = market favourite,25,18,0.72,0.7952,0.2148,-0.0866,0.0534,too few observations
-210,8+,page leader = market favourite,16,15,0.9375,0.9,0.11,0.0312,-0.0544,too few observations
+210,4-8,page leader = market favourite,26,19,0.7308,0.7992,0.2108,-0.0797,0.0468,too few observations
+210,8+,page leader = market favourite,17,16,0.9412,0.9029,0.1071,0.0321,-0.0549,too few observations
 180,0-0.5,page leader = market favourite,10,8,0.8,0.737,0.273,0.0494,-0.0869,too few observations
 180,0-0.5,page leader is NOT the market favourite,5,2,0.4,0.36,0.65,0.0239,-0.0659,too few observations
 180,0.5-1,page leader = market favourite,9,8,0.8889,0.7478,0.2622,0.1279,-0.1647,too few observations
-180,0.5-1,page leader is NOT the market favourite,4,2,0.5,0.4475,0.5625,0.0352,-0.0797,too few observations
-180,1-2,page leader = market favourite,22,19,0.8636,0.7309,0.2791,0.119,-0.1568,too few observations
+180,0.5-1,page leader is NOT the market favourite,5,2,0.4,0.418,0.592,-0.035,-0.0089,too few observations
+180,1-2,page leader = market favourite,23,20,0.8696,0.727,0.283,0.1287,-0.1668,too few observations
 180,1-2,page leader is NOT the market favourite,11,4,0.3636,0.3482,0.6618,-0.0004,-0.0411,too few observations
 180,1-2,no book to compare,1,1,1.0,,,,,too few observations
 180,2-4,page leader = market favourite,35,27,0.7714,0.8109,0.1991,-0.0502,0.0183,no edge after fee
 180,2-4,page leader is NOT the market favourite,4,1,0.25,0.4025,0.6075,-0.1693,0.1258,too few observations
-180,4-8,page leader = market favourite,26,23,0.8846,0.8354,0.1746,0.0396,-0.0693,too few observations
+180,4-8,page leader = market favourite,28,25,0.8929,0.8389,0.1711,0.0445,-0.0739,too few observations
 180,4-8,page leader is NOT the market favourite,1,1,1.0,0.4,0.61,0.5832,-0.6267,too few observations
-180,8+,page leader = market favourite,23,20,0.8696,0.9027,0.1035,-0.0393,0.0205,too few observations
+180,8+,page leader = market favourite,24,21,0.875,0.9061,0.1004,-0.037,0.0183,too few observations
 150,0-0.5,page leader = market favourite,11,8,0.7273,0.7409,0.2691,-0.0271,-0.0101,too few observations
 150,0-0.5,page leader is NOT the market favourite,4,2,0.5,0.405,0.605,0.0781,-0.1217,too few observations
 150,0.5-1,page leader = market favourite,8,6,0.75,0.6625,0.3475,0.0718,-0.1134,too few observations
 150,0.5-1,page leader is NOT the market favourite,3,0,0.0,0.1733,0.8367,-0.1834,0.1538,too few observations
 150,1-2,page leader = market favourite,28,25,0.8929,0.7343,0.2761,0.1449,-0.1829,too few observations
 150,1-2,page leader is NOT the market favourite,3,0,0.0,0.35,0.66,-0.3659,0.3243,too few observations
-150,2-4,page leader = market favourite,31,29,0.9355,0.831,0.1794,0.0947,-0.1251,buy the leader
+150,2-4,page leader = market favourite,32,30,0.9375,0.8263,0.1841,0.1012,-0.1321,buy the leader
 150,2-4,page leader is NOT the market favourite,3,2,0.6667,0.33,0.68,0.3212,-0.3619,too few observations
-150,4-8,page leader = market favourite,31,28,0.9032,0.8932,0.1168,0.0033,-0.0272,no edge after fee
+150,4-8,page leader = market favourite,33,30,0.9091,0.8912,0.1188,0.0111,-0.0352,no edge after fee
 150,4-8,page leader is NOT the market favourite,2,0,0.0,0.32,0.705,-0.3352,0.2804,too few observations
 150,4-8,no book to compare,1,1,1.0,,,,,too few observations
-150,8+,page leader = market favourite,26,24,0.9231,0.9459,0.0454,-0.0264,0.0285,too few observations
+150,8+,page leader = market favourite,28,26,0.9286,0.9472,0.0439,-0.0222,0.0246,too few observations
 120,0-0.5,page leader = market favourite,9,7,0.7778,0.7556,0.2556,0.0093,-0.0467,too few observations
 120,0-0.5,page leader is NOT the market favourite,2,0,0.0,0.4,0.61,-0.4168,0.3733,too few observations
 120,0.5-1,page leader = market favourite,11,8,0.7273,0.7,0.31,0.0126,-0.0522,too few observations
 120,0.5-1,page leader is NOT the market favourite,2,0,0.0,0.24,0.77,-0.2528,0.2176,too few observations
 120,1-2,page leader = market favourite,20,19,0.95,0.8185,0.1925,0.1211,-0.1534,too few observations
 120,1-2,page leader is NOT the market favourite,1,1,1.0,0.49,0.52,0.4925,-0.5375,too few observations
-120,2-4,page leader = market favourite,34,30,0.8824,0.8503,0.1597,0.0231,-0.0515,buy the leader
+120,2-4,page leader = market favourite,35,31,0.8857,0.8451,0.1649,0.0314,-0.0602,buy the leader
 120,2-4,page leader is NOT the market favourite,2,1,0.5,0.14,0.875,0.3516,-0.3827,too few observations
-120,4-8,page leader = market favourite,34,32,0.9412,0.9234,0.0821,0.0128,-0.0285,no edge after fee
+120,4-8,page leader = market favourite,36,34,0.9444,0.9174,0.0892,0.0218,-0.0393,buy the leader
 120,4-8,page leader is NOT the market favourite,2,1,0.5,0.4,0.61,0.0832,-0.1267,too few observations
 120,4-8,no book to compare,1,1,1.0,,,,,too few observations
-120,8+,page leader = market favourite,33,32,0.9697,0.955,0.0379,0.0117,-0.0101,no edge after fee
+120,8+,page leader = market favourite,35,34,0.9714,0.9562,0.0369,0.0123,-0.0108,no edge after fee
 90,0-0.5,page leader = market favourite,6,4,0.6667,0.6767,0.335,-0.0253,-0.0173,too few observations
 90,0-0.5,page leader is NOT the market favourite,5,3,0.6,0.39,0.622,0.1933,-0.2385,too few observations
 90,0.5-1,page leader = market favourite,5,4,0.8,0.712,0.298,0.0736,-0.1126,too few observations
 90,0.5-1,page leader is NOT the market favourite,2,0,0.0,0.09,0.92,-0.0957,0.0748,too few observations
 90,1-2,page leader = market favourite,16,15,0.9375,0.86,0.1506,0.0691,-0.0971,too few observations
 90,1-2,page leader is NOT the market favourite,3,1,0.3333,0.2967,0.7133,0.0221,-0.061,too few observations
-90,2-4,page leader = market favourite,38,36,0.9474,0.8874,0.1142,0.0529,-0.0687,buy the leader
+90,2-4,page leader = market favourite,40,38,0.95,0.8895,0.1127,0.0537,-0.0698,buy the leader
 90,2-4,page leader is NOT the market favourite,2,1,0.5,0.235,0.79,0.2524,-0.3016,too few observations
-90,4-8,page leader = market favourite,38,36,0.9474,0.9108,0.0695,0.0309,-0.0214,buy the leader
+90,4-8,page leader = market favourite,39,37,0.9487,0.9112,0.07,0.0319,-0.0233,buy the leader
 90,4-8,no book to compare,1,1,1.0,,,,,too few observations
-90,8+,page leader = market favourite,37,37,1.0,0.9644,0.0184,0.0332,-0.0197,buy the leader
+90,8+,page leader = market favourite,39,39,1.0,0.9644,0.018,0.0332,-0.0192,buy the leader
 75,0-0.5,page leader = market favourite,8,8,1.0,0.8187,0.1925,0.1709,-0.2034,too few observations
 75,0-0.5,page leader is NOT the market favourite,2,1,0.5,0.5,0.51,-0.0175,-0.0275,too few observations
 75,0.5-1,page leader = market favourite,6,5,0.8333,0.7883,0.2217,0.0333,-0.0671,too few observations
 75,0.5-1,page leader is NOT the market favourite,1,0,0.0,0.2,0.81,-0.2112,0.1792,too few observations
 75,1-2,page leader = market favourite,17,16,0.9412,0.8544,0.1494,0.0781,-0.0995,too few observations
 75,1-2,page leader is NOT the market favourite,3,0,0.0,0.34,0.67,-0.3557,0.3145,too few observations
-75,2-4,page leader = market favourite,37,36,0.973,0.8993,0.0865,0.0673,-0.065,buy the leader
+75,2-4,page leader = market favourite,39,38,0.9744,0.9047,0.0836,0.0637,-0.0633,buy the leader
 75,2-4,page leader is NOT the market favourite,3,1,0.3333,0.2833,0.7267,0.0358,-0.0739,too few observations
-75,4-8,page leader = market favourite,36,36,1.0,0.9494,0.0339,0.0472,-0.0362,buy the leader
-75,8+,page leader = market favourite,39,39,1.0,0.915,0.0178,0.0796,-0.019,buy the leader
+75,4-8,page leader = market favourite,37,37,1.0,0.9456,0.0365,0.0508,-0.0389,buy the leader
+75,8+,page leader = market favourite,41,41,1.0,0.915,0.0174,0.0796,-0.0186,buy the leader
 75,8+,no book to compare,1,1,1.0,,,,,too few observations
 60,0-0.5,page leader = market favourite,5,4,0.8,0.74,0.27,0.0465,-0.0838,too few observations
 60,0-0.5,page leader is NOT the market favourite,4,1,0.25,0.1675,0.8425,0.0727,-0.1018,too few observations
 60,0.5-1,page leader = market favourite,9,9,1.0,0.9256,0.1044,0.0696,-0.111,too few observations
 60,1-2,page leader = market favourite,13,12,0.9231,0.8823,0.1277,0.0335,-0.0586,too few observations
 60,1-2,page leader is NOT the market favourite,3,0,0.0,0.1867,0.8233,-0.1973,0.1665,too few observations
-60,2-4,page leader = market favourite,39,38,0.9744,0.94,0.0505,0.0304,-0.0283,buy the leader
-60,4-8,page leader = market favourite,37,37,1.0,0.9608,0.0227,0.0365,-0.0243,buy the leader
-60,8+,page leader = market favourite,42,42,1.0,,0.0081,,-0.0086,no edge after fee
+60,2-4,page leader = market favourite,40,39,0.975,0.94,0.0495,0.0311,-0.0278,buy the leader
+60,4-8,page leader = market favourite,39,39,1.0,0.9477,0.0274,0.0488,-0.0293,buy the leader
+60,8+,page leader = market favourite,44,44,1.0,,0.0082,,-0.0087,no edge after fee
 60,8+,no book to compare,1,1,1.0,,,,,too few observations
 45,0-0.5,page leader = market favourite,7,6,0.8571,0.8329,0.1771,0.0145,-0.0445,too few observations
 45,0-0.5,page leader is NOT the market favourite,1,0,0.0,0.03,0.98,-0.032,0.0186,too few observations
@@ -94,9 +94,9 @@ slot_s_remaining,gap_bucket_bps,page_vs_market,observations,leader_wins,leader_w
 45,0.5-1,page leader is NOT the market favourite,1,0,0.0,0.01,,-0.0107,,too few observations
 45,1-2,page leader = market favourite,15,15,1.0,0.94,0.042,0.0561,-0.0448,too few observations
 45,1-2,page leader is NOT the market favourite,3,0,0.0,0.1767,0.79,-0.1868,0.1984,too few observations
-45,2-4,page leader = market favourite,39,39,1.0,0.9736,0.0193,0.0246,-0.0206,buy the leader
-45,4-8,page leader = market favourite,34,34,1.0,,0.0095,,-0.0101,no edge after fee
-45,8+,page leader = market favourite,46,46,1.0,,0.0075,,-0.008,no edge after fee
+45,2-4,page leader = market favourite,41,41,1.0,0.972,0.02,0.0261,-0.0214,buy the leader
+45,4-8,page leader = market favourite,35,35,1.0,,0.0095,,-0.0101,no edge after fee
+45,8+,page leader = market favourite,48,48,1.0,,0.0074,,-0.0079,no edge after fee
 45,8+,no book to compare,1,1,1.0,,,,,too few observations
 30,0-0.5,page leader = market favourite,5,5,1.0,0.952,0.058,0.0448,-0.0618,too few observations
 30,0-0.5,page leader is NOT the market favourite,1,0,0.0,0.09,0.92,-0.0957,0.0748,too few observations
@@ -104,17 +104,17 @@ slot_s_remaining,gap_bucket_bps,page_vs_market,observations,leader_wins,leader_w
 30,0.5-1,page leader is NOT the market favourite,2,1,0.5,0.21,0.83,0.2784,-0.3399,too few observations
 30,1-2,page leader = market favourite,12,12,1.0,0.905,0.0258,0.089,-0.0276,too few observations
 30,1-2,page leader is NOT the market favourite,1,0,0.0,0.01,,-0.0107,,too few observations
-30,2-4,page leader = market favourite,40,40,1.0,0.925,0.0141,0.0701,-0.015,buy the leader
-30,4-8,page leader = market favourite,36,36,1.0,0.97,0.0091,0.028,-0.0097,buy the leader
-30,8+,page leader = market favourite,46,46,1.0,,0.0057,,-0.0061,no edge after fee
+30,2-4,page leader = market favourite,42,42,1.0,0.925,0.0139,0.0701,-0.0148,buy the leader
+30,4-8,page leader = market favourite,37,37,1.0,0.97,0.0091,0.028,-0.0097,buy the leader
+30,8+,page leader = market favourite,48,48,1.0,,0.0055,,-0.0059,no edge after fee
 30,8+,no book to compare,1,1,1.0,,,,,too few observations
 15,0-0.5,page leader = market favourite,3,3,1.0,0.985,0.02,0.014,-0.0214,too few observations
 15,0-0.5,page leader is NOT the market favourite,3,2,0.6667,0.1567,0.8633,0.5008,-0.5383,too few observations
 15,0.5-1,page leader = market favourite,9,9,1.0,0.99,0.0111,0.0093,-0.0119,too few observations
 15,1-2,page leader = market favourite,14,14,1.0,,0.01,,-0.0107,too few observations
 15,1-2,page leader is NOT the market favourite,1,0,0.0,0.01,,-0.0107,,too few observations
-15,2-4,page leader = market favourite,29,29,1.0,,0.0097,,-0.0104,too few observations
-15,4-8,page leader = market favourite,45,45,1.0,,0.008,,-0.0086,no edge after fee
-15,8+,page leader = market favourite,47,47,1.0,,0.0054,,-0.0058,no edge after fee
+15,2-4,page leader = market favourite,31,31,1.0,,0.0097,,-0.0104,no edge after fee
+15,4-8,page leader = market favourite,46,46,1.0,,0.008,,-0.0086,no edge after fee
+15,8+,page leader = market favourite,49,49,1.0,,0.0052,,-0.0056,no edge after fee
 15,8+,page leader is NOT the market favourite,1,0,0.0,0.01,,-0.0107,,too few observations
 15,8+,no book to compare,1,1,1.0,,,,,too few observations

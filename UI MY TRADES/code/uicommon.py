@@ -12,7 +12,7 @@ import asyncio, csv, json, os, sys, time, urllib.error, urllib.parse, urllib.req
 from datetime import datetime, timezone
 from urllib.parse import urlparse
 
-VERSION = "1.0.8"
+VERSION = "1.0.9"
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 # VPS:   <Trading polymarket UI on vps weather and btc-5-min>/code  -> CSVs in <that folder>/UI MY TRADES/{btc,weather}

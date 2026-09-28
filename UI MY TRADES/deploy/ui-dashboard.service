@@ -1,0 +1,25 @@
+[Unit]
+Description=UI paper traders - dashboard (viewer only, listens on 127.0.0.1:8787, reached through an SSH tunnel)
+After=network-online.target
+
+[Service]
+Type=simple
+User=ubuntupolymarket3
+Group=ubuntupolymarket3
+WorkingDirectory=/home/ubuntupolymarket3/Trading polymarket UI on vps weather and btc-5-min/code
+ExecStart=/usr/bin/python3 -u "/home/ubuntupolymarket3/Trading polymarket UI on vps weather and btc-5-min/code/dashboard.py"
+Restart=always
+RestartSec=5
+Nice=10
+CPUQuota=40%
+MemoryMax=300M
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+Environment=PYTHONUNBUFFERED=1
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
