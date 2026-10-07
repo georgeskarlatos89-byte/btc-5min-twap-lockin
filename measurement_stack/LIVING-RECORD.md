@@ -268,3 +268,158 @@ Nothing. Both programs are DRY, no money involved. The decision is the user's: e
 reads the daemon's state file (one number for everybody), or the daemon's number is declared
 informational. The monitor's alert text ("the S3 hook is not active (import failed?)") guesses
 the wrong cause; the import works.
+
+## Part #4 - Ten-day log audit, 2026-09-27 14:31 UTC to 2026-10-07 10:30 UTC (read-only)
+
+Everything below comes from the logs, CSVs and state files on twapvm (audit script
+`C:\g\tenday_audit.py`, output saved in the session). No strategy was changed. Times are UTC.
+
+### The short version
+- All 14 services are up. Nothing is failed. Disk: 108 GB free of 193 (44 % used).
+- Every strategy is still DRY (no money). The fleet collected every single round, every day
+  (384 rounds a day, 10 days in a row). Three things interrupted it, all explained below:
+  a 92-minute VM stop on Sep 27, a 5-second restart of everything on Sep 30 (automatic Ubuntu
+  update of systemd), and Polymarket US's own maintenance windows on Oct 1 and Oct 5.
+- Moon Dev key: WORKING. Same key (fingerprint 845329c77e) in 8 `.env` files, three endpoints
+  answered 200 in 58-101 ms today, 0 auth errors and 0 rate-limit errors in 10 days. The only
+  errors are 1-8 cut-off answers or timeouts per strategy per day, retried automatically.
+- The BME 7-day scoring from Sep 27 NEVER FINISHED: the VM stop at 16:16 killed it after one
+  file. Relaunched today 10:31 on Sep 30 - Oct 6 (unit `bme-score-7d-oct`, Nice 19, 1.5 GB cap,
+  ~10-12 h); it will post one Telegram message when done.
+- One finding that changes a verdict: the US proxy "NOT TRUSTWORTHY" verdict is partly an
+  artefact. From Oct 1 12:00 to Oct 2, and again on Oct 5, the US venue's websocket sent a
+  settlement of exactly 0.0 (67 rounds). Real settlements are 0.99 / 0.01. The recorder read
+  0.0 as "Down"; the HTTP witness said Up (1.0) on 26 of them, and so did our proxy. Scored
+  against the HTTP witness the proxy agrees 97.78 % overall and 98.69 % on clear rounds
+  (|gap| >= 2 bps), instead of 95.49 % / 96.3 %. Still below the 99 % bar, but no longer "wrong
+  on clear rounds" by a wide margin.
+
+### What the hourly PDFs and the daily reports are
+- Hourly PDF (`STATUS-<date>-<HH>00.pdf`, 237 sent, 24 per full day, every one HTTP 200): the
+  same text as the hourly Telegram status, laid out as tiles (services up/down, disk, error
+  count, alert count), one card per strategy with its counters for the hour, a measurement
+  section, then "errors" (real) separated from "routine reconnects" (feeds dropping and
+  reconnecting, which is normal here), and an alert table. It is a snapshot of ONE hour.
+- Daily report (`DAILY-REPORT-<date>.md`, one per day 09-27 to 10-07, 07:20 each morning): the
+  7-day S1 backtest re-run on chain labels, the public-label error count, the US proxy
+  validation score, the weather bucket-sum note, rule changes seen by the regime watch, and
+  the number of alerts sent. It is a rolling 7-day view, so the S1 numbers move every day.
+  Reading of the series: S1 on the trailing 7 days went -$56.57 (09-27) -> -$27.06 (10-06) ->
+  +$1.03 (10-07) after fees, always within a few dollars of break-even at 85-86 % wins. That is
+  the same "no edge" answer three different ways, not a trend.
+
+### Day by day
+
+**Sat 27 Sep (from 14:31).** 14:42 the full on-chain relabel finished: 76,663 of 76,670 5-minute
+rounds verified on Polygon, 0 labels differed from gamma; the 15-minute corpus likewise.
+16:16 the VM was STOPPED (last journal line 16:16:42) and booted again 17:48:28 - 92 minutes
+dark. It came back with 4 cores and 16 GB RAM (it had 2 slow cores before), which is what a
+GCP machine-type change looks like; the logs do not say who did it. The monitor fired the
+expected "rounds.csv frozen 98 min", "trader silent 93 min", two "heartbeat 92 min old"
+alerts at 17:48 and everything restarted by itself. Casualty: the BME 7-day score job (a
+transient unit) died after finishing only the Sep 21 file. 22:42 / 22:53 the 15-minute rule
+sentinel fired twice (see "sentinel flaps" below). All strategies otherwise normal: S3 202
+quotes, 2 DRY fills; S46 202 quotes, 0 fills; S10 armed 24 times, 0 fills; S2 24 sessions /
+164k ticks; S5 2.3 GB.
+
+**Sun 28 Sep.** Quiet. S1 24 dry signals, 20 wins. S3 462 quotes, 1 fill, 0 pairs. S46 508
+quotes, 73 cascades seen, 0 fills. S10 armed 42 times (Sunday vol spikes), 0 fills. S2 170k
+ticks, 4 "ask ceiling" rejections. S5 4.0 GB. S8 flipped ASIA <-> US_VOL_OVERRIDE 14 times
+(the trailing-hour sigma hovered at 10.5-10.7 bps, right on the 10.5 threshold). 00:44 / 00:54
+the 15m sentinel fired again. Fleet alerts 57, of which 42 are "S10 armed" pings.
+
+**Mon 29 Sep.** S1 17 signals, 11 wins (worst day). S3 1 fill. S10 armed 14. 14:57 S9 got a
+burst of HTTP 403 on its book fetch (one hour, then clean). 18:00 the US recorder's first
+proxy-vs-venue divergence alert (1h round, gap -3.09 bps). Incentives docs changed
+("Deposit $10, receive $25" from Oct 1) - noted, nothing to do.
+
+**Tue 30 Sep.** 06:54:41 Ubuntu's unattended-upgrade installed systemd 255.4-1ubuntu8.17 and
+systemd re-executed itself, which stopped and restarted every service in ~5 s (this is the
+"all services restarted 06:54:56" in the audit, NOT a reboot; uptime is unbroken since Sep
+27). Monitor fired "monitor online" and a 3-minute S5 stale pair, then normal. 05:21 weather:
+MDW "68 or below" bucket still bid 0.47 after the station had already recorded 69.8 F
+(a stale-bid mispricing, logged). 12:41 weather SFO six asks summed to 0.980. 15:37 S10's
+first DRY lone-leg unwind: Up 10 sh bought 0.45, sold 0.35, -$1.18. Polymarket docs added an
+"equity TWAP" section. S3 0 fills, S46 0 fills.
+
+**Wed 1 Oct - the messy day.** Polymarket US went into maintenance. Regime watch saw the
+round types vanish 10:08, return 10:28, vanish 11:49, return 12:09 (4 CRITICAL alerts); the US
+recorder saw no frames for 471 s at 11:10; 9 rounds got NO-SETTLEMENT. From 12:00 onward the
+venue websocket sent settlement 0.0 on 52 rounds (see short version) - this produced the
+28 "DIVERGENCE" rounds and 23 divergence alerts between 13:45 and 23:00, all of the form "proxy
+says Up, venue says Down", which were false: the HTTP witness said Up too. 08:11 weather SFO
+asks summed to 0.770 (all six quoted, oldest quote 8 s) - the cheapest full set seen in the
+period; it was 0.83 five minutes later. 08:15 S10 fired a DRY pair-arb (Up 0.58 + Down 0.34 =
+$0.9528 after fee, expect +$0.94). 12:25 S8 macro blackout for Initial Jobless Claims. 16:00
+the monitor noted S3 and S46 placed 0 quotes in a quiet hour (S8 US block). S2 had 23
+sessions (one lost to the restart). Stack alerts: 34 sent, 22 deduplicated.
+
+**Thu 2 Oct.** The 0.0 settlements continued until 10:00 (10 more 1h rounds flagged, same
+false pattern), then the feed was normal again. 04:20 S2 produced its FIRST hypothetical
+candidate in 10 days: round 1790914800, Down, displacement -6.5 bps, model fair 0.81,
+research-only, no order. 12:25 S8 blackout for Non-Farm Payrolls. 13:51 the US legal
+rulebook PDF changed (790 KB -> 827 KB, new hash; content not diffed by the watcher). S46 saw
+141 cascades (most of the period), still 0 fills. S10 armed 34 times. S5 4.15 GB (largest
+day). Daily report counted 39 alerts for the previous day.
+
+**Fri 3 Oct.** Quietest day: S1 3 signals, S3 0 S8-gate skips (the gate never blocked),
+S46 0 cascades, S10 armed 10. 21:18 / 21:28 the 5-minute sentinel fired twice: for ten
+minutes the 5m market carried a `clob_rewards.rates` entry (asset 0xc011..., 0.001 per day)
+and then went back to null. That is a market-maker reward being switched on and off, not a
+fee change. Fleet alerts only 17.
+
+**Sat 4 Oct.** S1 8 signals, 6 wins. 13:48 weather NYC asks summed 0.980; 21:00 SFO 0.970.
+S10 armed 25. BME reconnect storms twice (code 1013 "slow consumer", see below). Nothing else.
+
+**Sun 5 Oct.** S10 armed 57 times (most of the period), 1 DRY fill, 1 unwind at 08:21
+(Down 2 sh, -$0.21). 06:57 / 07:07 and 14:43 / 14:53 the 15m sentinel fired twice more.
+15:54 - 18:57 Polymarket US had another outage: round types NONE-DETECTED 15:54, back 16:15,
+gone 16:25, back 18:57; recorder saw no frames for 301 s at 16:05; 3 rounds settled 0.0 and
+8 settled 1.0 (the venue briefly sent 1.0 / 0.0 instead of 0.99 / 0.01). 20:38 a REAL change:
+the US venue added daily rounds - `btc-updown-1d` and `cpc-btc-updown-1d` now exist alongside
+15m and 1h. Our recorder ignores them (it subscribes to 15m and 1h only). 13:55 S8 blackout
+for ISM Services PMI. Weather SFO asks summed 0.950 at 14:53 (lowest of the week apart from
+Oct 1). Fleet alerts 73, 57 of them "S10 armed".
+
+**Mon 6 Oct.** S10 3 DRY fills: 14:25 Up filled 0.45, chased Down 0.45 at 14:26 (combined
+$0.917, pair completed); 15:30 Up "0 sh" fill (size rounded to zero) unwound at 15:31 for
+-$0.01; 16:00 Down 20 sh filled, no partner, unwound. S10 stats now: pairs completed 2, won 2,
+DRY P&L +$1.15. S3 0 fills. 11:07 weather MIA asks 0.980. Moon Dev cut-off answers were the
+most of the period (S3 4, S46 4, S10 8), all retried, key fine. Polymarket docs added
+"Migrate from RTDS to PolyBolt" - WATCH THIS: every recorder here reads RTDS; if RTDS is
+retired the whole fleet goes blind. Nothing announced as a date yet.
+
+**Tue 7 Oct (to 10:30).** 02:01 S8 vol override at 13.48 bps (the biggest spike of the
+period; S3 kept quoting with its own lower number, as explained in Part #3). 02:30 one real
+divergence (15m, proxy Down by 16 bps, venue Up - the HTTP witness agreed with the venue, so
+this one is a genuine proxy miss). 05:46 weather NYC asks 0.980. 06:55 S5 restarted - this is
+its DAILY restart (it has done so at the same minute every day; 7 restarts = 7 days, by
+design). 10:00 PDF sent (20 errors, 2 alerts in the hour). 10:31 BME scoring relaunched.
+
+### Per-strategy totals for the ten days
+| strategy | what it did | result |
+|---|---|---|
+| S1 observer + trader (DRY, hard-blocked) | 384 rounds/day recorded, 10/10 days complete; 163 dry signals, 137 wins (84 %) | ledger n=294, +$12.89 before fees = break-even; stays blocked |
+| S3 fee-farm maker (DRY) | 202-462 quotes/day, 142-387 pulls/day, S8 skips 120-140 on weekdays | 7 DRY fills in 10 days, 0 pairs, +$5.35; the backtest expected 2-12 fills per HOUR - the fill model is the problem, not the gate |
+| S46 cascade + coin-flip (DRY) | 202-508 quotes/day, 433 cascades seen | 0 fills, 0 legs held, S4 0 triggers; kill test cannot run with 0 legs |
+| S10 vol-event box (DRY) | armed 300 times (calendar 21, vol 292), 7 DRY fills, 2 pair-arbs | 2 pairs completed, both won, +$1.15 DRY; 3 lone legs unwound for -$1.40 |
+| S2 open-print recorder | 24 sessions/day, ~170k ticks/day | 1 candidate (Oct 2); 95 % of rounds rejected as "spot stale" by the 2 s gate (decision pending since Part #1) |
+| S5 wick-fade recorder | 1.4-4.2 GB/day gz, 38 GB total | growing 195-255 MB/h; the monitor projects 64-84 GB per 14 days |
+| S8 router | ~15-30 regime flips/day, 3 macro blackouts | only S3 listens; "S8 says blocked" alert still fires daily (known) |
+| S9 whale coattails | ce25 wallet 5,992 follows, 25 % wins, EV -0.24 | gabigol / gabagool22 silent 16.5 days; nothing to copy |
+| BME book recorder | 1.0-3.1 GB/day, 384/384 rounds in every integrity report | reconnect storms most days (code 1013 "slow consumer, send buffer full"): the recorder is too slow for the feed on a loaded box |
+| Measurement stack | 1,154 US comparisons, 730 weather lag rows, 113 BUY-ARB scans, 20+ rule changes | see verdict note in short version |
+
+### Open points for the user (nothing done without a go)
+1. Disk: 108 GB free, consumption ~6.5 GB/day (S5 ~3.5 + BME ~3) -> about 16 days, i.e.
+   around Oct 23. S5's review date in memory is Oct 10. Decide: stop/shorten S5, or add disk.
+2. The "S10 armed" alert class is 60-80 % of all fleet alerts (24-57 a day). It is an event
+   class that should be a counter in the hourly status. Monitor-only change, needs a go.
+3. US recorder: ignore websocket settlements of exactly 0.0 / 1.0 and prefer the HTTP witness
+   when the two disagree (a measurement-stack fix, not a strategy). Also subscribe to the new
+   1-day rounds? Needs a go.
+4. Sentinel-15m flaps (10 min apart, 4 pairs) are almost certainly the same reward-rate
+   toggle proven on the 5m market on Oct 3; the snapshot folder only keeps the last 4
+   states so the Sep 27 pair cannot be re-diffed. Keeping more snapshots would settle it.
+5. RTDS -> PolyBolt migration page appeared in the docs on Oct 5. Every collector reads RTDS.
+6. The still-open decisions from Parts #1-#3: S2 freshness gate, S3 reading S8's state file.
