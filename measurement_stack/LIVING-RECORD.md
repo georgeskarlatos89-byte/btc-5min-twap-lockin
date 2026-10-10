@@ -460,3 +460,17 @@ criteria, no ITERATE window. Caveat: the sim counts only sweep-through fills (th
 by construction); benign touch fills would need to outnumber them ~4:1 at the full half-spread
 to break even. Recommendation: do not fund Phase B; keep the fair model and pipeline.
 Results: `open_book_maker_v2/results/` and `RESULTS - phase A on existing data … .md`.
+
+### Part #5 addendum - LIVE at $10 per side (user decision, 2026-10-10 16:01 UTC)
+The user read the Phase A result and said "run it live with $10 size, I don't trust this
+data". Done, with the account-2 proxy path proven by S1's preflight (NL, 65.07 pUSD, creds
+accepted): service `obm-maker.service` on twapvm, folder `~/#11 open-book maker/`, `.env`
+copied file-to-file from `~/s1_harness/.env`, 20 shares per side, inventory cap 40, daily
+stop $20, GTC post_only orders, kill file, Telegram via `notify.py`. Dry rehearsal and kill
+drill passed before the flip. Incident in the first live round: the fill parser booked the
+TAKER's trade record (140 Down shares) instead of our maker entry; paused with the kill file,
+fixed at 16:08 (our fill = `maker_orders[]` entry with our funder; late fills booked into
+realized), restarted clean. Real first-round result (outside the bot's ledger): 20 UP @0.51
++ 20 UP @0.12 bought seconds before a drop, round settled Down, -$12.60 (balance 65.07 ->
+52.47) - the adverse-selection pattern of the sim, on round one. Round 16:10: 54 Up quotes,
+0 fills; 16:15: a DOWN fill 20 @0.49, booked correctly. Details: `open_book_maker_v2/deploy/README-live.md`.
