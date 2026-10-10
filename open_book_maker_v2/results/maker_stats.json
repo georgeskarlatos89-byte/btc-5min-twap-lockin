@@ -1,0 +1,34 @@
+{
+ "rounds": 1141,
+ "rounds_with_fills": 1038,
+ "fills": 3580,
+ "pnl_usd": -2825.0,
+ "filled_notional_usd": 35550.2,
+ "return_on_notional": -0.0795,
+ "return_ci95": [
+  -0.1018,
+  -0.0564
+ ],
+ "benchmark": -0.055,
+ "mean_adverse_edge": -0.0625,
+ "model_cert": "1676/3580",
+ "worst_day_usd": -977.0,
+ "days": {
+  "2026-10-06": -543.8,
+  "2026-10-07": -977.0,
+  "2026-10-08": -789.8,
+  "2026-10-09": -514.4
+ },
+ "quote_size": 20.0,
+ "max_net": 40.0,
+ "fill_prob": 0.5,
+ "gate": {
+  "rounds_ge_200": true,
+  "pnl_positive": false,
+  "beats_benchmark_ci": false,
+  "adverse_edge_ge_0": false,
+  "no_day_blowup_20": false
+ },
+ "gate_pass": false,
+ "generated": "2026-10-10T15:20:00Z"
+}

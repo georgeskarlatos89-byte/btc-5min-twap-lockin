@@ -423,3 +423,40 @@ design). 10:00 PDF sent (20 errors, 2 alerts in the hour). 10:31 BME scoring rel
    states so the Sep 27 pair cannot be re-diffed. Keeping more snapshots would settle it.
 5. RTDS -> PolyBolt migration page appeared in the docs on Oct 5. Every collector reads RTDS.
 6. The still-open decisions from Parts #1-#3: S2 freshness gate, S3 reading S8's state file.
+
+## Part #5 - OPEN-BOOK-MAKER (strategy #11): review, v2 rebuild, Phase A on existing data (2026-10-10)
+
+The user handed `open_book_maker.zip` (two-sided fair-value maker for BTC 5m rounds; Phase A =
+capture + simulate, Phase B = $10 live pilot). Read every file, tested a scratch copy against
+the live market, found 12 errors (review file `REVIEW - open_book_maker - 2026-10-10.md` in
+`…/arena-ai-btc-5-minute new strategies open maker/`), then on "Fix all" rebuilt it as
+`open_book_maker_v2/` (changes in `CHANGES-v2.md`) and ran Phase A on data already on twapvm.
+
+### What was wrong (short)
+Fair model ~10x overconfident (said 0.03 % Up when the market said 37 %) and built on the
+full-round-average rule instead of TWAP60 end vs start; fill model counted a 50 % fill every
+second on an unchanged book (473 fills per 1,000 ticks, -$190 in one minute of real data);
+no post-only check in the sim; quotes never consumed; chain verifier crashed on the sim's
+own CSV; .env never loaded; live fills never reconciled (wrong client call); daily stop
+dead; first failed market lookup cached for the whole round; sim and bot used different
+prices and sizes; daily re-replay double-counted.
+
+### v2 (all unit tests pass locally and on the VM)
+Shared `fair_model.py` (end-TWAP rule, sigma from 10-s spot changes over 30 min, the last
+60 s use the known part of the window); conservative fill model (fill only when the displayed
+best bid falls through our price, quote consumed, 50 % queue probability); post-only in sim
+and bot; tick 0.01; one size/cap from .env; sim CSV carries condition_id + outcome; dotenv;
+TradeParams(maker_address); realized P&L across rounds; events?slug= lookup with retries;
+dedup + gate report with bootstrap CI; `bme_to_replay.py` builds replay days from BME book
+state + S2 ticks (Step 0 reuse, no new recorder). VM folder `~/#11 open-book maker/`
+(no service).
+
+### Phase A result on 2026-10-06..09 (1,141 rounds, chain audit 60/60)
+Fair model calibrated and honest (Brier equal to the market early, better late). Strategy:
+3,580 fills, **-$2,825**, return on notional **-7.95 %** (CI -10.2 to -5.6) vs the -5.5 %
+public benchmark, adverse edge **-6.25 c per share**, every day, every time window and every
+fair band negative; fills land on the winning side 43.8 % of the time. Gate FAIL on 4 of 5
+criteria, no ITERATE window. Caveat: the sim counts only sweep-through fills (the toxic ones
+by construction); benign touch fills would need to outnumber them ~4:1 at the full half-spread
+to break even. Recommendation: do not fund Phase B; keep the fair model and pipeline.
+Results: `open_book_maker_v2/results/` and `RESULTS - phase A on existing data … .md`.
