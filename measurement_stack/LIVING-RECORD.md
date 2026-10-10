@@ -474,3 +474,14 @@ realized), restarted clean. Real first-round result (outside the bot's ledger): 
 + 20 UP @0.12 bought seconds before a drop, round settled Down, -$12.60 (balance 65.07 ->
 52.47) - the adverse-selection pattern of the sim, on round one. Round 16:10: 54 Up quotes,
 0 fills; 16:15: a DOWN fill 20 @0.49, booked correctly. Details: `open_book_maker_v2/deploy/README-live.md`.
+
+### Part #5 close - stopped for good (2026-10-10 17:07 UTC)
+Live outcome in 25 minutes: 3 rounds with fills, 3 losses, every fill on the losing side
+(16:05 40 Up -> Down, -$12.60; 16:15 20 Down -> Up, -$9.80; 16:20 40 Up + 20 Down -> Down,
+-$10.20). Total -$32.60; account 65.07 -> 32.46 after the 16:20 payout arrived on its own.
+The bot's $20 daily stop tripped at 16:24. User: "Stop it for good" -> KILL file set, service
+`obm-maker` disabled, cancel_all confirmed, `.env` back to DRY_RUN=true. Verdict: the sim's
+adverse-selection finding was right and, live, worse (-$10 per filled round vs -$1 simulated).
+Strategy #11 is closed. Reusable: `fair_model.py` (calibrated), the chain-verified replay
+pipeline, the account-2 live plumbing (py_clob_client_v2 sig3 + post_only + kill file +
+Telegram) in `open_book_maker_v2/`.

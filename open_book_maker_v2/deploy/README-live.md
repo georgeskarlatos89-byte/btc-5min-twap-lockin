@@ -17,3 +17,6 @@
   read our `maker_orders[]` entry (see maker_bot.poll_fills). Fills before the fix were
   seeded as "seen" and are not in the bot's ledger: 20 UP @0.51 + 20 UP @0.12 in round
   1791648300 (cost $12.60, round settled Down).
+
+## STOPPED FOR GOOD 2026-10-10 17:07 UTC
+Service disabled, KILL file in place, DRY_RUN=true. Live result: -$32.60 in 25 minutes (3/3 filled rounds adverse). Do not re-enable.
