@@ -485,3 +485,5 @@ adverse-selection finding was right and, live, worse (-$10 per filled round vs -
 Strategy #11 is closed. Reusable: `fair_model.py` (calibrated), the chain-verified replay
 pipeline, the account-2 live plumbing (py_clob_client_v2 sig3 + post_only + kill file +
 Telegram) in `open_book_maker_v2/`.
+
+**Part #5 summary file (2026-10-14):** the complete minute-by-minute live record (every CLOB fill, balance path 65.07 -> 32.46, outcomes verified on chain + Gamma) side by side with the Phase A backtest is in `open_book_maker_v2/SUMMARY - live test and backtest - 2026-10-10.md` (short-path copy: `C:\g\open_book_maker - live test and backtest summary - 2026-10-10.md`; VM `~/obm/`). Raw fills: `open_book_maker_v2/results/live_fills_from_clob_2026-10-10.csv`.
