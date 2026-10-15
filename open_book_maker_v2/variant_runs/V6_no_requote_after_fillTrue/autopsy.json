@@ -1,0 +1,212 @@
+{
+ "run": "V6_no_requote_after_fillTrue",
+ "fills": 6330,
+ "summary": {
+  "ALL": {
+   "sweep_ticks_1s": 5.4529,
+   "sweep_ticks_2s": 6.0098,
+   "edge_mid_5": -0.032,
+   "edge_mid_30": -0.0319,
+   "edge_fair_5": -0.02,
+   "edge_fair_30": -0.0305,
+   "edge_settle": -0.0358,
+   "n": 6330,
+   "edge_mid_end": 0.0032
+  },
+  "060-120s": {
+   "sweep_ticks_1s": 5.5693,
+   "sweep_ticks_2s": 6.1492,
+   "edge_mid_5": -0.0313,
+   "edge_mid_30": -0.0346,
+   "edge_fair_5": -0.0211,
+   "edge_fair_30": -0.034,
+   "edge_settle": -0.0321,
+   "n": 1595,
+   "edge_mid_end": 0.1833
+  },
+  "SELL": {
+   "sweep_ticks_1s": 5.3672,
+   "sweep_ticks_2s": 5.9139,
+   "edge_mid_5": -0.0319,
+   "edge_mid_30": -0.0307,
+   "edge_fair_5": -0.019,
+   "edge_fair_30": -0.0284,
+   "edge_settle": -0.0348,
+   "n": 3169,
+   "edge_mid_end": -0.1285
+  },
+  "SELL@060-120s": {
+   "sweep_ticks_1s": 5.3892,
+   "sweep_ticks_2s": 5.9321,
+   "edge_mid_5": -0.0327,
+   "edge_mid_30": -0.0358,
+   "edge_fair_5": -0.0226,
+   "edge_fair_30": -0.0351,
+   "edge_settle": -0.037,
+   "n": 781,
+   "edge_mid_end": -0.2325
+  },
+  "000-060s": {
+   "sweep_ticks_1s": 4.5358,
+   "sweep_ticks_2s": 5.048,
+   "edge_mid_5": -0.0291,
+   "edge_mid_30": -0.0285,
+   "edge_fair_5": -0.0162,
+   "edge_fair_30": -0.0258,
+   "edge_settle": -0.0313,
+   "n": 3684,
+   "edge_mid_end": -0.0135
+  },
+  "SELL@000-060s": {
+   "sweep_ticks_1s": 4.467,
+   "sweep_ticks_2s": 4.9798,
+   "edge_mid_5": -0.0282,
+   "edge_mid_30": -0.0285,
+   "edge_fair_5": -0.0147,
+   "edge_fair_30": -0.0237,
+   "edge_settle": -0.0264,
+   "n": 1878,
+   "edge_mid_end": 0.021
+  },
+  "BUY": {
+   "sweep_ticks_1s": 5.5389,
+   "sweep_ticks_2s": 6.1059,
+   "edge_mid_5": -0.0321,
+   "edge_mid_30": -0.0331,
+   "edge_fair_5": -0.021,
+   "edge_fair_30": -0.0326,
+   "edge_settle": -0.0369,
+   "n": 3161,
+   "edge_mid_end": 0.1494
+  },
+  "BUY@000-060s": {
+   "sweep_ticks_1s": 4.6074,
+   "sweep_ticks_2s": 5.119,
+   "edge_mid_5": -0.03,
+   "edge_mid_30": -0.0286,
+   "edge_fair_5": -0.0177,
+   "edge_fair_30": -0.0281,
+   "edge_settle": -0.0363,
+   "n": 1806,
+   "edge_mid_end": -0.048
+  },
+  "BUY@060-120s": {
+   "sweep_ticks_1s": 5.742,
+   "sweep_ticks_2s": 6.3575,
+   "edge_mid_5": -0.0299,
+   "edge_mid_30": -0.0334,
+   "edge_fair_5": -0.0197,
+   "edge_fair_30": -0.033,
+   "edge_settle": -0.0275,
+   "n": 814,
+   "edge_mid_end": 0.3912
+  },
+  "120-180s": {
+   "sweep_ticks_1s": 6.9137,
+   "sweep_ticks_2s": 7.5787,
+   "edge_mid_5": -0.0393,
+   "edge_mid_30": -0.0349,
+   "edge_fair_5": -0.0258,
+   "edge_fair_30": -0.0374,
+   "edge_settle": -0.0606,
+   "n": 709,
+   "edge_mid_end": -0.0973
+  },
+  "BUY@120-180s": {
+   "sweep_ticks_1s": 6.9693,
+   "sweep_ticks_2s": 7.7049,
+   "edge_mid_5": -0.0372,
+   "edge_mid_30": -0.0412,
+   "edge_fair_5": -0.0282,
+   "edge_fair_30": -0.0436,
+   "edge_settle": -0.0542,
+   "n": 365,
+   "edge_mid_end": 0.415
+  },
+  "180-240s": {
+   "sweep_ticks_1s": 10.4908,
+   "sweep_ticks_2s": 11.2191,
+   "edge_mid_5": -0.0386,
+   "edge_mid_30": -0.0366,
+   "edge_fair_5": -0.0357,
+   "edge_fair_30": -0.0358,
+   "edge_settle": -0.0311,
+   "n": 304
+  },
+  "SELL@180-240s": {
+   "sweep_ticks_1s": 10.3622,
+   "sweep_ticks_2s": 11.2027,
+   "edge_mid_5": -0.0344,
+   "edge_mid_30": -0.0217,
+   "edge_fair_5": -0.0306,
+   "edge_fair_30": -0.0305,
+   "edge_settle": -0.0274,
+   "n": 148
+  },
+  "BUY@180-240s": {
+   "sweep_ticks_1s": 10.6128,
+   "sweep_ticks_2s": 11.2346,
+   "edge_mid_5": -0.0424,
+   "edge_fair_5": -0.0406,
+   "edge_fair_30": -0.0408,
+   "edge_settle": -0.0346,
+   "n": 156,
+   "edge_mid_30": -0.0522
+  },
+  "SELL@120-180s": {
+   "sweep_ticks_1s": 6.8547,
+   "sweep_ticks_2s": 7.4448,
+   "edge_mid_5": -0.0414,
+   "edge_mid_30": -0.0282,
+   "edge_fair_5": -0.0232,
+   "edge_fair_30": -0.0308,
+   "edge_settle": -0.0674,
+   "n": 344,
+   "edge_mid_end": -0.2894
+  },
+  "240-300s": {
+   "sweep_ticks_1s": 21.9211,
+   "sweep_ticks_2s": 22.4474,
+   "edge_mid_5": -0.1521,
+   "edge_fair_5": -0.1084,
+   "edge_fair_30": -0.1875,
+   "edge_settle": -0.2047,
+   "n": 38,
+   "edge_mid_30": -0.3004,
+   "edge_mid_end": 0.36
+  },
+  "SELL@240-300s": {
+   "sweep_ticks_1s": 28.8333,
+   "sweep_ticks_2s": 29.8333,
+   "edge_mid_5": -0.1644,
+   "edge_fair_5": -0.1306,
+   "edge_fair_30": -0.1937,
+   "edge_settle": -0.2439,
+   "n": 18,
+   "edge_mid_30": -0.2966
+  },
+  "BUY@240-300s": {
+   "sweep_ticks_1s": 15.7,
+   "sweep_ticks_2s": 15.8,
+   "edge_mid_5": -0.1405,
+   "edge_mid_30": -0.3039,
+   "edge_fair_5": -0.0885,
+   "edge_fair_30": -0.1817,
+   "edge_settle": -0.1695,
+   "n": 20,
+   "edge_mid_end": 0.36
+  }
+ },
+ "exposure": {
+  "rounds": 4580,
+  "counted_fills": 6330,
+  "counted_fills_per_round": 1.382,
+  "pnl_usd": -4533.6,
+  "loss_per_round_usd": -0.9899,
+  "touch_ticks_per_round": 6.9,
+  "improve_ticks_per_round": 5.9,
+  "benign_touch_fills_per_round_needed_to_break_even": 3.3,
+  "ratio_benign_needed_to_counted": 2.39,
+  "note": "a benign touch fill earns at most the half-spread (HALF_SPREAD x QUOTE_SIZE); the ratio says how many invisible good fills per counted bad fill the strategy would need"
+ }
+}

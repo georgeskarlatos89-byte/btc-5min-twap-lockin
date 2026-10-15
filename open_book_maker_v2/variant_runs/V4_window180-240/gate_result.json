@@ -1,0 +1,195 @@
+{
+ "variant": "V4",
+ "cfg": {
+  "id": "V4",
+  "half_spread": 0.015,
+  "one_sided_theta": null,
+  "imb_q": null,
+  "support_k": null,
+  "window": [
+   180.0,
+   240.0
+  ],
+  "open_fade_secs": null,
+  "no_requote_after_fill": false
+ },
+ "code_hash": "803cabb7eec41656",
+ "code_hash_now": "803cabb7eec41656",
+ "corpus_hash": "65f8557994ce8aa0",
+ "files": [
+  "2026-09-26.jsonl",
+  "2026-09-27.jsonl",
+  "2026-09-28.jsonl",
+  "2026-09-29.jsonl",
+  "2026-09-30.jsonl",
+  "2026-10-01.jsonl",
+  "2026-10-02.jsonl",
+  "2026-10-03.jsonl",
+  "2026-10-04.jsonl",
+  "2026-10-05.jsonl",
+  "2026-10-06.jsonl",
+  "2026-10-07.jsonl",
+  "2026-10-08.jsonl",
+  "2026-10-09.jsonl",
+  "2026-10-10.jsonl",
+  "2026-10-11.jsonl",
+  "2026-10-12.jsonl",
+  "2026-10-13.jsonl",
+  "2026-10-14.jsonl"
+ ],
+ "pilot_capital": 1000.0,
+ "test_days": [
+  "2026-09-29",
+  "2026-09-30",
+  "2026-10-01",
+  "2026-10-02",
+  "2026-10-03",
+  "2026-10-04",
+  "2026-10-05",
+  "2026-10-06",
+  "2026-10-07",
+  "2026-10-08",
+  "2026-10-09",
+  "2026-10-10",
+  "2026-10-11",
+  "2026-10-12",
+  "2026-10-13",
+  "2026-10-14"
+ ],
+ "fit_days": [
+  "2026-09-26",
+  "2026-09-27",
+  "2026-09-28"
+ ],
+ "test": {
+  "rounds": 4580,
+  "rounds_with_fills": 1090,
+  "fills": 1694,
+  "shares": 33880.0,
+  "cost_usd": 16001.0,
+  "notional_usd": 16678.2,
+  "pnl_usd": -1941.0,
+  "edge_per_share": -0.05729,
+  "edge_ci95": [
+   -0.07564,
+   -0.03853
+  ],
+  "fill_win_rate": 0.415,
+  "fill_win_ci95": [
+   0.3933,
+   0.4363
+  ],
+  "break_even_plan": 0.485,
+  "break_even_measured": 0.4723,
+  "adv5_buy": -0.03263,
+  "adv5_sell": -0.03153,
+  "return_on_cost": -0.1213,
+  "return_on_cost_ci95": [
+   -0.1593,
+   -0.0815
+  ],
+  "return_on_notional": -0.1164,
+  "return_on_notional_ci95": [
+   -0.1536,
+   -0.078
+  ],
+  "worst_day_usd": -327.4,
+  "worst_day_pct_of_pilot": -32.74,
+  "days": {
+   "2026-09-29": -0.4,
+   "2026-09-30": -57.8,
+   "2026-10-01": -137.6,
+   "2026-10-02": -315.8,
+   "2026-10-03": -103.0,
+   "2026-10-04": -151.2,
+   "2026-10-05": 6.2,
+   "2026-10-06": -144.4,
+   "2026-10-07": -164.6,
+   "2026-10-08": -98.0,
+   "2026-10-09": -25.8,
+   "2026-10-10": -95.0,
+   "2026-10-11": -45.4,
+   "2026-10-12": -200.4,
+   "2026-10-13": -80.4,
+   "2026-10-14": -327.4
+  },
+  "touch_ticks": 5478,
+  "improve_ticks": 9988,
+  "criteria": {
+   "R1_rounds_ge_200": true,
+   "R2_edge_ci_low_gt_0": false,
+   "R3_winrate_point_ge_50_and_ci_low_gt_breakeven": false,
+   "R4_adv5_ge_0_both_sides": false,
+   "R5_worst_day_gt_minus_2pct": false,
+   "R6_return_on_cost_ci_low_gt_0": false
+  },
+  "pass": false
+ },
+ "fit": {
+  "rounds": 733,
+  "rounds_with_fills": 150,
+  "fills": 220,
+  "shares": 4400.0,
+  "cost_usd": 2061.6,
+  "notional_usd": 2164.4,
+  "pnl_usd": -301.6,
+  "edge_per_share": -0.06855,
+  "edge_ci95": [
+   -0.12054,
+   -0.01752
+  ],
+  "fill_win_rate": 0.4,
+  "fill_win_ci95": [
+   0.3411,
+   0.4592
+  ],
+  "break_even_plan": 0.485,
+  "break_even_measured": 0.4685,
+  "adv5_buy": -0.02147,
+  "adv5_sell": -0.04042,
+  "return_on_cost": -0.1463,
+  "return_on_cost_ci95": [
+   -0.258,
+   -0.0376
+  ],
+  "return_on_notional": -0.1393,
+  "return_on_notional_ci95": [
+   -0.2472,
+   -0.0348
+  ],
+  "worst_day_usd": -215.2,
+  "worst_day_pct_of_pilot": -21.52,
+  "days": {
+   "2026-09-26": -60.0,
+   "2026-09-27": -215.2,
+   "2026-09-28": -26.4
+  },
+  "touch_ticks": 764,
+  "improve_ticks": 1183,
+  "criteria": {
+   "R1_rounds_ge_200": true,
+   "R2_edge_ci_low_gt_0": false,
+   "R3_winrate_point_ge_50_and_ci_low_gt_breakeven": false,
+   "R4_adv5_ge_0_both_sides": false,
+   "R5_worst_day_gt_minus_2pct": false,
+   "R6_return_on_cost_ci_low_gt_0": false
+  },
+  "pass": false
+ },
+ "phase_a_gate_all_rows": {
+  "gate": {
+   "rounds_ge_200": true,
+   "pnl_positive": false,
+   "beats_benchmark_ci": false,
+   "adverse_edge_ge_0": false,
+   "no_day_blowup_20": false
+  },
+  "gate_pass": false,
+  "return_on_notional": -0.119,
+  "mean_adverse_edge": -0.0697,
+  "rounds": 5313
+ },
+ "generated": "2026-10-15T11:00:41Z",
+ "generated_ts": 1792062041.587959,
+ "gate_pass": false
+}

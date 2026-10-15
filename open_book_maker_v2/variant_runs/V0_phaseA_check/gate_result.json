@@ -1,0 +1,99 @@
+{
+ "variant": "V0",
+ "cfg": {
+  "id": "V0",
+  "half_spread": 0.015,
+  "one_sided_theta": null,
+  "imb_q": null,
+  "support_k": null,
+  "window": null,
+  "open_fade_secs": null,
+  "no_requote_after_fill": false
+ },
+ "code_hash": "803cabb7eec41656",
+ "code_hash_now": "803cabb7eec41656",
+ "corpus_hash": "3987c024a0e09467",
+ "files": [
+  "2026-10-06.jsonl",
+  "2026-10-07.jsonl",
+  "2026-10-08.jsonl",
+  "2026-10-09.jsonl"
+ ],
+ "pilot_capital": 1000.0,
+ "test_days": [
+  "2026-10-06",
+  "2026-10-07",
+  "2026-10-08",
+  "2026-10-09"
+ ],
+ "fit_days": [],
+ "test": {
+  "rounds": 1141,
+  "rounds_with_fills": 1038,
+  "fills": 3580,
+  "shares": 71600.0,
+  "cost_usd": 34165.0,
+  "notional_usd": 35550.2,
+  "pnl_usd": -2825.0,
+  "edge_per_share": -0.03946,
+  "edge_ci95": [
+   -0.05065,
+   -0.02789
+  ],
+  "fill_win_rate": 0.4377,
+  "fill_win_ci95": [
+   0.4259,
+   0.4497
+  ],
+  "break_even_plan": 0.485,
+  "break_even_measured": 0.4772,
+  "adv5_buy": -0.02563,
+  "adv5_sell": -0.01523,
+  "return_on_cost": -0.0827,
+  "return_on_cost_ci95": [
+   -0.1061,
+   -0.059
+  ],
+  "return_on_notional": -0.0795,
+  "return_on_notional_ci95": [
+   -0.1018,
+   -0.0564
+  ],
+  "worst_day_usd": -977.0,
+  "worst_day_pct_of_pilot": -97.7,
+  "days": {
+   "2026-10-06": -543.8,
+   "2026-10-07": -977.0,
+   "2026-10-08": -789.8,
+   "2026-10-09": -514.4
+  },
+  "touch_ticks": 18382,
+  "improve_ticks": 16103,
+  "criteria": {
+   "R1_rounds_ge_200": true,
+   "R2_edge_ci_low_gt_0": false,
+   "R3_winrate_point_ge_50_and_ci_low_gt_breakeven": false,
+   "R4_adv5_ge_0_both_sides": false,
+   "R5_worst_day_gt_minus_2pct": false,
+   "R6_return_on_cost_ci_low_gt_0": false
+  },
+  "pass": false
+ },
+ "fit": null,
+ "phase_a_gate_all_rows": {
+  "gate": {
+   "rounds_ge_200": true,
+   "pnl_positive": false,
+   "beats_benchmark_ci": false,
+   "adverse_edge_ge_0": false,
+   "no_day_blowup_20": false
+  },
+  "gate_pass": false,
+  "return_on_notional": -0.0795,
+  "mean_adverse_edge": -0.0625,
+  "rounds": 1141
+ },
+ "generated": "2026-10-15T10:08:03Z",
+ "generated_ts": 1792058883.1787527,
+ "gate_pass": false
+}

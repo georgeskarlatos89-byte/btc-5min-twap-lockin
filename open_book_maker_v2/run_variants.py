@@ -43,13 +43,16 @@ def run_one(vid, cfg, files, labels, out):
     res = json.load(open(os.path.join(out, "gate_result.json")))
     # chain audit of a sample (plan R1: chain-verified, end-to-end path)
     rc, so, se = sh([PY, os.path.join(HERE, "chain_verify.py"), "--csv", os.path.join(out, "sim_rounds.csv"), "--sample", "40"])
-    audit = {}
-    try:
-        audit = json.loads(so.strip().splitlines()[-1])
-    except Exception:
-        audit = {"raw": so[-300:], "err": se[-300:]}
-    res["chain_audit"] = audit
+    res["chain_audit"] = parse_audit(so, se)
     return res
+
+
+def parse_audit(so, se=""):
+    """chain_verify prints a progress line and then a multi-line JSON block; take the JSON."""
+    try:
+        return json.loads(so[so.index("{"):])
+    except Exception:
+        return {"raw": so[-300:], "err": (se or "")[-300:]}
 
 
 def fmt(m, k, pct=False, cents=False):
@@ -111,13 +114,24 @@ def main():
             results.append(chk)
             print(f"   instrument check: rounds {st['rounds']} fills {st['fills']} pnl {st['pnl_usd']} adv {st['mean_adverse_edge']} reproduced={chk['reproduced']}", flush=True)
     json.dump(dict(generated=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), fit_days=FIT_DAYS, test_days=TEST_DAYS,
-                   pilot_capital=PILOT_CAPITAL, files=[os.path.basename(f) for f in files], results=results),
+                   pilot_capital=PILOT_CAPITAL, files=[os.path.basename(f) for f in files], results=results,
+                   runtime_s=int((datetime.now(timezone.utc) - t0).total_seconds())),
               open(os.path.join(a.runs_dir, "variant_results.json"), "w"), indent=1)
-    # ---- summary table
-    L = [f"# VARIANT-RESULTS - OPEN-BOOK-MAKER sim sweep ({datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')} UTC)", "",
-         f"Replay corpus: {len(files)} day files ({os.path.basename(files[0])} .. {os.path.basename(files[-1])}). "
+    render(a.runs_dir)
+
+
+def render(runs_dir):
+    """(Re)write VARIANT-RESULTS.md from variant_results.json (no simulation)."""
+    d = json.load(open(os.path.join(runs_dir, "variant_results.json")))
+    results = d["results"]; files = d["files"]
+    for r in results:
+        au = r.get("chain_audit") or {}
+        if "raw" in au and "checked" not in au:          # written by the old last-line parser
+            r["chain_audit"] = parse_audit(au["raw"], au.get("err", ""))
+    L = [f"# VARIANT-RESULTS - OPEN-BOOK-MAKER sim sweep ({d['generated'][:16].replace('T', ' ')} UTC)", "",
+         f"Replay corpus: {len(files)} day files ({files[0]} .. {files[-1]}). "
          f"Fit days: {', '.join(FIT_DAYS)}. Test days: {len(TEST_DAYS)} days {TEST_DAYS[0]} .. {TEST_DAYS[-1]}. "
-         f"Pilot capital for R5: ${PILOT_CAPITAL:g}. Size 20 sh/side, cap 40. Runtime {int((datetime.now(timezone.utc) - t0).total_seconds())} s.", "",
+         f"Pilot capital for R5: ${PILOT_CAPITAL:g}. Size 20 sh/side, cap 40. Runtime {d.get('runtime_s', '?')} s.", "",
          "Verdict = all of R1..R6 on TEST days. Every grid point is listed; `sel` marks the point chosen on FIT days.", "",
          "| run | sel | fit edge/sh | fit win | TEST rounds | fills | edge/sh [CI] | win rate [CI] | be(meas) | adv+5s buy/sell | ret on cost [CI] | worst day | R1 R2 R3 R4 R5 R6 | verdict | chain audit |",
          "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
@@ -126,7 +140,7 @@ def main():
             continue
         t = r["test"]; f = r.get("fit") or {}
         c = t["criteria"]; flags = " ".join("Y" if c[k] else "n" for k in sorted(c))
-        au = r.get("chain_audit", {}); au_s = f"{au.get('match', '?')}/{au.get('checked', '?')} differ {au.get('differ', '?')}"
+        au = r.get("chain_audit", {}); au_s = f"{au.get('match', '?')}/{au.get('checked', '?')} match, differ {au.get('differ', '?')}"
         L.append(f"| {r['variant']}_{r['tag']} | {'*' if r.get('selected') else ''} | {fmt(f, 'edge_per_share', cents=True)} | {fmt(f, 'fill_win_rate', pct=True)} | "
                  f"{t['rounds']} | {t['fills']} | {fmt(t, 'edge_per_share', cents=True)} {fmt(t, 'edge_ci95', cents=True)} | "
                  f"{fmt(t, 'fill_win_rate', pct=True)} {fmt(t, 'fill_win_ci95', pct=True)} | {fmt(t, 'break_even_measured', pct=True)} | "
@@ -146,9 +160,13 @@ def main():
         c = chk[0]
         L += ["", f"## V0 instrument check (Phase-A days only): rounds {c['rounds']} fills {c['fills']} pnl ${c['pnl_usd']} "
                   f"adverse edge {c['mean_adverse_edge']} vs expected {c['expected']} -> reproduced = {c['reproduced']}"]
-    open(os.path.join(a.runs_dir, "VARIANT-RESULTS.md"), "w").write("\n".join(L) + "\n")
+    open(os.path.join(runs_dir, "VARIANT-RESULTS.md"), "w").write("\n".join(L) + "\n")
     print("\n".join(L))
 
 
 if __name__ == "__main__":
-    main()
+    if "--rerender" in sys.argv:
+        i = sys.argv.index("--rerender")
+        render(sys.argv[i + 1] if len(sys.argv) > i + 1 else os.path.join(HERE, "variant_runs"))
+    else:
+        main()
