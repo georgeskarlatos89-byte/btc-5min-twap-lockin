@@ -1,0 +1,49 @@
+{
+ "stamp": "2026-10-15T120643Z",
+ "market": "btc-updown-5m-1792065900",
+ "sig_type": 3,
+ "derive_api_key_ms": 188,
+ "precheck_tick_ms": 56,
+ "precheck_negrisk_ms": 53,
+ "sign_ms": {
+  "n": 30,
+  "median": 14.8,
+  "p10": 13.6,
+  "p90": 19.5,
+  "min": 13.1,
+  "max": 64.4
+ },
+ "auth_get_cold_ms": 35,
+ "auth_get_warm_ms": {
+  "n": 30,
+  "median": 38.5,
+  "p10": 34.5,
+  "p90": 45.9,
+  "min": 33.3,
+  "max": 62.5
+ },
+ "feed_lag_ms": {
+  "n": 30,
+  "median": 10.5,
+  "p10": 9.0,
+  "p90": 67.7,
+  "min": 8.6,
+  "max": 138.2
+ },
+ "event_auth_get_ms": {
+  "n": 30,
+  "median": 39.7,
+  "p10": 34.6,
+  "p90": 121.8,
+  "min": 31.7,
+  "max": 284.4
+ },
+ "event_to_resp_ms": {
+  "n": 30,
+  "median": 52.1,
+  "p10": 44.7,
+  "p90": 180.8,
+  "min": 41.5,
+  "max": 306.6
+ }
+}

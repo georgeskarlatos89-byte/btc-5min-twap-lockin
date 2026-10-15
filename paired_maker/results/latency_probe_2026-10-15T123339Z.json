@@ -1,0 +1,230 @@
+{
+ "stamp": "2026-10-15T123339Z",
+ "market": "btc-updown-5m-1792067400",
+ "size": 5.0,
+ "price": 0.01,
+ "sig_type": 3,
+ "phases": {
+  "A_sign_post_cancel": {
+   "sign_ms": {
+    "n": 7,
+    "median": 22.4,
+    "p10": 18.6,
+    "p90": 52.2,
+    "min": 18.6,
+    "max": 52.2
+   },
+   "post_ms": {
+    "n": 4,
+    "median": 268.4,
+    "p10": 61.2,
+    "p90": 889.3,
+    "min": 61.2,
+    "max": 889.3
+   },
+   "cancel_ms": {
+    "n": 3,
+    "median": 83.9,
+    "p10": 42.0,
+    "p90": 186.4,
+    "min": 42.0,
+    "max": 186.4
+   },
+   "orders": [
+    {
+     "sign_ms": 52.18310546875,
+     "post_ms": 375.12451171875,
+     "cancel_ms": 83.85791015625,
+     "order_id": "0x97d49e8883907a2d8ee23f2139f7d556f622f19138cd058a5d8cec6cfe77e936",
+     "posted": true,
+     "cancelled": true,
+     "status": "live",
+     "err": null,
+     "t_ack_ms": 1792067623459.9114
+    },
+    {
+     "sign_ms": 18.59033203125,
+     "post_ms": 61.2265625,
+     "cancel_ms": 42.0302734375,
+     "order_id": "0x710643d309e9d2cc75c733b9961243e6cbfb6570cfeb12c91a1f093029cb147f",
+     "posted": true,
+     "cancelled": true,
+     "status": "live",
+     "err": null,
+     "t_ack_ms": 1792067624123.7827
+    },
+    {
+     "sign_ms": 20.390869140625,
+     "post_ms": 889.266845703125,
+     "cancel_ms": 186.36474609375,
+     "order_id": "0x956a450977ff61554e539e5b73713f66015480038d8469fe05b19b83ca880698",
+     "posted": true,
+     "cancelled": true,
+     "status": "live",
+     "err": null,
+     "t_ack_ms": 1792067625620.1814
+    },
+    {
+     "sign_ms": 22.398681640625,
+     "post_ms": 161.66259765625,
+     "cancel_ms": 46.41796875,
+     "order_id": "0x2df67a976ca5fae7d8f4c72dd73c57b29aa4fc5d300ed25429b7c9b384ee1212",
+     "posted": true,
+     "cancelled": false,
+     "status": "live",
+     "err": "cancel: order can't be found - already canceled or matched",
+     "t_ack_ms": 1792067626496.8386
+    },
+    {
+     "sign_ms": 18.770751953125,
+     "post_ms": null,
+     "cancel_ms": null,
+     "order_id": null,
+     "posted": false,
+     "cancelled": false,
+     "status": null,
+     "err": "PolyApiException: PolyApiException[status_code=400, error_message={'error': 'invalid amount for a marketable BUY order ($0.05), min size: $1'}]",
+     "t_ack_ms": null
+    },
+    {
+     "sign_ms": 48.2880859375,
+     "post_ms": null,
+     "cancel_ms": null,
+     "order_id": null,
+     "posted": false,
+     "cancelled": false,
+     "status": null,
+     "err": "PolyApiException: PolyApiException[status_code=400, error_message={'error': 'invalid amount for a marketable BUY order ($0.05), min size: $1'}]",
+     "t_ack_ms": null
+    },
+    {
+     "sign_ms": 25.067138671875,
+     "post_ms": null,
+     "cancel_ms": null,
+     "order_id": null,
+     "posted": false,
+     "cancelled": false,
+     "status": null,
+     "err": "PolyApiException: PolyApiException[status_code=400, error_message={'error': 'invalid amount for a marketable BUY order ($0.05), min size: $1'}]",
+     "t_ack_ms": null
+    }
+   ]
+  },
+  "B_presigned_post": {
+   "post_ms": {
+    "n": 0
+   },
+   "cancel_ms": {
+    "n": 0
+   },
+   "orders": [
+    {
+     "sign_ms": 16.326171875,
+     "post_ms": null,
+     "cancel_ms": null,
+     "order_id": null,
+     "posted": false,
+     "cancelled": false,
+     "status": null,
+     "err": "PolyApiException: PolyApiException[status_code=400, error_message={'error': 'invalid amount for a marketable BUY order ($0.05), min size: $1'}]",
+     "t_ack_ms": null
+    },
+    {
+     "sign_ms": 28.8427734375,
+     "post_ms": null,
+     "cancel_ms": null,
+     "order_id": null,
+     "posted": false,
+     "cancelled": false,
+     "status": null,
+     "err": "PolyApiException: PolyApiException[status_code=400, error_message={'error': 'invalid amount for a marketable BUY order ($0.05), min size: $1'}]",
+     "t_ack_ms": null
+    },
+    {
+     "sign_ms": 21.972412109375,
+     "post_ms": null,
+     "cancel_ms": null,
+     "order_id": null,
+     "posted": false,
+     "cancelled": false,
+     "status": null,
+     "err": "PolyApiException: PolyApiException[status_code=400, error_message={'error': 'invalid amount for a marketable BUY order ($0.05), min size: $1'}]",
+     "t_ack_ms": null
+    }
+   ]
+  },
+  "C_event_triggered": {
+   "feed_lag_ms": {
+    "n": 3,
+    "median": 10.4,
+    "p10": 9.7,
+    "p90": 16.8,
+    "min": 9.7,
+    "max": 16.8
+   },
+   "post_ms": {
+    "n": 0
+   },
+   "server_ts_to_ack_ms": {
+    "n": 0
+   },
+   "cancel_ms": {
+    "n": 0
+   },
+   "orders": [
+    {
+     "sign_ms": 21.160400390625,
+     "post_ms": null,
+     "cancel_ms": null,
+     "order_id": null,
+     "posted": false,
+     "cancelled": false,
+     "status": null,
+     "err": "PolyApiException: PolyApiException[status_code=400, error_message={'error': 'invalid amount for a marketable BUY order ($0.05), min size: $1'}]",
+     "t_ack_ms": null,
+     "feed_lag_ms": 16.76904296875,
+     "event_type": "book",
+     "server_ts_to_ack_ms": null
+    },
+    {
+     "sign_ms": 25.75341796875,
+     "post_ms": null,
+     "cancel_ms": null,
+     "order_id": null,
+     "posted": false,
+     "cancelled": false,
+     "status": null,
+     "err": "PolyApiException: PolyApiException[status_code=400, error_message={'error': 'invalid amount for a marketable BUY order ($0.05), min size: $1'}]",
+     "t_ack_ms": null,
+     "feed_lag_ms": 10.3818359375,
+     "event_type": "price_change",
+     "server_ts_to_ack_ms": null
+    },
+    {
+     "sign_ms": 28.063720703125,
+     "post_ms": null,
+     "cancel_ms": null,
+     "order_id": null,
+     "posted": false,
+     "cancelled": false,
+     "status": null,
+     "err": "PolyApiException: PolyApiException[status_code=400, error_message={'error': 'invalid amount for a marketable BUY order ($0.05), min size: $1'}]",
+     "t_ack_ms": null,
+     "feed_lag_ms": 9.729248046875,
+     "event_type": "price_change",
+     "server_ts_to_ack_ms": null
+    }
+   ]
+  }
+ },
+ "balance_before": 32.4621,
+ "balance_after": 32.4121,
+ "leftover_order_ids": [
+  "0x2df67a976ca5fae7d8f4c72dd73c57b29aa4fc5d300ed25429b7c9b384ee1212"
+ ],
+ "orders_posted": 4,
+ "orders_cancelled": 3,
+ "fills_suspected": [
+  "0x2df67a976ca5fae7d8f4c72dd73c57b29aa4fc5d300ed25429b7c9b384ee1212"
+ ]
+}
