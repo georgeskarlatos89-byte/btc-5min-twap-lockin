@@ -2,7 +2,7 @@
 """test_v2.py - unit tests for the v2 fixes (run: python test_v2.py). No network."""
 import json, math, os, random, sys, tempfile
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from make_strategy import Book, Resting, decide_quotes, detect_fills, RoundAccount, round_tick, QUOTE_SIZE, MAX_NET_SHARES
+from make_strategy import Book, Resting, decide_quotes, detect_fills, RoundAccount, round_tick, QUOTE_SIZE, MAX_NET_SHARES, VariantCfg, code_hash
 from fair_model import FairModel
 
 fails = 0
@@ -113,6 +113,43 @@ check("E9 realized P&L carried across rounds", "self.realized +=" in src)
 check("E10 recorder uses events?slug= and never caches a failure",
       "events?slug=" in open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "book_recorder.py")).read()
       and "token_fail_ts" in open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "book_recorder.py")).read())
+
+# --- VARIANT-EXPERIMENT-PLAN (2026-10-15): variants + the gate lock -------------------
+bk = Book([(0.45, 1000)], [(0.50, 1000)])
+check("V0 VariantCfg() is the baseline and changes nothing", VariantCfg().is_baseline() and decide_quotes(0.47, 100, "5m", 0, bk, VariantCfg()) == decide_quotes(0.47, 100, "5m", 0, bk))
+check("V1 one-sided: fair 0.52 vs mid 0.475 (+4.5c >= 3c) -> bid only, capped one tick under the 0.50 ask", decide_quotes(0.52, 100, "5m", 0, bk, VariantCfg(one_sided_theta=0.03)) == (0.49, None), f"{decide_quotes(0.52, 100, '5m', 0, bk, VariantCfg(one_sided_theta=0.03))}")
+check("V1 one-sided: fair 0.43 vs mid 0.475 (-4.5c) -> ask only, capped one tick over the 0.45 bid", decide_quotes(0.43, 100, "5m", 0, bk, VariantCfg(one_sided_theta=0.03)) == (None, 0.46), f"{decide_quotes(0.43, 100, '5m', 0, bk, VariantCfg(one_sided_theta=0.03))}")
+check("V1 one-sided: inside theta -> no quote", decide_quotes(0.48, 100, "5m", 0, bk, VariantCfg(one_sided_theta=0.03)) is None)
+quiet = Book([(0.45, 1000)], [(0.50, 1100)]); heavy_bid = Book([(0.45, 3000)], [(0.50, 1000)])
+check("V2 quiet book (|imb|<0.2) -> both sides", decide_quotes(0.47, 100, "5m", 0, quiet, VariantCfg(imb_q=0.2, support_k=2.0)) == (0.46, 0.49))
+check("V2 bid-heavy book (3:1): bid has support, ask does not", decide_quotes(0.47, 100, "5m", 0, heavy_bid, VariantCfg(imb_q=0.2, support_k=2.0)) == (0.46, None))
+check("V2 no sizes -> no quote", decide_quotes(0.47, 100, "5m", 0, Book([(0.45, 0)], [(0.50, 0)]), VariantCfg(imb_q=0.2, support_k=2.0)) is None)
+check("V3 half-spread 0.03 widens both sides", decide_quotes(0.50, 100, "5m", 0, bk, VariantCfg(half_spread=0.03)) == (0.47, 0.53))
+check("V4 window 180-240: t_el 100 -> none, t_el 200 -> quotes", decide_quotes(0.47, 200, "5m", 0, bk, VariantCfg(window=(180, 240))) is None and decide_quotes(0.47, 100, "5m", 0, bk, VariantCfg(window=(180, 240))) == (0.46, 0.49))
+check("V5 open fade 15 s: t_el 10 -> quotes, t_el 16 -> none", decide_quotes(0.47, 290, "5m", 0, bk, VariantCfg(open_fade_secs=15)) == (0.46, 0.49) and decide_quotes(0.47, 284, "5m", 0, bk, VariantCfg(open_fade_secs=15)) is None)
+check("V6 no re-quote: BUY filled -> bid off, ask stays", decide_quotes(0.47, 100, "5m", 0, bk, VariantCfg(no_requote_after_fill=True), {"BUY"}) == (None, 0.49))
+c = VariantCfg.from_dict(VariantCfg(id="V4", window=(180, 240)).as_dict())
+check("VariantCfg round-trips through JSON", c.id == "V4" and c.window == (180.0, 240.0))
+a = RoundAccount(); a.add(0, "BUY", 0.51, 20, 0.5); a.add(1, "SELL", 0.60, 20, 0.5)
+check("cost: BUY 0.51 pays 0.51/sh, SELL 0.60 (= Down at 0.40) pays 0.40/sh", abs(a.cost - (0.51 * 20 + 0.40 * 20)) < 1e-9, f"{a.cost}")
+check("fills_won: settled Up -> only the BUY won", a.fills_won(True) == 1 and a.fills_won(False) == 1)
+h1 = code_hash(); check("code_hash is stable and 16 hex", h1 == code_hash() and len(h1) == 16 and all(ch in "0123456789abcdef" for ch in h1), h1)
+src_bot = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "maker_bot.py"), encoding="utf-8").read()
+check("R8 bot refuses LIVE without a fresh matching gate_pass.json", "def gate_lock_check" in src_bot and "LIVE REFUSED by the gate lock" in src_bot and "code hash mismatch" in src_bot)
+# the lock, exercised: a stale / mismatched pass file must be refused, a fresh matching one accepted
+import importlib, time as _time
+os.environ["DRY_RUN"] = "false"; os.environ["OBM_NO_TELEGRAM"] = "1"
+tmpd = tempfile.mkdtemp(); gp = os.path.join(tmpd, "gate_pass.json"); os.environ["GATE_PASS_FILE"] = gp
+import maker_bot
+maker_bot.DRY_RUN = False; maker_bot.GATE_PASS_FILE = gp
+check("R8 lock: no file -> refused", maker_bot.gate_lock_check()[0] is False)
+json.dump(dict(gate_pass=True, generated_ts=_time.time() - 8 * 86400, corpus_hash="abc", code_hash=code_hash()), open(gp, "w"))
+check("R8 lock: 8 days old -> refused", maker_bot.gate_lock_check()[0] is False)
+json.dump(dict(gate_pass=True, generated_ts=_time.time(), corpus_hash="abc", code_hash="deadbeefdeadbeef"), open(gp, "w"))
+check("R8 lock: code hash mismatch -> refused", maker_bot.gate_lock_check()[0] is False)
+json.dump(dict(gate_pass=True, generated_ts=_time.time(), corpus_hash="abc", code_hash=code_hash(), variant="Vx", generated="now"), open(gp, "w"))
+check("R8 lock: fresh + matching -> accepted", maker_bot.gate_lock_check()[0] is True)
+os.environ["DRY_RUN"] = "true"; maker_bot.DRY_RUN = True
 
 print(f"\n{'ALL PASS' if fails == 0 else str(fails) + ' FAILED'}")
 sys.exit(1 if fails else 0)

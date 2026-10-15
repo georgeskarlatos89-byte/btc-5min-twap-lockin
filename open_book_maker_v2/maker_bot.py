@@ -7,6 +7,8 @@ WHAT IT DOES: posts a BUY on the Up token at fair - 1.5c and a BUY on the Down t
 
 SAFETY (all enforced in code)
   * DRY RUN BY DEFAULT (.env DRY_RUN=true). .env IS loaded (python-dotenv).
+  * GATE LOCK (plan R8, 2026-10-15): LIVE is refused unless gate_pass.json is fresh (< 7 days),
+    carries a corpus hash and its code hash matches the running code (make_strategy.code_hash).
   * KILL FILE: create it -> every resting order cancelled within ~1 s, standby until removed.
   * DAILY STOP: realized + marked loss beyond DAILY_STOP_USD -> cancel all, halt until next UTC day.
     `realized` is carried across rounds (booked at the model's end value = the settlement rule).
@@ -35,7 +37,7 @@ from dotenv import load_dotenv
 HERE = os.path.dirname(os.path.abspath(__file__))
 load_dotenv(os.path.join(HERE, ".env"))
 
-from make_strategy import HALF_SPREAD, FAIR_LO, FAIR_HI, NO_QUOTE_SECS, TICK, round_tick, QUOTE_SIZE, MAX_NET_SHARES
+from make_strategy import HALF_SPREAD, FAIR_LO, FAIR_HI, NO_QUOTE_SECS, TICK, round_tick, QUOTE_SIZE, MAX_NET_SHARES, code_hash
 import book_recorder as br
 import notify
 
@@ -56,6 +58,34 @@ NO_QUOTE = int(NO_QUOTE_SECS.get("5m", 20))
 ROUND_T = 300
 CLOB_HOST = "https://clob.polymarket.com"
 MODE = "DRY RUN" if DRY_RUN else "LIVE"
+
+
+GATE_PASS_FILE = env("GATE_PASS_FILE", os.path.join(HERE, "gate_pass.json"))
+GATE_MAX_AGE_S = 7 * 86400
+
+
+def gate_lock_check():
+    """VARIANT-EXPERIMENT-PLAN.md R8 - the lock lives in code, not in discipline.
+       LIVE mode is refused unless gate_pass.json (written by maker_sim.py --report ONLY when
+       R1-R6 pass on the test days) exists, is < 7 days old, carries a corpus hash, and its
+       code hash equals the hash of the code that is running now. -> (ok, reason, gate)"""
+    if DRY_RUN:
+        return True, "dry run", None
+    try:
+        g = json.load(open(GATE_PASS_FILE))
+    except Exception as e:
+        return False, f"no readable gate_pass.json at {GATE_PASS_FILE} ({e.__class__.__name__})", None
+    if not g.get("gate_pass"):
+        return False, "gate_pass.json says gate_pass=false", g
+    age = time.time() - float(g.get("generated_ts") or 0)
+    if age > GATE_MAX_AGE_S:
+        return False, f"gate_pass.json is {age / 86400:.1f} days old (max 7)", g
+    if not g.get("corpus_hash"):
+        return False, "gate_pass.json has no corpus_hash", g
+    now_h = code_hash()
+    if g.get("code_hash") != now_h:
+        return False, f"code hash mismatch: gate {g.get('code_hash')} vs running {now_h}", g
+    return True, f"gate_pass.json variant={g.get('variant')} generated={g.get('generated')} code_hash={now_h} corpus_hash={g.get('corpus_hash')}", g
 
 
 def log(msg):
@@ -472,7 +502,14 @@ def main():
     notify.send(f"started in {MODE}. Two-sided fair-value maker on BTC 5-minute rounds: bids the Up and the Down token "
                 f"1.5c below the model's fair value, re-quotes as fair moves, cancels 20 s before the end. "
                 f"Size {QUOTE_SIZE:g} shares per side, inventory cap {MAX_NET_SHARES:g}, daily stop ${DAILY_STOP_USD:g}.", force=True)
+    ok, why, _g = gate_lock_check()
+    if not ok:
+        log(f"LIVE REFUSED by the gate lock (R8): {why}")
+        notify.send(f"LIVE mode REFUSED by the gate lock (R8): {why}. Staying down. Run the sim gate first.", force=True)
+        raise SystemExit(f"LIVE refused: {why}")
     if not DRY_RUN:
+        log(f"LIVE FLIP {now_iso()} authorized: {why}")
+        notify.send(f"LIVE FLIP {now_iso()} authorized by {why}", force=True)
         init_client(); seed_seen_fills()
     loop = asyncio.new_event_loop(); asyncio.set_event_loop(loop)
     loop.create_task(br.rtds()); loop.create_task(br.watchdog()); loop.create_task(main_loop())
