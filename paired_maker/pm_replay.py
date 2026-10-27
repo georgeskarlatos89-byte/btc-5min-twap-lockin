@@ -14,6 +14,9 @@ NEW: a real latency model instead of "re-quote once per react seconds".
   through; the new order joins the queue behind whatever rests at its level when it lands. The book
   we decide on is the book as received (feed lag ~12 ms measured, ignored).
   lat=0 is the "instant" ceiling; lat=1.0 approximates the old 1 s loop.
+  v2 (2026-10-15 18:00Z): the cancel of the live order lands lat after the FIRST replace is sent and is never
+  pushed back by later replaces (v1 restarted that clock too, which kept stale orders live too long in a
+  fast book). The first 19-day run used v1; the sensitivity check re-runs v2 on a few days.
   --spot-lag: the recorded chainlink spot ticks carry the SOURCE timestamp; we only receive them ~1.44 s
   later (measured), so the replay applies each tick 1.44 s after its stamp. The September replay
   did not do this and was optimistic for the "model" tactic.
@@ -46,11 +49,12 @@ Phi = lambda z: 0.5 * (1 + math.erf(z / math.sqrt(2)))
 
 
 class Side:
-    __slots__ = ("price", "qa", "rem", "filled", "cost", "fills", "pend_price", "pend_t")
+    __slots__ = ("price", "qa", "rem", "filled", "cost", "fills", "pend_price", "pend_t", "cancel_t")
 
     def __init__(s):
         s.price = None; s.qa = 0.0; s.rem = 0.0; s.filled = 0.0; s.cost = 0.0; s.fills = []
         s.pend_price = None; s.pend_t = None        # order in flight: price (None = cancel only) and landing time
+        s.cancel_t = None                           # when the cancel of the live order lands (set once, never pushed back)
 
 
 levels = collections.defaultdict(dict); bb = {}; ba = {}
@@ -72,27 +76,35 @@ def hit(v, asset, price, size, t):
 
 
 def land(s, asset, t):
-    """the in-flight order lands: old order gone, new one (if any) joins the queue behind the level size now"""
+    """in-flight legs land: the cancel of the old order (at cancel_t), then the new order (at pend_t) which joins
+    the queue behind the level size at that moment"""
+    if s.cancel_t is not None and t >= s.cancel_t:
+        s.price = None; s.rem = 0.0; s.cancel_t = None
     if s.pend_t is None or t < s.pend_t: return
     want = s.pend_price; s.pend_price = None; s.pend_t = None
     if want is None:
-        s.price = None; s.rem = 0.0; return
+        return
+    if s.cancel_t is not None:                      # new order cannot be live while the old one still is
+        s.price = None; s.rem = 0.0; s.cancel_t = None
     s.price = want; s.rem = min(SIZE, CAP - s.filled)
     b = bb.get(asset)
     s.qa = float(levels[asset].get(want, 0.0)) if (b is not None and want <= b + 1e-9) else 0.0
 
 
 def send(s, want, t, lat):
-    """decide a new price (None = cancel). With lat=0 it lands now."""
+    """decide a new price (None = cancel). The live order's cancel lands at t+lat (clock set once); the new order
+    lands at t+lat (clock restarted on every change: you cannot modify an order in flight, you send another)."""
     if lat <= 0:
         s.pend_price = want; s.pend_t = t; return
+    if s.price is not None and s.rem > 0 and s.cancel_t is None:
+        s.cancel_t = t + lat
     s.pend_price = want; s.pend_t = t + lat
 
 
 def requote(v, cfg, asset, tk, t, e):
     s = state[v][asset]
     land(s, asset, t)
-    live_price = s.price if (s.price is not None and s.rem > 0) else None
+    live_price = s.price if (s.price is not None and s.rem > 0 and s.cancel_t is None) else None
     target = s.pend_price if s.pend_t is not None else live_price      # what we have already asked for
     b = bb.get(asset); aa = ba.get(asset)
     want = None
