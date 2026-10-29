@@ -64,6 +64,15 @@ a day to matter. What made his line green was the rebate: 39% of taker fees retu
 volume tier (the public fee page documents only the 20% maker rebate; his taker rebate rows are a separate
 programme we cannot assume). Without it, October after fees was a loss every day from the 12th to the 21st.
 
+## 5b. The rebate programme he lives on (docs.polymarket.com/trading/taker-rebates, launched 2026-05-28)
+
+Tier by 30-day weighted volume wV = trade size x (1 - entry price) x category weight (crypto 2.3): Bronze $2k 3%,
+Silver $20k 8%, Gold $200k 18%, Platinum $1M 32%, Diamond $4M 44%, Obsidian $10M 50% of taker fees back, paid
+daily; only fee-paying taker trades count, maker fills do not. His 39% blended rate matches Platinum-to-Diamond
+on roughly $5 million of crypto taker volume a month. A small account at Bronze gets 3%: on his taker fills that
+is 0.04c a share on top of 0.09c net, so copying him at our size earns nothing, and reaching Diamond needs about
+$1.2 million of fee-paying taker volume a month, which at his 0.09c net edge is not a business either.
+
 ## 6. Verdict
 
 - The post is marketing: gross profit shown, fees hidden, rebate hidden, screenshot rows are winning legs only.
