@@ -1,0 +1,25 @@
+[Unit]
+Description=qdesk: live per-second feature recorder (CLOB market ws + RTDS + Moon Dev/HL ext fill); no keys, no orders
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntupolymarket3
+Group=ubuntupolymarket3
+# qdesk v1 is PAPER ONLY: DRY_RUN=true is enforced in code (any other value -> SystemExit). KILL file ~/qdesk/KILL idles it.
+WorkingDirectory=/home/ubuntupolymarket3
+Environment=HOME=/home/ubuntupolymarket3
+Environment=QD_ROOT=/home/ubuntupolymarket3
+Environment=QD_DATA=/home/ubuntupolymarket3/qdesk/data
+Environment=DRY_RUN=true
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/home/ubuntupolymarket3/qdesk/.venv/bin/python -u /home/ubuntupolymarket3/qdesk/recorder/feat_recorder.py
+Restart=always
+RestartSec=15
+Nice=5
+StandardOutput=append:/home/ubuntupolymarket3/qdesk/data/state/qd-recorder.log
+StandardError=append:/home/ubuntupolymarket3/qdesk/data/state/qd-recorder.log
+
+[Install]
+WantedBy=multi-user.target

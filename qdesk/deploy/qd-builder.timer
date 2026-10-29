@@ -1,0 +1,10 @@
+[Unit]
+Description=qdesk: Builder 05:30 — gate_pass + active_rule for the paper bot (paper only) (timer)
+
+[Timer]
+OnCalendar=*-*-* 05:30:00 UTC
+Persistent=true
+RandomizedDelaySec=20
+
+[Install]
+WantedBy=timers.target

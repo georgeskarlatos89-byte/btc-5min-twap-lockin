@@ -1,0 +1,3 @@
+ts,rule_id,event,reason
+2026-10-25T05:31:08Z,H20261024-05,PAPER,gate_pass 19/25 skeptic ok
+2026-10-28T05:30:44Z,H20261024-05,OBSERVE_CHECK,20 settled avg_R 0.009 vs backtest 0.031 (< 0.5x after 20 => DECAYING flag; RETIRE check at 40)

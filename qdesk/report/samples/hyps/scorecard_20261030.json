@@ -1,0 +1,32 @@
+{
+ "date": "20261030",
+ "rules": [
+  {"id": "H20261030-04", "scores": {"oos_tstat": 3, "max_dd": 3, "n_trades": 2, "edge_after_costs": 2, "stability": 3}, "total": 13, "pass": false,
+   "reasons": ["total 13 < 18", "n_trades OOS 48 (score 2)", "edge CI low < 0"],
+   "why_this_could_fail": "Liquidation totals are polled every 30 s and forward-filled, so the signal can be stale; when the Moon Dev source fails the field is NA and the rule never fires."},
+  {"id": "H20261030-01", "scores": {"oos_tstat": 2, "max_dd": 4, "n_trades": 3, "edge_after_costs": 2, "stability": 2}, "total": 13, "pass": false,
+   "reasons": ["total 13 < 18", "stability 2/5 windows positive"],
+   "why_this_could_fail": "The ask may be gone by the time our order lands; the fee at p=0.75 is 1.3c per share which eats a thin edge."},
+  {"id": "H20261030-08", "scores": {"oos_tstat": 2, "max_dd": 3, "n_trades": 2, "edge_after_costs": 1, "stability": 3}, "total": 11, "pass": false,
+   "reasons": ["edge_after_costs mean < 0 (score 1 = auto-fail)"],
+   "why_this_could_fail": "15m rounds have far more time for a reversal; the 15m book may have no ask at all."},
+  {"id": "H20261030-05", "scores": {"oos_tstat": 1, "max_dd": 2, "n_trades": 4, "edge_after_costs": 1, "stability": 1}, "total": 9, "pass": false,
+   "reasons": ["edge mean < 0", "stability 1/5"], "why_this_could_fail": "Cheap asks are cheap because they are already gone (adverse selection at 0.1 s)."},
+  {"id": "H20261030-02", "scores": {"oos_tstat": 1, "max_dd": 3, "n_trades": 1, "edge_after_costs": 1, "stability": 2}, "total": 8, "pass": false,
+   "reasons": ["n_trades OOS 19 < 30 (auto-fail)"], "why_this_could_fail": "Double taker fee; sweeps may precede spot moves the lagged feed has not shown."},
+  {"id": "H20261030-03", "scores": {"oos_tstat": 2, "max_dd": 3, "n_trades": 1, "edge_after_costs": 2, "stability": 2}, "total": 10, "pass": false,
+   "reasons": ["n_trades OOS 22 < 30 (auto-fail)"], "why_this_could_fail": "Same as H-02 on the Down token."},
+  {"id": "H20261030-06", "scores": {"oos_tstat": 1, "max_dd": 2, "n_trades": 2, "edge_after_costs": 1, "stability": 1}, "total": 7, "pass": false,
+   "reasons": ["edge mean < 0"], "why_this_could_fail": "Two taker fees around 0.50 cost 3.5c per share round trip."},
+  {"id": "H20261030-07", "scores": {"oos_tstat": 2, "max_dd": 4, "n_trades": 1, "edge_after_costs": 2, "stability": 2}, "total": 11, "pass": false,
+   "reasons": ["n_trades OOS 4 < 30 (auto-fail)"], "why_this_could_fail": "Only a few rounds per week qualify."},
+  {"id": "H20261030-09", "scores": {"oos_tstat": 1, "max_dd": 3, "n_trades": 2, "edge_after_costs": 1, "stability": 2}, "total": 9, "pass": false,
+   "reasons": ["edge mean < 0"], "why_this_could_fail": "Flow on Polymarket is small and may be one wallet; the rule exit pays a second fee."},
+  {"id": "H20261030-10", "scores": {"oos_tstat": 2, "max_dd": 3, "n_trades": 2, "edge_after_costs": 2, "stability": 3}, "total": 12, "pass": false,
+   "reasons": ["total 12 < 18"], "why_this_could_fail": "Funding is hourly and forward-filled; the corpus has only a few weeks of funding."}
+ ],
+ "passed": [],
+ "verdict": "NOTHING_PASSED",
+ "holdout_used": false,
+ "n_tried_cum_on_holdout": 7
+}

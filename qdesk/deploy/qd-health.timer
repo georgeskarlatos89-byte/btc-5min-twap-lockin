@@ -1,0 +1,10 @@
+[Unit]
+Description=qdesk: health every 15 min — disk guard, recorder/bot heartbeats, daily claude auth probe (timer)
+
+[Timer]
+OnCalendar=*-*-* *:00/15:00 UTC
+Persistent=true
+RandomizedDelaySec=20
+
+[Install]
+WantedBy=timers.target

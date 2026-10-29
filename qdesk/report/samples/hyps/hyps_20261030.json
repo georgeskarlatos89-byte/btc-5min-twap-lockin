@@ -1,0 +1,696 @@
+{
+ "date": "20261030",
+ "model": "dry-run-sample",
+ "hypotheses": [
+  {
+   "id": "H20261030-01",
+   "name": "late-round spot momentum taker, quiet hours + low vol",
+   "market": "5m",
+   "side": "signal_sign",
+   "side_field": "spot_bps_vs_open",
+   "entry": {
+    "when": [
+     {
+      "f": "t_el",
+      "op": ">=",
+      "v": 200
+     },
+     {
+      "f": "t_el",
+      "op": "<=",
+      "v": 270
+     },
+     {
+      "f": "abs:spot_bps_vs_open",
+      "op": ">=",
+      "v": 4
+     },
+     {
+      "f": "spot_vol_30s",
+      "op": "<=",
+      "v": 2.5
+     },
+     {
+      "f": "ask",
+      "op": "<=",
+      "v": 0.8
+     },
+     {
+      "f": "session_hour",
+      "op": "in",
+      "v": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ]
+     },
+     {
+      "f": "macro_blackout",
+      "op": "==",
+      "v": 0
+     }
+    ],
+    "leg": {
+     "type": "taker",
+     "price": "ask",
+     "size_usd": 5,
+     "max_price": 0.85
+    }
+   },
+   "exit": {
+    "mode": "hold_to_settle"
+   },
+   "limits": {
+    "max_trades_per_round": 1,
+    "cooldown_s": 30,
+    "max_rounds_per_day": 60
+   },
+   "prediction": {
+    "net_per_dollar": 0.01,
+    "trades_per_day": 25,
+    "label": "ESTIMATE"
+   },
+   "mechanism": "With 30-100 s left and spot already 4+ bps away from the opening TWAP, the end TWAP is mostly determined; in quiet hours the book re-prices slowly, so the favourite's ask can lag the true probability for a few seconds.",
+   "who_loses": "Resting makers who quote both sides from a stale fair value and do not pull quotes fast enough when spot moves; they sell the favourite too cheap.",
+   "why_this_could_fail": "The ask may be gone by the time our order lands (0.1 s); the fee at p=0.75 is 1.3c per share which eats a thin edge; the 1.44 s spot lag means makers may already have re-priced; quiet hours have few trades so n may stay under 30. The low-vol filter may remove exactly the rounds where the discount was real, leaving only noise trades.",
+   "novelty_vs_prior": "Closest dead family is stale_ask_model_taker (taker, hold_to_settle, spot distance only). This rule adds a realised-volatility filter (spot_vol_30s <= 2.5 bps) so it only fires when the end TWAP is unlikely to reverse; the dead family had no vol field at all."
+  },
+  {
+   "id": "H20261030-02",
+   "name": "sweep fade on the Up token, 60 s ttl",
+   "market": "5m",
+   "side": "up",
+   "entry": {
+    "when": [
+     {
+      "f": "t_el",
+      "op": "between",
+      "v": [
+       30,
+       200
+      ]
+     },
+     {
+      "f": "sweep_flag",
+      "op": "==",
+      "v": 1
+     },
+     {
+      "f": "abs:spot_bps_vs_open",
+      "op": "<",
+      "v": 2
+     },
+     {
+      "f": "abs:mom_5s",
+      "op": "<",
+      "v": 1.5
+     },
+     {
+      "f": "ask",
+      "op": "between",
+      "v": [
+       0.3,
+       0.5
+      ]
+     },
+     {
+      "f": "macro_blackout",
+      "op": "==",
+      "v": 0
+     }
+    ],
+    "leg": {
+     "type": "taker",
+     "price": "ask",
+     "size_usd": 5,
+     "max_price": 0.5
+    }
+   },
+   "exit": {
+    "mode": "ttl",
+    "ttl_s": 60
+   },
+   "limits": {
+    "max_trades_per_round": 1,
+    "cooldown_s": 60,
+    "max_rounds_per_day": 40
+   },
+   "prediction": {
+    "net_per_dollar": 0.005,
+    "trades_per_day": 12,
+    "label": "ESTIMATE"
+   },
+   "mechanism": "A sweep (30+ shares hitting the bids or a 2-cent bid drop in one second) while spot has not moved is a liquidity event, not information; the price should bounce within a minute as makers re-quote.",
+   "who_loses": "The impatient seller who dumps a position at market into a thin book when nothing happened in spot.",
+   "why_this_could_fail": "Selling the exit at the bid 60 s later pays a second taker fee and crosses the spread twice; sweeps may precede spot moves our lagged feed has not shown yet; the bounce may be smaller than two spreads.",
+   "novelty_vs_prior": "The 34 order-book rules were maker posts or hold-to-settle takers; this is a taker entry with a ttl exit keyed on sweep_flag plus a spot-quiet filter, a field set those rules did not use."
+  },
+  {
+   "id": "H20261030-03",
+   "name": "sweep fade on the Down token, 60 s ttl",
+   "market": "5m",
+   "side": "down",
+   "entry": {
+    "when": [
+     {
+      "f": "t_el",
+      "op": "between",
+      "v": [
+       30,
+       200
+      ]
+     },
+     {
+      "f": "sweep_flag",
+      "op": "==",
+      "v": 1
+     },
+     {
+      "f": "abs:spot_bps_vs_open",
+      "op": "<",
+      "v": 2
+     },
+     {
+      "f": "abs:mom_5s",
+      "op": "<",
+      "v": 1.5
+     },
+     {
+      "f": "ask",
+      "op": "between",
+      "v": [
+       0.3,
+       0.5
+      ]
+     },
+     {
+      "f": "macro_blackout",
+      "op": "==",
+      "v": 0
+     }
+    ],
+    "leg": {
+     "type": "taker",
+     "price": "ask",
+     "size_usd": 5,
+     "max_price": 0.5
+    }
+   },
+   "exit": {
+    "mode": "ttl",
+    "ttl_s": 60
+   },
+   "limits": {
+    "max_trades_per_round": 1,
+    "cooldown_s": 60,
+    "max_rounds_per_day": 40
+   },
+   "prediction": {
+    "net_per_dollar": 0.005,
+    "trades_per_day": 12,
+    "label": "ESTIMATE"
+   },
+   "mechanism": "Mirror of H-02 on the Down token: a sweep with spot flat is a liquidity event that should mean-revert within a minute.",
+   "who_loses": "The same impatient seller, on the other token. Testing both tokens separately tells us if the effect is symmetric or an artefact of one side.",
+   "why_this_could_fail": "Same as H-02: double taker fee, lagged spot, bounce smaller than the round trip. If H-02 and H-03 disagree, the effect is probably noise.",
+   "novelty_vs_prior": "Same structural difference as H-02 (taker + ttl exit keyed on sweep_flag); it is the Down-side control for H-02, not a threshold variant."
+  },
+  {
+   "id": "H20261030-04",
+   "name": "liquidation cascade continuation",
+   "market": "5m",
+   "side": "signal_sign",
+   "side_field": "mom_5s",
+   "entry": {
+    "when": [
+     {
+      "f": "t_el",
+      "op": "between",
+      "v": [
+       60,
+       240
+      ]
+     },
+     {
+      "f": "abs:mom_5s",
+      "op": ">=",
+      "v": 3
+     },
+     {
+      "f": "liq_long_5m_usd",
+      "op": ">=",
+      "v": 2000000
+     },
+     {
+      "f": "ask",
+      "op": "<=",
+      "v": 0.65
+     },
+     {
+      "f": "spot_vol_30s",
+      "op": ">=",
+      "v": 1.5
+     }
+    ],
+    "leg": {
+     "type": "taker",
+     "price": "ask",
+     "size_usd": 5,
+     "max_price": 0.7
+    }
+   },
+   "exit": {
+    "mode": "hold_to_settle"
+   },
+   "limits": {
+    "max_trades_per_round": 1,
+    "cooldown_s": 120,
+    "max_rounds_per_day": 30
+   },
+   "prediction": {
+    "net_per_dollar": 0.015,
+    "trades_per_day": 6,
+    "label": "ESTIMATE"
+   },
+   "mechanism": "When perp liquidations are large (longs being force-sold) and spot is already moving, the forced flow continues for tens of seconds; the Polymarket book prices the direction below its true probability because its makers watch the book, not the perp venues.",
+   "who_loses": "Makers quoting from the Polymarket book alone, and traders fading the move because the price looks extreme.",
+   "why_this_could_fail": "Liquidation totals are polled every 30 s and forward-filled, so the signal can be stale; the long-liquidation field says nothing about direction unless combined with mom_5s, which may already be priced in; when the Moon Dev source fails the field is NA and the rule never fires.",
+   "novelty_vs_prior": "No dead family uses the external liquidation fields; the S46 cascade work was a 15m taker without book or fee modelling. This is the first fee-modelled 5m version with a spot_vol filter."
+  },
+  {
+   "id": "H20261030-05",
+   "name": "spot-vs-book lag: favourite too cheap mid-round",
+   "market": "5m",
+   "side": "signal_sign",
+   "side_field": "spot_bps_vs_open",
+   "entry": {
+    "when": [
+     {
+      "f": "t_el",
+      "op": "between",
+      "v": [
+       120,
+       240
+      ]
+     },
+     {
+      "f": "abs:spot_bps_vs_open",
+      "op": ">=",
+      "v": 6
+     },
+     {
+      "f": "ask",
+      "op": "<=",
+      "v": 0.7
+     },
+     {
+      "f": "spread",
+      "op": "<=",
+      "v": 0.03
+     },
+     {
+      "f": "macro_blackout",
+      "op": "==",
+      "v": 0
+     }
+    ],
+    "leg": {
+     "type": "taker",
+     "price": "ask",
+     "size_usd": 5,
+     "max_price": 0.72
+    }
+   },
+   "exit": {
+    "mode": "hold_to_settle"
+   },
+   "limits": {
+    "max_trades_per_round": 1,
+    "cooldown_s": 30,
+    "max_rounds_per_day": 80
+   },
+   "prediction": {
+    "net_per_dollar": 0.02,
+    "trades_per_day": 10,
+    "label": "ESTIMATE"
+   },
+   "mechanism": "Six bps away from the open with 1-3 minutes left is a strong favourite; if the ask is still 0.70 or lower the book has not caught up with spot. We buy the favourite only when the discount is large enough to cover the fee and the 0.1 s landing risk.",
+   "who_loses": "Slow makers and traders anchored to the price they saw a few seconds ago.",
+   "why_this_could_fail": "The cheap ask is usually cheap because it is already gone (adverse selection at 0.1 s); a 6 bps move can reverse in 2 minutes more often than the price implies; the stale-ask family already showed gross -3% with a model fair value.",
+   "novelty_vs_prior": "Differs from the model-fair stale-ask taker by using no fitted fair model, a hard spread filter and a fixed distance threshold; still the closest relative, so it is mainly a check that the earlier failure was not a model artefact."
+  },
+  {
+   "id": "H20261030-06",
+   "name": "vol-expansion reversal, 45 s ttl",
+   "market": "5m",
+   "side": "signal_sign",
+   "side_field": "mom_2s",
+   "entry": {
+    "when": [
+     {
+      "f": "t_el",
+      "op": "between",
+      "v": [
+       20,
+       150
+      ]
+     },
+     {
+      "f": "spot_vol_30s",
+      "op": ">=",
+      "v": 4
+     },
+     {
+      "f": "abs:mom_2s",
+      "op": ">=",
+      "v": 3
+     },
+     {
+      "f": "abs:spot_bps_vs_open",
+      "op": "<=",
+      "v": 3
+     },
+     {
+      "f": "ask",
+      "op": "between",
+      "v": [
+       0.35,
+       0.55
+      ]
+     }
+    ],
+    "leg": {
+     "type": "taker",
+     "price": "ask",
+     "size_usd": 5,
+     "max_price": 0.55
+    }
+   },
+   "exit": {
+    "mode": "ttl",
+    "ttl_s": 45
+   },
+   "limits": {
+    "max_trades_per_round": 1,
+    "cooldown_s": 45,
+    "max_rounds_per_day": 30
+   },
+   "prediction": {
+    "net_per_dollar": 0.0,
+    "trades_per_day": 8,
+    "label": "ESTIMATE"
+   },
+   "mechanism": "In a volatile 30 s window a 2-s spike moves the token price several cents while the round outcome is still near a coin flip; the token should drift back toward 0.50 within a minute. Side follows the spike (we buy the token the spike favours) and we sell it after 45 s only if the book has moved further.",
+   "who_loses": "Traders who chase 2-s spikes in both the spot and the token.",
+   "why_this_could_fail": "The sign may be wrong (we may be buying the spike instead of fading it; the test will tell); two taker fees around 0.50 cost 3.5c per share round trip, so the move must exceed that; the 1.44 s lag makes 2-s momentum partly stale.",
+   "novelty_vs_prior": "The Thorp vol edge was a vol-level bet held to settlement before the TWAP60 rule change; this is a short-horizon ttl trade keyed on mom_2s inside a vol window."
+  },
+  {
+   "id": "H20261030-07",
+   "name": "macro-window momentum, 5m",
+   "market": "5m",
+   "side": "signal_sign",
+   "side_field": "spot_bps_vs_open",
+   "entry": {
+    "when": [
+     {
+      "f": "macro_blackout",
+      "op": "==",
+      "v": 1
+     },
+     {
+      "f": "t_el",
+      "op": "between",
+      "v": [
+       30,
+       150
+      ]
+     },
+     {
+      "f": "abs:spot_bps_vs_open",
+      "op": ">=",
+      "v": 8
+     },
+     {
+      "f": "ask",
+      "op": "<=",
+      "v": 0.75
+     },
+     {
+      "f": "abs:mom_5s",
+      "op": ">=",
+      "v": 2
+     }
+    ],
+    "leg": {
+     "type": "taker",
+     "price": "ask",
+     "size_usd": 5,
+     "max_price": 0.8
+    }
+   },
+   "exit": {
+    "mode": "hold_to_settle"
+   },
+   "limits": {
+    "max_trades_per_round": 1,
+    "cooldown_s": 60,
+    "max_rounds_per_day": 6
+   },
+   "prediction": {
+    "net_per_dollar": 0.03,
+    "trades_per_day": 1,
+    "label": "ESTIMATE"
+   },
+   "mechanism": "Scheduled US releases produce one-directional moves of 8+ bps in the first minutes; the book is thin inside the blackout because our own and others' makers pull quotes, so the surviving asks lag the move.",
+   "who_loses": "Makers who leave quotes up through the release, and traders betting on an immediate reversal.",
+   "why_this_could_fail": "Only a few rounds per week qualify, so 30 trades takes months; the ask that survives a release is often tiny (partial fill); the move may be a spike that reverses before the end TWAP. Requiring mom_5s agreement cuts the already tiny sample further.",
+   "novelty_vs_prior": "The S8 router only AVOIDED macro windows and the S10 vol box bought both sides at 0.45; this is a one-sided taker INSIDE the window keyed on the realised move AND 5-s momentum agreement (mom_5s), a field the dead stale-ask family never used."
+  },
+  {
+   "id": "H20261030-08",
+   "name": "15m mid-round drift follow",
+   "market": "15m",
+   "side": "signal_sign",
+   "side_field": "spot_bps_vs_open",
+   "entry": {
+    "when": [
+     {
+      "f": "t_el",
+      "op": "between",
+      "v": [
+       300,
+       600
+      ]
+     },
+     {
+      "f": "abs:spot_bps_vs_open",
+      "op": ">=",
+      "v": 10
+     },
+     {
+      "f": "ask",
+      "op": "<=",
+      "v": 0.72
+     },
+     {
+      "f": "spread",
+      "op": "<=",
+      "v": 0.04
+     },
+     {
+      "f": "macro_blackout",
+      "op": "==",
+      "v": 0
+     }
+    ],
+    "leg": {
+     "type": "taker",
+     "price": "ask",
+     "size_usd": 5,
+     "max_price": 0.75
+    }
+   },
+   "exit": {
+    "mode": "hold_to_settle"
+   },
+   "limits": {
+    "max_trades_per_round": 1,
+    "cooldown_s": 60,
+    "max_rounds_per_day": 40
+   },
+   "prediction": {
+    "net_per_dollar": 0.01,
+    "trades_per_day": 8,
+    "label": "ESTIMATE"
+   },
+   "mechanism": "The 15m market is thinner and slower than the 5m; with 5-10 minutes left and spot 10 bps away, the favourite should trade above 0.75 but the sparse book may still show cheaper asks.",
+   "who_loses": "Makers who copy 5m quotes to the 15m book without adjusting for the longer horizon, and traders who ignore the 15m market entirely.",
+   "why_this_could_fail": "15m rounds have far more time for a reversal; the 15m book may have no ask at all (no fill); fewer rounds per day (96) slows the trade count.",
+   "novelty_vs_prior": "No dead family is a 15m rule; the S46 cascade work was 15m but event-triggered, not spot-distance-triggered."
+  },
+  {
+   "id": "H20261030-09",
+   "name": "taker flow follow with momentum-fade exit",
+   "market": "5m",
+   "side": "signal_sign",
+   "side_field": "mom_5s",
+   "entry": {
+    "when": [
+     {
+      "f": "t_el",
+      "op": "between",
+      "v": [
+       60,
+       220
+      ]
+     },
+     {
+      "f": "flow_buy_10s",
+      "op": ">=",
+      "v": 200
+     },
+     {
+      "f": "trade_n_10s",
+      "op": ">=",
+      "v": 5
+     },
+     {
+      "f": "abs:mom_5s",
+      "op": ">=",
+      "v": 2
+     },
+     {
+      "f": "ask",
+      "op": "<=",
+      "v": 0.65
+     }
+    ],
+    "leg": {
+     "type": "taker",
+     "price": "ask",
+     "size_usd": 5,
+     "max_price": 0.68
+    }
+   },
+   "exit": {
+    "mode": "rule",
+    "when": [
+     {
+      "f": "abs:mom_5s",
+      "op": "<",
+      "v": 0.5
+     }
+    ],
+    "leg": {
+     "type": "taker",
+     "price": "bid"
+    }
+   },
+   "limits": {
+    "max_trades_per_round": 1,
+    "cooldown_s": 60,
+    "max_rounds_per_day": 40
+   },
+   "prediction": {
+    "net_per_dollar": 0.0,
+    "trades_per_day": 10,
+    "label": "ESTIMATE"
+   },
+   "mechanism": "When several takers lift this side's asks in 10 s while spot momentum agrees, the informed flow is on this side; we join it and leave when spot momentum goes flat rather than holding to settlement.",
+   "who_loses": "Makers refilling the ask after each lift, and the slow traders on the other token.",
+   "why_this_could_fail": "Flow on Polymarket is small and may just be one wallet; the rule exit sells at the bid and pays a second fee; the 200-share threshold may fire a handful of times per day only.",
+   "novelty_vs_prior": "The order-book flow filters that were tested were maker-side (post only when flow is calm); this is a taker that FOLLOWS flow with a rule exit, the opposite usage."
+  },
+  {
+   "id": "H20261030-10",
+   "name": "funding-skew late Down, cheap token",
+   "market": "5m",
+   "side": "down",
+   "entry": {
+    "when": [
+     {
+      "f": "t_el",
+      "op": "between",
+      "v": [
+       200,
+       280
+      ]
+     },
+     {
+      "f": "hl_funding_1h",
+      "op": ">=",
+      "v": 0.0002
+     },
+     {
+      "f": "ask",
+      "op": "<=",
+      "v": 0.45
+     },
+     {
+      "f": "abs:spot_bps_vs_open",
+      "op": "<=",
+      "v": 2
+     },
+     {
+      "f": "session_hour",
+      "op": "in",
+      "v": [
+       12,
+       13,
+       14,
+       15,
+       16,
+       17,
+       18,
+       19
+      ]
+     }
+    ],
+    "leg": {
+     "type": "taker",
+     "price": "ask",
+     "size_usd": 5,
+     "max_price": 0.45
+    }
+   },
+   "exit": {
+    "mode": "hold_to_settle"
+   },
+   "limits": {
+    "max_trades_per_round": 1,
+    "cooldown_s": 30,
+    "max_rounds_per_day": 40
+   },
+   "prediction": {
+    "net_per_dollar": 0.0,
+    "trades_per_day": 10,
+    "label": "ESTIMATE"
+   },
+   "mechanism": "High positive funding means longs are crowded and pay to stay; in US hours with a flat round the marginal flow is long-liquidation and profit-taking, which leans the last 100 s down, while the book prices a coin flip.",
+   "who_loses": "Up-token buyers who price the flat round at 0.55+ because the last few candles were green.",
+   "why_this_could_fail": "Funding is hourly and forward-filled, so it says nothing about the next 100 s; the historical corpus has only a few weeks of funding so the regime may be one-sided; buying at 0.45 and losing half the time costs the fee with no edge.",
+   "novelty_vs_prior": "No dead family uses hl_funding_1h; the EXP-D hedge and flat-book gate were price-only."
+  }
+ ],
+ "rejected": [
+  {
+   "id": "H20261030-R1",
+   "reasons": [
+    "resting bid maker at bb-1 held to settlement = dead family resting_bid_maker (paired maker -4.5% at 0.1 s)"
+   ]
+  },
+  {
+   "id": "H20261030-R2",
+   "reasons": [
+    "both-sides 0.49 straddle in the first 45 s = S6 coin-flip harvester, no edge; pair cost > 0.98 after fees"
+   ]
+  }
+ ],
+ "notes": [
+  "sample file regenerated by make_samples.py"
+ ]
+}

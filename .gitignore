@@ -8,3 +8,5 @@
 *credential*.env
 *.p12
 id_rsa*
+qdesk/**/__pycache__/
+qdesk/.pytest_cache/

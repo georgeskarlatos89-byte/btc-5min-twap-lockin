@@ -1,0 +1,26 @@
+{
+ "$schema": "http://json-schema.org/draft-07/schema#",
+ "$id": "qdesk/scorecard.schema.json",
+ "title": "qdesk scorecard data/hyps/scorecard_YYYYMMDD.json (INTERFACES.md section 4)",
+ "description": "Informational copy of what common/schemas.validate('scorecard') checks. Five criteria scored 1..5: oos_tstat (<0|0-1|1-2|2-3|>3), max_dd = MC p95 drawdown % of $100 (>25|15-25|10-15|5-10|<5), n_trades OOS (<30 => 1 = auto-fail|30-60|60-120|120-300|>300), edge_after_costs = Bonferroni-adjusted CI low of net per dollar (mean<0|mean>0 & CI low<0|0-0.5%|0.5-1.5%|>1.5%), stability = windows with net>0 of 5 (<=1|2|3|4|5 and none < -1%). Pass = total >= 18 AND min score > 1 AND (tier-2 edge >= 3 when tier 2 ran) AND skeptic ok. total must equal the sum of the five scores.",
+ "type": "object",
+ "required": ["date", "rules", "passed", "verdict", "holdout_used", "n_tried_cum_on_holdout"],
+ "properties": {
+  "date": {"type": "string", "pattern": "^[0-9]{8}$"},
+  "rules": {"type": "array", "items": {"type": "object",
+    "required": ["id", "scores", "total", "pass", "reasons", "why_this_could_fail"],
+    "properties": {
+     "id": {"type": "string"},
+     "scores": {"type": "object", "required": ["oos_tstat", "max_dd", "n_trades", "edge_after_costs", "stability"],
+                "additionalProperties": {"type": "integer", "minimum": 1, "maximum": 5}},
+     "total": {"type": "number", "minimum": 5, "maximum": 25},
+     "pass": {"type": "boolean"},
+     "reasons": {"type": "array", "items": {"type": "string"}},
+     "why_this_could_fail": {"type": "string"}
+    }}},
+  "passed": {"type": "array", "items": {"type": "string"}, "description": "ids of rules with pass=true; must be scored ids"},
+  "verdict": {"type": "string", "pattern": "^(NOTHING_PASSED|CANDIDATE:.+)$"},
+  "holdout_used": {"type": "boolean"},
+  "n_tried_cum_on_holdout": {"type": "integer", "minimum": 0}
+ }
+}

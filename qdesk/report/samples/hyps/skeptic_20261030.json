@@ -1,0 +1,20 @@
+{
+ "ok": true,
+ "date": "20261030",
+ "findings": [
+  {"severity": "low", "what": "results_20261030.json fill_model for H20261030-02/03 is maker_1s_queue(ESTIMATE) although the legs are taker; label mismatch only", "where": "results_20261030.json:rules.H20261030-02.fill_model"},
+  {"severity": "med", "what": "moondev source failed on 2026-10-29 so liq_* fields are NA on the forward day; H20261030-04 never fired on it (n counts fit days only)", "where": "evidence_20261030.json:sources.moondev"}
+ ],
+ "holdout_reuse": false,
+ "weakened_tests": false,
+ "lookahead_fields": [],
+ "prechecks": {"ok": true, "checks": [
+  {"name": "prereg_hashes_match", "ok": true, "detail": "10/10 rule hashes match"},
+  {"name": "results_newer_than_prereg", "ok": true, "detail": "prereg 03:02:11Z < results 03:38:50Z"},
+  {"name": "holdout_once_per_week", "ok": true, "detail": "2026-W44 n=1"},
+  {"name": "fields_whitelisted", "ok": true, "detail": "0 unknown, 0 look-ahead"},
+  {"name": "n_trades_ge_30_on_pass", "ok": true, "detail": "no passes"},
+  {"name": "code_hash_match", "ok": true, "detail": "a91f3c0e"}
+ ]},
+ "model": "sample"
+}

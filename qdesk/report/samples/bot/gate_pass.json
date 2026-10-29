@@ -1,0 +1,31 @@
+{
+ "generated": "2026-10-25T05:31:08Z",
+ "rule_id": "H20261024-05",
+ "rule_hash": "1c9e0000sample",
+ "code_hash": "a91f3c0e",
+ "corpus_hash": "77ab10ef",
+ "features_hash": "5d02be77",
+ "scorecard_total": 19,
+ "criteria": {
+  "oos_tstat": 4,
+  "max_dd": 4,
+  "n_trades": 3,
+  "edge_after_costs": 4,
+  "stability": 4
+ },
+ "test_days": [
+  "20261005",
+  "20261006",
+  "20261007",
+  "20261008",
+  "20261009",
+  "20261010",
+  "20261011",
+  "20261012",
+  "20261013",
+  "20261014"
+ ],
+ "skeptic_ok": true,
+ "gate_pass": true,
+ "paper_only": true
+}

@@ -1,0 +1,22 @@
+{
+ "$schema": "http://json-schema.org/draft-07/schema#",
+ "$id": "qdesk/gate_pass.schema.json",
+ "title": "qdesk bot gate data/bot/gate_pass.json (INTERFACES.md section 4)",
+ "description": "Informational copy of what common/schemas.validate('gate_pass') checks. Written by bot/builder.py only when a rule passed the scorecard and the skeptic; bot/gate.py refuses it when older than 7 days or when rule/code/corpus hashes differ. paper_only must be true in v1.",
+ "type": "object",
+ "required": ["generated", "rule_id", "rule_hash", "code_hash", "corpus_hash", "features_hash", "scorecard_total", "criteria", "test_days", "skeptic_ok", "gate_pass", "paper_only"],
+ "properties": {
+  "generated": {"type": "string", "description": "ISO UTC"},
+  "rule_id": {"type": "string"},
+  "rule_hash": {"type": "string", "description": "common/dsl.canonical_hash of active_rule.json"},
+  "code_hash": {"type": "string", "description": "common/hashing.code_hash(CODE_FILES_BOT)"},
+  "corpus_hash": {"type": "string", "description": "common/hashing.corpus_hash of the feature days used"},
+  "features_hash": {"type": "string"},
+  "scorecard_total": {"type": "number", "minimum": 18},
+  "criteria": {"type": "object"},
+  "test_days": {"type": "array", "items": {"type": "string", "pattern": "^[0-9]{8}$"}},
+  "skeptic_ok": {"type": "boolean"},
+  "gate_pass": {"type": "boolean"},
+  "paper_only": {"const": true}
+ }
+}

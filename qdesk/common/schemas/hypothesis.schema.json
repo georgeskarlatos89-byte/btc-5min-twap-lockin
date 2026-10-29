@@ -1,0 +1,95 @@
+{
+ "$schema": "http://json-schema.org/draft-07/schema#",
+ "$id": "qdesk/hypothesis.schema.json",
+ "title": "qdesk hypothesis rule (INTERFACES.md section 3)",
+ "description": "Informational copy of the rule grammar enforced by common/dsl.validate_rule. Allowed condition fields: any feature column except market/start/side/asset/src, plus ask (this side's best ask), bid (this side's best bid), abs:<col>, other:<col> (the other side's column). A condition on a NA value is False. size_usd <= 5.",
+ "type": "object",
+ "additionalProperties": false,
+ "required": ["id", "name", "market", "side", "entry", "exit", "limits", "prediction", "mechanism", "who_loses", "why_this_could_fail", "novelty_vs_prior"],
+ "properties": {
+  "id": {"type": "string", "minLength": 1, "examples": ["H20261030-03"]},
+  "name": {"type": "string", "minLength": 1},
+  "market": {"enum": ["5m", "15m"]},
+  "side": {"enum": ["up", "down", "both", "signal_sign"]},
+  "side_field": {"type": "string", "description": "required when side == signal_sign; read on the Up row: positive -> Up, negative -> Down"},
+  "entry": {
+   "type": "object", "additionalProperties": false, "required": ["when", "leg"],
+   "properties": {
+    "when": {"type": "array", "items": {"$ref": "#/definitions/condition"}},
+    "leg": {"oneOf": [{"$ref": "#/definitions/taker_leg"}, {"$ref": "#/definitions/maker_leg"}]}
+   }
+  },
+  "exit": {
+   "oneOf": [
+    {"const": "hold_to_settle"},
+    {"type": "object", "additionalProperties": false, "required": ["mode"], "properties": {"mode": {"const": "hold_to_settle"}}},
+    {"type": "object", "additionalProperties": false, "required": ["mode", "ttl_s"], "properties": {"mode": {"const": "ttl"}, "ttl_s": {"type": "number", "exclusiveMinimum": 0}}},
+    {"type": "object", "additionalProperties": false, "required": ["mode", "when", "leg"], "properties": {
+      "mode": {"const": "rule"},
+      "when": {"type": "array", "items": {"$ref": "#/definitions/condition"}},
+      "leg": {"type": "object", "required": ["type", "price"], "properties": {"type": {"const": "taker"}, "price": {"const": "bid"}}}}}
+   ]
+  },
+  "limits": {
+   "type": "object", "additionalProperties": false, "required": ["max_trades_per_round", "cooldown_s", "max_rounds_per_day"],
+   "properties": {
+    "max_trades_per_round": {"type": "integer", "minimum": 1},
+    "cooldown_s": {"type": "number", "minimum": 0},
+    "max_rounds_per_day": {"type": "integer", "minimum": 1}
+   }
+  },
+  "prediction": {
+   "type": "object", "required": ["net_per_dollar", "trades_per_day", "label"],
+   "properties": {
+    "net_per_dollar": {"type": "number"},
+    "trades_per_day": {"type": "number"},
+    "label": {"enum": ["ESTIMATE", "MEASURED"]}
+   }
+  },
+  "mechanism": {"type": "string", "minLength": 10},
+  "who_loses": {"type": "string", "minLength": 10},
+  "why_this_could_fail": {"type": "string", "minLength": 10, "description": "mandatory"},
+  "novelty_vs_prior": {"type": "string", "minLength": 10, "description": "how it differs from the dead families in prior_evidence.json"}
+ },
+ "definitions": {
+  "field": {"type": "string", "pattern": "^((abs|other):)?[a-z0-9_]+$",
+            "description": "feature column | ask | bid | abs:<col> | other:<col>"},
+  "condition": {
+   "type": "object", "additionalProperties": false, "required": ["f", "op", "v"],
+   "properties": {
+    "f": {"$ref": "#/definitions/field"},
+    "op": {"enum": ["<", "<=", ">", ">=", "==", "in", "between"]},
+    "v": {"oneOf": [{"type": "number"}, {"type": "array", "items": {"type": "number"}, "minItems": 1}]}
+   }
+  },
+  "taker_leg": {
+   "type": "object", "additionalProperties": false, "required": ["type", "price", "size_usd"],
+   "properties": {
+    "type": {"const": "taker"},
+    "price": {"const": "ask"},
+    "size_usd": {"type": "number", "exclusiveMinimum": 0, "maximum": 5},
+    "max_price": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1}
+   }
+  },
+  "maker_leg": {
+   "type": "object", "additionalProperties": false, "required": ["type", "price", "size_usd", "ttl_s"],
+   "properties": {
+    "type": {"const": "maker"},
+    "price": {"const": "bb"},
+    "offset_ticks": {"type": "integer", "minimum": 0, "default": 0},
+    "size_usd": {"type": "number", "exclusiveMinimum": 0, "maximum": 5},
+    "ttl_s": {"type": "number", "exclusiveMinimum": 0},
+    "pair_cap": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 2, "description": "only with side both"}
+   }
+  }
+ },
+ "examples": [
+  {"id": "H20261030-03", "name": "late-round momentum taker, quiet hours", "market": "5m", "side": "signal_sign", "side_field": "mom_5s",
+   "entry": {"when": [{"f": "t_el", "op": ">=", "v": 200}, {"f": "t_el", "op": "<=", "v": 270}, {"f": "abs:spot_bps_vs_open", "op": ">=", "v": 4}, {"f": "ask", "op": "<=", "v": 0.80}, {"f": "session_hour", "op": "in", "v": [0, 1, 2, 3, 4, 5]}, {"f": "macro_blackout", "op": "==", "v": 0}],
+             "leg": {"type": "taker", "price": "ask", "size_usd": 5, "max_price": 0.85}},
+   "exit": {"mode": "hold_to_settle"},
+   "limits": {"max_trades_per_round": 1, "cooldown_s": 30, "max_rounds_per_day": 60},
+   "prediction": {"net_per_dollar": 0.01, "trades_per_day": 25, "label": "ESTIMATE"},
+   "mechanism": "one paragraph", "who_loses": "one paragraph", "why_this_could_fail": "mandatory paragraph", "novelty_vs_prior": "how it differs from the dead families"}
+ ]
+}

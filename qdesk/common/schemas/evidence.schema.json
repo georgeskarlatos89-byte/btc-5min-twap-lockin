@@ -1,0 +1,42 @@
+{
+ "$schema": "http://json-schema.org/draft-07/schema#",
+ "$id": "qdesk/evidence.schema.json",
+ "title": "qdesk nightly evidence file data/evidence/evidence_YYYYMMDD.json (INTERFACES.md section 4)",
+ "description": "Informational copy of what common/schemas.validate('evidence') checks. Every non-count number is labelled MEASURED or ESTIMATE where the block has a label. A failed source never stops the night: it appears with ok=false.",
+ "type": "object",
+ "required": ["date", "generated", "sources", "rounds_yesterday", "price1m", "features", "regime", "moondev", "hyperliquid", "wallets", "paper_bot", "prior_evidence_ref", "anomalies"],
+ "properties": {
+  "date": {"type": "string", "pattern": "^[0-9]{8}$"},
+  "generated": {"type": "string", "description": "ISO UTC"},
+  "sources": {"type": "array", "items": {"type": "object", "required": ["name", "ok", "rows", "note"],
+              "properties": {"name": {"type": "string"}, "ok": {"type": "boolean"}, "rows": {"type": "integer"}, "note": {"type": "string"}}}},
+  "rounds_yesterday": {"type": "object", "properties": {
+    "5m": {"$ref": "#/definitions/rounds"}, "15m": {"$ref": "#/definitions/rounds"}}},
+  "price1m": {"type": "object", "required": ["days_archived", "rounds_with_history"],
+              "properties": {"days_archived": {"type": "integer"}, "rounds_with_history": {"type": "integer"}}},
+  "features": {"type": "object", "required": ["days_available", "newest", "fit_days", "frozen_holdout_days", "forward_days"],
+               "properties": {"days_available": {"type": "integer"}, "newest": {"type": ["string", "null"]},
+                              "fit_days": {"$ref": "#/definitions/days"}, "frozen_holdout_days": {"$ref": "#/definitions/days"}, "forward_days": {"$ref": "#/definitions/days"}},
+               "description": "fit_days and frozen_holdout_days must be disjoint"},
+  "regime": {"type": "object", "required": ["spot_vol_30s_median_bps", "hours_quiet", "hours_active"],
+             "properties": {"spot_vol_30s_median_bps": {"type": ["number", "null"]}, "hours_quiet": {"type": "array"}, "hours_active": {"type": "array"},
+                            "macro_next": {"type": ["object", "null"], "properties": {"name": {"type": "string"}, "utc": {"type": "string"}, "impact": {"type": "string"}}}}},
+  "moondev": {"type": "object", "required": ["label"], "properties": {"label": {"enum": ["MEASURED", "ESTIMATE"]}}},
+  "hyperliquid": {"type": "object"},
+  "wallets": {"type": "object", "required": ["scanned", "top"],
+              "properties": {"scanned": {"type": "integer"}, "top": {"type": "array", "items": {"type": "object",
+                "required": ["wallet", "pnl_7d", "btc5m_share", "maker_share", "rounds_per_day", "class"],
+                "properties": {"wallet": {"type": "string"}, "pnl_7d": {"type": ["number", "null"]}, "btc5m_share": {"type": ["number", "null"]},
+                               "maker_share": {"type": ["number", "null"]}, "rounds_per_day": {"type": ["number", "null"]}, "class": {"type": "string"}}}}}},
+  "paper_bot": {"type": "object", "required": ["active_rule", "trades_7d", "avg_R", "backtest_avg_R", "status"],
+                "properties": {"active_rule": {"type": ["string", "null"]}, "trades_7d": {"type": "integer"}, "avg_R": {"type": ["number", "null"]},
+                               "backtest_avg_R": {"type": ["number", "null"]}, "status": {"enum": ["OBSERVE", "PAPER", "DECAYING", "RETIRED", "NONE"]}}},
+  "prior_evidence_ref": {"type": "string"},
+  "anomalies": {"type": "array"}
+ },
+ "definitions": {
+  "days": {"type": "array", "items": {"type": "string", "pattern": "^[0-9]{8}$"}},
+  "rounds": {"type": "object", "required": ["n", "up_rate", "chain_verified", "gamma_disagree"],
+             "properties": {"n": {"type": "integer"}, "up_rate": {"type": ["number", "null"]}, "chain_verified": {"type": "integer"}, "gamma_disagree": {"type": "integer"}}}
+ }
+}

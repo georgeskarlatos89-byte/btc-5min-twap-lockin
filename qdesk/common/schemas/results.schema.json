@@ -1,0 +1,38 @@
+{
+ "$schema": "http://json-schema.org/draft-07/schema#",
+ "$id": "qdesk/results.schema.json",
+ "title": "qdesk engine results data/hyps/results_YYYYMMDD.json (INTERFACES.md section 4)",
+ "description": "Informational copy of what common/schemas.validate('results') checks. R = pnl / size_usd of the trade. Both engines (tier 1 rule_engine_1s on feature rows, tier 2 rule_replay_events on raw BME events) write this shape.",
+ "type": "object",
+ "required": ["engine", "lat", "spot_lag", "rules"],
+ "properties": {
+  "engine": {"enum": ["rule_engine_1s", "rule_replay_events"]},
+  "lat": {"type": "number", "description": "order latency seconds, 0.1"},
+  "spot_lag": {"type": "number", "description": "chainlink source-to-receive lag seconds, 1.44"},
+  "rules": {"type": "object", "additionalProperties": {"$ref": "#/definitions/rule_result"}}
+ },
+ "definitions": {
+  "rule_result": {
+   "type": "object",
+   "required": ["per_day", "trades", "fit", "test", "windows", "mc_dd", "fill_model"],
+   "properties": {
+    "per_day": {"type": "object", "propertyNames": {"pattern": "^[0-9]{8}$"}, "additionalProperties": {
+      "type": "object", "required": ["trades", "cost", "gross", "fees", "net", "rounds"],
+      "properties": {"trades": {"type": "integer"}, "cost": {"type": "number"}, "gross": {"type": "number"}, "fees": {"type": "number"}, "net": {"type": "number"}, "rounds": {"type": "integer"}}}},
+    "trades": {"type": "array", "items": {"type": "object",
+      "required": ["day", "start", "side", "t_el", "leg", "price", "size", "fill", "fee", "winner", "pnl", "R"],
+      "properties": {"day": {"type": "string"}, "start": {"type": "integer"}, "side": {"enum": ["Up", "Down"]}, "t_el": {"type": "number"},
+                     "leg": {"enum": ["taker", "maker"]}, "price": {"type": "number"}, "size": {"type": "number"}, "fill": {"enum": ["full", "partial", "none"]},
+                     "fee": {"type": "number"}, "winner": {"type": ["string", "null"]}, "pnl": {"type": "number"}, "R": {"type": "number"}, "ctx": {"type": "object"}}}},
+    "fit": {"$ref": "#/definitions/block"},
+    "test": {"oneOf": [{"$ref": "#/definitions/block"}, {"type": "null"}]},
+    "windows": {"type": "array", "items": {"type": "object", "required": ["fit", "test", "net_per_dollar", "n"],
+      "properties": {"fit": {"type": "array"}, "test": {"type": "array"}, "net_per_dollar": {"type": ["number", "null"]}, "n": {"type": "integer"}}}},
+    "mc_dd": {"type": "object", "required": ["p50", "p95", "n"], "properties": {"p50": {"type": "number"}, "p95": {"type": "number"}, "n": {"type": "integer"}}},
+    "fill_model": {"enum": ["taker_ask_ok_100ms", "maker_1s_queue(ESTIMATE)", "events_exact"]}
+   }
+  },
+  "block": {"type": "object", "required": ["net_per_dollar", "ci95", "n"],
+            "properties": {"net_per_dollar": {"type": ["number", "null"]}, "ci95": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": ["number", "null"]}}, "n": {"type": "integer"}}}
+ }
+}

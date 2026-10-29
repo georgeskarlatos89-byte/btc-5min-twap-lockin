@@ -1,0 +1,10 @@
+[Unit]
+Description=qdesk: Brief 07:30 — morning Telegram brief (thread 600) + markdown copy (timer)
+
+[Timer]
+OnCalendar=*-*-* 07:30:00 UTC
+Persistent=true
+RandomizedDelaySec=20
+
+[Install]
+WantedBy=timers.target

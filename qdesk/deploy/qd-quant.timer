@@ -1,0 +1,10 @@
+[Unit]
+Description=qdesk: Quant 03:00 — LLM hypotheses, preregistration, tier-1 engine, tier-2 replay, scorecard, skeptic (timer)
+
+[Timer]
+OnCalendar=*-*-* 03:00:00 UTC
+Persistent=true
+RandomizedDelaySec=20
+
+[Install]
+WantedBy=timers.target

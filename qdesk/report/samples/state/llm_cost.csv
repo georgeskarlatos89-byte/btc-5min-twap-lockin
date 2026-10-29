@@ -1,0 +1,5 @@
+ts,stage,model,seconds,input_chars,output_chars,ok
+2026-10-29T03:08:55Z,hypothesize,claude-fable-5-1,398.1,47010,29811,1
+2026-10-30T03:09:12Z,hypothesize,claude-fable-5-1,412.5,48211,30144,1
+2026-10-30T03:44:10Z,skeptic,claude-fable-5-1,188.0,61002,1210,1
+2026-10-30T07:30:02Z,brief,claude-sonnet-5-5,41.2,9120,980,1

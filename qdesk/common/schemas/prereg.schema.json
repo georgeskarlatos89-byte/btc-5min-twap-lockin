@@ -1,0 +1,25 @@
+{
+ "$schema": "http://json-schema.org/draft-07/schema#",
+ "$id": "qdesk/prereg.schema.json",
+ "title": "qdesk pre-registration data/hyps/preregistration_YYYYMMDD.json (INTERFACES.md section 4)",
+ "description": "Informational copy of what common/schemas.validate('prereg') checks. Written by quant/prereg.py BEFORE any evaluation: rule hashes, predictions, fit/test day sets (disjoint), the 5 rolling windows (test slices never reused), the frozen thresholds, the Bonferroni alpha and the code/features hashes.",
+ "type": "object",
+ "required": ["date", "written", "hypotheses", "fit_days", "test_days", "windows", "thresholds", "n_hypotheses", "bonferroni_alpha", "holdout_touch_allowed", "code_hash", "features_hash"],
+ "properties": {
+  "date": {"type": "string", "pattern": "^[0-9]{8}$"},
+  "written": {"type": "string", "description": "ISO UTC, must precede results_YYYYMMDD.json"},
+  "hypotheses": {"type": "array", "items": {"type": "object", "required": ["id", "rule_hash", "prediction"],
+                 "properties": {"id": {"type": "string"}, "rule_hash": {"type": "string"}, "prediction": {"type": "object"}}}},
+  "fit_days": {"$ref": "#/definitions/days"},
+  "test_days": {"$ref": "#/definitions/days"},
+  "windows": {"type": "array", "items": {"type": "object", "required": ["fit", "test"],
+              "properties": {"fit": {"$ref": "#/definitions/days"}, "test": {"$ref": "#/definitions/days"}}}},
+  "thresholds": {"type": "object", "description": "the scorecard thresholds, frozen"},
+  "n_hypotheses": {"type": "integer", "minimum": 0, "description": "== len(hypotheses)"},
+  "bonferroni_alpha": {"type": "number", "exclusiveMinimum": 0, "maximum": 0.05},
+  "holdout_touch_allowed": {"type": "boolean"},
+  "code_hash": {"type": "string", "description": "common/hashing.code_hash(CODE_FILES_ENGINE)"},
+  "features_hash": {"type": "string"}
+ },
+ "definitions": {"days": {"type": "array", "items": {"type": "string", "pattern": "^[0-9]{8}$"}}}
+}

@@ -1,0 +1,76 @@
+{
+ "version": 3,
+ "generated": "2026-10-29",
+ "purpose": "Strategy families already measured dead on Polymarket BTC 5m/15m. quant/prereg.is_known_dead(rule) rejects a hypothesis whose leg/exit/entry-field set matches a signature; the LLM reads this file and must state novelty_vs_prior against it.",
+ "signature_semantics": {
+  "match_order": "families are listed most specific first; the first signature that matches wins",
+  "leg.type": "rule.entry.leg.type must equal this",
+  "exit.mode": "rule exit mode must equal this (string 'hold_to_settle' and {mode:'hold_to_settle'} are the same)",
+  "side": "if present, rule.side must equal this",
+  "time_fields": ["t_el", "time_left", "session_hour", "dow", "macro_blackout"],
+  "entry_fields_subset_of": "every base column used in entry.when (prefixes abs:/other: stripped; ask/bid count as fields) plus side_field must be inside this list",
+  "entry_fields_any_of": "at least one entry field must be in this list",
+  "entry_fields_none_of": "no entry field may be in this list",
+  "t_el_min_ge": "the rule has a t_el >= v (or t_el > v, or between with lo) condition with v >= this",
+  "offset_ticks_max": "entry.leg.offset_ticks (default 0) must be <= this"
+ },
+ "families": [
+  {
+   "family": "paired_maker_join",
+   "signature": {"leg.type": "maker", "side": "both", "exit.mode": "hold_to_settle", "offset_ticks_max": 0,
+                 "entry_fields_subset_of": ["t_el", "time_left", "session_hour", "dow", "macro_blackout", "ask", "bid", "spread", "sum_bid2", "sum_ask2"]},
+   "evidence": "paired_maker STEP-3 replay, 19 BME days 2026-09-26..10-14, both sides joining the best bid over the whole quote window: at order latency 0.1 s net -4.48% of cost with 84% of pairs completed; even at instant latency (lat 0, the ceiling) -0.20%.\nLive probe measured 72-128 ms book-to-order from twapvm, so the 0.1 s row is the realistic one; project STOPPED 2026-10-27, bot DRY-locked.",
+   "result": "FAIL -4.48% (lat 0.1) / -0.20% (instant); pairs complete but leftover legs lose",
+   "date": "2026-10-27"
+  },
+  {
+   "family": "timed_both_sides_post",
+   "signature": {"leg.type": "maker", "side": "both",
+                 "entry_fields_subset_of": ["t_el", "time_left", "session_hour", "dow", "macro_blackout"]},
+   "evidence": "v2-open-maker-inspect-order-book lab, 19 replay days: posting both sides at a fixed t_el (timed posts) nets -4.5% .. -18% of cost depending on the window; odd/even price parity best -1.8c/share; sell-at-once worse than hold.\n34 of 34 book rules FAIL (2026-10-27); maker rebate recovers only ~0.6% (20% of the 0.07*p*(1-p) taker fee).",
+   "result": "FAIL -4.5% .. -18% (34/34 rules)",
+   "date": "2026-10-27"
+  },
+  {
+   "family": "flow_filtered_maker",
+   "signature": {"leg.type": "maker",
+                 "entry_fields_any_of": ["sweep_flag", "imb3", "flow_sell_10s", "flow_buy_10s", "trade_n_10s", "bb_sz", "ba_sz", "bid_lvl_sz"]},
+   "evidence": "Same 19-day inspect-order-book lab: sweep, imbalance and flow filters on a resting maker leg only cut the loss to -0.5% by not trading (trade count collapses to a handful per day); no filter made the maker leg positive.\nopen_book_maker_v2 variant sweep V0-V7 (12 runs, 2026-10-15): edge -2.4 .. -5.7c/share, all FAIL; the live $10/side test lost $32.60 in 25 min, 3 of 3 filled rounds adverse.",
+   "result": "FAIL -0.5% best (by not trading) .. -5.7c/share",
+   "date": "2026-10-27"
+  },
+  {
+   "family": "resting_bid_maker",
+   "signature": {"leg.type": "maker", "exit.mode": "hold_to_settle",
+                 "entry_fields_subset_of": ["t_el", "time_left", "session_hour", "dow", "macro_blackout"]},
+   "evidence": "A single-side resting bid held to settlement fills only when the taker flow is against it (adverse selection): open_book_maker went LIVE $10/side 2026-10-10 and lost $32.60 in 25 min (3/3 filled rounds adverse), then 12 replay variants on 19 days all FAIL at -2.4 .. -5.7c/share.\nEXP-D naked legs won 0 of 1,092 (a resting bid fills on the losing side); S3 fee-farm / S6 coin-flip 0.45-0.49 quoters never showed a positive holdout.",
+   "result": "FAIL -2.4 .. -5.7c/share; 0/1,092 naked legs",
+   "date": "2026-10-15"
+  },
+  {
+   "family": "stale_ask_model_taker",
+   "signature": {"leg.type": "taker", "exit.mode": "hold_to_settle",
+                 "entry_fields_subset_of": ["t_el", "time_left", "session_hour", "dow", "macro_blackout", "ask", "bid", "spot_bps_vs_open", "spot", "open_twap"],
+                 "entry_fields_any_of": ["spot_bps_vs_open", "spot", "open_twap"],
+                 "entry_fields_none_of": ["mom_2s", "mom_5s", "spot_vol_30s"]},
+   "evidence": "wallet_audits/signal_taker_replay.py: lift the ask whenever it is stale versus a spot-based fair value (gap condition on spot vs open, no momentum), landing at t+0.1 s, fill only if the ask is still there: gross -3.0% .. -4.7% of cost per day, 0 of 19 BME days positive before fees.\nThe calibrated fair_model from open_book_maker_v2 gives the same sign; the ask that is still there 100 ms later is the one that was right.",
+   "result": "FAIL gross -3.0 .. -4.7%, 0/19 days",
+   "date": "2026-10-28"
+  },
+  {
+   "family": "late_round_taker_s1",
+   "signature": {"leg.type": "taker", "t_el_min_ge": 240,
+                 "entry_fields_subset_of": ["t_el", "time_left", "session_hour", "dow", "macro_blackout", "ask", "bid"]},
+   "evidence": "S1 TWAP lock-in late-round taker (t_el >= 240 s, buy the favourite): measurement-stack 7-day backtest against public chain labels -$56.57, no edge; the leader's price already contains the 60-s TWAP lock, so the fee 0.07*p*(1-p) is the whole trade.\nnorm1e69 audit 2026-10-27 (the '+$315k maker robot'): 80% taker, buys both sides every round at any price, nets only +0.09c/share after fees; the profit is taker-rebate tier income, not edge.",
+   "result": "FAIL -$56.57 / 7 days; +0.09c/share net for the best known taker",
+   "date": "2026-10-27"
+  }
+ ],
+ "notes": [
+  "Thorp vol edge (2-4 bps) died with the 2026-08-07 60-s TWAP settlement rule change: post-change -4.32pp.",
+  "BTC5 flat-book conditional gate (0.45-0.60): 1/10 wins out of sample, do not rebuild.",
+  "EXP-D legged hedge: -$42,347 not +$11,697 once the fill side is modelled.",
+  "Profitable top-line wallets are speed makers at scale (gabigol: pure maker, pairs make it, leftover legs lose) or rebate farms (norm1e69); neither is copyable at $5 size.",
+  "Numbers above are MEASURED on BME replay days unless the line says live."
+ ]
+}

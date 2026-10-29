@@ -1,0 +1,10 @@
+[Unit]
+Description=qdesk: Scout 01:00 — evidence file (gamma rounds, labels, prices, Moon Dev, Hyperliquid, wallets, regime) (timer)
+
+[Timer]
+OnCalendar=*-*-* 01:00:00 UTC
+Persistent=true
+RandomizedDelaySec=20
+
+[Install]
+WantedBy=timers.target

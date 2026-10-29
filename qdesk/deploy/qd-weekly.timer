@@ -1,0 +1,10 @@
+[Unit]
+Description=qdesk: Weekly Sunday 08:00 — paper vs backtest, Brier, holdout ledger, proposed prior_evidence additions (timer)
+
+[Timer]
+OnCalendar=Sun *-*-* 08:00:00 UTC
+Persistent=true
+RandomizedDelaySec=20
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,18 @@
+[Unit]
+Description=qdesk: health every 15 min — disk guard, recorder/bot heartbeats, daily claude auth probe
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=ubuntupolymarket3
+Group=ubuntupolymarket3
+WorkingDirectory=/home/ubuntupolymarket3
+Environment=HOME=/home/ubuntupolymarket3
+Environment=QD_ROOT=/home/ubuntupolymarket3
+Environment=QD_DATA=/home/ubuntupolymarket3/qdesk/data
+Environment=PYTHONUNBUFFERED=1
+Environment=PATH=/home/ubuntupolymarket3/.local/bin:/home/ubuntupolymarket3/.npm-global/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/usr/bin/python3 /home/ubuntupolymarket3/qdesk/deploy/disk_guard.py
+Nice=10
+StandardOutput=append:/home/ubuntupolymarket3/qdesk/data/state/qd-health.log
+StandardError=append:/home/ubuntupolymarket3/qdesk/data/state/qd-health.log

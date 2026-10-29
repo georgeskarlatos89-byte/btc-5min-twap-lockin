@@ -1,0 +1,10 @@
+{
+ "rule_id": "H20261024-05",
+ "status": "PAPER",
+ "trades": 23,
+ "avg_R": 0.009,
+ "backtest_avg_R": 0.031,
+ "since": "2026-10-25T05:31:08Z",
+ "settled": 23,
+ "note": "sample (avg_R recomputed from paper_trades.csv)"
+}

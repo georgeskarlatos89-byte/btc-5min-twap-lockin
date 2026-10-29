@@ -1,0 +1,10 @@
+[Unit]
+Description=qdesk: rotate feature/log/scratch files (nothing outside ~/qdesk/data) (timer)
+
+[Timer]
+OnCalendar=*-*-* 00:50:00 UTC
+Persistent=true
+RandomizedDelaySec=20
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,48 @@
+{
+ "date": "20261030",
+ "generated": "2026-10-30T01:17:42Z",
+ "sources": [
+  {"name": "gamma_rounds", "ok": true, "rows": 384, "note": "288 x 5m + 96 x 15m"},
+  {"name": "chain_labels", "ok": true, "rows": 384, "note": "relabeled csv"},
+  {"name": "prices1m", "ok": true, "rows": 3412, "note": "yesterday archived"},
+  {"name": "moondev", "ok": false, "rows": 0, "note": "HTTP 401 (key expired?)"},
+  {"name": "hyperliquid", "ok": true, "rows": 24, "note": "funding/OI hourly"},
+  {"name": "wallets", "ok": true, "rows": 20, "note": "profitable-traders seeds"},
+  {"name": "recorder", "ok": true, "rows": 171936, "note": "day_20261029.csv.gz"}
+ ],
+ "rounds_yesterday": {
+  "5m": {"n": 288, "up_rate": 0.503, "chain_verified": 288, "gamma_disagree": 0},
+  "15m": {"n": 96, "up_rate": 0.479, "chain_verified": 96, "gamma_disagree": 0}
+ },
+ "price1m": {"days_archived": 34, "rounds_with_history": 281},
+ "features": {
+  "days_available": 20,
+  "newest": "20261029",
+  "fit_days": ["20260926", "20260927", "20260928", "20260929", "20260930", "20261001", "20261002", "20261003", "20261004"],
+  "frozen_holdout_days": ["20261005", "20261006", "20261007", "20261008", "20261009", "20261010", "20261011", "20261012", "20261013", "20261014"],
+  "forward_days": ["20261029"]
+ },
+ "regime": {
+  "spot_vol_30s_median_bps": 1.9,
+  "hours_quiet": [0, 1, 2, 3, 4, 5, 22, 23],
+  "hours_active": [13, 14, 15, 16],
+  "macro_next": {"name": "FOMC rate decision", "utc": "2026-11-05T18:00:00Z", "impact": "high"},
+  "label": "MEASURED"
+ },
+ "moondev": {"liq_long_24h_usd": null, "liq_short_24h_usd": null, "label": "ESTIMATE", "note": "source failed; last good 2026-10-28"},
+ "hyperliquid": {"funding_1h": 0.000125, "oi_usd": 1842000000, "label": "MEASURED"},
+ "wallets": {
+  "scanned": 20,
+  "top": [
+   {"wallet": "0x6a3b...9f12", "pnl_7d": 4120.5, "btc5m_share": 0.91, "maker_share": 0.98, "rounds_per_day": 262, "class": "speed_maker"},
+   {"wallet": "0xc41d...07be", "pnl_7d": 1388.2, "btc5m_share": 0.77, "maker_share": 0.21, "rounds_per_day": 288, "class": "rebate_farm"},
+   {"wallet": "0x08e9...aa31", "pnl_7d": 612.0, "btc5m_share": 0.35, "maker_share": 0.05, "rounds_per_day": 14, "class": "directional"}
+  ]
+ },
+ "paper_bot": {"active_rule": "H20261024-05", "trades_7d": 23, "avg_R": 0.012, "backtest_avg_R": 0.031, "status": "PAPER"},
+ "prior_evidence_ref": "prior_evidence.json v3 (6 families)",
+ "anomalies": [
+  "moondev source failed (HTTP 401) - liquidation fields are NA for 2026-10-29",
+  "15m round 2026-10-29T14:45Z settled 0.0 on the websocket; chain label used"
+ ]
+}

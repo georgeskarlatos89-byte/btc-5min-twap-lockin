@@ -1,0 +1,233 @@
+{
+ "date": "20261030",
+ "written": "2026-10-30T03:02:11Z",
+ "hypotheses": [
+  {
+   "id": "H20261030-01",
+   "rule_hash": "319e2ac8b0424b7c7d11fef07f25ac95552a24317257aeb57cf658df4f2395ae",
+   "prediction": {
+    "net_per_dollar": 0.01,
+    "trades_per_day": 25,
+    "label": "ESTIMATE"
+   }
+  },
+  {
+   "id": "H20261030-02",
+   "rule_hash": "0c5f081a9bd5b1b436d39dc4f0d1e52d74e80c4851e4b5dc9190f0abd5f03037",
+   "prediction": {
+    "net_per_dollar": 0.005,
+    "trades_per_day": 12,
+    "label": "ESTIMATE"
+   }
+  },
+  {
+   "id": "H20261030-03",
+   "rule_hash": "5d3bcb9171f2f4a0a69019e591edf03ab052b79f9fbcc06e736eb02e270cf1ab",
+   "prediction": {
+    "net_per_dollar": 0.005,
+    "trades_per_day": 12,
+    "label": "ESTIMATE"
+   }
+  },
+  {
+   "id": "H20261030-04",
+   "rule_hash": "d09839fbbb8690cf5fceb2757194f10ed972010e60f745ca1fb8e68aaca72831",
+   "prediction": {
+    "net_per_dollar": 0.015,
+    "trades_per_day": 6,
+    "label": "ESTIMATE"
+   }
+  },
+  {
+   "id": "H20261030-05",
+   "rule_hash": "b238428a2ed20b969ae2e32c40bd37c8109be1173a852d8fca7c19bd57fa65d3",
+   "prediction": {
+    "net_per_dollar": 0.02,
+    "trades_per_day": 10,
+    "label": "ESTIMATE"
+   }
+  },
+  {
+   "id": "H20261030-06",
+   "rule_hash": "1241d1a074692999a014599feff68a266d4e54c6814a829ab2f743dc49843a8b",
+   "prediction": {
+    "net_per_dollar": 0.0,
+    "trades_per_day": 8,
+    "label": "ESTIMATE"
+   }
+  },
+  {
+   "id": "H20261030-07",
+   "rule_hash": "6223d4b2747c9addc4784db2fd6396acbf5ad92bb9cfc7bcbf597ec5a81e30a6",
+   "prediction": {
+    "net_per_dollar": 0.03,
+    "trades_per_day": 1,
+    "label": "ESTIMATE"
+   }
+  },
+  {
+   "id": "H20261030-08",
+   "rule_hash": "4c71b9f9c1ab221c07bab2401efce8a51a0228fb131a3ceb739e627b0ffb29ce",
+   "prediction": {
+    "net_per_dollar": 0.01,
+    "trades_per_day": 8,
+    "label": "ESTIMATE"
+   }
+  },
+  {
+   "id": "H20261030-09",
+   "rule_hash": "e62ac4e86b145b0f5d71fe30dda5ef48a50808db58ebc12b9d0d28fc38e21d43",
+   "prediction": {
+    "net_per_dollar": 0.0,
+    "trades_per_day": 10,
+    "label": "ESTIMATE"
+   }
+  },
+  {
+   "id": "H20261030-10",
+   "rule_hash": "2a6781c8a47a1aadf6790f4e797e3316d17f82ccd66aeb86e2d8985e7054e521",
+   "prediction": {
+    "net_per_dollar": 0.0,
+    "trades_per_day": 10,
+    "label": "ESTIMATE"
+   }
+  }
+ ],
+ "fit_days": [
+  "20260926",
+  "20260927",
+  "20260928",
+  "20260929",
+  "20260930",
+  "20261001",
+  "20261002",
+  "20261003",
+  "20261004"
+ ],
+ "test_days": [
+  "20261005",
+  "20261006",
+  "20261007",
+  "20261008",
+  "20261009",
+  "20261010",
+  "20261011",
+  "20261012",
+  "20261013",
+  "20261014"
+ ],
+ "windows": [
+  {
+   "fit": [
+    "20260926",
+    "20260927",
+    "20260928",
+    "20260929",
+    "20260930",
+    "20261001"
+   ],
+   "test": [
+    "20261002",
+    "20261003",
+    "20261004"
+   ]
+  },
+  {
+   "fit": [
+    "20260927",
+    "20260928",
+    "20260929",
+    "20260930",
+    "20261001",
+    "20261002"
+   ],
+   "test": [
+    "20261003",
+    "20261004",
+    "20261005"
+   ]
+  },
+  {
+   "fit": [
+    "20260928",
+    "20260929",
+    "20260930",
+    "20261001",
+    "20261002",
+    "20261003"
+   ],
+   "test": [
+    "20261004",
+    "20261005",
+    "20261006"
+   ]
+  },
+  {
+   "fit": [
+    "20260929",
+    "20260930",
+    "20261001",
+    "20261002",
+    "20261003",
+    "20261004"
+   ],
+   "test": [
+    "20261005",
+    "20261006",
+    "20261007"
+   ]
+  },
+  {
+   "fit": [
+    "20260930",
+    "20261001",
+    "20261002",
+    "20261003",
+    "20261004"
+   ],
+   "test": [
+    "20261006",
+    "20261007",
+    "20261008"
+   ]
+  }
+ ],
+ "thresholds": {
+  "oos_tstat": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "max_dd": [
+   25,
+   15,
+   10,
+   5
+  ],
+  "n_trades": [
+   30,
+   60,
+   120,
+   300
+  ],
+  "edge_after_costs": [
+   0,
+   0.005,
+   0.015
+  ],
+  "stability": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "pass_total": 18
+ },
+ "n_hypotheses": 10,
+ "bonferroni_alpha": 0.005,
+ "holdout_touch_allowed": false,
+ "code_hash": "a91f3c0e",
+ "features_hash": "5d02be77"
+}

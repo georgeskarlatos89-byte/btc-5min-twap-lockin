@@ -1,0 +1,81 @@
+{
+ "date": "20260926",
+ "model": "fixture",
+ "hypotheses": [
+  {
+   "id": "HFIX-01",
+   "name": "momentum-sign taker, late round",
+   "market": "5m",
+   "side": "signal_sign",
+   "side_field": "mom_5s",
+   "entry": {
+    "when": [
+     {"f": "t_el", "op": ">=", "v": 200},
+     {"f": "t_el", "op": "<=", "v": 270},
+     {"f": "abs:spot_bps_vs_open", "op": ">=", "v": 4},
+     {"f": "ask", "op": "<=", "v": 0.80},
+     {"f": "macro_blackout", "op": "==", "v": 0}
+    ],
+    "leg": {"type": "taker", "price": "ask", "size_usd": 5, "max_price": 0.85}
+   },
+   "exit": {"mode": "hold_to_settle"},
+   "limits": {"max_trades_per_round": 1, "cooldown_s": 30, "max_rounds_per_day": 60},
+   "prediction": {"net_per_dollar": 0.01, "trades_per_day": 25, "label": "ESTIMATE"},
+   "mechanism": "When spot has already moved 4+ bps from the round's open TWAP with 30-100 s left, the 60-s settlement TWAP has little time to reverse; buying the side the 5-s momentum points to at an ask <= 0.80 pays if the book has not yet fully repriced the move.",
+   "who_loses": "Resting makers on the opposite side who quote off a stale fair value and takers who fade the move expecting mean reversion inside the last 100 s.",
+   "why_this_could_fail": "Prior stale-ask taker replays showed gross -3%: by the time the ask is still <= 0.80 the move is usually already priced, the fee (up to 1.75c) eats the edge, and the 100 ms fill check removes the best prints.",
+   "novelty_vs_prior": "Differs from the model-fair stale-ask family by using a raw momentum sign and a late-round window rather than a fitted fair model; still a taker so the fill model is MEASURED."
+  },
+  {
+   "id": "HFIX-02",
+   "name": "quiet-hours early taker",
+   "market": "5m",
+   "side": "signal_sign",
+   "side_field": "spot_bps_vs_open",
+   "entry": {
+    "when": [
+     {"f": "t_el", "op": "between", "v": [5, 40]},
+     {"f": "session_hour", "op": "in", "v": [0, 1, 2, 3, 4, 5]},
+     {"f": "spot_vol_30s", "op": "<=", "v": 3},
+     {"f": "abs:spot_bps_vs_open", "op": ">=", "v": 2},
+     {"f": "ask", "op": "<=", "v": 0.60},
+     {"f": "macro_blackout", "op": "==", "v": 0}
+    ],
+    "leg": {"type": "taker", "price": "ask", "size_usd": 5, "max_price": 0.62}
+   },
+   "exit": {"mode": "hold_to_settle"},
+   "limits": {"max_trades_per_round": 1, "cooldown_s": 60, "max_rounds_per_day": 40},
+   "prediction": {"net_per_dollar": 0.005, "trades_per_day": 15, "label": "ESTIMATE"},
+   "mechanism": "In the Asia quiet hours the book opens near 0.50/0.50 and reprices slowly; a 2 bps displacement in the first 40 s bought at <= 0.60 captures the gap before the makers catch up.",
+   "who_loses": "Coin-flip makers who quote both sides at 0.49-0.52 at the open without watching spot.",
+   "why_this_could_fail": "S8 session research found Asia was the worst session and the open-print displacement recorder (S2) showed most early moves revert; 2 bps in 40 s is inside the noise of spot_vol_30s.",
+   "novelty_vs_prior": "Taker (not the dead resting-bid maker family); restricted to quiet hours and a vol cap, which no prior rule combined."
+  },
+  {
+   "id": "HFIX-03",
+   "name": "ttl-exit momentum taker, mid round",
+   "market": "5m",
+   "side": "signal_sign",
+   "side_field": "mom_2s",
+   "entry": {
+    "when": [
+     {"f": "t_el", "op": ">=", "v": 60},
+     {"f": "t_el", "op": "<=", "v": 240},
+     {"f": "abs:mom_2s", "op": ">=", "v": 3},
+     {"f": "sweep_flag", "op": "==", "v": 0},
+     {"f": "ask", "op": "between", "v": [0.40, 0.65]},
+     {"f": "macro_blackout", "op": "==", "v": 0}
+    ],
+    "leg": {"type": "taker", "price": "ask", "size_usd": 5, "max_price": 0.66}
+   },
+   "exit": {"mode": "ttl", "ttl_s": 45},
+   "limits": {"max_trades_per_round": 2, "cooldown_s": 20, "max_rounds_per_day": 80},
+   "prediction": {"net_per_dollar": 0.004, "trades_per_day": 30, "label": "ESTIMATE"},
+   "mechanism": "A 3 bps 2-second spot jump with no sweep in the book means the book lags the feed; buy the momentum side at 0.40-0.65 and sell to the bid 45 s later once the book has caught up, without carrying settlement risk.",
+   "who_loses": "Makers whose quotes lag the Chainlink feed by the 1.4 s source lag plus their own requote time.",
+   "why_this_could_fail": "The exit crosses the spread and pays a second taker fee; the paired-maker latency study measured ~70-128 ms book-to-order, so the lag we exploit may be smaller than our own; the 2-s momentum mostly reflects feed noise.",
+   "novelty_vs_prior": "First rule with a ttl exit (two taker legs) instead of hold_to_settle; prior families all held to settlement or rested bids."
+  }
+ ],
+ "rejected": []
+}

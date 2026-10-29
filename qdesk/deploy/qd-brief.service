@@ -1,0 +1,18 @@
+[Unit]
+Description=qdesk: Brief 07:30 — morning Telegram brief (thread 600) + markdown copy
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=ubuntupolymarket3
+Group=ubuntupolymarket3
+WorkingDirectory=/home/ubuntupolymarket3
+Environment=HOME=/home/ubuntupolymarket3
+Environment=QD_ROOT=/home/ubuntupolymarket3
+Environment=QD_DATA=/home/ubuntupolymarket3/qdesk/data
+Environment=PYTHONUNBUFFERED=1
+Environment=PATH=/home/ubuntupolymarket3/.local/bin:/home/ubuntupolymarket3/.npm-global/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/bin/bash /home/ubuntupolymarket3/qdesk/run_night.sh brief
+Nice=10
+StandardOutput=append:/home/ubuntupolymarket3/qdesk/data/state/qd-brief.log
+StandardError=append:/home/ubuntupolymarket3/qdesk/data/state/qd-brief.log
