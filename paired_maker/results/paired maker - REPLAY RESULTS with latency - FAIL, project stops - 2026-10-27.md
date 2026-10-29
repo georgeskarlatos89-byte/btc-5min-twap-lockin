@@ -60,3 +60,10 @@ cannot lift the instant ceiling, so it cannot change the verdict.
 - The run died twice before finishing (10-15 and 10-24) because the VM killed user jobs when my login ended
   (`loginctl Linger=no`); fixed on 10-26, the last 3 days were rerun with the same v1 model, so all 19 days are
   one consistent model.
+
+## Added 2026-10-27 05:30 UTC: the refined cancel-clock check (v2) changes nothing
+
+Same 3 days (Sep 28, Oct 3, Oct 9; 842 rounds) with the v2 model (cancel lands once, never pushed back): join at
+0.1 s -4.92% (v1 -5.39%), at 0.05 s -4.08% (v1 -4.56%), and even at 0.02 s -1.65%; instant -0.20%. The cliff
+between "instant" and "20 milliseconds" is real and is where the whole loss lives. Verdict unchanged: FAIL.
+Table: repo `paired_maker/results/REPLAY-RESULTS-v2-sensitivity-3days.md`.
