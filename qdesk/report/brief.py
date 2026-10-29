@@ -13,7 +13,7 @@ Every number comes from files:
     data/state/hb_*.json, llm_cost.csv, disk usage
 The LLM (llm/prompts/brief.md) only WORDS the "market in 5 lines" and the strategy one-liners; any
 line containing a number that is not in the input files is replaced by a deterministic template.
-`--dry-run`: LAB_NO_TELEGRAM=1, no CLI call, missing files fall back to report/samples/.
+`--dry-run`: LAB_NO_TELEGRAM=1, no CLI call, missing files fall back to report/samples/ ONLY with QD_USE_SAMPLES=1.
 Output: data/reports/brief_<date>.md ; Telegram via qdesk.common.tg.alert("brief-<date>", text, cls="report").
 """
 import argparse
@@ -100,6 +100,16 @@ def gather(inp, date):
     if ev is None:
         ev, ev_path = inp.latest_json("evidence/evidence_*.json", default={})
     hyps = inp.json(f"hyps/hyps_{date}.json") or {}
+    if not hyps.get("hypotheses"):                 # library night (no LLM file): rules + prose live in the pre-registration
+        pre = inp.json(f"hyps/preregistration_{date}.json") or {}
+        hyps = {"hypotheses": [h for h in pre.get("hypotheses", []) if isinstance(h, dict)], "source": "preregistration"}
+        try:
+            from qdesk.quant import library as _lib
+            full = {r["id"]: r for r in _lib.get_hypotheses()}
+            for h in hyps["hypotheses"]:
+                h.update({k: v for k, v in full.get(h.get("id"), {}).items() if k not in h})
+        except Exception:
+            pass
     sc = inp.json(f"hyps/scorecard_{date}.json") or {}
     res = inp.json(f"hyps/results_{date}.json") or {}
     sk = inp.json(f"hyps/skeptic_{date}.json")
@@ -289,6 +299,8 @@ def render_brief(facts, market_lines, one_liners, wording_note, used_samples):
     if used_samples:
         ol += f"\n(dry-run: {len(used_samples)} input(s) from report/samples)"
     out.append(ol)
+    if used_samples:
+        out.insert(0, f"SAMPLE DATA IN THIS BRIEF ({len(used_samples)} input(s) from report/samples, render test only)")
     text = "\n\n".join(out)
     return R.hard_cap(text, R.TG_MAX)
 

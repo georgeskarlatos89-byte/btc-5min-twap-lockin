@@ -62,7 +62,8 @@ class Inputs:
     """Resolves data files: the real data dir first, then (dry-run only) report/samples/."""
 
     def __init__(self, dry_run=False):
-        self.dry_run = dry_run
+        # samples are a render test only: used ONLY when QD_USE_SAMPLES=1 (never mixed into a real night by default)
+        self.dry_run = dry_run and os.environ.get("QD_USE_SAMPLES") == "1"
         self.data = data_dir()
         self.used_samples = []
 
